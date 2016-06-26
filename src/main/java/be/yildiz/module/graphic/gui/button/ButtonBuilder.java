@@ -1,0 +1,101 @@
+//        This file is part of the Yildiz-Online project, licenced under the MIT License
+//        (MIT)
+//
+//        Copyright (c) 2016 Grégory Van den Borre
+//
+//        More infos available: http://yildiz.bitbucket.org
+//
+//        Permission is hereby granted, free of charge, to any person obtaining a copy
+//        of this software and associated documentation files (the "Software"), to deal
+//        in the Software without restriction, including without limitation the rights
+//        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//        copies of the Software, and to permit persons to whom the Software is
+//        furnished to do so, subject to the following conditions:
+//
+//        The above copyright notice and this permission notice shall be included in all
+//        copies or substantial portions of the Software.
+//
+//        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//        SOFTWARE.
+
+package be.yildiz.module.graphic.gui.button;
+
+import be.yildiz.common.Coordinates;
+import be.yildiz.common.util.StringUtil;
+import be.yildiz.module.graphic.Font;
+import be.yildiz.module.graphic.Material;
+import be.yildiz.module.graphic.gui.Button;
+import be.yildiz.module.graphic.gui.ButtonMaterial;
+import be.yildiz.module.graphic.gui.GuiBuilder;
+import be.yildiz.module.graphic.gui.GuiContainer;
+
+import java.util.Optional;
+
+/**
+ * @author Grégory Van den Borre
+ */
+public class ButtonBuilder {
+
+    private final GuiBuilder builder;
+
+    private String name = StringUtil.buildRandomString("button");
+
+    private ButtonMaterial material = new ButtonMaterial(Material.empty(), Material.empty(), Font.getDefault());
+
+    private Coordinates coordinates = Coordinates.ZERO;
+
+    public ButtonBuilder(final GuiBuilder b) {
+        super();
+        this.builder = b;
+    }
+
+    public ButtonBuilder withCoordinates(final Coordinates c) {
+        this.coordinates = c;
+        return this;
+    }
+
+    public ButtonBuilder withMaterial(final Material m) {
+        this.material = new ButtonMaterial(m, this.material.highlight, this.material.inactive, this.material.font);
+        return this;
+    }
+
+    public ButtonBuilder withHighlightMaterial(final Material m) {
+        this.material = new ButtonMaterial(this.material.material, m, this.material.inactive, this.material.font);
+        return this;
+    }
+
+    public ButtonBuilder withInactiveMaterial(final Material m) {
+        this.material = new ButtonMaterial(this.material.material, this.material.highlight, m, this.material.font);
+        return this;
+    }
+
+    public ButtonBuilder withButtonMaterial(final ButtonMaterial m) {
+        this.material = m;
+        return this;
+    }
+
+    public ButtonBuilder withFont(final Font f) {
+        this.material = new ButtonMaterial(this.material.material, this.material.highlight, this.material.inactive, Optional.of(f));
+        return this;
+    }
+
+    public ButtonBuilder withName(final String name) {
+        this.name = name;
+        return this;
+    }
+
+    public ButtonBuilder fromOther(final Button b) {
+        this.material = new ButtonMaterial(b.getMaterial(), b.getHighlightMaterial(), b.getInactiveMaterial(), Optional.of(b.getCaptionFont()));
+        return this;
+    }
+
+    public Button build(final GuiContainer container) {
+        return this.builder.buildButton(this.name, this.coordinates, this.material, container);
+    }
+
+}
