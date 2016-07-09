@@ -70,6 +70,7 @@ public final class DummyIconElement extends AbstractIconElement {
 
     @Override
     protected void showImpl() {
+        removeFromRegisterer();
     }
 
     @Override

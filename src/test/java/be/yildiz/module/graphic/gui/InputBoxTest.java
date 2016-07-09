@@ -25,65 +25,50 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
+import be.yildiz.common.Coordinates;
+import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Material;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author Grégory Van den Borre
  */
-public class MockIconElement extends AbstractIconElement {
+public class InputBoxTest {
 
-    protected MockIconElement(String name, BaseCoordinate coordinates, Material iconMaterial) {
-        super(name, coordinates, iconMaterial);
+    private GuiBuilder builder = new DummyGuiBuilder();
+
+    private GuiContainer parent = builder.buildContainerElement("parent", new Coordinates(100,10,0,0), Material.empty());
+
+    @Test
+    public void testGetText() {
+        InputBox box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        Assert.assertEquals("", box.getText());
+        builder.delete(box);
     }
 
-    @Override
-    protected void rotateRadian(float value) {
-
+    @Test
+    public void testSetText() {
+        InputBox box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        box.setText("abc");
+        Assert.assertEquals("abc", box.getText());
+        builder.delete(box);
     }
 
-    @Override
-    protected int getZ() {
-        return 0;
+    @Test
+    public void testRemoveChar() {
+        InputBox box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        box.setText("abc");
+        box.removeChar();
+        Assert.assertEquals("ab", box.getText());
+        builder.delete(box);
     }
 
-    @Override
-    protected void setMaterialImpl(Material newMaterial) {
-
+    @Test
+    public void testRemoveCharNoText() {
+        InputBox box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        box.removeChar();
+        Assert.assertEquals("", box.getText());
+        builder.delete(box);
     }
-
-    @Override
-    protected String getParentName() {
-        return null;
-    }
-
-    @Override
-    protected void delete() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected void showImpl() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected void hideImpl() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected void setSizeImpl(int newWidth, int newHeight) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected Element setPositionImpl(int newLeft, int newTop) {
-        return this;
-    }
-
 }

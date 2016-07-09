@@ -34,6 +34,8 @@ import be.yildiz.module.graphic.MaterialEffect;
 import be.yildiz.module.graphic.MaterialEffect.EffectType;
 import be.yildiz.module.graphic.MaterialTechnique;
 
+import java.util.Arrays;
+
 /**
  * @author Grégory Van den Borre
  */
@@ -43,6 +45,9 @@ public class DummyGuiBuilder extends GuiBuilder {
 
         @Override
         protected void loadImpl() {
+            float[] widthArray = new float[256];
+            Arrays.fill(widthArray, 1.0f);
+            this.setCharWidth(widthArray);
         }
     };
 
@@ -81,6 +86,7 @@ public class DummyGuiBuilder extends GuiBuilder {
 
     public DummyGuiBuilder() {
         super(new Size(1024, 768));
+        defaultFont.load();
     }
 
     @Override

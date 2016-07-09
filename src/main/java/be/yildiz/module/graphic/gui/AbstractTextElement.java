@@ -68,6 +68,10 @@ public abstract class AbstractTextElement extends BaseElement {
         REGISTERER.register(this);
     }
 
+    public static AbstractTextElement getByName(final String name) {
+        return AbstractTextElement.REGISTERER.get(name);
+    }
+
     /**
      * Compute the width in pixel of the printed text.
      *

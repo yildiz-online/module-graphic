@@ -61,6 +61,10 @@ public abstract class AbstractIconElement extends BaseElement {
         AbstractIconElement.REGISTERER.register(this);
     }
 
+    public static AbstractIconElement getByName(final String name) {
+        return AbstractIconElement.REGISTERER.get(name);
+    }
+
     /**
      * Rotate the texture.
      *

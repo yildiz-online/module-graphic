@@ -60,6 +60,7 @@ public final class DummyTextElement extends AbstractTextElement {
 
     @Override
     protected void delete() {
+        removeFromRegisterer();
     }
 
     @Override
