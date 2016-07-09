@@ -164,9 +164,7 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
         this.showDefault();
     }
 
-    /**
-     * Remove the last char of the current contained text.
-     */
+    @Override
     public void removeChar() {
         if (this.cursorPosition > 0) {
             this.totalText = StringUtil.removeChar(this.totalText, this.cursorPosition - 1);

@@ -103,5 +103,8 @@ public interface InputBox extends ContainerElement {
      */
     InputBox setTextCenter();
 
+    /**
+     * Remove the last char of the current contained text.
+     */
     void removeChar();
 }

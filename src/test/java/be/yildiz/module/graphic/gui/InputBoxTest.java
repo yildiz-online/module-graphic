@@ -71,4 +71,40 @@ public class InputBoxTest {
         Assert.assertEquals("", box.getText());
         builder.delete(box);
     }
+
+    @Test
+    public void testAddChar() {
+        InputBoxGui box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        box.addChar(65);
+        Assert.assertEquals("A", box.getText());
+        builder.delete(box);
+    }
+
+    @Test
+    public void testPressKey() {
+        InputBoxGui box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        box.show();
+        box.keyPressed('a');
+        Assert.assertEquals("a", box.getText());
+        builder.delete(box);
+    }
+
+    @Test
+    public void testPressDeleteKey() {
+        InputBoxGui box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        box.show();
+        box.keyPressed('b');
+        box.keyPressed('c');
+        box.deleteKeyPressed();
+        Assert.assertEquals("b", box.getText());
+        builder.delete(box);
+    }
+
+    @Test
+    public void testAddCharAboveLimit256() {
+        InputBoxGui box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        box.addChar(257);
+        Assert.assertEquals("", box.getText());
+        builder.delete(box);
+    }
 }
