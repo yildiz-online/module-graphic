@@ -82,7 +82,7 @@ public abstract class GuiContainer extends Widget {
      * @param name               Container name, must be unique.
      * @param coordinates        Container size and position.
      * @param backgroundMaterial The Material to use for background.
-     * @param Parent             container, <code>null</code> if none.
+     * @param parent             container, <code>null</code> if none.
      */
     protected GuiContainer(final String name, final BaseCoordinate coordinates, final Material backgroundMaterial,
                            final Optional<GuiContainer> parent, final boolean widget) {
@@ -422,9 +422,13 @@ public abstract class GuiContainer extends Widget {
     }
 
     public Optional<Widget> getWidgetAt(Point2D position) {
+        return this.getWidgetAt(position.getX(), position.getY());
+    }
+
+    public Optional<Widget> getWidgetAt(int x, int y) {
         for (GuiContainer c : this.childrenContainerList) {
             if (c.isVisible()) {
-                Optional<Widget> result = c.getWidgetAt(position);
+                Optional<Widget> result = c.getWidgetAt(x, y);
                 if (result.isPresent()) {
                     return result;
                 }
@@ -432,7 +436,7 @@ public abstract class GuiContainer extends Widget {
         }
 
         for (Widget w : this.dynamicChildrenList) {
-            if (w.isVisible() && w.contains(position)) {
+            if (w.isVisible() && w.contains(x, y)) {
                 return Optional.of(w);
             }
         }

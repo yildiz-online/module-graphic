@@ -41,7 +41,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
 
     private final Set<View> views = Sets.newOrderedSet();
 
-    private Optional<Widget> currentWidgetFocus = Optional.empty();
+    private Widget currentWidgetFocus = Widget.DUMMY;
 
     private Widget widgetUnderMouse = Widget.DUMMY;
 
@@ -56,43 +56,47 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void keyboardKeyPressed(final char character) {
         this.debugListener.displayDebugMessage("Key " + character + " pressed for: " + this.currentWidgetFocus);
-        this.currentWidgetFocus.ifPresent(w -> w.keyPressed(character));
+        this.currentWidgetFocus.keyPressed(character);
     }
 
     @Override
     public void keyboardEnterKeyPressed() {
         this.debugListener.displayDebugMessage("Key enter pressed for: " + this.currentWidgetFocus);
-        this.currentWidgetFocus.ifPresent(Widget::enterKeyPressed);
+        this.currentWidgetFocus.enterKeyPressed();
 
     }
 
     @Override
     public void specialKeyPressed(SpecialKey key) {
-        this.currentWidgetFocus.ifPresent(w -> w.specialKeyPressed(key));
+        this.debugListener.displayDebugMessage("Key " + key + " pressed for: " + this.currentWidgetFocus);
+        this.currentWidgetFocus.specialKeyPressed(key);
 
     }
 
     @Override
     public void keyboardNumberPressed(int number) {
-        this.currentWidgetFocus.ifPresent(w -> w.numberKeyPressed(number));
+        this.debugListener.displayDebugMessage("Key " + number + " pressed for: " + this.currentWidgetFocus);
+        this.currentWidgetFocus.numberKeyPressed(number);
 
     }
 
     @Override
     public void keyboardDeleteKeyPressed() {
-        this.currentWidgetFocus.ifPresent(Widget::deleteKeyPressed);
+        this.debugListener.displayDebugMessage("Key delete pressed for: " + this.currentWidgetFocus);
+        this.currentWidgetFocus.deleteKeyPressed();
 
     }
 
     @Override
     public void keyboardArrowPressed(ArrowKey key) {
-        this.currentWidgetFocus.ifPresent(w -> w.arrowKeyPressed(key));
+        this.debugListener.displayDebugMessage("Key " + key + " pressed for: " + this.currentWidgetFocus);
+        this.currentWidgetFocus.arrowKeyPressed(key);
 
     }
 
     @Override
     public void keyReleased(int keyCode) {
-        this.currentWidgetFocus.ifPresent(w -> w.keyReleased(keyCode));
+        this.currentWidgetFocus.keyReleased(keyCode);
     }
 
     @Override
@@ -107,11 +111,14 @@ public class EventBubblingDispatcher implements GuiEventManager {
 
     @Override
     public void mouseLeftClick(int x, int y) {
+        this.debugListener.displayDebugMessage("Left click on: " + this.widgetUnderMouse);
+        this.currentWidgetFocus = widgetUnderMouse;
         this.widgetUnderMouse.mouseLeftClick(x, y);
     }
 
     @Override
     public void mouseRightClick(Point2D position) {
+        this.debugListener.displayDebugMessage("Right click on: " + this.widgetUnderMouse);
         this.widgetUnderMouse.mouseRightClick(position);
     }
 
@@ -186,8 +193,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
 
     @Override
     public void setFocus(View view) {
-        this.currentWidgetFocus = Optional.of(view.getContainer());
-
+        this.currentWidgetFocus = view.getContainer();
     }
 
     @Override
