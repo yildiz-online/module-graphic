@@ -100,6 +100,27 @@ public abstract class Font extends Resource {
     }
 
     /**
+     * Crop a text if it is longer than a given width.
+     * The outside part is replaced by "...", excepted if the width is not sufficient to contains it, then it returns an empty String.
+     * @param originalText Text to crop.
+     * @param width Maximum text width allowed.
+     * @return originalText if it is smaller than width, a cropped text with "..." if the text cannot fit in the given width, or "" if "..." cannot fit in the given width.
+     */
+    public String crop(final String originalText, final int width) {
+        float size = 0;
+        for(int i = 0; i < originalText.length(); i++) {
+            size += charWidth[originalText.charAt(i)];
+            if(size > width) {
+                if(i < 3) {
+                    return "";
+                }
+                return originalText.substring(0, i - 3) + "...";
+            }
+        }
+        return originalText;
+    }
+
+    /**
      * Compute the width of a text with this font.
      *
      * @param text Text to use.

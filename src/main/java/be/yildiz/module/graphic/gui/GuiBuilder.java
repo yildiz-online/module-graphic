@@ -367,8 +367,26 @@ public abstract class GuiBuilder {
      * @param container Container holding the text line.
      * @return The new text line.
      */
+    @Deprecated
     public final GuiTextLine buildTextLine(final String name, final Position pos, final Font font, final GuiContainer container) {
         final AbstractTextElement text = this.buildTextElement(new Coordinates(500, font.size, pos.left, pos.top), font, container);
+        final GuiTextLine textLine = new GuiTextLine(name, text, container);
+        textLine.setStatic();
+        this.textLineList.register(textLine);
+        return textLine;
+    }
+
+    /**
+     * Build a new line of text widget.
+     *
+     * @param name      Text line unique name.
+     * @param coordinates       Text line size and position.
+     * @param font      Font used for the text.
+     * @param container Container holding the text line.
+     * @return The new text line.
+     */
+    public final GuiTextLine buildTextLine(final String name, final Coordinates coordinates, final Font font, final GuiContainer container) {
+        final AbstractTextElement text = this.buildTextElement(coordinates, font, container);
         final GuiTextLine textLine = new GuiTextLine(name, text, container);
         textLine.setStatic();
         this.textLineList.register(textLine);

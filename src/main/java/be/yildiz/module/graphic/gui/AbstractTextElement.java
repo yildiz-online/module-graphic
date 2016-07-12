@@ -53,18 +53,17 @@ public abstract class AbstractTextElement extends BaseElement {
      */
     private String currentText = "";
 
+    private String croppedText = "";
+
     /**
      * Full constructor.
      *
      * @param coordinates Text position and size.
      * @param textFont    Font to use to print the text.
      */
-    protected AbstractTextElement(final BaseCoordinate coordinates, final Font textFont) {
+    protected AbstractTextElement(final BaseCoordinate coordinates, @NonNull  final Font textFont) {
         super("text" + System.nanoTime(), coordinates);
-        //FIXME LOW no assert
-        assert textFont != null : "textFont parameter is null";
         this.font = textFont;
-        this.setHeight(textFont.size);
         REGISTERER.register(this);
     }
 
@@ -127,7 +126,11 @@ public abstract class AbstractTextElement extends BaseElement {
             return false;
         }
         this.currentText = newText;
-        this.setTextImpl(this.currentText);
+        this.croppedText = this.currentText;
+        if(this.getTextWidth() < this.getWidth()) {
+            this.croppedText = this.font.crop(this.croppedText, this.getWidth());
+        }
+        this.setTextImpl(this.croppedText);
         this.setWidth(this.getTextWidth());
         return true;
     }
