@@ -26,6 +26,8 @@
 package be.yildiz.module.graphic.gui.button;
 
 import be.yildiz.common.Coordinates;
+import be.yildiz.common.Position;
+import be.yildiz.common.Size;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
@@ -56,6 +58,16 @@ public class ButtonBuilder {
 
     public ButtonBuilder withCoordinates(final Coordinates c) {
         this.coordinates = c;
+        return this;
+    }
+
+    public ButtonBuilder withSize(final Size size) {
+        this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
+        return this;
+    }
+
+    public ButtonBuilder atPosition(final Position position) {
+        this.coordinates = new Coordinates(this.coordinates.getSize(), position);
         return this;
     }
 
