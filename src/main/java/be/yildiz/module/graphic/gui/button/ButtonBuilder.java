@@ -35,6 +35,7 @@ import be.yildiz.module.graphic.gui.Button;
 import be.yildiz.module.graphic.gui.ButtonMaterial;
 import be.yildiz.module.graphic.gui.GuiBuilder;
 import be.yildiz.module.graphic.gui.GuiContainer;
+import lombok.NonNull;
 
 import java.util.Optional;
 
@@ -66,6 +67,12 @@ public class ButtonBuilder {
         return this;
     }
 
+    /**
+     * Provide a position to the button.
+     * @param position Button position.
+     * @return This object for chaining.
+     * @throws NullPointerException if position is null.
+     */
     public ButtonBuilder atPosition(final Position position) {
         this.coordinates = new Coordinates(this.coordinates.getSize(), position);
         return this;
@@ -91,12 +98,24 @@ public class ButtonBuilder {
         return this;
     }
 
-    public ButtonBuilder withFont(final Font f) {
-        this.material = new ButtonMaterial(this.material.material, this.material.highlight, this.material.inactive, Optional.of(f));
+    /**
+     * Provide a font to the button.
+     * @param font Button font.
+     * @return This object for chaining.
+     * @throws NullPointerException if font is null.
+     */
+    public ButtonBuilder withFont(final Font font) {
+        this.material = new ButtonMaterial(this.material.material, this.material.highlight, this.material.inactive, Optional.of(font));
         return this;
     }
 
-    public ButtonBuilder withName(final String name) {
+    /**
+     * Provide a name to the button.
+     * @param name Button unique name.
+     * @return This object for chaining.
+     * @throws NullPointerException if name is null.
+     */
+    public ButtonBuilder withName(@NonNull final String name) {
         this.name = name;
         return this;
     }
