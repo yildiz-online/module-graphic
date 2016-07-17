@@ -25,7 +25,9 @@
 
 package be.yildiz.module.graphic.gui.textline;
 
+import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
+import be.yildiz.common.Size;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.gui.GuiBuilder;
@@ -41,7 +43,7 @@ public class TextLineBuilder {
 
     private String name = StringUtil.buildRandomString("textLine");
 
-    private Position position = Position.ZERO;
+    private Coordinates coordinates = Coordinates.ZERO;
 
     private Font font = Font.getDefault();
 
@@ -57,7 +59,7 @@ public class TextLineBuilder {
     }
 
     public TextLineBuilder atPosition(final Position position) {
-        this.position = position;
+        this.coordinates = new Coordinates(this.coordinates.getSize(), position);
         return this;
     }
 
@@ -67,6 +69,11 @@ public class TextLineBuilder {
     }
 
     public TextLine build(final GuiContainer c) {
-        return this.builder.buildTextLine(this.name, this.position, this.font, c);
+        return this.builder.buildTextLine(this.name, this.coordinates, this.font, c);
+    }
+
+    public TextLineBuilder withSize(Size size) {
+        this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
+        return this;
     }
 }
