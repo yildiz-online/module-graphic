@@ -1,10 +1,8 @@
 # Yildiz-Engine module-graphic.
 
-This is the official repository of The Yildiz-Engine Graphic Module, part of the Yildiz-Engine project.
+This is the official repository of the Graphic Module, part of the Yildiz-Engine project.
 The graphic module is an abstract component meant to display 3D scenes with cameras, lights, particles, volumetric effects and a 2D or 3D GUI.
 It requires an implementation module to materialize it.
-
-## Status [![Quality Gate](https://www.sonarqube.com/api/badges/gate?key=be.yildiz-games:module-graphic)](https://sonarqube.com/overview?id=be.yildiz-games:module-graphic)
 
 ## Features
 
