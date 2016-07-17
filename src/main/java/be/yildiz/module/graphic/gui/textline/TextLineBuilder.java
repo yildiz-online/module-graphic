@@ -63,6 +63,10 @@ public class TextLineBuilder {
         return this;
     }
 
+    public TextLineBuilder atPosition(final int x, final int y) {
+        return atPosition(new Position(x, y));
+    }
+
     public TextLineBuilder withFont(final Font font) {
         this.font = font;
         return this;
