@@ -78,6 +78,17 @@ public class ButtonBuilder {
         return this;
     }
 
+    /**
+     * Provide a position to the button.
+     * @param x Button left position.
+     * @param y Button top position.
+     * @return This object for chaining.
+     * @throws NullPointerException if position is null.
+     */
+    public ButtonBuilder atPosition(final int x, final int y) {
+        return this.atPosition(new Position(x, y));
+    }
+
     public ButtonBuilder withMaterial(final Material m) {
         this.material = new ButtonMaterial(m, this.material.highlight, this.material.inactive, this.material.font);
         return this;
