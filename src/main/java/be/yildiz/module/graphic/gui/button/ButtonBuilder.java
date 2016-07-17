@@ -31,10 +31,7 @@ import be.yildiz.common.Size;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import be.yildiz.module.graphic.gui.Button;
-import be.yildiz.module.graphic.gui.ButtonMaterial;
-import be.yildiz.module.graphic.gui.GuiBuilder;
-import be.yildiz.module.graphic.gui.GuiContainer;
+import be.yildiz.module.graphic.gui.*;
 import lombok.NonNull;
 
 import java.util.Optional;
@@ -51,6 +48,14 @@ public class ButtonBuilder {
     private ButtonMaterial material = new ButtonMaterial(Material.empty(), Material.empty(), Font.getDefault());
 
     private Coordinates coordinates = Coordinates.ZERO;
+
+    private Element.PositionRelativeTop captionTopAlignment= Element.PositionRelativeTop.CENTER;
+
+    private int captionTopDistance = 0;
+
+    private Element.PositionRelativeLeft captionLeftAlignment = Element.PositionRelativeLeft.CENTER;
+
+    private int captionLeftDistance = 0;
 
     public ButtonBuilder(final GuiBuilder b) {
         super();
@@ -136,8 +141,23 @@ public class ButtonBuilder {
         return this;
     }
 
+    public ButtonBuilder withCaptionTextAlignment(Element.PositionRelativeTop top, final int distance) {
+        this.captionTopAlignment = top;
+        this.captionTopDistance = distance;
+        return this;
+    }
+
+    public ButtonBuilder withCaptionTextAlignment(Element.PositionRelativeLeft left, final int distance) {
+        this.captionLeftAlignment = left;
+        this.captionLeftDistance = distance;
+        return this;
+    }
+
     public Button build(final GuiContainer container) {
-        return this.builder.buildButton(this.name, this.coordinates, this.material, container);
+        Button b = this.builder.buildButton(this.name, this.coordinates, this.material, container);
+        b.setCaptionTextLeftAlignement(this.captionLeftAlignment, this.captionLeftDistance);
+        b.setCaptionTextTopAlignement(this.captionTopAlignment, this.captionTopDistance);
+        return b;
     }
 
 }
