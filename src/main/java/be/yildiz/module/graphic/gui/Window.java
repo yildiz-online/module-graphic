@@ -206,7 +206,7 @@ public abstract class Window extends View {
             super();
             this.height = Window.MINIMIZED_SIZE;
             final GuiContainer container = Window.this.getContainer();
-            this.title = builder.buildTextLine("title_" + Window.this.getName(), Position.ZERO, Font.get(Window.font), container);
+            this.title = builder.buildTextLine("title_" + Window.this.getName(), new Coordinates(Window.this.getContainer().getWidth(), 20, Position.ZERO), Font.get(Window.font), container);
             final Coordinates closeCoordinates = new Coordinates(this.height, this.height, Window.this.getContainer().getWidth() - this.height, 0);
             this.close = builder.buildButton("close_" + Window.this.getName(), closeCoordinates, Window.titleClose, container);
             this.close.addMouseLeftClickListener(Window.this::hide);

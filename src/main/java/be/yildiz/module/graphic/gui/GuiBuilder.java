@@ -90,37 +90,6 @@ public abstract class GuiBuilder {
     /**
      * Build a new widget button.
      *
-     * @param name             Unique button name.
-     * @param coordinates      GuiButton coordinates.
-     * @param font             Font to use for the button label.
-     * @param background       GuiButton background material.
-     * @param backgroundHlight GuiButton background material when focused.
-     * @param container        Container holding the button.
-     * @return The build button.
-     */
-    @Deprecated
-    public final GuiButton buildButton(final String name, final BaseCoordinate coordinates, final Font font, final Material background, final Material backgroundHlight, final GuiContainer container) {
-        return this.buildButton(name, coordinates, new ButtonMaterial(background, backgroundHlight, font), container);
-    }
-
-    /**
-     * Build a new widget button with a random name.
-     *
-     * @param coordinates      GuiButton coordinates.
-     * @param font             Font to use for the button label.
-     * @param background       GuiButton background material.
-     * @param backgroundHlight GuiButton background material when focused.
-     * @param container        Container holding the button.
-     * @return The build button.
-     */
-    @Deprecated
-    public final GuiButton buildButton(final BaseCoordinate coordinates, final Font font, final Material background, final Material backgroundHlight, final GuiContainer container) {
-        return this.buildButton(StringUtil.buildRandomString("button"), coordinates, new ButtonMaterial(background, backgroundHlight, font), container);
-    }
-
-    /**
-     * Build a new widget button.
-     *
      * @param name        Unique button name.
      * @param coordinates GuiButton coordinates.
      * @param material    GuiButton materials.
@@ -135,67 +104,6 @@ public abstract class GuiBuilder {
         button = new GuiButton(name, text, c, material, container);
         this.buttonList.register(button);
         return button;
-    }
-
-    /**
-     * Build a new widget button with a random name, empty materials, no coordinates.
-     *
-     * @param container Container holding the button.
-     * @return The built button.
-     */
-    @Deprecated
-    public GuiButton buildButton(final GuiContainer container) {
-        return this.buildButton(StringUtil.buildRandomString("button"), container);
-    }
-
-    /**
-     * Build a new widget button with a random name.
-     *
-     * @param coordinates GuiButton coordinates.
-     * @param material    GuiButton materials.
-     * @param container   Container holding the button.
-     * @return The built button.
-     */
-    @Deprecated
-    public final GuiButton buildButton(final BaseCoordinate coordinates, final ButtonMaterial material, final GuiContainer container) {
-        return this.buildButton(StringUtil.buildRandomString("button"), coordinates, material, container);
-    }
-
-    /**
-     * Build a new widget button with a random generated unique name, and an empty material and font.
-     *
-     * @param coordinates GuiButton coordinates.
-     * @param container   Container holding the button.
-     * @return The build button.
-     */
-    @Deprecated
-    public final GuiButton buildButton(final BaseCoordinate coordinates, final GuiContainer container) {
-        return this.buildButton(StringUtil.buildRandomString("button_"), coordinates, Font.getDefault(), Material.empty(), Material.empty(), container);
-    }
-
-    /**
-     * Build a new widget button, all parameters are set to empty.
-     *
-     * @param name      Unique button name.
-     * @param container Container holding the button.
-     * @return The build button.
-     */
-    @Deprecated
-    public final GuiButton buildButton(final String name, final GuiContainer container) {
-        return this.buildButton(name, Coordinates.ZERO, Font.getDefault(), Material.empty(), Material.empty(), container);
-    }
-
-    /**
-     * Build a new widget button, parameters are retrieved from another button.
-     *
-     * @param name      Unique button name.
-     * @param model     Other button used to retrieve parameters.
-     * @param container Container holding the button.
-     * @return The build button.
-     */
-    @Deprecated
-    public final GuiButton buildButton(final String name, final Button model, final GuiContainer container) {
-        return this.buildButton(name, model.getCoordinates(), model.getCaptionFont(), model.getMaterial(), model.getHighlightMaterial(), container);
     }
 
     /**
@@ -283,52 +191,6 @@ public abstract class GuiBuilder {
     }
 
     /**
-     * Build a new image widget.
-     *
-     * @param name        Unique image name.
-     * @param coordinates Image coordinates.
-     * @param container   Container holding the image.
-     * @return The new image widget.
-     */
-    public final Image buildImage(final String name, final BaseCoordinate coordinates, final GuiContainer container) {
-        return this.buildImage(name, coordinates, Material.empty(), container);
-    }
-
-    /**
-     * Build a new image widget.
-     *
-     * @param coordinates Image coordinates.
-     * @param background  Image background material.
-     * @param container   Container holding the image.
-     * @return The new image widget.
-     */
-    public final Image buildImage(final BaseCoordinate coordinates, final Material background, final GuiContainer container) {
-        return this.buildImage(StringUtil.buildRandomString("image"), coordinates, background, container);
-    }
-
-    /**
-     * Build a new image widget.
-     *
-     * @param coordinates Image coordinates.
-     * @param container   Container holding the image.
-     * @return The new image widget.
-     */
-    public final Image buildImage(final BaseCoordinate coordinates, final GuiContainer container) {
-        return this.buildImage(StringUtil.buildRandomString("image"), coordinates, Material.empty(), container);
-    }
-
-    /**
-     * Build a new image widget without background.
-     *
-     * @param name      Unique image name.
-     * @param container Container holding the image.
-     * @return The new image widget.
-     */
-    public final Image buildImage(final String name, final GuiContainer container) {
-        return this.buildImage(name, BaseCoordinate.ZERO, Material.empty(), container);
-    }
-
-    /**
      * Retrieve an Image from its name, throw {@link IllegalArgumentException} if no matching name is found.
      *
      * @param name Image name to retrieve.
@@ -362,24 +224,6 @@ public abstract class GuiBuilder {
      * Build a new line of text widget.
      *
      * @param name      Text line unique name.
-     * @param pos       Text line position.
-     * @param font      Font used for the text.
-     * @param container Container holding the text line.
-     * @return The new text line.
-     */
-    @Deprecated
-    public final GuiTextLine buildTextLine(final String name, final Position pos, final Font font, final GuiContainer container) {
-        final AbstractTextElement text = this.buildTextElement(new Coordinates(500, font.size, pos.left, pos.top), font, container);
-        final GuiTextLine textLine = new GuiTextLine(name, text, container);
-        textLine.setStatic();
-        this.textLineList.register(textLine);
-        return textLine;
-    }
-
-    /**
-     * Build a new line of text widget.
-     *
-     * @param name      Text line unique name.
      * @param coordinates       Text line size and position.
      * @param font      Font used for the text.
      * @param container Container holding the text line.
@@ -391,54 +235,6 @@ public abstract class GuiBuilder {
         textLine.setStatic();
         this.textLineList.register(textLine);
         return textLine;
-    }
-
-    /**
-     * Build a new line of text widget with a random name.
-     *
-     * @param pos       Text line position.
-     * @param font      Font used for the text.
-     * @param container Container holding the text line.
-     * @return The new text line.
-     */
-    @Deprecated
-    public final GuiTextLine buildTextLine(final Position pos, final Font font, final GuiContainer container) {
-        return this.buildTextLine(StringUtil.buildRandomString("textline"), pos, font, container);
-    }
-
-    /**
-     * Build a new line of text widget, all parameters are set to empty.
-     *
-     * @param name      Text line unique name.
-     * @param container Container holding the text line.
-     * @return The new text line.
-     */
-    @Deprecated
-    public final GuiTextLine buildTextLine(final String name, final GuiContainer container) {
-        return this.buildTextLine(name, Position.ZERO, Font.getDefault(), container);
-    }
-
-    /**
-     * Build a new line of text widget.
-     *
-     * @param font      Font to use.
-     * @param container Container holding the text line.
-     * @return The new text line.
-     */
-    @Deprecated
-    public final GuiTextLine buildTextLine(final Font font, final GuiContainer container) {
-        return this.buildTextLine(StringUtil.buildRandomString("Text_"), Position.ZERO, font, container);
-    }
-
-    /**
-     * Build a new line of text widget, all parameters are set to empty, a unique random name is generated.
-     *
-     * @param container Container holding the text line.
-     * @return The new text line.
-     */
-    @Deprecated
-    public final GuiTextLine buildTextLine(final GuiContainer container) {
-        return this.buildTextLine(StringUtil.buildRandomString("Text_"), container);
     }
 
     /**
@@ -666,7 +462,7 @@ public abstract class GuiBuilder {
         final AbstractTextElement text = this.buildTextElement(coordinates, font, c);
         final AbstractTextElement caption = this.buildTextElement(coordinates, font, container);
         final AbstractIconElement cursor = this.buildIconElement(name + "_cursor", new Size(3, 20), cursorMaterial, c);
-        GuiTextLine defaultMessage = this.buildTextLine(Position.ZERO, font, container);
+        GuiTextLine defaultMessage = this.buildTextLine(name + "_text", new Coordinates(coordinates.width, coordinates.height, Position.ZERO), font, container);
         defaultMessage.setStatic();
         ButtonMaterial materials = new ButtonMaterial(background, backgroundHlight);
         final InputBoxGui inputBox = new InputBoxGui(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, container);
@@ -1031,7 +827,7 @@ public abstract class GuiBuilder {
         Image bg = this.buildImage(name + "bg", new Coordinates(coordinates.width, coordinates.height - tabHeight, coordinates.left, coordinates.top), background, container);
         GuiButton[] buttons = new GuiButton[titles.length];
         for (int i = 0; i < titles.length; i++) {
-            buttons[i] = this.buildButton(titles[i], new Coordinates(tabWidth, tabHeight, 30 + coordinates.left + i * tabWidth + 5, coordinates.top - tabHeight + 10), font, tabMaterial, highlight,
+            buttons[i] = this.buildButton(titles[i], new Coordinates(tabWidth, tabHeight, 30 + coordinates.left + i * tabWidth + 5, coordinates.top - tabHeight + 10),new ButtonMaterial(tabMaterial, highlight, font),
                     container);
             buttons[i].setPushedMaterial(pushed);
             buttons[i].setCaptionFont(font);
@@ -1084,19 +880,7 @@ public abstract class GuiBuilder {
      */
     protected abstract GuiContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, GuiContainer parent, boolean widget);
 
-    public GuiTextLine buildTextLineTitle(TextLineTitleTemplate template, GuiContainer background) {
-        return this.buildTextLine(template.getTitlePosition(), template.getFontTitle(), background);
-    }
-
-    public GuiTextLine buildTextLine(TextLineTemplate template, GuiContainer background) {
-        return this.buildTextLine(template.getFont(), background);
-    }
-
     public GuiContainer buildOverlayContainer(Coordinates coordinates) {
         return this.buildOverlayContainer(StringUtil.buildRandomString("container"), coordinates);
-    }
-
-    public GuiButton buildButton(String name, Coordinates coordinates, GuiContainer parent) {
-        return this.buildButton(name, coordinates, new ButtonMaterial(Material.empty(), Material.empty()), parent);
     }
 }
