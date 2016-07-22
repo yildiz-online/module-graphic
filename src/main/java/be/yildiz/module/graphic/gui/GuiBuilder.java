@@ -278,46 +278,6 @@ public abstract class GuiBuilder {
     }
 
     /**
-     * Build a new multiple line text widget with a random name.
-     *
-     * @param coordinates Text area coordinates.
-     * @param font        Font used for the text.
-     * @param background  Background image.
-     * @param textPadding Padding value for the text.
-     * @param container   Container holding the text area.
-     * @return The new text area widget.
-     */
-    @Deprecated
-    public final TextAreaGui buildTextArea(final BaseCoordinate coordinates, final Font font, final Material background, final int textPadding, final GuiContainer container) {
-        return this.buildTextArea(StringUtil.buildRandomString("textarea"), coordinates, font, background, textPadding, container);
-    }
-
-    /**
-     * Build a new multiple line text widget, all parameters are set to empty.
-     *
-     * @param name      Unique text area name.
-     * @param container Container holding the text area.
-     * @return The new text area widget.
-     */
-    @Deprecated
-    public final TextAreaGui buildTextArea(final String name, final GuiContainer container) {
-        return this.buildTextArea(name, Coordinates.ZERO, Font.getDefault(), Material.empty(), 0, container);
-    }
-
-    /**
-     * Build a new multiple line text widget with a default name, no background, and a padding of 0.
-     *
-     * @param coordinates Text area coordinates.
-     * @param font        Font used for the text.
-     * @param container   Container holding the text area.
-     * @return The new text area widget.
-     */
-    @Deprecated
-    public final TextAreaGui buildTextArea(final BaseCoordinate coordinates, final Font font, final GuiContainer container) {
-        return this.buildTextArea(StringUtil.buildRandomString("testarea"), coordinates, font, Material.empty(), 0, container);
-    }
-
-    /**
      * Delete a text area.
      *
      * @param textArea Text area to delete.
@@ -556,29 +516,6 @@ public abstract class GuiBuilder {
         this.checkBoxList.register(checkbox);
         checkbox.setCaptionColor(font.color);
         return checkbox;
-    }
-
-    @Deprecated
-    public final CheckBoxGui buildCheckBox(final String name, final Position pos, final CheckboxDefinition template, final GuiContainer container) {
-        return buildCheckBox(name, new Coordinates(template.getSize(), pos), template.getBackgroundMaterial(), template.getHoverMaterial(), template.getCheckedMaterial(), template.getFont(),
-                container);
-    }
-
-    @Deprecated
-    public final CheckBoxGui buildCheckBox(final String name, final CheckboxDefinition template, final GuiContainer container) {
-        return buildCheckBox(name, Position.ZERO, template, container);
-    }
-
-    /**
-     * Build a new check box widget, all parameters are set to empty.
-     *
-     * @param name      Unique check box name.
-     * @param container Container holding the check box widget.
-     * @return The new check box widget.
-     */
-    @Deprecated
-    public final CheckBoxGui buildCheckBox(final String name, final GuiContainer container) {
-        return this.buildCheckBox(name, BaseCoordinate.ZERO, Material.empty(), Material.empty(), Material.empty(), Font.getDefault(), container);
     }
 
     /**
