@@ -80,4 +80,9 @@ public class TextLineBuilder {
         this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
         return this;
     }
+
+    public TextLineBuilder withCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+        return this;
+    }
 }

@@ -57,9 +57,9 @@ public class ButtonBuilder {
 
     private int captionLeftDistance = 0;
 
-    public ButtonBuilder(final GuiBuilder b) {
+    public ButtonBuilder(final GuiBuilder builder) {
         super();
-        this.builder = b;
+        this.builder = builder;
     }
 
     public ButtonBuilder withCoordinates(final Coordinates c) {
