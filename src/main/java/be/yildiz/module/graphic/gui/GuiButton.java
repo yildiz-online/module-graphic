@@ -71,6 +71,12 @@ public final class GuiButton extends ContainerChild implements Button {
      */
     private PositionRelativeLeft captionLeftAlign;
 
+    private int leftDiff;
+
+    private PositionRelativeTop captionTopAlign;
+
+    private int topDiff;
+
     /**
      * Full constructor, hidden from outside package, must be invoked by the gui builder.
      *
@@ -108,6 +114,7 @@ public final class GuiButton extends ContainerChild implements Button {
     public void setCaptionTextLeftAlignement(final PositionRelativeLeft alignment, final int diff) {
         this.caption.setLeft(this, alignment, diff - this.getLeft());
         this.captionLeftAlign = alignment;
+        this.leftDiff = diff;
     }
 
     @Override
@@ -118,6 +125,8 @@ public final class GuiButton extends ContainerChild implements Button {
     @Override
     public void setCaptionTextTopAlignement(final PositionRelativeTop alignment, final int diff) {
         this.caption.setTop(this, alignment, diff - this.getTop());
+        this.captionTopAlign = alignment;
+        this.topDiff = diff;
     }
 
     @Override
@@ -222,6 +231,26 @@ public final class GuiButton extends ContainerChild implements Button {
         ButtonMaterial old = this.materials;
         this.materials = new ButtonMaterial(old.material, old.highlight, material, old.font);
 
+    }
+
+    @Override
+    public PositionRelativeLeft getCaptionHorizontalAlignment() {
+        return this.captionLeftAlign;
+    }
+
+    @Override
+    public int getCaptionHorizontalPadding() {
+        return this.leftDiff;
+    }
+
+    @Override
+    public PositionRelativeTop getCaptionVerticalAlignment() {
+        return this.captionTopAlign;
+    }
+
+    @Override
+    public int getCaptionVerticalPadding() {
+        return this.topDiff;
     }
 
     /**

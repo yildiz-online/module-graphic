@@ -138,4 +138,12 @@ public interface Button extends ContainerElement {
      * @param material Material to use in inactive state.
      */
     void setInactiveMaterial(Material material);
+
+    PositionRelativeLeft getCaptionHorizontalAlignment();
+
+    int getCaptionHorizontalPadding();
+
+    PositionRelativeTop getCaptionVerticalAlignment();
+
+    int getCaptionVerticalPadding();
 }

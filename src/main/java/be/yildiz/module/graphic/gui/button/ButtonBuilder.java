@@ -62,6 +62,16 @@ public class ButtonBuilder {
         this.builder = builder;
     }
 
+    public ButtonBuilder fromOther(Button button) {
+        this.coordinates = new Coordinates(button.getWidth(), button.getHeight(), button.getLeft(), button.getTop());
+        this.material = new ButtonMaterial(button.getMaterial(), button.getHighlightMaterial(), button.getInactiveMaterial(), Optional.of(button.getCaptionFont()));
+        this.captionLeftAlignment = button.getCaptionHorizontalAlignment();
+        this.captionLeftDistance = button.getCaptionHorizontalPadding();
+        this.captionTopAlignment = button.getCaptionVerticalAlignment();
+        this.captionTopDistance = button.getCaptionVerticalPadding();
+        return this;
+    }
+
     public ButtonBuilder withCoordinates(final Coordinates c) {
         this.coordinates = c;
         return this;
@@ -133,11 +143,6 @@ public class ButtonBuilder {
      */
     public ButtonBuilder withName(@NonNull final String name) {
         this.name = name;
-        return this;
-    }
-
-    public ButtonBuilder fromOther(final Button b) {
-        this.material = new ButtonMaterial(b.getMaterial(), b.getHighlightMaterial(), b.getInactiveMaterial(), Optional.of(b.getCaptionFont()));
         return this;
     }
 
