@@ -80,4 +80,9 @@ public class ImageBuilder {
     public Image build(final GuiContainer container) {
         return this.builder.buildImage(this.name, this.coordinates, this.background, container);
     }
+
+    public ImageBuilder withCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+        return this;
+    }
 }
