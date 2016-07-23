@@ -32,6 +32,7 @@ import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import lombok.Getter;
+import lombok.NonNull;
 
 /**
  * @author Grégory Van den Borre
@@ -55,7 +56,7 @@ public class BaseWidgetBuilder {
         super();
     }
 
-    public final void withName(final String name) {
+    public final void withName(@NonNull final String name) {
         this.name = name;
     }
 
