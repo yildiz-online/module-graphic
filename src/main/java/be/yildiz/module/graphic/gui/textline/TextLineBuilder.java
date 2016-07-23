@@ -28,24 +28,17 @@ package be.yildiz.module.graphic.gui.textline;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
-import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
-import be.yildiz.module.graphic.gui.GuiBuilder;
-import be.yildiz.module.graphic.gui.GuiContainer;
-import be.yildiz.module.graphic.gui.TextLine;
+import be.yildiz.module.graphic.gui.*;
 
 /**
  * @author Grégory Van den Borre
  */
-public class TextLineBuilder {
+public class TextLineBuilder implements WidgetBuilder<TextLineBuilder>{
+
+    private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
     private final GuiBuilder builder;
-
-    private String name = StringUtil.buildRandomString("textLine");
-
-    private Coordinates coordinates = Coordinates.ZERO;
-
-    private Font font = Font.getDefault();
 
 
     public TextLineBuilder(GuiBuilder builder) {
@@ -54,35 +47,41 @@ public class TextLineBuilder {
     }
 
     public TextLineBuilder withName(final String name) {
-        this.name = name;
+        this.base.withName(name);
+        return this;
+    }
+
+    public TextLineBuilder withFont(final Font font) {
+        this.base.withFont(font);
         return this;
     }
 
     public TextLineBuilder atPosition(final Position position) {
-        this.coordinates = new Coordinates(this.coordinates.getSize(), position);
+        this.base.atPosition(position);
         return this;
     }
 
     public TextLineBuilder atPosition(final int x, final int y) {
-        return atPosition(new Position(x, y));
-    }
-
-    public TextLineBuilder withFont(final Font font) {
-        this.font = font;
+        this.base.atPosition(x, y);
         return this;
     }
 
-    public TextLine build(final GuiContainer c) {
-        return this.builder.buildTextLine(this.name, this.coordinates, this.font, c);
+    public TextLineBuilder withSize(final int width, final int length) {
+        this.base.withSize(width, length);
+        return this;
     }
 
     public TextLineBuilder withSize(Size size) {
-        this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
+        this.base.withSize(size);
         return this;
     }
 
     public TextLineBuilder withCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
+        this.base.withCoordinates(coordinates);
         return this;
+    }
+
+    public TextLine build(final GuiContainer c) {
+        return this.builder.buildTextLine(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), c);
     }
 }

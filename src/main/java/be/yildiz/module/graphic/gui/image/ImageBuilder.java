@@ -28,24 +28,17 @@ package be.yildiz.module.graphic.gui.image;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
-import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Material;
-import be.yildiz.module.graphic.gui.GuiBuilder;
-import be.yildiz.module.graphic.gui.GuiContainer;
-import be.yildiz.module.graphic.gui.Image;
+import be.yildiz.module.graphic.gui.*;
 
 /**
  * @author Grégory Van den Borre
  */
-public class ImageBuilder {
+public class ImageBuilder implements WidgetBuilder<ImageBuilder>{
 
     private final GuiBuilder builder;
 
-    private String name = StringUtil.buildRandomString("image");
-
-    private Coordinates coordinates = Coordinates.ZERO;
-
-    private Material background = Material.empty();
+    private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
 
     public ImageBuilder(final GuiBuilder builder) {
@@ -54,35 +47,46 @@ public class ImageBuilder {
     }
 
     public ImageBuilder withName(final String name) {
-        this.name = name;
+        this.base.withName(name);
         return this;
     }
 
-    public ImageBuilder atPosition(final Position position) {
-        this.coordinates = new Coordinates(this.coordinates.getSize(), position);
+    @Override
+    public ImageBuilder withCoordinates(Coordinates coordinates) {
+        this.base.withCoordinates(coordinates);
         return this;
     }
 
-    public ImageBuilder atPosition(final int x, final int y) {
-        return this.atPosition(new Position(x, y));
+    @Override
+    public ImageBuilder atPosition(Position position) {
+        this.base.atPosition(position);
+        return this;
     }
 
-    public ImageBuilder withSize(final Size size) {
-        this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
-        return  this;
+    @Override
+    public ImageBuilder atPosition(int x, int y) {
+        this.base.atPosition(x, y);
+        return this;
+    }
+
+    @Override
+    public ImageBuilder withSize(Size size) {
+        this.base.withSize(size);
+        return this;
+    }
+
+    @Override
+    public ImageBuilder withSize(int width, int length) {
+        this.base.withSize(width, length);
+        return this;
     }
 
     public ImageBuilder withBackground(final Material background) {
-        this.background = background;
+        this.base.withBackground(background);
         return this;
     }
 
     public Image build(final GuiContainer container) {
-        return this.builder.buildImage(this.name, this.coordinates, this.background, container);
-    }
-
-    public ImageBuilder withCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
-        return this;
+        return this.builder.buildImage(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), container);
     }
 }

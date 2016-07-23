@@ -30,6 +30,7 @@ import be.yildiz.common.Position;
 import be.yildiz.common.Size;
 import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.Material;
+import be.yildiz.module.graphic.gui.container.ContainerBuilder;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -49,7 +50,8 @@ public final class GuiContainerTest {
     @Test
     public void functionnalTestGetNextFocusableElement() {
         GuiBuilder builder = new DummyGuiBuilder();
-        GuiContainer c = builder.buildOverlayContainer(new Coordinates(50, 60, 10, 20));
+        ContainerBuilder cb = new ContainerBuilder(builder);
+        GuiContainer c =cb.withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         // A
         Widget w1 = new WidgetMock("w1", CR, c).setFocusable(true);
         Widget w2 = new WidgetMock("w2", CR, c).setFocusable(true);
@@ -67,7 +69,10 @@ public final class GuiContainerTest {
         Assert.assertEquals(w2, c.getNextFocusableElement());
         Assert.assertEquals(w3, c.getNextFocusableElement());
         // C
-        GuiContainer c2 = builder.buildOverlayContainer(new Coordinates(50, 60, 10, 20), c);
+        GuiContainer c2 = new ContainerBuilder(builder)
+                .withCoordinates(new Coordinates(50, 60, 10, 20))
+                .withParent(c)
+                .build();
         Widget w4 = new WidgetMock("w4", CR, c2).setFocusable(true);
         Assert.assertEquals(w4, c.getNextFocusableElement());
         Assert.assertEquals(w1, c.getNextFocusableElement());
@@ -109,7 +114,7 @@ public final class GuiContainerTest {
     @Test
     public void testGetNextFocusableElement() {
         GuiBuilder builder = new DummyGuiBuilder();
-        GuiContainer c = builder.buildOverlayContainer(new Coordinates(50, 60, 10, 20));
+        GuiContainer c = new ContainerBuilder(builder).withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         Assert.assertNull(c.getNextFocusableElement());
         Widget w1 = new WidgetMock("w1", CR, c);
         Assert.assertNull(c.getNextFocusableElement());
@@ -121,7 +126,7 @@ public final class GuiContainerTest {
     public void testGuiContainer() {
         GuiBuilder builder = new DummyGuiBuilder();
         Coordinates cr = new Coordinates(50, 60, 10, 20);
-        GuiContainer c = builder.buildOverlayContainer("test", cr);
+        GuiContainer c = new ContainerBuilder(builder).withName("test").withCoordinates(cr).build();
         Assert.assertEquals("test", c.getName());
         Assert.assertEquals(cr.left, c.getLeft());
         Assert.assertEquals(cr.top, c.getTop());
@@ -144,7 +149,7 @@ public final class GuiContainerTest {
         final int c2X = 10;
         final int c2Y = 10;
 
-        GuiContainer c = builder.buildOverlayContainer(new Coordinates(cWidth, cHeight, cX, cY));
+        GuiContainer c = new ContainerBuilder(builder).withCoordinates(new Coordinates(cWidth, cHeight, cX, cY)).build();
         for (int x = cX; x <= cX + cWidth; x++) {
             for (int y = cY; y <= cY + cHeight; y++) {
                 Assert.assertTrue(c.contains(new Point2D(x, y)));
@@ -152,7 +157,11 @@ public final class GuiContainerTest {
         }
         Assert.assertFalse(c.contains(new Point2D(cX - 1, cY + 2)));
         Assert.assertFalse(c.contains(new Point2D(cX + 2, cY - 1)));
-        GuiContainer c2 = builder.buildOverlayContainer(new Coordinates(c2Width, c2Height, c2X, c2Y), c);
+        GuiContainer c2 = new ContainerBuilder(builder)
+                .withCoordinates(new Coordinates(c2Width, c2Height, c2X, c2Y))
+                .withParent(c)
+                .build();
+
         for (int x = c2X + cX; x <= c2X + cX + c2Width; x++) {
             for (int y = c2Y + cY; y <= c2Y + cY + c2Width; y++) {
                 Assert.assertTrue("test:" + x + "," + y, c2.contains(new Point2D(x, y)));
@@ -165,7 +174,7 @@ public final class GuiContainerTest {
     @Test
     public void testContainsVirtualHeight() {
         GuiBuilder builder = new DummyGuiBuilder();
-        GuiContainer c = builder.buildOverlayContainer(new Coordinates(new Size(50), Position.ZERO));
+        GuiContainer c = new ContainerBuilder(builder).withSize(new Size(50)).build();
         Assert.assertTrue(c.contains(new Point2D(10, 10)));
         Assert.assertFalse(c.contains(new Point2D(10, 60)));
         c.setVirtualHeight(80);

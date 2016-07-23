@@ -100,12 +100,12 @@ public class DummyGuiBuilder extends GuiBuilder {
     }
 
     @Override
-    protected GuiContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background) {
+    public GuiContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background) {
         return new DummyGuiContainer(name, coordinates, background);
     }
 
     @Override
-    protected GuiContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, GuiContainer parent, boolean widget) {
+    public GuiContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, GuiContainer parent, boolean widget) {
         return new DummyGuiContainer(name, coordinates, background, parent, widget);
     }
 }

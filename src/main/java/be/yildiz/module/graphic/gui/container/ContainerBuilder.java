@@ -23,82 +23,87 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-package be.yildiz.module.graphic.gui.textarea;
+package be.yildiz.module.graphic.gui.container;
 
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
-import be.yildiz.module.graphic.Font;
-import be.yildiz.module.graphic.Material;
-import be.yildiz.module.graphic.gui.*;
+import be.yildiz.module.graphic.gui.BaseWidgetBuilder;
+import be.yildiz.module.graphic.gui.GuiBuilder;
+import be.yildiz.module.graphic.gui.GuiContainer;
+import be.yildiz.module.graphic.gui.WidgetBuilder;
+
+import java.util.Optional;
 
 /**
  * @author Grégory Van den Borre
  */
-public class TextAreaBuilder implements WidgetBuilder<TextAreaBuilder> {
-
-    private final BaseWidgetBuilder base = new BaseWidgetBuilder();
+public class ContainerBuilder implements WidgetBuilder<ContainerBuilder>{
 
     private final GuiBuilder builder;
 
-    private int padding = 0;
+    private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    public TextAreaBuilder(GuiBuilder builder) {
-        super();
+    private Optional<GuiContainer> parent = Optional.empty();
+
+    private boolean fullScreen;
+
+    public ContainerBuilder(GuiBuilder builder) {
         this.builder = builder;
     }
 
-    public TextAreaBuilder withName(final String name) {
+    public ContainerBuilder withName(final String name) {
         this.base.withName(name);
         return this;
     }
 
-    public TextAreaBuilder withFont(final Font font) {
-        this.base.withFont(font);
-        return this;
-    }
-
-    public TextAreaBuilder withBackground(final Material background) {
-        this.base.withBackground(background);
+    @Override
+    public ContainerBuilder withCoordinates(Coordinates coordinates) {
+        this.base.withCoordinates(coordinates);
         return this;
     }
 
     @Override
-    public TextAreaBuilder atPosition(final Position position) {
+    public ContainerBuilder atPosition(Position position) {
         this.base.atPosition(position);
         return this;
     }
 
     @Override
-    public TextAreaBuilder atPosition(final int x, final int y) {
+    public ContainerBuilder atPosition(int x, int y) {
         this.base.atPosition(x, y);
         return this;
     }
 
     @Override
-    public TextAreaBuilder withSize(final int width, final int length) {
-        this.base.withSize(width, length);
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder withSize(Size size) {
+    public ContainerBuilder withSize(Size size) {
         this.base.withSize(size);
         return this;
     }
 
     @Override
-    public TextAreaBuilder withCoordinates(Coordinates coordinates) {
-        this.base.withCoordinates(coordinates);
+    public ContainerBuilder withSize(int width, int length) {
+        this.base.withSize(width, length);
         return this;
     }
 
-    public TextAreaBuilder withPadding(final int padding) {
-        this.padding = padding;
+    public ContainerBuilder fullScreen() {
+        this.fullScreen = true;
         return this;
     }
 
-    public TextArea build(final GuiContainer container) {
-        return this.builder.buildTextArea(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), this.base.getBackground(), this.padding, container);
+    public GuiContainer build() {
+        if(this.parent.isPresent()) {
+            return this.builder.buildOverlayContainer(base.getName(), base.getBackground(), base.getCoordinates(), this.parent.get());
+        }
+        if(this.fullScreen) {
+            return this.builder.buildFullScreenOverlayContainer(base.getName(), base.getBackground());
+        }
+        return this.builder.buildOverlayContainer(base.getName(), base.getBackground(), base.getCoordinates());
+    }
+
+    public ContainerBuilder withParent(GuiContainer c) {
+        this.parent = Optional.of(c);
+        return this;
     }
 }

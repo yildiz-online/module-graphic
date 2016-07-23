@@ -26,29 +26,23 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.Coordinates;
-import be.yildiz.module.graphic.Font;
-import be.yildiz.module.graphic.Material;
-import be.yildiz.module.graphic.gui.container.ContainerBuilder;
-import org.junit.Assert;
-import org.junit.Test;
+import be.yildiz.common.Position;
+import be.yildiz.common.Size;
 
 /**
  * @author Grégory Van den Borre
  */
-public class GuiButtonTest {
+public interface WidgetBuilder <T> {
 
-    @Test
-    public void testButton() {
-        GuiBuilder builder = new DummyGuiBuilder();
-        GuiContainer parent = new ContainerBuilder(builder).withCoordinates(new Coordinates(50, 50, 0, 0)).build();
-        GuiButton button = builder.buildButton("test", new Coordinates(50, 50, 0, 0), new ButtonMaterial(Material.empty(), Material.empty()), parent);
-        Assert.assertEquals("test", button.getName());
-        Assert.assertEquals(new Coordinates(50, 50, 0, 0), button.getCoordinates());
-        // FIXME bad test.
-        Assert.assertEquals(Material.empty(), button.getMaterial());
-        Assert.assertEquals(Material.empty(), button.getHighlightMaterial());
-        Assert.assertEquals("", button.getCaptiontext());
-        Assert.assertEquals(Font.getDefault(), button.getCaptionFont());
-    }
+    T withName(String name);
 
+    T withCoordinates(Coordinates coordinates);
+
+    T atPosition(Position position);
+
+    T atPosition(int x, int y);
+
+    T withSize(Size size);
+
+    T withSize(int width, int length);
 }

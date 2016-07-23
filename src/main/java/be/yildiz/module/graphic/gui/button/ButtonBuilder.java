@@ -28,26 +28,22 @@ package be.yildiz.module.graphic.gui.button;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
-import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.*;
-import lombok.NonNull;
 
 import java.util.Optional;
 
 /**
  * @author Grégory Van den Borre
  */
-public class ButtonBuilder {
+public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
 
     private final GuiBuilder builder;
 
-    private String name = StringUtil.buildRandomString("button");
+    private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
     private ButtonMaterial material = new ButtonMaterial(Material.empty(), Material.empty(), Font.getDefault());
-
-    private Coordinates coordinates = Coordinates.ZERO;
 
     private Element.PositionRelativeTop captionTopAlignment= Element.PositionRelativeTop.CENTER;
 
@@ -62,46 +58,19 @@ public class ButtonBuilder {
         this.builder = builder;
     }
 
+    public ButtonBuilder withName(final String name) {
+        this.base.withName(name);
+        return this;
+    }
+
     public ButtonBuilder fromOther(Button button) {
-        this.coordinates = new Coordinates(button.getWidth(), button.getHeight(), button.getLeft(), button.getTop());
+        this.base.withCoordinates(new Coordinates(button.getWidth(), button.getHeight(), button.getLeft(), button.getTop()));
         this.material = new ButtonMaterial(button.getMaterial(), button.getHighlightMaterial(), button.getInactiveMaterial(), Optional.of(button.getCaptionFont()));
         this.captionLeftAlignment = button.getCaptionHorizontalAlignment();
         this.captionLeftDistance = button.getCaptionHorizontalPadding();
         this.captionTopAlignment = button.getCaptionVerticalAlignment();
         this.captionTopDistance = button.getCaptionVerticalPadding();
         return this;
-    }
-
-    public ButtonBuilder withCoordinates(final Coordinates c) {
-        this.coordinates = c;
-        return this;
-    }
-
-    public ButtonBuilder withSize(final Size size) {
-        this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
-        return this;
-    }
-
-    /**
-     * Provide a position to the button.
-     * @param position Button position.
-     * @return This object for chaining.
-     * @throws NullPointerException if position is null.
-     */
-    public ButtonBuilder atPosition(final Position position) {
-        this.coordinates = new Coordinates(this.coordinates.getSize(), position);
-        return this;
-    }
-
-    /**
-     * Provide a position to the button.
-     * @param x Button left position.
-     * @param y Button top position.
-     * @return This object for chaining.
-     * @throws NullPointerException if position is null.
-     */
-    public ButtonBuilder atPosition(final int x, final int y) {
-        return this.atPosition(new Position(x, y));
     }
 
     public ButtonBuilder withMaterial(final Material m) {
@@ -135,17 +104,6 @@ public class ButtonBuilder {
         return this;
     }
 
-    /**
-     * Provide a name to the button.
-     * @param name Button unique name.
-     * @return This object for chaining.
-     * @throws NullPointerException if name is null.
-     */
-    public ButtonBuilder withName(@NonNull final String name) {
-        this.name = name;
-        return this;
-    }
-
     public ButtonBuilder withCaptionTextAlignment(Element.PositionRelativeTop top, final int distance) {
         this.captionTopAlignment = top;
         this.captionTopDistance = distance;
@@ -158,8 +116,38 @@ public class ButtonBuilder {
         return this;
     }
 
+    @Override
+    public ButtonBuilder withCoordinates(final Coordinates coordinates) {
+        this.base.withCoordinates(coordinates);
+        return this;
+    }
+
+    @Override
+    public ButtonBuilder atPosition(final Position position) {
+        this.base.atPosition(position);
+        return this;
+    }
+
+    @Override
+    public ButtonBuilder atPosition(final int x, final int y) {
+        this.base.atPosition(x, y);
+        return this;
+    }
+
+    @Override
+    public ButtonBuilder withSize(final Size size) {
+        this.base.withSize(size);
+        return this;
+    }
+
+    @Override
+    public ButtonBuilder withSize(final int width, final int length) {
+        this.base.withSize(width, length);
+        return this;
+    }
+
     public Button build(final GuiContainer container) {
-        Button b = this.builder.buildButton(this.name, this.coordinates, this.material, container);
+        Button b = this.builder.buildButton(this.base.getName(), this.base.getCoordinates(), this.material, container);
         b.setCaptionTextLeftAlignement(this.captionLeftAlignment, this.captionLeftDistance);
         b.setCaptionTextTopAlignement(this.captionTopAlignment, this.captionTopDistance);
         return b;

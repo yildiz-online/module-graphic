@@ -26,29 +26,64 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.Coordinates;
+import be.yildiz.common.Position;
+import be.yildiz.common.Size;
+import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import be.yildiz.module.graphic.gui.container.ContainerBuilder;
-import org.junit.Assert;
-import org.junit.Test;
+import lombok.Getter;
 
 /**
  * @author Grégory Van den Borre
  */
-public class GuiButtonTest {
+public class BaseWidgetBuilder {
 
-    @Test
-    public void testButton() {
-        GuiBuilder builder = new DummyGuiBuilder();
-        GuiContainer parent = new ContainerBuilder(builder).withCoordinates(new Coordinates(50, 50, 0, 0)).build();
-        GuiButton button = builder.buildButton("test", new Coordinates(50, 50, 0, 0), new ButtonMaterial(Material.empty(), Material.empty()), parent);
-        Assert.assertEquals("test", button.getName());
-        Assert.assertEquals(new Coordinates(50, 50, 0, 0), button.getCoordinates());
-        // FIXME bad test.
-        Assert.assertEquals(Material.empty(), button.getMaterial());
-        Assert.assertEquals(Material.empty(), button.getHighlightMaterial());
-        Assert.assertEquals("", button.getCaptiontext());
-        Assert.assertEquals(Font.getDefault(), button.getCaptionFont());
+    @Getter
+    private String name = StringUtil.buildRandomString("widget");
+
+    @Getter
+    private Coordinates coordinates = Coordinates.ZERO;
+
+    @Getter
+    private Font font = Font.getDefault();
+
+    @Getter
+    private Material background = Material.empty();
+
+
+    public BaseWidgetBuilder() {
+        super();
     }
 
+    public final void withName(final String name) {
+        this.name = name;
+    }
+
+    public final void atPosition(final Position position) {
+        this.coordinates = new Coordinates(this.coordinates.getSize(), position);
+    }
+
+    public final void atPosition(final int x, final int y) {
+        this.atPosition(new Position(x, y));
+    }
+
+    public final void withSize(Size size) {
+        this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
+    }
+
+    public final void withCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public final void withFont(final Font font) {
+        this.font = font;
+    }
+
+    public void withBackground(final Material background) {
+        this.background = background;
+    }
+
+    public void withSize(int width, int length) {
+        this.withSize(new Size(width, length));
+    }
 }

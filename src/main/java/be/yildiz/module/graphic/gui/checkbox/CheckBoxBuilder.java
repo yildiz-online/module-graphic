@@ -26,26 +26,23 @@
 package be.yildiz.module.graphic.gui.checkbox;
 
 import be.yildiz.common.Coordinates;
-import be.yildiz.common.util.StringUtil;
+import be.yildiz.common.Position;
+import be.yildiz.common.Size;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import be.yildiz.module.graphic.gui.CheckBox;
-import be.yildiz.module.graphic.gui.GuiBuilder;
-import be.yildiz.module.graphic.gui.GuiContainer;
+import be.yildiz.module.graphic.gui.*;
 
 /**
  * @author Grégory Van den Borre
  */
-public class CheckBoxBuilder {
+public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder>{
 
     private final GuiBuilder builder;
 
-    private String name = StringUtil.buildRandomString("checkbox");
-    private Coordinates coordinates = Coordinates.ZERO;
-    private Material background = Material.empty();
+    private final BaseWidgetBuilder base = new BaseWidgetBuilder();
+
     private Material hover = Material.empty();
     private Material checked = Material.empty();
-    private Font font = Font.getDefault();
 
     public CheckBoxBuilder(GuiBuilder builder) {
         super();
@@ -53,17 +50,27 @@ public class CheckBoxBuilder {
     }
 
     public CheckBoxBuilder withName(final String name) {
-        this.name = name;
+        this.base.withName(name);
         return this;
     }
 
-    public CheckBoxBuilder withCoordinates(final Coordinates coordinates) {
-        this.coordinates = coordinates;
+    public CheckBoxBuilder atPosition(final Position position) {
+        this.base.atPosition(position);
+        return this;
+    }
+
+    public CheckBoxBuilder atPosition(final int x, final int y) {
+        this.base.atPosition(x, y);
+        return this;
+    }
+
+    public CheckBoxBuilder withSize(final int width, final int length) {
+        this.base.withSize(width, length);
         return this;
     }
 
     public CheckBoxBuilder withBackground(final Material background) {
-        this.background = background;
+        this.base.withBackground(background);
         return this;
     }
 
@@ -78,11 +85,23 @@ public class CheckBoxBuilder {
     }
 
     public CheckBoxBuilder withFont(final Font font) {
-        this.font = font;
+        this.base.withFont(font);
+        return this;
+    }
+
+    @Override
+    public CheckBoxBuilder withCoordinates(final Coordinates coordinates) {
+        this.base.withCoordinates(coordinates);
+        return this;
+    }
+
+    @Override
+    public CheckBoxBuilder withSize(final Size size) {
+        this.base.withSize(size);
         return this;
     }
 
     public CheckBox build(GuiContainer container) {
-        return this.builder.buildCheckBox(this.name, this.coordinates, this.background, this.hover, this.checked, this.font, container);
+        return this.builder.buildCheckBox(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), this.hover, this.checked, this.base.getFont(), container);
     }
 }

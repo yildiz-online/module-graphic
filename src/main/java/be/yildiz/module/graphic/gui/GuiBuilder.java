@@ -553,53 +553,6 @@ public abstract class GuiBuilder {
     }
 
     /**
-     * Build a new GUI container, a GUI container is not meant to be used alone, it must be element of a view, a unique random name is generated.
-     *
-     * @param background  Material to use as background.
-     * @param coordinates Container size and position.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildOverlayContainer(final Material background, final BaseCoordinate coordinates) {
-        return this.buildContainerElement(StringUtil.buildRandomString("Gui_container_"), coordinates, background);
-    }
-
-    /**
-     * Build a new GUI container, all parameters are set to empty, a GUI container is not meant to be used alone, it must be element of a view.
-     *
-     * @param name        Unique container name.
-     * @param coordinates Container size and position.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildOverlayContainer(final String name, final BaseCoordinate coordinates) {
-        return this.buildOverlayContainer(name, Material.empty(), coordinates);
-    }
-
-    /**
-     * Build a new GUI container wrapped in a parent container.
-     *
-     * @param name        Unique container name.
-     * @param background  Material to use as background.
-     * @param coordinates Container size and position.
-     * @param parent      Parent container.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildOverlayContainer(final String name, final BaseCoordinate coordinates, final Material background, final GuiContainer parent) {
-        return this.buildContainerElement(name, coordinates, background, parent, false);
-    }
-
-    /**
-     * Build a new GUI container wrapped in a parent container with a random name.
-     *
-     * @param background  Material to use as background.
-     * @param coordinates Container size and position.
-     * @param parent      Parent container.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildOverlayContainer(final Material background, final BaseCoordinate coordinates, final GuiContainer parent) {
-        return this.buildContainerElement(StringUtil.buildRandomString("overlay"), coordinates, background, parent, false);
-    }
-
-    /**
      * Build a container.
      *
      * @param name        Unique name.
@@ -615,60 +568,8 @@ public abstract class GuiBuilder {
         return c;
     }
 
-    /**
-     * Build a new GUI container wrapped in a parent container, position and size are same as parent, no background, z value is same as parent + 1.
-     *
-     * @param name   Unique container name.
-     * @param parent Parent container.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildOverlayContainer(final String name, final GuiContainer parent) {
-        return this.buildContainerElement(name, new Size(parent.getWidth(), parent.getHeight()), Material.empty(), parent, false);
-    }
-
-    /**
-     * Build a new GUI container wrapped in a parent container, position and size are same as parent, no background, z value is same as parent + 1, a unique random name is generated.
-     *
-     * @param parent Parent container.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildOverlayContainer(final GuiContainer parent) {
-        return this.buildOverlayContainer(StringUtil.buildRandomString("Gui_container_"), parent);
-    }
-
-    /**
-     * Build a new GUI container wrapped in a parent container, no background, z value is same as parent + 1, a unique random name is generated.
-     *
-     * @param coordinates Coordinates.
-     * @param parent      Parent container.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildOverlayContainer(final BaseCoordinate coordinates, final GuiContainer parent) {
-        return this.buildOverlayContainer(StringUtil.buildRandomString("Gui_container_"), coordinates, Material.empty(), parent);
-    }
-
-    /**
-     * Build a new GUI container wrapped in a parent container, z value is same as parent + 1.
-     *
-     * @param coordinates Coordinates.
-     * @param background  Container background material.
-     * @param parent      Parent container.
-     * @return The newly built container.
-     */
-    public GuiContainer buildOverlayContainer(final BaseCoordinate coordinates, final Material background, final GuiContainer parent) {
-        return this.buildOverlayContainer(StringUtil.buildRandomString("Gui_container_"), coordinates, background, parent);
-    }
-
-    /**
-     * Build a new GUI container wrapped in a parent container, no background, z value is same as parent + 1.
-     *
-     * @param name        Container name.
-     * @param coordinates Coordinates.
-     * @param parent      Parent container.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildOverlayContainer(final String name, final BaseCoordinate coordinates, final GuiContainer parent) {
-        return this.buildOverlayContainer(name, coordinates, Material.empty(), parent);
+    public GuiContainer buildOverlayContainer(String name, Material background, Coordinates coordinates, GuiContainer container) {
+        return this.buildOverlayContainer(name, background, coordinates, container, false);
     }
 
     /**
@@ -682,38 +583,6 @@ public abstract class GuiBuilder {
         GuiContainer c = this.buildContainerElement(name, new Coordinates(this.screenSize.width, this.screenSize.height, 0, 0), background);
         this.containerList.register(c);
         return c;
-    }
-
-    /**
-     * Build a new full screen GUI container, the position is set to (0, 0), there is no material and the size is the screen size, a GUI container is not meant to be used alone, it must be element of
-     * a view.
-     *
-     * @param name Unique container name.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildFullScreenOverlayContainer(final String name) {
-        return this.buildFullScreenOverlayContainer(name, Material.empty());
-    }
-
-    /**
-     * Build a new full screen GUI container with a random name, the position is set to (0, 0), there is no material and the size is the screen size, a GUI container is not meant to be used alone, it
-     * must be element of a view.
-     *
-     * @return The newly built container.
-     */
-    public final GuiContainer buildFullScreenOverlayContainer() {
-        return this.buildFullScreenOverlayContainer(StringUtil.buildRandomString("cont"), Material.empty());
-    }
-
-    /**
-     * Build a new full screen GUI container with a random name, the position is set to (0, 0), there is no material and the size is the screen size, a GUI container is not meant to be used alone, it
-     * must be element of a view.
-     *
-     * @param background Container background material.
-     * @return The newly built container.
-     */
-    public final GuiContainer buildFullScreenOverlayContainer(final Material background) {
-        return this.buildFullScreenOverlayContainer(StringUtil.buildRandomString("cont"), background);
     }
 
     /**
@@ -803,7 +672,7 @@ public abstract class GuiBuilder {
      * @param background  Container background material.
      * @return The newly built container.
      */
-    protected abstract GuiContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background);
+    public abstract GuiContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background);
 
     /**
      * Build a container base element with a container parent in implementation.
@@ -815,9 +684,6 @@ public abstract class GuiBuilder {
      * @param widget      <code>true</code> to use this container as part of a widget instead of widget container.
      * @return The newly built container.
      */
-    protected abstract GuiContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, GuiContainer parent, boolean widget);
+    public abstract GuiContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, GuiContainer parent, boolean widget);
 
-    public GuiContainer buildOverlayContainer(Coordinates coordinates) {
-        return this.buildOverlayContainer(StringUtil.buildRandomString("container"), coordinates);
-    }
 }
