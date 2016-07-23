@@ -28,6 +28,7 @@ package be.yildiz.module.graphic.gui.container;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
+import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.BaseWidgetBuilder;
 import be.yildiz.module.graphic.gui.GuiBuilder;
 import be.yildiz.module.graphic.gui.GuiContainer;
@@ -89,6 +90,11 @@ public class ContainerBuilder implements WidgetBuilder<ContainerBuilder>{
 
     public ContainerBuilder fullScreen() {
         this.fullScreen = true;
+        return this;
+    }
+
+    public ContainerBuilder withBackground(final Material background) {
+        this.base.withBackground(background);
         return this;
     }
 
