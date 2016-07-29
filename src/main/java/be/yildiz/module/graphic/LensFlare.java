@@ -77,6 +77,9 @@ public abstract class LensFlare {
     @Getter
     public static class LensFlareMaterial {
 
+        /**
+         * Lens flare base material.
+         */
         private final Material material;
 
         private final Material halo;
