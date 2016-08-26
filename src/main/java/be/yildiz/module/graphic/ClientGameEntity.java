@@ -117,7 +117,6 @@ public interface ClientGameEntity extends GameMaterialization, Deletable {
      * Set a GPU program parameter.
      *
      * @param index parameter index.
-     * @param param Parameter value.
      */
     ClientGameEntity setParameter(int index, float v1, float v2, float v3, float v4);
 

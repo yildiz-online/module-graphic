@@ -451,7 +451,6 @@ public abstract class GuiBuilder {
      * @param cursorMaterial Material to use for the cursor.
      * @param container      Container holding the input box.
      * @return The new input box widget.
-     * @pre material.font !empty
      */
     public final InputBoxGui buildInputBox(final String name, final BaseCoordinate coordinates, final ButtonMaterial material, final Material cursorMaterial, final GuiContainer container) {
         return this.buildInputBox(name, coordinates, material.font.get(), material.material, material.highlight, cursorMaterial, container);
