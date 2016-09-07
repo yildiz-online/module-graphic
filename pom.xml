@@ -5,7 +5,7 @@
   <description>Module handling the graphic components.</description>
 
   <artifactId>module-graphic</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.0-SNAPSHOT</version>
 
   <packaging>jar</packaging>
   <inceptionYear>2014</inceptionYear>
@@ -22,7 +22,7 @@
 
   <properties>
     <version.bom-junit>1.0.1</version.bom-junit>
-    <version.module-window>1.0.1</version.module-window>
+    <version.common-client>1.0.1</version.common-client>
   </properties>
 
   <dependencyManagement>
@@ -40,8 +40,8 @@
   <dependencies>
     <dependency>
       <groupId>be.yildiz-games</groupId>
-      <artifactId>module-window</artifactId>
-      <version>${version.module-window}</version>
+      <artifactId>common-client</artifactId>
+      <version>${version.common-client}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
