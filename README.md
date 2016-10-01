@@ -56,7 +56,7 @@ In your maven project, add the dependency
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-graphic</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 ## Contact
