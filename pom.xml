@@ -5,7 +5,7 @@
   <description>Module handling the graphic components.</description>
 
   <artifactId>module-graphic</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2-SNAPSHOT</version>
 
   <packaging>jar</packaging>
   <inceptionYear>2014</inceptionYear>
@@ -22,7 +22,7 @@
 
   <properties>
     <version.bom-junit>1.0.3</version.bom-junit>
-    <version.common-client>1.0.3</version.common-client>
+    <version.common-client>1.0.4-SNAPSHOT</version.common-client>
   </properties>
 
   <dependencyManagement>
