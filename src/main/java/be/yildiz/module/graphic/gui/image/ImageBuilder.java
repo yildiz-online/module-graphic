@@ -28,8 +28,11 @@ package be.yildiz.module.graphic.gui.image;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
+import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.*;
+
+import java.util.List;
 
 /**
  * @author Grégory Van den Borre
@@ -39,6 +42,8 @@ public class ImageBuilder implements WidgetBuilder<ImageBuilder>{
     private final GuiBuilder builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
+
+    private final List<ImageAnimation> animations = Lists.newList();
 
 
     public ImageBuilder(final GuiBuilder builder) {
@@ -87,6 +92,17 @@ public class ImageBuilder implements WidgetBuilder<ImageBuilder>{
     }
 
     public Image build(final GuiContainer container) {
-        return this.builder.buildImage(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), container);
+        Image result = this.builder.buildImage(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), container);
+        this.animations.forEach(a -> {
+            a.setElement(result);
+            result.registerAnimation(a);
+        });
+        return result;
+    }
+
+    public ImageBuilder animate(ImageAnimation animation) {
+        this.builder.getAnimationManager().addAnimation(animation);
+        this.animations.add(animation);
+        return this;
     }
 }

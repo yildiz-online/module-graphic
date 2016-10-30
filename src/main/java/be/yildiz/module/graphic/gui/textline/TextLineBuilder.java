@@ -28,8 +28,11 @@ package be.yildiz.module.graphic.gui.textline;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
+import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.gui.*;
+
+import java.util.List;
 
 /**
  * @author Grégory Van den Borre
@@ -39,6 +42,8 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder>{
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
     private final GuiBuilder builder;
+
+    private final List<TextAnimation> animations = Lists.newList();
 
 
     public TextLineBuilder(GuiBuilder builder) {
@@ -82,6 +87,17 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder>{
     }
 
     public TextLine build(final GuiContainer c) {
-        return this.builder.buildTextLine(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), c);
+        TextLine result = this.builder.buildTextLine(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), c);
+        this.animations.forEach(a -> {
+            a.setElement(result);
+            result.registerAnimation(a);
+        });
+        return result;
+    }
+
+    public TextLineBuilder animate(TextAnimation animation) {
+        this.builder.getAnimationManager().addAnimation(animation);
+        this.animations.add(animation);
+        return this;
     }
 }

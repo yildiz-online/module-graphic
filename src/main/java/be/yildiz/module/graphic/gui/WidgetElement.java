@@ -125,9 +125,9 @@ public interface WidgetElement extends Element {
     /**
      * Align the widget
      *
-     * @param alignement New alignment value.
+     * @param alignment New alignment value.
      */
-    void align(Alignment alignement);
+    void align(Alignment alignment);
 
     /**
      * Give the absolute left position instead of relative from parent.
@@ -142,4 +142,8 @@ public interface WidgetElement extends Element {
      * @return The parent top position + the widget top position.
      */
     int getAbsoluteTop();
+
+    void registerAnimation(GuiAnimation anim);
+
+    void playAnimation(String animation);
 }

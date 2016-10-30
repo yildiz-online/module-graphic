@@ -28,12 +28,14 @@ package be.yildiz.module.graphic.gui.container;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
+import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.BaseWidgetBuilder;
 import be.yildiz.module.graphic.gui.GuiBuilder;
 import be.yildiz.module.graphic.gui.GuiContainer;
 import be.yildiz.module.graphic.gui.WidgetBuilder;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -48,6 +50,8 @@ public class ContainerBuilder implements WidgetBuilder<ContainerBuilder>{
     private Optional<GuiContainer> parent = Optional.empty();
 
     private boolean fullScreen;
+
+    private final List<ContainerAnimation> animations = Lists.newList();
 
     public ContainerBuilder(GuiBuilder builder) {
         this.builder = builder;
@@ -99,17 +103,29 @@ public class ContainerBuilder implements WidgetBuilder<ContainerBuilder>{
     }
 
     public GuiContainer build() {
+        GuiContainer result;
         if(this.parent.isPresent()) {
-            return this.builder.buildOverlayContainer(base.getName(), base.getBackground(), base.getCoordinates(), this.parent.get());
+            result = this.builder.buildOverlayContainer(base.getName(), base.getBackground(), base.getCoordinates(), this.parent.get());
+        } else if(this.fullScreen) {
+            result = this.builder.buildFullScreenOverlayContainer(base.getName(), base.getBackground());
+        } else {
+            result = this.builder.buildOverlayContainer(base.getName(), base.getBackground(), base.getCoordinates());
         }
-        if(this.fullScreen) {
-            return this.builder.buildFullScreenOverlayContainer(base.getName(), base.getBackground());
-        }
-        return this.builder.buildOverlayContainer(base.getName(), base.getBackground(), base.getCoordinates());
+        this.animations.forEach(a -> {
+            a.setElement(result);
+            result.registerAnimation(a);
+        });
+        return result;
     }
 
     public ContainerBuilder withParent(GuiContainer c) {
         this.parent = Optional.of(c);
+        return this;
+    }
+
+    public ContainerBuilder animate(ContainerAnimation animation) {
+        this.builder.getAnimationManager().addAnimation(animation);
+        this.animations.add(animation);
         return this;
     }
 }

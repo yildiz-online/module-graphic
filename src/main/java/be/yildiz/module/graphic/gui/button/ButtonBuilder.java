@@ -28,10 +28,12 @@ package be.yildiz.module.graphic.gui.button;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
+import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.*;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -52,6 +54,8 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
     private Element.PositionRelativeLeft captionLeftAlignment = Element.PositionRelativeLeft.CENTER;
 
     private int captionLeftDistance = 0;
+
+    private final List<ButtonAnimation> animations = Lists.newList();
 
     public ButtonBuilder(final GuiBuilder builder) {
         super();
@@ -147,10 +151,20 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
     }
 
     public Button build(final GuiContainer container) {
-        Button b = this.builder.buildButton(this.base.getName(), this.base.getCoordinates(), this.material, container);
-        b.setCaptionTextLeftAlignement(this.captionLeftAlignment, this.captionLeftDistance);
-        b.setCaptionTextTopAlignement(this.captionTopAlignment, this.captionTopDistance);
-        return b;
+        Button result = this.builder.buildButton(this.base.getName(), this.base.getCoordinates(), this.material, container);
+        result.setCaptionTextLeftAlignement(this.captionLeftAlignment, this.captionLeftDistance);
+        result.setCaptionTextTopAlignement(this.captionTopAlignment, this.captionTopDistance);
+        this.animations.forEach(a -> {
+            a.setElement(result);
+            result.registerAnimation(a);
+        });
+        return result;
+    }
+
+    public ButtonBuilder animate(ButtonAnimation animation) {
+        this.builder.getAnimationManager().addAnimation(animation);
+        this.animations.add(animation);
+        return this;
     }
 
 }

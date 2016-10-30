@@ -30,6 +30,7 @@ import be.yildiz.common.Coordinates;
 import be.yildiz.common.Rectangle;
 import be.yildiz.common.client.gui.listener.*;
 import be.yildiz.common.collections.Lists;
+import be.yildiz.common.collections.Maps;
 import be.yildiz.common.collections.Sets;
 import be.yildiz.common.exeption.UnhandledSwitchCaseException;
 import be.yildiz.common.util.Checker;
@@ -37,6 +38,7 @@ import be.yildiz.common.vector.Point2D;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -130,6 +132,8 @@ public abstract class Widget extends BaseElement implements WidgetElement {
     private boolean forceContainsFalse;
     private boolean emptyZoneDisabled;
 
+    private final Map<String, GuiAnimation> animations = Maps.newMap();
+
     /**
      * Full constructor.
      *
@@ -194,6 +198,15 @@ public abstract class Widget extends BaseElement implements WidgetElement {
     @Override
     public final void addOnMouseOverListener(final OnMouseOverListener listener) {
         this.onMouseOverListenerList.add(listener);
+    }
+
+    @Override
+    public final void registerAnimation(GuiAnimation anim) {
+        this.animations.put(anim.getName(), anim);
+    }
+
+    public final void playAnimation(String name) {
+        Optional.ofNullable(this.animations.get(name)).ifPresent(GuiAnimation::start);
     }
 
     /**
@@ -513,12 +526,12 @@ public abstract class Widget extends BaseElement implements WidgetElement {
     }
 
     @Override
-    public final void align(final Alignment alignement) {
-        if (alignement == Alignment.CENTER) {
+    public final void align(final Alignment alignment) {
+        if (alignment == Alignment.CENTER) {
             this.addToLeft(-this.getWidth() >> 1);
             this.addToTop(-this.getHeight() >> 1);
         } else {
-            throw new UnhandledSwitchCaseException(alignement);
+            throw new UnhandledSwitchCaseException(alignment);
         }
     }
 

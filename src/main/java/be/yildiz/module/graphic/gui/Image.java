@@ -35,7 +35,7 @@ import java.util.Optional;
  *
  * @author Grégory Van den Borre
  */
-public interface Image extends Element {
+public interface Image extends WidgetElement {
 
     /**
      * Move the image to the top or bottom.

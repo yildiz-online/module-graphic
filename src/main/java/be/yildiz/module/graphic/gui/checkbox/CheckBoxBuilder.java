@@ -28,9 +28,12 @@ package be.yildiz.module.graphic.gui.checkbox;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
+import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.*;
+
+import java.util.List;
 
 /**
  * @author Grégory Van den Borre
@@ -43,6 +46,8 @@ public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder>{
 
     private Material hover = Material.empty();
     private Material checked = Material.empty();
+
+    private final List<CheckBoxAnimation> animations = Lists.newList();
 
     public CheckBoxBuilder(GuiBuilder builder) {
         super();
@@ -102,6 +107,17 @@ public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder>{
     }
 
     public CheckBox build(GuiContainer container) {
-        return this.builder.buildCheckBox(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), this.hover, this.checked, this.base.getFont(), container);
+        CheckBox result = this.builder.buildCheckBox(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), this.hover, this.checked, this.base.getFont(), container);
+        this.animations.forEach(a -> {
+            a.setElement(result);
+            result.registerAnimation(a);
+        });
+        return result;
+    }
+
+    public CheckBoxBuilder animate(CheckBoxAnimation animation) {
+        this.builder.getAnimationManager().addAnimation(animation);
+        this.animations.add(animation);
+        return this;
     }
 }

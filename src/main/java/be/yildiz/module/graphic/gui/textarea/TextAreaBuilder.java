@@ -28,9 +28,12 @@ package be.yildiz.module.graphic.gui.textarea;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
+import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.*;
+
+import java.util.List;
 
 /**
  * @author Grégory Van den Borre
@@ -42,6 +45,8 @@ public class TextAreaBuilder implements WidgetBuilder<TextAreaBuilder> {
     private final GuiBuilder builder;
 
     private int padding = 0;
+
+    private final List<TextAreaAnimation> animations = Lists.newList();
 
     public TextAreaBuilder(GuiBuilder builder) {
         super();
@@ -100,5 +105,11 @@ public class TextAreaBuilder implements WidgetBuilder<TextAreaBuilder> {
 
     public TextArea build(final GuiContainer container) {
         return this.builder.buildTextArea(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), this.base.getBackground(), this.padding, container);
+    }
+
+    public TextAreaBuilder animate(TextAreaAnimation animation) {
+        this.builder.getAnimationManager().addAnimation(animation);
+        this.animations.add(animation);
+        return this;
     }
 }
