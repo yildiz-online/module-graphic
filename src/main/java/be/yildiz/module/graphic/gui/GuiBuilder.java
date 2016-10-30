@@ -87,6 +87,9 @@ public abstract class GuiBuilder {
      */
     private final Registerer<TextArea> textAreaList = Registerer.newRegisterer();
 
+    @Getter
+    private final GuiAnimationManager animationManager = new GuiAnimationManager();
+
     /**
      * Build a new widget button.
      *
