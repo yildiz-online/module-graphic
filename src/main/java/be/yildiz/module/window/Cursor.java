@@ -68,6 +68,8 @@ public class Cursor {
      *
      * @param id   Unique id.
      * @param path Path to the graphic asset.
+     * @param offsetX Cursor position x offset, in pixels.
+     * @param offsetY Cursor position y offset, in pixels.
      */
     public Cursor(final String id, final String path, final int offsetX, final int offsetY) {
         super();
