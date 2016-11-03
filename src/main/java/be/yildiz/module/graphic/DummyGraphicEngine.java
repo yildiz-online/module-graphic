@@ -28,6 +28,7 @@ package be.yildiz.module.graphic;
 import be.yildiz.common.Color;
 import be.yildiz.common.Size;
 import be.yildiz.common.resource.FileResource.FileType;
+import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.graphic.gui.GuiBuilder;
@@ -69,7 +70,32 @@ public final class DummyGraphicEngine implements GraphicEngine {
 
     @Override
     public Material createMaterial(final String name) {
-        return null;
+        return new Material(StringUtil.buildRandomString("material")) {
+            @Override
+            public MaterialEffect addEffect(MaterialEffect.EffectType type, long time) {
+                return null;
+            }
+
+            @Override
+            protected Material copyImpl(String name) {
+                return this;
+            }
+
+            @Override
+            protected MaterialTechnique createTechniqueImpl(int techniqueIndex) {
+                return null;
+            }
+
+            @Override
+            protected void receiveShadowImpl(boolean receive) {
+
+            }
+
+            @Override
+            protected void loadImpl() {
+
+            }
+        };
     }
 
     @Override
@@ -109,7 +135,6 @@ public final class DummyGraphicEngine implements GraphicEngine {
 
     @Override
     public Font createFont(String name, String path, int size, Color color) {
-        // TODO Auto-generated method stub
         return null;
     }
 
