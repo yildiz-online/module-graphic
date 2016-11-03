@@ -116,7 +116,12 @@ public interface ClientGameEntity extends GameMaterialization, Deletable {
     /**
      * Set a GPU program parameter.
      *
-     * @param index parameter index.
+     * @param index Parameter index.
+     * @param v1 Vector4 first value.
+     * @param v2 Vector4 second value.
+     * @param v3 Vector4 third value.
+     * @param v4 Vector4 fourth value.
+     * @return This object for chaining.
      */
     ClientGameEntity setParameter(int index, float v1, float v2, float v3, float v4);
 
@@ -124,12 +129,13 @@ public interface ClientGameEntity extends GameMaterialization, Deletable {
      * Set the distance from where the entity will no longer be visible.
      *
      * @param distance Distance to set.
-     * @return This object.
+     * @return This object for chaining.
      */
     ClientGameEntity setRenderingDistance(int distance);
 
     /**
      * Set the object to be rendered behind others.
+     * @return This object for chaining.
      */
     ClientGameEntity setRenderBehind();
 
