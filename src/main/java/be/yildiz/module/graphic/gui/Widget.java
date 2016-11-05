@@ -139,6 +139,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      *
      * @param name        Widget unique name.
      * @param coordinates Widget initial size and position.
+     * @param parent      Optional parent container.
      */
     protected Widget(final String name, final BaseCoordinate coordinates, final Optional<GuiContainer> parent) {
         super(name, coordinates);
