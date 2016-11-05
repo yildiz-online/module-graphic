@@ -38,7 +38,7 @@ public interface InputBox extends ContainerElement {
     /**
      * All characters written in the box will be hidden and replaced by the replacement character(default is '*').
      *
-     * @return The current instance.
+     * @return This object for chaining.
      */
     InputBox setPassword();
 
@@ -46,6 +46,7 @@ public interface InputBox extends ContainerElement {
      * Set the box background material.
      *
      * @param material Material to use as background.
+     * @return This object for chaining.
      */
     InputBox setMaterial(Material material);
 
@@ -54,7 +55,7 @@ public interface InputBox extends ContainerElement {
      *
      * @param left Left relative position.
      * @param top  Top relative position.
-     * @return This object.
+     * @return This object for chaining.
      */
     InputBox setTextAlignment(PositionRelativeLeft left, PositionRelativeTop top);
 
@@ -81,6 +82,7 @@ public interface InputBox extends ContainerElement {
      * Set the text to print in the box.
      *
      * @param text Text to set.
+     * @return This object for chaining.
      */
     InputBox setText(String text);
 
@@ -99,7 +101,7 @@ public interface InputBox extends ContainerElement {
     /**
      * Align the text.
      *
-     * @return This object.
+     * @return This object for chaining.
      */
     InputBox setTextCenter();
 

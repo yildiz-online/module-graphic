@@ -37,6 +37,7 @@ public interface TextLine extends ContainerElement {
      * Set the text to print.
      *
      * @param text Text to print, the toString method of the object will be used.
+     * @return This object for chaining.
      */
     TextLine setText(String text);
 
@@ -44,6 +45,7 @@ public interface TextLine extends ContainerElement {
      * Set the text to print.
      *
      * @param i Text to print, the int will be converted to a string message.
+     * @return This object for chaining.
      */
     TextLine setText(int i);
 
@@ -53,6 +55,7 @@ public interface TextLine extends ContainerElement {
      * Set a new color to this text.
      *
      * @param color Color to set.
+     * @return This object for chaining.
      */
     TextLine setColor(Color color);
 
@@ -67,6 +70,7 @@ public interface TextLine extends ContainerElement {
      * Set the text alignment.
      *
      * @param textPosition Text alignment.
+     * @return This object for chaining.
      */
     TextLine setTextPosition(TextPosition textPosition);
 

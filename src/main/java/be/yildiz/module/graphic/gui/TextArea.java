@@ -71,6 +71,7 @@ public interface TextArea extends Element {
      * Set the text color.
      *
      * @param color New text color.
+     * @return This object for chaining.
      */
     TextArea setColor(Color color);
 

@@ -30,10 +30,21 @@ package be.yildiz.module.graphic.gui;
  */
 public interface CheckBox extends ContainerElement {
 
+    /**
+     * Update the text associated with the check box.
+     *
+     * @param captionText New text to set.
+     * @return This object for chaining.
+     */
     CheckBox setCaptionText(String captionText);
 
     void detachFromParent();
 
+    /**
+     * Set the check box state.
+     *
+     * @param checked <code>true</code> will set checked state while <code>false</code> is unchecked.
+     */
     void check(boolean checked);
 
     boolean isChecked();

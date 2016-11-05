@@ -34,6 +34,7 @@ import lombok.Getter;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * A container holding Widget.
@@ -82,7 +83,8 @@ public abstract class GuiContainer extends Widget {
      * @param name               Container name, must be unique.
      * @param coordinates        Container size and position.
      * @param backgroundMaterial The Material to use for background.
-     * @param parent             container, <code>null</code> if none.
+     * @param parent             Parent container.
+     * @param widget             Flag to set this container being considered as container or widget.
      */
     protected GuiContainer(final String name, final BaseCoordinate coordinates, final Material backgroundMaterial,
                            final Optional<GuiContainer> parent, final boolean widget) {
@@ -92,9 +94,7 @@ public abstract class GuiContainer extends Widget {
         this.widget = widget;
         if (!widget && parent.isPresent()) {
             parent.get().childrenContainerList.add(this);
-            for (Rectangle empty : parent.get().emptyZones) {
-                this.addEmptyZone(empty);
-            }
+            parent.get().emptyZones.forEach(this::addEmptyZone);
         }
     }
 
@@ -145,15 +145,9 @@ public abstract class GuiContainer extends Widget {
      * @return All Widget in the rectangle.
      */
     public final List<Widget> getElements(final Rectangle rectangle) {
-        final List<Widget> result = Lists.newList();
-        for (final Widget w : this.childrenList) {
-            if (rectangle.contain(w.getLeft(), w.getTop()) || rectangle.contain(w.getRight(), w.getTop())
-                    || rectangle.contain(w.getLeft(), w.getBottom())
-                    || rectangle.contain(w.getRight(), w.getBottom())) {
-                result.add(w);
-            }
-        }
-        return result;
+        return this.childrenList.stream().filter(w -> rectangle.contain(w.getLeft(), w.getTop()) || rectangle.contain(w.getRight(), w.getTop())
+                || rectangle.contain(w.getLeft(), w.getBottom())
+                || rectangle.contain(w.getRight(), w.getBottom())).collect(Collectors.toList());
     }
 
     /**
@@ -336,9 +330,7 @@ public abstract class GuiContainer extends Widget {
      */
     private void showSubElement() {
         if (this.showContent) {
-            for (final Widget w : this.childrenList) {
-                w.show();
-            }
+            this.childrenList.forEach(BaseElement::show);
             for (final GuiContainer c : this.childrenContainerList) {
                 c.setVisible(true);
                 c.showContent();
@@ -351,9 +343,7 @@ public abstract class GuiContainer extends Widget {
      */
     private void hideSubElement() {
         if (!this.showContent) {
-            for (final Widget w : this.childrenList) {
-                w.hide();
-            }
+            this.childrenList.forEach(BaseElement::hide);
             for (final GuiContainer c : this.childrenContainerList) {
                 c.setVisible(false);
                 c.hideContent();
@@ -416,9 +406,7 @@ public abstract class GuiContainer extends Widget {
         for (Widget w : this.dynamicChildrenList) {
             w.highlight(false);
         }
-        for (GuiContainer c : this.childrenContainerList) {
-            c.disableHighlight();
-        }
+        this.childrenContainerList.forEach(GuiContainer::disableHighlight);
     }
 
     public Optional<Widget> getWidgetAt(Point2D position) {

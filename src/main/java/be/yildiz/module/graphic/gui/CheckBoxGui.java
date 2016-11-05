@@ -96,21 +96,13 @@ public final class CheckBoxGui extends ContainerChild implements CheckBox {
         this.showImpl();
     }
 
-    /**
-     * Update the text associated with the check box.
-     *
-     * @param text New text to set.
-     */
+    @Override
     public CheckBoxGui setCaptionText(final String text) {
         this.caption.setText(text);
         return this;
     }
 
-    /**
-     * Set the check box state.
-     *
-     * @param checkedState <code>true</code> will set checked state while <code>false</code> is unchecked.
-     */
+    @Override
     public void check(final boolean checkedState) {
         this.checked = checkedState;
         if (this.checked) {
@@ -131,6 +123,7 @@ public final class CheckBoxGui extends ContainerChild implements CheckBox {
      * Update the check box background material.
      *
      * @param material New material to use.
+     * @return This object for chaining.
      */
     public CheckBoxGui setMaterial(final Material material) {
         this.material = material;
@@ -142,6 +135,7 @@ public final class CheckBoxGui extends ContainerChild implements CheckBox {
      * Update the check box checked material.
      *
      * @param material New material to use.
+     * @return This object for chaining.
      */
     public CheckBoxGui setCheckedMaterial(final Material material) {
         this.check.setMaterial(material);
@@ -152,6 +146,7 @@ public final class CheckBoxGui extends ContainerChild implements CheckBox {
      * Update the caption font.
      *
      * @param font New font to use.
+     * @return This object for chaining.
      */
     public CheckBoxGui setFont(final Font font) {
         this.caption.setFont(font);
@@ -177,9 +172,6 @@ public final class CheckBoxGui extends ContainerChild implements CheckBox {
         this.updateCaptionPosition();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     protected void showImpl() {
         this.background.show();
@@ -213,7 +205,9 @@ public final class CheckBoxGui extends ContainerChild implements CheckBox {
     }
 
     /**
-     * @param color
+     * Change the caption text color.
+     * @param color Color of the caption.
+     * @return This object for chaining.
      */
     public CheckBoxGui setCaptionColor(final Color color) {
         this.caption.setColor(color);
