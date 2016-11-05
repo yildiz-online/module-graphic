@@ -69,6 +69,7 @@ public abstract class Font extends Resource {
      *
      * @param fontName Font name, must be unique.
      * @param fontSize Font height.
+     * @param color    Font color.
      */
     protected Font(final String fontName, final int fontSize, final Color color) {
         super(fontName);

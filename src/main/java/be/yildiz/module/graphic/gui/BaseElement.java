@@ -496,6 +496,7 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
      *
      * @param newLeft New widget x position.
      * @param newTop  New widget y position.
+     * @return This object for chaining.
      */
     protected abstract Element setPositionImpl(int newLeft, int newTop);
 }

@@ -50,6 +50,7 @@ public final class ShaderParamFloat4 {
     /**
      * Full constructor.
      *
+     * @param name Shader name.
      * @param v1 First value.
      * @param v2 Second value.
      * @param v3 Third value.

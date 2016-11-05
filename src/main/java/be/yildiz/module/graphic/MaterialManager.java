@@ -177,6 +177,7 @@ public final class MaterialManager {
      * Build a simple GUI material, with alpha transparency and light disabled.
      *
      * @param path Texture file path.
+     * @return The created and loaded texture.
      */
     public Material createGuiMaterial(final String path) {
         return this.loadSimpleTexture(path, Transparency.ALPHA).disableLight();

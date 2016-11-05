@@ -586,6 +586,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      *
      * @param over     New mouse over status.
      * @param position Current mouse position.
+     * @return This object for chaining.
      */
     public final Element setMouseOver(final boolean over, final Point2D position) {
         if (over != this.mouseOver) {

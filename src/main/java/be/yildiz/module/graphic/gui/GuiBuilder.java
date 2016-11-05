@@ -497,13 +497,19 @@ public abstract class GuiBuilder {
      * @param name        Unique check box name.
      * @param coordinates Check box coordinates.
      * @param background  Background material.
+     * @param hover       Hover material.
      * @param check       Material when checked.
      * @param font        Font to use for caption.
      * @param container   Container holding the check box widget.
      * @return The new check box widget.
      */
-    public final CheckBoxGui buildCheckBox(@NonNull final String name, @NonNull final BaseCoordinate coordinates, @NonNull final Material background, @NonNull final Material hover,
-                                           @NonNull final Material check, @NonNull final Font font, @NonNull final GuiContainer container) {
+    public final CheckBoxGui buildCheckBox(@NonNull final String name,
+                                           @NonNull final BaseCoordinate coordinates,
+                                           @NonNull final Material background,
+                                           @NonNull final Material hover,
+                                           @NonNull final Material check,
+                                           @NonNull final Font font,
+                                           @NonNull final GuiContainer container) {
         final AbstractIconElement icon = this.buildIconElement(name, coordinates, background, container);
         final AbstractIconElement checkIcon = this.buildIconElement(name + "ck", coordinates, check, container);
         //FIXME LOW hardcoded
@@ -630,7 +636,7 @@ public abstract class GuiBuilder {
         View[] children = new View[titles.length];
         for (int i = 0; i < children.length; i++) {
             GuiContainer c = this.buildContainerElement("childc" + name + i, coordinates, Material.empty());
-            children[i] = new SimpleView(c, container.getZ().add(10));
+            children[i] = new SimpleView(c, container.getZ().add(10), null);
         }
         Image bg = this.buildImage(name + "bg", new Coordinates(coordinates.width, coordinates.height - tabHeight, coordinates.left, coordinates.top), background, container);
         GuiButton[] buttons = new GuiButton[titles.length];

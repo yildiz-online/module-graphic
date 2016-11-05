@@ -35,8 +35,8 @@ package be.yildiz.module.graphic;
 public abstract class MaterialEffect {
 
     /**
-     * @param material
-     * @param time
+     * @param material Material to use.
+     * @param time Time to last.
      */
     protected MaterialEffect(final Material material, final long time) {
         super();

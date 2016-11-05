@@ -102,6 +102,7 @@ public interface Element extends Registerable {
      *
      * @param left Element X position.
      * @param top  Element Y position.
+     * @return This object for chaining.
      */
     Element setPosition(int left, int top);
 
@@ -143,6 +144,7 @@ public interface Element extends Registerable {
      * Show or hide the element.
      *
      * @param visible <code>true</code> to show the element, <code>false</code> to hide it.
+     * @return This object for chaining.
      */
     Element setVisible(boolean visible);
 
