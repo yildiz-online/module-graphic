@@ -38,8 +38,8 @@ public final class SimpleView extends View {
      * @param container Wrapped container.
      * @param z         Z value.
      */
-    public SimpleView(final GuiContainer container, final Zorder z) {
-        super(container, z);
+    public SimpleView(final GuiContainer container, final Zorder z, GuiEventManager eventManager) {
+        super(container, z, eventManager);
     }
 
     @Override

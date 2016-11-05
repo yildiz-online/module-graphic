@@ -79,8 +79,8 @@ public abstract class Window extends View {
      * @param z       View Z position.
      * @param params  Parameter to build the window.
      */
-    public Window(final String name, final GuiBuilder builder, final Zorder z, final Parameter... params) {
-        this(builder.buildOverlayContainer(name, Material.empty(), BaseCoordinate.ZERO), builder, z, params);
+    public Window(final String name, final GuiBuilder builder, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
+        this(builder.buildOverlayContainer(name, Material.empty(), BaseCoordinate.ZERO), builder, z, eventManager, params);
     }
 
     /**
@@ -90,8 +90,8 @@ public abstract class Window extends View {
      * @param builder   GUI builder.
      * @param z         View Z position.
      */
-    public Window(final GuiContainer container, final GuiBuilder builder, final Zorder z) {
-        this(container, builder, z, Parameter.NOTHING);
+    public Window(final GuiContainer container, final GuiBuilder builder, final Zorder z, GuiEventManager eventManager) {
+        this(container, builder, z, eventManager, Parameter.NOTHING);
     }
 
     /**
@@ -102,8 +102,8 @@ public abstract class Window extends View {
      * @param z         View Z position.
      * @param params    Parameter to build the window.
      */
-    public Window(final GuiContainer container, final GuiBuilder builder, final Zorder z, final Parameter... params) {
-        super(container, z);
+    public Window(final GuiContainer container, final GuiBuilder builder, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
+        super(container, z, eventManager);
         final List<Parameter> paramList = Arrays.asList(params);
         if (!paramList.contains(Parameter.NOT_MOVABLE)) {
             container.addMouseDragListener(new ContainerElementDragListener(container, new Rectangle(0, 0, builder.getScreenSize().width, builder.getScreenSize().height)));

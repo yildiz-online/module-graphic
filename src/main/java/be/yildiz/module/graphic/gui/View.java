@@ -35,6 +35,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Optional;
+
 /**
  * A View is an abstract game component, it can be the game window, or a map, or a gui window. It contains a Z value to help the EventDispatcher to correctly dispatch the inputs: the higher the value,
  * the higher the priority to check if the mouse is in this view. So if a view is on top of another, it has to use a greater Z value.
@@ -59,6 +61,8 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
     @Getter
     private final GuiContainer container;
 
+    private final GuiEventManager eventManager;
+
     /**
      * <code>true</code> if this is the currently active window.
      */
@@ -77,14 +81,18 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      *
      * @param wrappedContainer Wrapped container.
      * @param z                Z order.
+     * @param eventManager     Event manager to notify.
      */
-    public View(final GuiContainer wrappedContainer, final Zorder z) {
+    public View(final GuiContainer wrappedContainer, final Zorder z, GuiEventManager eventManager) {
         super(wrappedContainer.getName());
         this.container = wrappedContainer;
         this.container.setZ(z);
         this.zOrder = z;
         this.focus = wrappedContainer;
         View.REGISTERER.register(this);
+        this.eventManager = eventManager;
+        Optional.ofNullable(this.eventManager)
+                .ifPresent(m -> m.addView(this));
     }
 
     /**
@@ -116,6 +124,9 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      */
     @Override
     public final void show() {
+        Optional
+                .ofNullable(this.eventManager)
+                .ifPresent(m -> m.setFocus(this));
         this.setVisible(true);
     }
 
@@ -312,10 +323,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
             return false;
         }
         final View other = (View) obj;
-        if (!this.container.equals(other.container)) {
-            return false;
-        }
-        return this.zOrder.getValue() == other.zOrder.getValue();
+        return this.container.equals(other.container) && this.zOrder.getValue() == other.zOrder.getValue();
     }
 
     /**

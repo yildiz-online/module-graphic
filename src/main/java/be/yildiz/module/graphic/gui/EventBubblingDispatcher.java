@@ -152,6 +152,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
                 if (foundWidget.isPresent() && foundWidget.get() != this.widgetUnderMouse) {
                     this.widgetUnderMouse.highlight(false);
                     this.widgetUnderMouse.setMouseOver(false, position);
+
                     this.widgetUnderMouse = foundWidget.get();
                     this.widgetUnderMouse.highlight(true);
                     this.debugListener.displayDebugMessage(this.widgetUnderMouse);
@@ -193,6 +194,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
 
     @Override
     public void setFocus(View view) {
+        this.debugListener.displayDebugMessage("New focus:" + view.getContainer().getName());
         this.currentWidgetFocus = view.getContainer();
     }
 
