@@ -179,7 +179,9 @@ public class EventBubblingDispatcher implements GuiEventManager {
 
     @Override
     public void addView(View view) {
-        this.views.add(view);
+        if(!this.views.add(view)) {
+            throw new IllegalArgumentException(view + " was not added successfully.");
+        }
     }
 
     @Override
