@@ -21,7 +21,7 @@
   </parent>
 
   <properties>
-    <version.bom-junit>1.0.3</version.bom-junit>
+    <version.bom-junit>1.0.4-SNAPSHOT</version.bom-junit>
     <version.common-client>1.0.4-SNAPSHOT</version.common-client>
   </properties>
 
