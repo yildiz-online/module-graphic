@@ -32,6 +32,8 @@ import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.graphic.gui.GuiBuilder;
+import be.yildiz.module.window.DummyWindowEngine;
+import be.yildiz.module.window.WindowEngine;
 
 /**
  * dummy implementation for graphic engine.
@@ -146,5 +148,10 @@ public final class DummyGraphicEngine implements GraphicEngine {
     @Override
     public Size getScreenSize() {
         return new Size(0);
+    }
+
+    @Override
+    public WindowEngine getWindowEngine() {
+        return new DummyWindowEngine();
     }
 }
