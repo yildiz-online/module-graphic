@@ -31,6 +31,7 @@ import be.yildiz.common.resource.FileResource.FileType;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.graphic.gui.GuiBuilder;
+import be.yildiz.module.window.WindowEngine;
 
 /**
  * Behavior for a graphic engine. Specification: The engine must be able to load resources, show a sky box, show the GUI, move and rotate 3d meshes.
@@ -155,6 +156,8 @@ public interface GraphicEngine extends FpsProvider {
     ClientWorld createWorld();
 
     Size getScreenSize();
+
+    WindowEngine getWindowEngine();
 
     /**
      * Possible type of shadows.
