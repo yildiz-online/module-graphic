@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic.gui;
 
+import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Coordinates;
-import be.yildiz.common.Position;
 import be.yildiz.common.Size;
 import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.Material;
@@ -38,7 +38,7 @@ import org.junit.Test;
  */
 public final class GuiContainerTest {
 
-    private static final Coordinates CR = new Coordinates(new Size(10), Position.ZERO);
+    private static final Coordinates CR = new Coordinates(new Size(10), BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top);
 
     /**
      * Scenario: <li>A: 2 widgets(W1,W2) in the same container, expected: W1,W2,W1,W2</li> <li>B: 1 more widget(W3) in the same container, expected: W3,W1,W2,W3,W1,W2,W3</li> <li>C: 1 more widget(W4)

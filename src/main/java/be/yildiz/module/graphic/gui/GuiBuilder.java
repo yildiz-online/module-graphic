@@ -423,7 +423,7 @@ public abstract class GuiBuilder {
         final AbstractTextElement text = this.buildTextElement(coordinates, font, c);
         final AbstractTextElement caption = this.buildTextElement(coordinates, font, container);
         final AbstractIconElement cursor = this.buildIconElement(name + "_cursor", new Size(3, 20), cursorMaterial, c);
-        GuiTextLine defaultMessage = this.buildTextLine(name + "_text", new Coordinates(coordinates.width, coordinates.height, Position.ZERO), font, container);
+        GuiTextLine defaultMessage = this.buildTextLine(name + "_text", new Coordinates(coordinates.width, coordinates.height, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), font, container);
         defaultMessage.setStatic();
         ButtonMaterial materials = new ButtonMaterial(background, backgroundHlight);
         final InputBoxGui inputBox = new InputBoxGui(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, container);

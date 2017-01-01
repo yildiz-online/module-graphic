@@ -23,6 +23,7 @@
 
 package be.yildiz.module.graphic.gui;
 
+import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
@@ -41,7 +42,8 @@ public class BaseWidgetBuilder {
     private String name = StringUtil.buildRandomString("widget");
 
     @Getter
-    private Coordinates coordinates = Coordinates.ZERO;
+    private Coordinates coordinates = new Coordinates(BaseCoordinate.ZERO.width, BaseCoordinate.ZERO.height,
+            BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top);
 
     @Getter
     private Font font = Font.getDefault();
