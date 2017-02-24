@@ -54,7 +54,9 @@ public final class JumpAnimation implements Animation {
     /**
      * Billboard used when animation is playing, <code>null</code> if animation is stopped.
      */
-    private Optional<Billboard> current = Optional.empty();
+    private Billboard current = null;
+
+    private Point3D positionToSet = Point3D.ZERO;
 
     /**
      * Full constructor.
@@ -68,8 +70,9 @@ public final class JumpAnimation implements Animation {
 
     @Override
     public void start() {
-        this.current.ifPresent(c -> this.set.removeBillboard(c));
-        this.current = Optional.of(this.set.createBillboard());
+        Optional.ofNullable(this.current).ifPresent(this.set::removeBillboard);
+        this.current = this.set.createBillboard();
+        this.current.setPosition(this.positionToSet);
     }
 
     @Override
@@ -77,20 +80,22 @@ public final class JumpAnimation implements Animation {
         this.runningTime += time;
         if (this.runningTime > TIME) {
             this.runningTime = 0;
-            this.set.removeBillboard(this.current.get());
-            this.current = Optional.empty();
+            this.set.removeBillboard(this.current);
+            this.current = null;
             return false;
         } else {
             float v = ((float) this.runningTime / (float) (TIME)) * MAX_SIZE;
-            this.current.ifPresent(c -> c.setSize(v, v));
+            this.current.setSize(v, v);
         }
         return true;
     }
 
     @Override
     public void setPosition(final Point3D position) {
-        if (this.current.isPresent()) {
-            this.current.get().setPosition(position);
+        if(this.current == null) {
+            this.positionToSet = position;
+        } else {
+            this.current.setPosition(position);
         }
     }
 

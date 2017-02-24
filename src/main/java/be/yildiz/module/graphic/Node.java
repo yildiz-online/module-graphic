@@ -51,19 +51,19 @@ public abstract class Node {
     /**
      * Node unique Id, optional.
      */
-    private final Optional<EntityId> id;
+    private final EntityId id;
     private Node parent;
 
     protected Node(final EntityId id, final Node parent) {
         super();
         nodes.put(id, this);
-        this.id = Optional.of(id);
+        this.id = id;
         this.parent = parent;
     }
 
     protected Node(final Node parent) {
         super();
-        this.id = Optional.empty();
+        this.id = null;
         this.parent = parent;
     }
 
@@ -226,15 +226,9 @@ public abstract class Node {
      * Delete the node and attached objects.
      */
     public final void delete() {
-        if (this.id.isPresent()) {
-            nodes.remove(this.id.get());
-        }
-        for (Node n : this.optionalList) {
-            n.detachFromParent();
-        }
-        for (Node n : this.childrenList) {
-            n.delete();
-        }
+        Optional.ofNullable(this.id).ifPresent(nodes::remove);
+        this.optionalList.forEach(Node::detachFromParent);
+        this.childrenList.forEach(Node::delete);
         this.optionalList.clear();
         this.childrenList.clear();
         this.deleteImpl();
