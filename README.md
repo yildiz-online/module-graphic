@@ -9,7 +9,7 @@ It requires an implementation module to materialize it.
 * 3D rendering.
 * Multi camera.
 * Several light type(spot, omni, directional).
-* Paricle and paricle effects.
+* Particle and particle effects.
 * Skybox.
 * VFS resource loading.
 * Mesh animation.
@@ -56,7 +56,7 @@ In your maven project, add the dependency
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-graphic</artifactId>
-    <version>1.1.3</version>
+    <version>1.1.4</version>
 </dependency>
 ```
 ## Contact
