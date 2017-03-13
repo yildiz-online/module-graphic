@@ -135,6 +135,6 @@ public class ButtonMaterial {
     public ButtonMaterial copy() {
         Material m = this.material.copy(StringUtil.buildRandomString(this.material.getName()));
         Material hl = this.highlight.copy(StringUtil.buildRandomString(this.highlight.getName()));
-        return new be.yildiz.module.graphic.gui.ButtonMaterial(m, hl);
+        return new ButtonMaterial(m, hl);
     }
 }

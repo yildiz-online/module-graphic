@@ -161,7 +161,7 @@ public interface Element extends Registerable {
      *
      * @author Van den Borre Grégory
      */
-    public enum Alignment {
+    enum Alignment {
 
         /**
          * Widget will be left aligned, its left position will be computed from its left part. It is the default behavior.
@@ -193,7 +193,7 @@ public interface Element extends Registerable {
     /**
      * Element relative position from another element.
      */
-    public enum PositionRelativeLeft {
+    enum PositionRelativeLeft {
 
         /**
          * Element position is relative from the center of the element.
@@ -224,7 +224,7 @@ public interface Element extends Registerable {
     /**
      * Element relative position from another element.
      */
-    public enum PositionRelativeTop {
+    enum PositionRelativeTop {
 
         /**
          * Element position is relative from the center of the element.

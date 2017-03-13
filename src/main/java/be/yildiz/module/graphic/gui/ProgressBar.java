@@ -94,6 +94,7 @@ public abstract class ProgressBar extends ContainerChild {
      */
     @Override
     protected final void highlightImpl(final boolean highlighted) {
+        //does nothing.
     }
 
     @Override

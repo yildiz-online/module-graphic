@@ -138,9 +138,9 @@ public final class GuiTextLine extends ContainerChild implements TextLine {
             int pos = (parentWidth >> 1) - (textWidth >> 1);
             this.setLeft(pos);
         } else if (textPosition == TextPosition.RIGHT) {
-            int textWitdh = (int) this.text.getLastLineWidth();
+            int textWidth = (int) this.text.getLastLineWidth();
             int parentWidth = this.getParent().get().getWidth();
-            this.setLeft(parentWidth - textWitdh);
+            this.setLeft(parentWidth - textWidth);
         } else if (textPosition == TextPosition.LEFT) {
             if (updated) {
                 this.setLeft(this.getLeft());

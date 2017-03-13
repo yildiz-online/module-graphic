@@ -50,13 +50,13 @@ public class Aligner {
     }
 
     public void align(final WidgetElement... widgets) {
-        int left = this.baseLeft;
-        int top = this.baseTop;
+        int leftValue = this.baseLeft;
+        int topValue = this.baseTop;
         for (WidgetElement w : widgets) {
-            w.setLeft(left);
-            w.setTop(top);
-            left += this.left;
-            top += this.top;
+            w.setLeft(leftValue);
+            w.setTop(topValue);
+            leftValue += this.left;
+            topValue += this.top;
         }
     }
 

@@ -400,7 +400,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * Called when the mouse is moved. Only to be used from the EventDispatcher.
      *
      * @param position Current mouse position.
-     * @return
+     * @return false.
      */
     final boolean mouseMove(final Point2D position) {
         for (final MouseMoveListener listener : this.mouseMoveListener) {
@@ -666,6 +666,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
          */
         @Override
         protected void delete() {
+            //does nothing.
         }
 
         /**
@@ -675,6 +676,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
          */
         @Override
         public void highlightImpl(final boolean over) {
+            //does nothing.
         }
 
         /**
@@ -696,6 +698,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
          */
         @Override
         public void setSizeImpl(final int width, final int height) {
+            //does nothing.
         }
 
         /**
@@ -703,6 +706,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
          */
         @Override
         protected void hideImpl() {
+            //does nothing.
         }
 
         /**
@@ -710,12 +714,15 @@ public abstract class Widget extends BaseElement implements WidgetElement {
          */
         @Override
         protected void showImpl() {
+            //does nothing.
         }
 
+        /**
+         * Does nothing.
+         */
         @Override
         protected void addEmptyZoneImpl(Rectangle zone) {
-            // TODO Auto-generated method stub
-
+            //does nothing.
         }
     }
 }

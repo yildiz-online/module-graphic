@@ -172,6 +172,7 @@ public final class TextAreaGui extends ContainerChild implements TextArea {
      */
     @Override
     protected void highlightImpl(final boolean over) {
+        //does nothing.
     }
 
     @Override

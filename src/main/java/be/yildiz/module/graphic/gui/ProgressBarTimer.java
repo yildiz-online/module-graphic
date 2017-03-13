@@ -105,9 +105,7 @@ public final class ProgressBarTimer extends EndFrameListener {
         this.elapsedTime += frameTime;
         if (this.bar.isVisible()) {
             this.bar.setProgress((float) this.elapsedTime / (float) this.totalTime * 100.0f);
-            if (this.text.isPresent()) {
-                this.text.get().setText(this.message.get() + " " + StringUtil.formatTime(this.totalTime - this.elapsedTime + 1000));
-            }
+            text.ifPresent(guiTextLine -> guiTextLine.setText(this.message.get() + " " + StringUtil.formatTime(this.totalTime - this.elapsedTime + 1000)));
         }
         return this.neverStop || this.elapsedTime < this.totalTime;
     }
@@ -126,9 +124,7 @@ public final class ProgressBarTimer extends EndFrameListener {
 
     public void setVisible(final boolean visible) {
         this.bar.setVisible(visible);
-        if (this.text.isPresent()) {
-            this.text.get().setVisible(visible);
-        }
+        text.ifPresent(guiTextLine -> guiTextLine.setVisible(visible));
     }
 
     public void setValues(final long total, final long timeLeft) {

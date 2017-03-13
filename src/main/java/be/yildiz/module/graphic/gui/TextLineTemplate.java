@@ -28,6 +28,7 @@ import be.yildiz.module.graphic.Font;
 /**
  * @author Grégory Van den Borre
  */
+@FunctionalInterface
 public interface TextLineTemplate {
 
     Font getFont();

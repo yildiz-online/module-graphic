@@ -36,6 +36,7 @@ public interface CheckBox extends ContainerElement {
      */
     CheckBox setCaptionText(String captionText);
 
+    @Override
     void detachFromParent();
 
     /**

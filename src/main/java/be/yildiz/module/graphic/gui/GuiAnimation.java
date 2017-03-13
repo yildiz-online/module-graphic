@@ -23,18 +23,19 @@
 
 package be.yildiz.module.graphic.gui;
 
-import lombok.Getter;
-
 /**
  * @author Grégory Van den Borre
  */
 public abstract class GuiAnimation {
 
-    @Getter
     private final String name;
 
     protected GuiAnimation(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public abstract void update(long time);

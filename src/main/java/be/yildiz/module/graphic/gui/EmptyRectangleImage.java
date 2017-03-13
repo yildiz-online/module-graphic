@@ -63,6 +63,7 @@ final class EmptyRectangleImage extends ContainerChild implements Image {
 
     @Override
     protected void highlightImpl(boolean highlightState) {
+        //Does nothing.
     }
 
     @Override

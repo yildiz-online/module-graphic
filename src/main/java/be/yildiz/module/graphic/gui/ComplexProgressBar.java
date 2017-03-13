@@ -130,6 +130,7 @@ final class ComplexProgressBar extends ProgressBar {
      *
      * @param progress New progress value.
      */
+    @Override
     protected void updateView(final float progress) {
         this.middleIcon.setWidth(Math.round(progress * this.computedMibbleBarSize));
         this.rightIcon.setLeft(this.middleIcon.getRight() - 3);

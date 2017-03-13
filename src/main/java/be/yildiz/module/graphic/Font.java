@@ -106,10 +106,10 @@ public abstract class Font extends Resource {
      * @return originalText if it is smaller than width, a cropped text with "..." if the text cannot fit in the given width, or "" if "..." cannot fit in the given width.
      */
     public String crop(final String originalText, final int width) {
-        float size = 0;
+        float computedWidth = 0;
         for(int i = 0; i < originalText.length(); i++) {
-            size += charWidth[originalText.charAt(i)];
-            if(size > width) {
+            computedWidth += charWidth[originalText.charAt(i)];
+            if(computedWidth > width) {
                 if(i < 3) {
                     return "";
                 }
@@ -159,7 +159,7 @@ public abstract class Font extends Resource {
         final int prime = 31;
         int result = 1;
         result = prime * result + this.getName().hashCode();
-        result = (prime * result + this.size);
+        result = prime * result + this.size;
         return result;
     }
 

@@ -81,6 +81,7 @@ public final class Explosion implements Animation {
      *
      * @param position New position.
      */
+    @Override
     public void setPosition(final Point3D position) {
         this.smoke1.setPosition(position);
         this.smoke2.setPosition(position);

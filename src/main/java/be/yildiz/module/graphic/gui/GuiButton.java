@@ -256,6 +256,7 @@ public final class GuiButton extends ContainerChild implements Button {
      *
      * @param material new Material to use.
      */
+    @Override
     public void setMaterial(final Material material) {
         ButtonMaterial old = this.materials;
         if (this.materials.inactive.equals(this.materials.material)) {
@@ -276,6 +277,7 @@ public final class GuiButton extends ContainerChild implements Button {
     /**
      * @return The background material.
      */
+    @Override
     public Material getMaterial() {
         return this.materials.material;
     }
@@ -289,6 +291,7 @@ public final class GuiButton extends ContainerChild implements Button {
     /**
      * @return The highlighted material.
      */
+    @Override
     public Material getHighlightMaterial() {
         return this.materials.highlight;
     }
@@ -307,6 +310,7 @@ public final class GuiButton extends ContainerChild implements Button {
     /**
      * @return The caption font.
      */
+    @Override
     public Font getCaptionFont() {
         return this.caption.getFont();
     }
