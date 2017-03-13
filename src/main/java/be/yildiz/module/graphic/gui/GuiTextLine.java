@@ -99,6 +99,7 @@ public final class GuiTextLine extends ContainerChild implements TextLine {
      */
     @Override
     protected void highlightImpl(final boolean over) {
+        //Does nothing.
     }
 
     @Override

@@ -65,6 +65,7 @@ final class SimpleImage extends ContainerChild implements Image {
     /**
      * @return The image material.
      */
+    @Override
     public Material getMaterial() {
         return this.image.getMaterial();
     }
@@ -72,6 +73,7 @@ final class SimpleImage extends ContainerChild implements Image {
     /**
      * Set the image material.
      */
+    @Override
     public void setMaterial(final Material texture) {
         this.image.setMaterial(texture);
     }
@@ -98,6 +100,7 @@ final class SimpleImage extends ContainerChild implements Image {
      */
     @Override
     protected void highlightImpl(final boolean over) {
+        //Does nothing.
     }
 
     @Override
