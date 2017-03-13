@@ -204,6 +204,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
         this.animations.put(anim.getName(), anim);
     }
 
+    @Override
     public final void playAnimation(String name) {
         Optional.ofNullable(this.animations.get(name)).ifPresent(GuiAnimation::start);
     }
@@ -221,7 +222,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @return this.
      */
     protected Widget setStatic() {
-        this.parent.ifPresent(parent -> parent.ignore(this));
+        this.parent.ifPresent(p -> p.ignore(this));
         return this;
     }
 
@@ -272,9 +273,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
 
     protected final Point2D getAbsolutePosition() {
         Point2D pos = new Point2D(this.getLeft(), this.getTop());
-        if (this.parent.isPresent()) {
-            pos.add(this.parent.get().getAbsolutePosition());
-        }
+        parent.ifPresent(guiContainer -> pos.add(guiContainer.getAbsolutePosition()));
         return pos;
     }
 
