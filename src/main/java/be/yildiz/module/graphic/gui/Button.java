@@ -37,6 +37,7 @@ public interface Button extends ContainerElement {
 
     Button setCaptionText(String text);
 
+    @Override
     BaseCoordinate getCoordinates();
 
     Font getCaptionFont();
@@ -48,6 +49,7 @@ public interface Button extends ContainerElement {
      */
     void setCaptionFont(Font font);
 
+    @Override
     void detachFromParent();
 
     /**
@@ -63,16 +65,20 @@ public interface Button extends ContainerElement {
 
     Material getHighlightMaterial();
 
+    @Override
     void addOnMouseOverListener(OnMouseOverListener l);
 
+    @Override
     void addMouseMoveListener(MouseMoveListener l);
 
+    @Override
     void addMouseLeftClickListener(MouseLeftClickListener l);
 
     void delete();
 
     void mouseLeftClick(int x, int y);
 
+    @Override
     boolean contains(Point2D position);
 
     void highlight(boolean contains);

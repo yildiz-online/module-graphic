@@ -102,6 +102,7 @@ public abstract class AbstractLight extends BaseRegisterable implements Deletabl
     /**
      * Delete the light and all associated lens flares.
      */
+    @Override
     public final void delete() {
         this.deleteImpl();
     }

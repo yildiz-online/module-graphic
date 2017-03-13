@@ -52,21 +52,25 @@ public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder>{
         this.builder = builder;
     }
 
+    @Override
     public CheckBoxBuilder withName(final String name) {
         this.base.withName(name);
         return this;
     }
 
+    @Override
     public CheckBoxBuilder atPosition(final Position position) {
         this.base.atPosition(position);
         return this;
     }
 
+    @Override
     public CheckBoxBuilder atPosition(final int x, final int y) {
         this.base.atPosition(x, y);
         return this;
     }
 
+    @Override
     public CheckBoxBuilder withSize(final int width, final int length) {
         this.base.withSize(width, length);
         return this;

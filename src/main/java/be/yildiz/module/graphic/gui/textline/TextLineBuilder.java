@@ -49,6 +49,7 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder>{
         this.builder = builder;
     }
 
+    @Override
     public TextLineBuilder withName(final String name) {
         this.base.withName(name);
         return this;
@@ -59,26 +60,31 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder>{
         return this;
     }
 
+    @Override
     public TextLineBuilder atPosition(final Position position) {
         this.base.atPosition(position);
         return this;
     }
 
+    @Override
     public TextLineBuilder atPosition(final int x, final int y) {
         this.base.atPosition(x, y);
         return this;
     }
 
+    @Override
     public TextLineBuilder withSize(final int width, final int length) {
         this.base.withSize(width, length);
         return this;
     }
 
+    @Override
     public TextLineBuilder withSize(Size size) {
         this.base.withSize(size);
         return this;
     }
 
+    @Override
     public TextLineBuilder withCoordinates(Coordinates coordinates) {
         this.base.withCoordinates(coordinates);
         return this;

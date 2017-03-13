@@ -40,6 +40,7 @@ public interface Image extends WidgetElement {
      *
      * @param y Move the image to y pixel to the bottom, negative value will move to the top.
      */
+    @Override
     void addToTop(int y);
 
     /**
@@ -59,6 +60,7 @@ public interface Image extends WidgetElement {
      *
      * @param l Listener to add.
      */
+    @Override
     void addMouseLeftClickListener(MouseLeftClickListener l);
 
     /**
@@ -66,6 +68,7 @@ public interface Image extends WidgetElement {
      *
      * @param l Listener to add.
      */
+    @Override
     void addOnMouseOverListener(OnMouseOverListener l);
 
     /**
@@ -73,13 +76,16 @@ public interface Image extends WidgetElement {
      */
     void forceContainsFalse();
 
+    @Override
     void align(Alignment alignment);
 
+    @Override
     void addToLeft(int left);
 
     /**
      * @return The Image height.
      */
+    @Override
     int getHeight();
 
     /**
@@ -100,6 +106,7 @@ public interface Image extends WidgetElement {
      * @param w Image width.
      * @param h Image height.
      */
+    @Override
     void setSize(int w, int h);
 
     default int getBorderSize() {
