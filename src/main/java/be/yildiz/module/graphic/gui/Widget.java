@@ -262,7 +262,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param x Mouse X position.
      * @param y Mouse Y position.
      */
-    public final void mouseLeftClick(final int x, final int y) {
+    final void mouseLeftClick(final int x, final int y) {
         if (this.mouseClickActive) {
             for (final MouseLeftClickListener listener : this.leftClickListener) {
                 listener.click();
