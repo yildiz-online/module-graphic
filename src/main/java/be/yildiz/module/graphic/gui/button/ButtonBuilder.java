@@ -60,6 +60,7 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
         this.builder = builder;
     }
 
+    @Override
     public ButtonBuilder withName(final String name) {
         this.base.withName(name);
         return this;

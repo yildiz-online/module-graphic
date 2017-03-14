@@ -55,6 +55,7 @@ public class ContainerBuilder implements WidgetBuilder<ContainerBuilder>{
         this.builder = builder;
     }
 
+    @Override
     public ContainerBuilder withName(final String name) {
         this.base.withName(name);
         return this;

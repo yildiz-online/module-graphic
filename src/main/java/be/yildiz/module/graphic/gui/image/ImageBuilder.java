@@ -49,6 +49,7 @@ public class ImageBuilder implements WidgetBuilder<ImageBuilder>{
         this.builder = builder;
     }
 
+    @Override
     public ImageBuilder withName(final String name) {
         this.base.withName(name);
         return this;

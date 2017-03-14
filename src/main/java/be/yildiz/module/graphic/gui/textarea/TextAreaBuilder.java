@@ -51,6 +51,7 @@ public class TextAreaBuilder implements WidgetBuilder<TextAreaBuilder> {
         this.builder = builder;
     }
 
+    @Override
     public TextAreaBuilder withName(final String name) {
         this.base.withName(name);
         return this;
