@@ -101,7 +101,7 @@ public final class ButtonListGui extends ContainerChild implements ButtonList, O
             this.button.resetVirtualHeight();
             this.getParent().get().resetVirtualHeight();
             // FIXME dirty fix
-            this.parent.get().enableEmptyZone();
+            this.getParent().ifPresent(GuiContainer::enableEmptyZone);
         }
 
     }

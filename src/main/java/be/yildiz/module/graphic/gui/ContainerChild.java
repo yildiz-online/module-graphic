@@ -56,7 +56,7 @@ public abstract class ContainerChild extends Widget implements ContainerElement 
 
     @Override
     public final void detachFromParent() {
-        this.parent.ifPresent(p -> p.remove(this));
+        this.parent.remove(this);
     }
 
     @Override
@@ -96,25 +96,25 @@ public abstract class ContainerChild extends Widget implements ContainerElement 
 
     @Override
     public final ContainerElement setLeftFromParent(final PositionRelativeLeft relative) {
-        this.setLeft(this.parent.get(), relative, -this.parent.get().getLeft());
+        Optional.ofNullable(this.parent).ifPresent(p -> this.setLeft(p, relative, - p.getLeft()));
         return this;
     }
 
     @Override
     public final ContainerElement setLeftFromParent(final PositionRelativeLeft relative, final int diff) {
-        this.setLeft(this.parent.get(), relative, diff);
+        Optional.ofNullable(this.parent).ifPresent(p -> this.setLeft(p, relative, diff));
         return this;
     }
 
     @Override
     public final ContainerElement setTopFromParent(final PositionRelativeTop relative) {
-        this.setTop(this.parent.get(), relative);
+        Optional.ofNullable(this.parent).ifPresent(p -> this.setTop(p, relative));
         return this;
     }
 
     @Override
     public final ContainerElement setTopFromParent(final PositionRelativeTop relative, final int diff) {
-        this.setTop(this.parent.get(), relative, diff);
+        Optional.ofNullable(this.parent).ifPresent(p -> this.setTop(p, relative, diff));
         return this;
     }
 

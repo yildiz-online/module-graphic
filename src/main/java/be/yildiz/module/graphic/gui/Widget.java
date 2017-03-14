@@ -33,7 +33,6 @@ import be.yildiz.common.collections.Sets;
 import be.yildiz.common.exeption.UnhandledSwitchCaseException;
 import be.yildiz.common.util.Checker;
 import be.yildiz.common.vector.Point2D;
-import lombok.Getter;
 
 import java.util.List;
 import java.util.Map;
@@ -54,7 +53,6 @@ public abstract class Widget extends BaseElement implements WidgetElement {
     /**
      * Parent of the widget.
      */
-    @Getter
     protected final GuiContainer parent;
     /**
      * List of zones to ignore to check if a point is inside the container.
@@ -141,11 +139,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      */
     protected Widget(final String name, final BaseCoordinate coordinates, final Optional<GuiContainer> parent) {
         super(name, coordinates);
-        if(parent.isPresent()) {
-            this.parent = parent.get();
-        } else {
-            this.parent = null;
-        }
+        this.parent = parent.orElse(null);
     }
 
     @Override
@@ -266,7 +260,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param x Mouse X position.
      * @param y Mouse Y position.
      */
-    final void mouseLeftClick(final int x, final int y) {
+    public final void mouseLeftClick(final int x, final int y) {
         if (this.mouseClickActive) {
             for (final MouseLeftClickListener listener : this.leftClickListener) {
                 listener.click();
@@ -589,7 +583,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param position Current mouse position.
      * @return This object for chaining.
      */
-     final Element setMouseOver(final boolean over, final Point2D position) {
+     public final Element setMouseOver(final boolean over, final Point2D position) {
         if (over != this.mouseOver) {
             this.mouseOver = over;
             for (OnMouseOverListener listener : this.onMouseOverListenerList) {
@@ -644,6 +638,9 @@ public abstract class Widget extends BaseElement implements WidgetElement {
         this.emptyZoneDisabled = false;
     }
 
+    public Optional<GuiContainer> getParent() {
+        return Optional.ofNullable(this.parent);
+    }
     /**
      * Empty Widget, does nothing.
      *
