@@ -55,7 +55,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * Parent of the widget.
      */
     @Getter
-    protected final Optional<GuiContainer> parent;
+    protected final GuiContainer parent;
     /**
      * List of zones to ignore to check if a point is inside the container.
      */
@@ -141,7 +141,11 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      */
     protected Widget(final String name, final BaseCoordinate coordinates, final Optional<GuiContainer> parent) {
         super(name, coordinates);
-        this.parent = parent;
+        if(parent.isPresent()) {
+            this.parent = parent.get();
+        } else {
+            this.parent = null;
+        }
     }
 
     @Override
@@ -222,7 +226,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @return this.
      */
     protected Widget setStatic() {
-        this.parent.ifPresent(p -> p.ignore(this));
+        Optional.ofNullable(this.parent).ifPresent(p -> p.ignore(this));
         return this;
     }
 
@@ -272,9 +276,9 @@ public abstract class Widget extends BaseElement implements WidgetElement {
     }
 
     protected final Point2D getAbsolutePosition() {
-        Point2D pos = new Point2D(this.getLeft(), this.getTop());
-        parent.ifPresent(guiContainer -> pos.add(guiContainer.getAbsolutePosition()));
-        return pos;
+        Point2D p =  new Point2D(this.getLeft(), this.getTop());
+        p.add(this.parent == null ? Point2D.ZERO : this.parent.getAbsolutePosition());
+        return p;
     }
 
     /**
@@ -585,7 +589,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param position Current mouse position.
      * @return This object for chaining.
      */
-    public final Element setMouseOver(final boolean over, final Point2D position) {
+     final Element setMouseOver(final boolean over, final Point2D position) {
         if (over != this.mouseOver) {
             this.mouseOver = over;
             for (OnMouseOverListener listener : this.onMouseOverListenerList) {
@@ -620,19 +624,12 @@ public abstract class Widget extends BaseElement implements WidgetElement {
 
     @Override
     public final int getAbsoluteLeft() {
-        int result = this.getLeft();
-        if (this.parent.isPresent()) {
-            result += this.parent.get().getAbsoluteLeft();
-        }
-        return result;
+        return this.getLeft() + (this.parent == null ? 0 : this.parent.getAbsoluteLeft());
     }
 
     @Override
     public final int getAbsoluteTop() {
-        if (this.parent.isPresent()) {
-            return this.parent.get().getTop() + this.getTop();
-        }
-        return this.getTop();
+        return this.getTop() + (this.parent == null ? 0 : this.parent.getAbsoluteTop());
     }
 
     public boolean isContainer() {
