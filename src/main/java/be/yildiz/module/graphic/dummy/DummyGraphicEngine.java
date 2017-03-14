@@ -31,7 +31,7 @@ import be.yildiz.module.graphic.*;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.graphic.gui.GuiBuilder;
-import be.yildiz.module.window.DummyWindowEngine;
+import be.yildiz.module.window.dummy.DummyWindowEngine;
 import be.yildiz.module.window.WindowEngine;
 
 /**
@@ -105,7 +105,7 @@ public final class DummyGraphicEngine implements GraphicEngine {
 
     @Override
     public Skybox createSkybox(final String name, final String path) {
-        return null;
+        return new DummySkybox(name, path);
     }
 
     @Override
@@ -115,7 +115,7 @@ public final class DummyGraphicEngine implements GraphicEngine {
 
     @Override
     public Font createFont(final String name, final String path, final int size) {
-        return null;
+        return new DummyFont(name, size, Color.WHITE);
     }
 
     @Override
@@ -140,7 +140,7 @@ public final class DummyGraphicEngine implements GraphicEngine {
 
     @Override
     public Font createFont(String name, String path, int size, Color color) {
-        return null;
+        return new DummyFont(name, size, color);
     }
 
     @Override

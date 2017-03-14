@@ -21,60 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-package be.yildiz.module.window;
+package be.yildiz.module.graphic.dummy;
 
-import be.yildiz.common.Size;
-import be.yildiz.module.window.input.WindowInputListener;
+import be.yildiz.common.Color;
+import be.yildiz.module.graphic.Font;
 
 /**
  * @author Grégory Van den Borre
  */
-public class DummyWindowEngine implements WindowEngine {
+public class DummyFont extends Font {
 
-    @Override
-    public void createCursor(Cursor cursor) {
+
+    /**
+     * Full constructor.
+     *
+     * @param fontName Font name, must be unique.
+     * @param fontSize Font height.
+     * @param color    Font color.
+     */
+    protected DummyFont(String fontName, int fontSize, Color color) {
+        super(fontName, fontSize, color);
     }
 
     @Override
-    public void setWindowTitle(String title) {
+    protected void loadImpl() {
+        // does nothing.
     }
-
-    @Override
-    public void setCursor(Cursor cursor) {
-    }
-
-    @Override
-    public void updateWindow() {
-    }
-
-    @Override
-    public void showCursor() {
-    }
-
-    @Override
-    public void hideCursor() {
-    }
-
-    @Override
-    public Size getScreenSize() {
-        return null;
-    }
-
-    @Override
-    public void setWindowIcon(String file) {
-    }
-
-    @Override
-    public void deleteLoadingResources() {
-    }
-
-    @Override
-    public WindowHandle getHandle() {
-        return null;
-    }
-
-    @Override
-    public void registerInput(WindowInputListener listener) {
-    }
-
 }
