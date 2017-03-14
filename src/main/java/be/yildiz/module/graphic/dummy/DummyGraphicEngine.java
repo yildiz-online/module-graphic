@@ -21,12 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-package be.yildiz.module.graphic;
+package be.yildiz.module.graphic.dummy;
 
 import be.yildiz.common.Color;
 import be.yildiz.common.Size;
 import be.yildiz.common.resource.FileResource.FileType;
 import be.yildiz.common.util.StringUtil;
+import be.yildiz.module.graphic.*;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.graphic.gui.GuiBuilder;
@@ -49,18 +50,22 @@ public final class DummyGraphicEngine implements GraphicEngine {
 
     @Override
     public void close() {
+        // does nothing.
     }
 
     @Override
     public void update() {
+        // does nothing.
     }
 
     @Override
     public void printScreen() {
+        // does nothing.
     }
 
     @Override
     public void addResourcePath(final String name, final String path, final FileType type) {
+        // does nothing.
     }
 
     @Override
@@ -88,12 +93,12 @@ public final class DummyGraphicEngine implements GraphicEngine {
 
             @Override
             protected void receiveShadowImpl(boolean receive) {
-
+                // does nothing.
             }
 
             @Override
             protected void loadImpl() {
-
+                // does nothing.
             }
         };
     }

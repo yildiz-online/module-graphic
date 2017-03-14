@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-package be.yildiz.module.graphic;
+package be.yildiz.module.graphic.dummy;
 
 import be.yildiz.common.Color;
 import be.yildiz.common.id.EntityId;
@@ -29,6 +29,7 @@ import be.yildiz.common.shape.Box;
 import be.yildiz.common.shape.Plane;
 import be.yildiz.common.shape.Sphere;
 import be.yildiz.common.vector.Point3D;
+import be.yildiz.module.graphic.*;
 
 /**
  * @author Grégory Van den Borre
@@ -116,17 +117,17 @@ public class DummyClientWorld implements ClientWorld {
 
     @Override
     public void setSkybox(Skybox sky) {
-
+        // does nothing.
     }
 
     @Override
     public void setDebugMode() {
-
+        // does nothing.
     }
 
     @Override
     public void setAmbientLight(Color color) {
-
+        // does nothing.
     }
 
     @Override
@@ -186,7 +187,7 @@ public class DummyClientWorld implements ClientWorld {
 
     @Override
     public void serializeShapeFromMesh(String mesh, String file, String name) {
-
+        // does nothing.
     }
 
     @Override
@@ -196,7 +197,7 @@ public class DummyClientWorld implements ClientWorld {
 
     @Override
     public void deleteLight(AbstractLight light) {
-
+        // does nothing.
     }
 
     @Override
@@ -211,7 +212,7 @@ public class DummyClientWorld implements ClientWorld {
 
     @Override
     public void deleteLight(String name) {
-
+        // does nothing.
     }
 
     @Override
