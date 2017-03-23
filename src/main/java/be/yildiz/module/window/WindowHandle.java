@@ -23,14 +23,11 @@
 
 package be.yildiz.module.window;
 
-import lombok.AllArgsConstructor;
-
 /**
  * The window handle is the value associated by the operating system to a specific window.
  *
  * @author Grégory Van den Borre
  */
-@AllArgsConstructor
 public final class WindowHandle {
 
     /**
@@ -38,4 +35,8 @@ public final class WindowHandle {
      */
     public final long value;
 
+    public WindowHandle(long value) {
+        super();
+        this.value = value;
+    }
 }

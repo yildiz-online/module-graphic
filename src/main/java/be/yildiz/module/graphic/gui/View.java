@@ -29,8 +29,6 @@ import be.yildiz.common.util.Registerer;
 import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.Visible;
-import lombok.AccessLevel;
-import lombok.Setter;
 
 import java.util.Optional;
 
@@ -67,7 +65,6 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
     /**
      * Widget to use when view is focused, default is the wrapped container.
      */
-    @Setter(value = AccessLevel.PROTECTED)
     private Widget focus;
 
     /**
@@ -342,5 +339,9 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
 
     public Widget getFocus() {
         return focus;
+    }
+
+    protected void setFocus(Widget focus) {
+        this.focus = focus;
     }
 }

@@ -30,25 +30,19 @@ import be.yildiz.common.Size;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import lombok.Getter;
-import lombok.NonNull;
 
 /**
  * @author Grégory Van den Borre
  */
 public class BaseWidgetBuilder {
 
-    @Getter
     private String name = StringUtil.buildRandomString("widget");
 
-    @Getter
     private Coordinates coordinates = new Coordinates(BaseCoordinate.ZERO.width, BaseCoordinate.ZERO.height,
             BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top);
 
-    @Getter
     private Font font = Font.getDefault();
 
-    @Getter
     private Material background = Material.empty();
 
 
@@ -56,7 +50,8 @@ public class BaseWidgetBuilder {
         super();
     }
 
-    public final void withName(@NonNull final String name) {
+    public final void withName(final String name) {
+        assert name != null;
         this.name = name;
     }
 
@@ -86,5 +81,21 @@ public class BaseWidgetBuilder {
 
     public void withSize(int width, int length) {
         this.withSize(new Size(width, length));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public Material getBackground() {
+        return background;
     }
 }

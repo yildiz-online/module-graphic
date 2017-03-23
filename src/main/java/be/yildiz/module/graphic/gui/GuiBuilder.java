@@ -32,9 +32,6 @@ import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.InputBoxGui.InputBoxDefinition;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.NonNull;
 
 import java.util.Optional;
 
@@ -43,7 +40,6 @@ import java.util.Optional;
  *
  * @author Grégory Van den Borre
  */
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class GuiBuilder {
 
     /**
@@ -84,6 +80,10 @@ public abstract class GuiBuilder {
     private final Registerer<TextArea> textAreaList = Registerer.newRegisterer();
 
     private final GuiAnimationManager animationManager = new GuiAnimationManager();
+
+    protected GuiBuilder(Size screenSize) {
+        this.screenSize = screenSize;
+    }
 
     /**
      * Build a new widget button.
@@ -498,13 +498,20 @@ public abstract class GuiBuilder {
      * @param container   Container holding the check box widget.
      * @return The new check box widget.
      */
-    public final CheckBoxGui buildCheckBox(@NonNull final String name,
-                                           @NonNull final BaseCoordinate coordinates,
-                                           @NonNull final Material background,
-                                           @NonNull final Material hover,
-                                           @NonNull final Material check,
-                                           @NonNull final Font font,
-                                           @NonNull final GuiContainer container) {
+    public final CheckBoxGui buildCheckBox( final String name,
+                                            final BaseCoordinate coordinates,
+                                            final Material background,
+                                            final Material hover,
+                                            final Material check,
+                                            final Font font,
+                                            final GuiContainer container) {
+        assert name != null;
+        assert coordinates != null;
+        assert background != null;
+        assert hover != null;
+        assert check != null;
+        assert font != null;
+        assert container != null;
         final AbstractIconElement icon = this.buildIconElement(name, coordinates, background, container);
         final AbstractIconElement checkIcon = this.buildIconElement(name + "ck", coordinates, check, container);
         //FIXME LOW hardcoded

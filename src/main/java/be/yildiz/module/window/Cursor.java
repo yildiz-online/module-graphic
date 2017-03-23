@@ -23,12 +23,9 @@
 
 package be.yildiz.module.window;
 
-import lombok.Getter;
-
 /**
  * @author Grégory Van den Borre
  */
-@Getter
 public class Cursor {
 
     /**
@@ -75,6 +72,22 @@ public class Cursor {
         this.path = path;
         this.x = offsetX;
         this.y = offsetY;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     @Override

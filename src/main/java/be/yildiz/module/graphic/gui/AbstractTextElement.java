@@ -27,7 +27,6 @@ import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Color;
 import be.yildiz.common.util.Registerer;
 import be.yildiz.module.graphic.Font;
-import lombok.NonNull;
 
 /**
  * Base element to print text.
@@ -59,8 +58,9 @@ public abstract class AbstractTextElement extends BaseElement {
      * @param coordinates Text position and size.
      * @param textFont    Font to use to print the text.
      */
-    protected AbstractTextElement(final BaseCoordinate coordinates, @NonNull  final Font textFont) {
+    protected AbstractTextElement(final BaseCoordinate coordinates,  final Font textFont) {
         super("text" + System.nanoTime(), coordinates);
+        assert textFont != null;
         this.font = textFont;
         REGISTERER.register(this);
     }
@@ -119,7 +119,8 @@ public abstract class AbstractTextElement extends BaseElement {
      * @param newText New text to print.
      * @return <code>true</code> if the text was updated.
      */
-    final boolean setText(@NonNull final String newText) {
+    final boolean setText(final String newText) {
+        assert newText != null;
         if (this.currentText.equals(newText)) {
             return false;
         }

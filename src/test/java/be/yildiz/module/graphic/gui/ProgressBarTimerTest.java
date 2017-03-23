@@ -42,9 +42,9 @@ public class ProgressBarTimerTest {
     public void test() {
         ProgressBar b = Mockito.mock(ProgressBar.class);
         new ProgressBarTimer(b, Time.seconds(10));
-        this.rule.expect(NullPointerException.class);
+        this.rule.expect(AssertionError.class);
         new ProgressBarTimer(null, Time.seconds(10));
-        this.rule.expect(NullPointerException.class);
+        this.rule.expect(AssertionError.class);
         new ProgressBarTimer(b, null);
     }
 

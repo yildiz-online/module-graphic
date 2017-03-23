@@ -27,7 +27,6 @@ import be.yildiz.common.framelistener.EndFrameListener;
 import be.yildiz.common.util.Checker;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.common.util.Time;
-import lombok.NonNull;
 
 import java.util.Optional;
 
@@ -82,8 +81,12 @@ public final class ProgressBarTimer extends EndFrameListener {
         this(bar, Optional.empty(), Optional.empty(), time);
     }
 
-    private ProgressBarTimer(@NonNull final ProgressBar bar, @NonNull final Optional<GuiTextLine> text, @NonNull final Optional<String> message, @NonNull final Time time) {
+    private ProgressBarTimer(final ProgressBar bar, final Optional<GuiTextLine> text,  final Optional<String> message, final Time time) {
         super();
+        assert bar != null;
+        assert text != null;
+        assert message != null;
+        assert time != null;
         this.bar = bar;
         this.totalTime = time.timeInMs;
         this.text = text;

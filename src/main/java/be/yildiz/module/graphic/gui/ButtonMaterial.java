@@ -26,7 +26,6 @@ package be.yildiz.module.graphic.gui;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import lombok.NonNull;
 
 import java.util.Optional;
 
@@ -93,8 +92,11 @@ public class ButtonMaterial {
         this.inactiveFont = Optional.empty();
     }
 
-    public ButtonMaterial(final Material material, final Material hlight, @NonNull final Font font) {
+    public ButtonMaterial(final Material material, final Material hlight, final Font font) {
         super();
+        assert material != null;
+        assert hlight != null;
+        assert font != null;
         this.material = material;
         this.highlight = hlight;
         this.inactive = material;
@@ -102,8 +104,13 @@ public class ButtonMaterial {
         this.inactiveFont = Optional.empty();
     }
 
-    public ButtonMaterial(final Material material, final Material hlight, final Material inactive, @NonNull final Font font, final Font inactiveFont) {
+    public ButtonMaterial(final Material material, final Material hlight, final Material inactive, final Font font, final Font inactiveFont) {
         super();
+        assert material != null;
+        assert hlight != null;
+        assert font != null;
+        assert inactive != null;
+        assert inactiveFont != null;
         this.material = material;
         this.highlight = hlight;
         this.inactive = inactive;
@@ -111,8 +118,12 @@ public class ButtonMaterial {
         this.inactiveFont = Optional.of(inactiveFont);
     }
 
-    public ButtonMaterial(final Material material, final Material hlight, final Material inactive, @NonNull final Optional<Font> font) {
+    public ButtonMaterial(final Material material, final Material hlight, final Material inactive, final Optional<Font> font) {
         super();
+        assert material != null;
+        assert hlight != null;
+        assert font != null;
+        assert inactive != null;
         this.material = material;
         this.highlight = hlight;
         this.inactive = inactive;
@@ -120,8 +131,11 @@ public class ButtonMaterial {
         this.inactiveFont = Optional.empty();
     }
 
-    public ButtonMaterial(final Material material, final Material hlight, @NonNull final Optional<Font> font) {
+    public ButtonMaterial(final Material material, final Material hlight, final Optional<Font> font) {
         super();
+        assert material != null;
+        assert hlight != null;
+        assert font != null;
         this.material = material;
         this.highlight = hlight;
         this.inactive = material;

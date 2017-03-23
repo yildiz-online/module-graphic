@@ -28,7 +28,6 @@ import be.yildiz.common.Coordinates;
 import be.yildiz.common.Rectangle;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import lombok.NonNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -61,7 +60,6 @@ public abstract class Window extends View {
     /**
      * Associated title bar.
      */
-    @NonNull
     private final TitleBar titleBar;
     /**
      * Current state of the panel.

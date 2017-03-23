@@ -23,14 +23,11 @@
 
 package be.yildiz.module.graphic.gui;
 
-import lombok.EqualsAndHashCode;
-
 /**
  * Simple wrapper class for Z values.
  *
  * @author Grégory Van den Borre
  */
-@EqualsAndHashCode
 public final class Zorder implements Comparable<Zorder> {
 
     /**
@@ -93,6 +90,25 @@ public final class Zorder implements Comparable<Zorder> {
     }
 
     public int getValue() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Zorder zorder = (Zorder) o;
+
+        return value == zorder.value;
+    }
+
+    @Override
+    public int hashCode() {
         return value;
     }
 }
