@@ -32,20 +32,31 @@ import lombok.Getter;
  *
  * @author Grégory Van den Borre
  */
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class Shader {
 
     /**
      * Shader unique name.
      */
-    @Getter
     private final String name;
 
     /**
      * Shader type.
      */
-    @Getter
     private final ShaderType type;
+
+    protected Shader(String name, ShaderType type) {
+        super();
+        this.name = name;
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ShaderType getType() {
+        return type;
+    }
 
     /**
      * Possible shader types.
