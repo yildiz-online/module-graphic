@@ -32,8 +32,6 @@ import be.yildiz.common.client.gui.listener.MouseLeftClickListener;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.Optional;
 
@@ -365,8 +363,6 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
      *
      * @author Van den Borre Grégory
      */
-    @Getter
-    @AllArgsConstructor
     public static final class InputBoxDefinition {
 
         /**
@@ -393,6 +389,34 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
          * Input box font.
          */
         private final Font font;
+
+        public InputBoxDefinition(Size size, Material material, Material focus, Material cursor, Font font) {
+            this.size = size;
+            this.material = material;
+            this.focus = focus;
+            this.cursor = cursor;
+            this.font = font;
+        }
+
+        public Size getSize() {
+            return size;
+        }
+
+        public Material getMaterial() {
+            return material;
+        }
+
+        public Material getFocus() {
+            return focus;
+        }
+
+        public Material getCursor() {
+            return cursor;
+        }
+
+        public Font getFont() {
+            return font;
+        }
     }
 
     /**

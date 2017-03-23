@@ -30,7 +30,6 @@ import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.Visible;
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Optional;
@@ -56,7 +55,6 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
     /**
      * Container to hold the view elements.
      */
-    @Getter
     private final GuiContainer container;
 
     private final GuiEventManager eventManager;
@@ -64,13 +62,11 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
     /**
      * <code>true</code> if this is the currently active window.
      */
-    @Getter
     private boolean active;
 
     /**
      * Widget to use when view is focused, default is the wrapped container.
      */
-    @Getter
     @Setter(value = AccessLevel.PROTECTED)
     private Widget focus;
 
@@ -334,5 +330,17 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
 
     public void disableHighlight() {
         this.container.disableHighlight();
+    }
+
+    public GuiContainer getContainer() {
+        return container;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public Widget getFocus() {
+        return focus;
     }
 }

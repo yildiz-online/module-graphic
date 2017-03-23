@@ -23,10 +23,6 @@
 
 package be.yildiz.module.graphic;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * A shader data, can be fragment, vertex or geometry shader.
  *
@@ -234,14 +230,20 @@ public abstract class Shader {
      *
      * @author Van den Borre Grégory
      */
-    @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class ShaderProfile {
 
         /**
          * Profile value.
          */
-        @Getter
         private final String name;
+
+        ShaderProfile(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 
     /**

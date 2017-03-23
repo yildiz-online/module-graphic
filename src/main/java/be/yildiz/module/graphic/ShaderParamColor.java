@@ -24,16 +24,12 @@
 package be.yildiz.module.graphic;
 
 import be.yildiz.common.Color;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * A parameter for a shader, wrap a color.
  *
  * @author Grégory Van den Borre
  */
-@AllArgsConstructor
-@Getter
 public final class ShaderParamColor {
 //FIXME LOW set public
     /**
@@ -46,4 +42,17 @@ public final class ShaderParamColor {
      */
     private final Color color;
 
+    public ShaderParamColor(String name, Color color) {
+        super();
+        this.name = name;
+        this.color = color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Color getColor() {
+        return color;
+    }
 }

@@ -28,7 +28,6 @@ import be.yildiz.common.Rectangle;
 import be.yildiz.common.collections.Lists;
 import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.Material;
-import lombok.Getter;
 
 import java.util.List;
 import java.util.Optional;
@@ -67,12 +66,11 @@ public abstract class GuiContainer extends Widget {
     /**
      * Background material.
      */
-    @Getter
     private Material material;
+
     /**
      * Container Z order.
      */
-    @Getter
     private Zorder z = Zorder.ZERO;
 
     /**
@@ -429,5 +427,11 @@ public abstract class GuiContainer extends Widget {
         return Optional.empty();
     }
 
+    public Material getMaterial() {
+        return material;
+    }
 
+    public Zorder getZ() {
+        return z;
+    }
 }

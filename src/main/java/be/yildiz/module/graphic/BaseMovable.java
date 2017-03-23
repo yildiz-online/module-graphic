@@ -25,7 +25,6 @@ package be.yildiz.module.graphic;
 
 import be.yildiz.common.gameobject.Movable;
 import be.yildiz.common.vector.Point3D;
-import lombok.Getter;
 
 /**
  * @author Grégory Van den Borre
@@ -35,7 +34,6 @@ public abstract class BaseMovable implements Movable, GraphicMovable {
     /**
      * Wrapped node.
      */
-    @Getter
     private final Node node;
 
     /**
@@ -97,6 +95,11 @@ public abstract class BaseMovable implements Movable, GraphicMovable {
     @Override
     public final void delete() {
         this.node.delete();
+    }
+
+    @Override
+    public final Node getNode() {
+        return node;
     }
 
     /**

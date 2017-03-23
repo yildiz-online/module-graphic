@@ -25,7 +25,6 @@ package be.yildiz.module.graphic;
 
 import be.yildiz.common.Color;
 import be.yildiz.common.collections.Lists;
-import lombok.Getter;
 
 import java.util.List;
 
@@ -43,12 +42,10 @@ public abstract class MaterialPass {
     /**
      * Used transparent capability.
      */
-    @Getter
     private Transparency transparency;
     /**
      * Used blending mode.
      */
-    @Getter
     private BlendMode blendMode;
 
     /**
@@ -204,6 +201,14 @@ public abstract class MaterialPass {
         this.blendMode = mode;
         this.setBlendModeImpl(mode);
         return this;
+    }
+
+    public Transparency getTransparency() {
+        return transparency;
+    }
+
+    public BlendMode getBlendMode() {
+        return blendMode;
     }
 
     /**

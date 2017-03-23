@@ -24,15 +24,13 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.client.gui.listener.MouseLeftClickListener;
-import lombok.AllArgsConstructor;
 
 /**
  * Contains data to build a button: materials and listener. This class is
- * imutable.
+ * immutable.
  *
  * @author Grégory Van den Borre
  */
-@AllArgsConstructor
 public final class ButtonData {
 
     /**
@@ -44,4 +42,10 @@ public final class ButtonData {
      * Mouse left click listener.
      */
     public final MouseLeftClickListener listener;
+
+    public ButtonData(ButtonMaterial material, MouseLeftClickListener listener) {
+        super();
+        this.material = material;
+        this.listener = listener;
+    }
 }

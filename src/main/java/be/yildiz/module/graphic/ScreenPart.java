@@ -28,7 +28,6 @@ import be.yildiz.common.util.Checker;
 import be.yildiz.common.vector.Point2D;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.window.Cursor;
-import lombok.Getter;
 
 /**
  * Different virtual part of the screen.
@@ -93,7 +92,6 @@ public enum ScreenPart {
      */
     private final Point3D direction;
 
-    @Getter
     private Cursor cursor;
 
     /**
@@ -149,6 +147,10 @@ public enum ScreenPart {
 
     public void setCursor(Cursor cursor) {
         this.cursor = cursor;
+    }
+
+    public Cursor getCursor() {
+        return cursor;
     }
 
     /**

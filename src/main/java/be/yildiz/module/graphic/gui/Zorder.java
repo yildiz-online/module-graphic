@@ -24,7 +24,6 @@
 package be.yildiz.module.graphic.gui;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 /**
  * Simple wrapper class for Z values.
@@ -53,7 +52,6 @@ public final class Zorder implements Comparable<Zorder> {
     /**
      * Wrapped Z value.
      */
-    @Getter
     private final int value;
 
     /**
@@ -92,5 +90,9 @@ public final class Zorder implements Comparable<Zorder> {
     @Override
     public String toString() {
         return "Z order:" + this.value;
+    }
+
+    public int getValue() {
+        return value;
     }
 }

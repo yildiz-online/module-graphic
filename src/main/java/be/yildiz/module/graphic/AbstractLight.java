@@ -27,7 +27,6 @@ import be.yildiz.common.collections.Lists;
 import be.yildiz.common.gameobject.Deletable;
 import be.yildiz.common.util.BaseRegisterable;
 import be.yildiz.common.vector.Point3D;
-import lombok.Getter;
 
 import java.util.List;
 
@@ -46,7 +45,6 @@ public abstract class AbstractLight extends BaseRegisterable implements Deletabl
     /**
      * Light position.
      */
-    @Getter
     private Point3D position;
 
     /**
@@ -90,6 +88,10 @@ public abstract class AbstractLight extends BaseRegisterable implements Deletabl
         for (LensFlare lens : this.lensFlarelList) {
             lens.setPosition(position);
         }
+    }
+
+    public final Point3D getPosition() {
+        return position;
     }
 
     /**

@@ -24,7 +24,6 @@
 package be.yildiz.module.graphic;
 
 import be.yildiz.common.vector.Point3D;
-import lombok.Getter;
 
 /**
  * A direction light is like a cylinder of light, it has a position and a direction.
@@ -36,7 +35,6 @@ public abstract class DirectionalLight extends AbstractLight {
     /**
      * Light direction.
      */
-    @Getter
     private final Point3D direction;
 
     /**
@@ -48,5 +46,9 @@ public abstract class DirectionalLight extends AbstractLight {
     protected DirectionalLight(final String name, final Point3D direction) {
         super(name, Point3D.ZERO);
         this.direction = direction;
+    }
+
+    public final Point3D getDirection() {
+        return direction;
     }
 }

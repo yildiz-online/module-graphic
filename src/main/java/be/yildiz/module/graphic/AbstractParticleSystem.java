@@ -25,7 +25,6 @@ package be.yildiz.module.graphic;
 
 import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.ParticleEmitter.EmitterType;
-import lombok.Getter;
 
 import java.util.List;
 
@@ -43,12 +42,10 @@ public abstract class AbstractParticleSystem extends BaseMovable {
     /**
      * Material used for the particles.
      */
-    @Getter
     private Material material;
     /**
      * Maximum number of particle at one time.
      */
-    @Getter
     private int quota;
     /**
      * Particle billboard width.
@@ -61,13 +58,11 @@ public abstract class AbstractParticleSystem extends BaseMovable {
     /**
      * Current orientation, facing camera is default.
      */
-    @Getter
     private Orientation orientation;
 
     /**
      * Particle origin when generated.
      */
-    @Getter
     private Origin origin;
 
     /**
@@ -133,6 +128,22 @@ public abstract class AbstractParticleSystem extends BaseMovable {
      */
     public final void start() {
         this.emitterList.forEach(ParticleEmitter::start);
+    }
+
+    public final Material getMaterial() {
+        return material;
+    }
+
+    public final int getQuota() {
+        return quota;
+    }
+
+    public final Orientation getOrientation() {
+        return orientation;
+    }
+
+    public final Origin getOrigin() {
+        return origin;
     }
 
     /**
@@ -372,7 +383,6 @@ public abstract class AbstractParticleSystem extends BaseMovable {
         /**
          * Associated value to avoid to rely on enumeration order.
          */
-        @Getter
         private final int value;
 
         /**
@@ -382,6 +392,10 @@ public abstract class AbstractParticleSystem extends BaseMovable {
          */
         Origin(final int value) {
             this.value = value;
+        }
+
+        public int getValue() {
+            return value;
         }
     }
 }

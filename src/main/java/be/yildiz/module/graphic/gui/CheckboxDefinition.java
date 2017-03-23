@@ -26,14 +26,10 @@ package be.yildiz.module.graphic.gui;
 import be.yildiz.common.Size;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * @author Grégory Van den Borre
  */
-@Getter
-@AllArgsConstructor
 public class CheckboxDefinition {
 
     /**
@@ -61,4 +57,32 @@ public class CheckboxDefinition {
      */
     private final Font font;
 
+    public CheckboxDefinition(Material backgroundMaterial, Material hoverMaterial, Material checkedMaterial, Size size, Font font) {
+        super();
+        this.backgroundMaterial = backgroundMaterial;
+        this.hoverMaterial = hoverMaterial;
+        this.checkedMaterial = checkedMaterial;
+        this.size = size;
+        this.font = font;
+    }
+
+    public Material getBackgroundMaterial() {
+        return backgroundMaterial;
+    }
+
+    public Material getHoverMaterial() {
+        return hoverMaterial;
+    }
+
+    public Material getCheckedMaterial() {
+        return checkedMaterial;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public Font getFont() {
+        return font;
+    }
 }

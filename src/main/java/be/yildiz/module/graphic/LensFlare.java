@@ -24,8 +24,6 @@
 package be.yildiz.module.graphic;
 
 import be.yildiz.common.vector.Point3D;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * A lens flare is composed of 3 Material moving when the camera moves.
@@ -37,7 +35,6 @@ public abstract class LensFlare {
     /**
      * Current position.
      */
-    @Getter
     private Point3D position;
 
     /**
@@ -60,6 +57,10 @@ public abstract class LensFlare {
         this.setPositionImpl(position);
     }
 
+    public Point3D getPosition() {
+        return position;
+    }
+
     public abstract void setStreakSize(float w, float h);
 
     public abstract void setLightSize(float w, float h);
@@ -71,8 +72,6 @@ public abstract class LensFlare {
      */
     protected abstract void setPositionImpl(Point3D position);
 
-    @AllArgsConstructor
-    @Getter
     public static class LensFlareMaterial {
 
         /**
@@ -86,5 +85,27 @@ public abstract class LensFlare {
 
         private final Material burst;
 
+        public LensFlareMaterial(Material material, Material halo, Material streak, Material burst) {
+            this.material = material;
+            this.halo = halo;
+            this.streak = streak;
+            this.burst = burst;
+        }
+
+        public Material getMaterial() {
+            return material;
+        }
+
+        public Material getHalo() {
+            return halo;
+        }
+
+        public Material getStreak() {
+            return streak;
+        }
+
+        public Material getBurst() {
+            return burst;
+        }
     }
 }

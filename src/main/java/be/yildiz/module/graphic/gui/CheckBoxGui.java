@@ -27,7 +27,6 @@ import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Color;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import lombok.Getter;
 
 import java.util.Optional;
 
@@ -57,7 +56,6 @@ public final class CheckBoxGui extends ContainerChild implements CheckBox {
     /**
      * Current check box state.
      */
-    @Getter
     private boolean checked;
     private Material material;
 
@@ -210,5 +208,10 @@ public final class CheckBoxGui extends ContainerChild implements CheckBox {
     public CheckBoxGui setCaptionColor(final Color color) {
         this.caption.setColor(color);
         return this;
+    }
+
+    @Override
+    public boolean isChecked() {
+        return checked;
     }
 }

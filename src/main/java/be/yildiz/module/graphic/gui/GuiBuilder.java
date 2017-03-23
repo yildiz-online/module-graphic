@@ -34,7 +34,6 @@ import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.InputBoxGui.InputBoxDefinition;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.Optional;
@@ -50,7 +49,6 @@ public abstract class GuiBuilder {
     /**
      * Contains the screen size data.
      */
-    @Getter
     protected final Size screenSize;
     /**
      * List of all registered buttons, key is their name.
@@ -85,7 +83,6 @@ public abstract class GuiBuilder {
      */
     private final Registerer<TextArea> textAreaList = Registerer.newRegisterer();
 
-    @Getter
     private final GuiAnimationManager animationManager = new GuiAnimationManager();
 
     /**
@@ -647,6 +644,14 @@ public abstract class GuiBuilder {
         }
 
         return new TabContainer(name, coordinates, children, buttons, bg, container);
+    }
+
+    public Size getScreenSize() {
+        return screenSize;
+    }
+
+    public GuiAnimationManager getAnimationManager() {
+        return animationManager;
     }
 
     /**

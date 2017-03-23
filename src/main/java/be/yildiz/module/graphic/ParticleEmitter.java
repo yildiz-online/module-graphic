@@ -26,7 +26,6 @@ package be.yildiz.module.graphic;
 import be.yildiz.common.Color;
 import be.yildiz.common.util.Util;
 import be.yildiz.common.vector.Point3D;
-import lombok.Getter;
 
 /**
  * Emitter for a particle system.
@@ -38,52 +37,42 @@ public abstract class ParticleEmitter {
     /**
      * Emitting angle in degree, 0 will emit only in the emitter direction will 180 will emit in any direction.
      */
-    @Getter
     private float angle;
     /**
      * How many particle emitted per second.
      */
-    @Getter
     private float rate;
     /**
      * Emitter activity in second, 0 is infinite duration.
      */
-    @Getter
     private float duration;
     /**
      * Particle life in second.
      */
-    @Getter
     private float lifeTime;
     /**
      * Emitter direction.
      */
-    @Getter
     private Point3D direction;
     /**
      * Particle minimum speed.
      */
-    @Getter
     private float minSpeed;
     /**
      * Particle maximum speed.
      */
-    @Getter
     private float maxSpeed;
     /**
      * Initial particle color.
      */
-    @Getter
     private Color startColor;
     /**
      * Final particle color.
      */
-    @Getter
     private Color endColor;
     /**
      * Time before the emitter restart after finishing its job.
      */
-    @Getter
     private float repeatDelay;
     /**
      * Flag to check if started or not.
@@ -233,6 +222,46 @@ public abstract class ParticleEmitter {
     public final void setSpeed(final float speed) {
         this.setMinSpeed(speed);
         this.setMaxSpeed(speed);
+    }
+
+    public float getAngle() {
+        return angle;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public float getDuration() {
+        return duration;
+    }
+
+    public float getLifeTime() {
+        return lifeTime;
+    }
+
+    public Point3D getDirection() {
+        return direction;
+    }
+
+    public float getMinSpeed() {
+        return minSpeed;
+    }
+
+    public float getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public Color getStartColor() {
+        return startColor;
+    }
+
+    public Color getEndColor() {
+        return endColor;
+    }
+
+    public float getRepeatDelay() {
+        return repeatDelay;
     }
 
     /**

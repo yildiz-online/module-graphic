@@ -23,16 +23,11 @@
 
 package be.yildiz.module.graphic;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * A parameter for a shader, wrap a float.
  *
  * @author Grégory Van den Borre
  */
-@AllArgsConstructor
-@Getter
 public final class ShaderParamFloat {
 //FIXME LOW set public
     /**
@@ -44,4 +39,17 @@ public final class ShaderParamFloat {
      * Parameter value.
      */
     private final float value;
+
+    public ShaderParamFloat(String name, float value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getValue() {
+        return value;
+    }
 }

@@ -24,7 +24,6 @@
 package be.yildiz.module.graphic;
 
 import be.yildiz.common.vector.Point3D;
-import lombok.Getter;
 
 /**
  * Electric arc effect between 2 points.
@@ -36,13 +35,11 @@ public abstract class ElectricArc {
     /**
      * Arc origin.
      */
-    @Getter
     private final Point3D origin;
 
     /**
      * Arc end.
      */
-    @Getter
     private final Point3D end;
 
     /**
@@ -81,4 +78,12 @@ public abstract class ElectricArc {
      * @return This object.
      */
     public abstract ElectricArc addLight(PointLight light);
+
+    public Point3D getOrigin() {
+        return origin;
+    }
+
+    public Point3D getEnd() {
+        return end;
+    }
 }

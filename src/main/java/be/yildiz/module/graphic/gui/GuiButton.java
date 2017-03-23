@@ -25,8 +25,6 @@ package be.yildiz.module.graphic.gui;
 
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Optional;
 
@@ -55,13 +53,11 @@ public final class GuiButton extends ContainerChild implements Button {
     /**
      * Material to use when the button is in pushed state.
      */
-    @Setter
     private Material pushedMaterial;
 
     /**
      * Flag to check the pushed state.
      */
-    @Getter
     private boolean pushed;
 
     /**
@@ -326,4 +322,12 @@ public final class GuiButton extends ContainerChild implements Button {
     // swap() method to pass from normal to hightlight(in native use pointer
     // instead of string)
 
+
+    public boolean isPushed() {
+        return pushed;
+    }
+
+    public void setPushedMaterial(Material pushedMaterial) {
+        this.pushedMaterial = pushedMaterial;
+    }
 }

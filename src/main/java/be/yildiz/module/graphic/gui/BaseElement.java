@@ -30,7 +30,6 @@ import be.yildiz.common.Size;
 import be.yildiz.common.exeption.UnhandledSwitchCaseException;
 import be.yildiz.common.util.BaseRegisterable;
 import be.yildiz.common.vector.Point2D;
-import lombok.Getter;
 
 /**
  * Base for GUI elements.
@@ -47,32 +46,26 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
     /**
      * <code>true</code> if the element is currently visible.
      */
-    @Getter
     private boolean visible = false;
     /**
      * Element width in pixel.
      */
-    @Getter
     private int width;
     /**
      * Element height in pixel.
      */
-    @Getter
     private int height;
     /**
      * Element x position from the Alignment left border, in pixel.
      */
-    @Getter
     private int left;
     /**
      * Element y position from the Alignment top border, in pixel.
      */
-    @Getter
     private int top;
     /**
      * Element opacity value, must be between 0 and 100.
      */
-    @Getter
     private int opacity = BaseElement.MAX_OPACITY;
 
     /**
@@ -461,6 +454,35 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
             }
             this.setSizeImpl(newWidth, newHeight);
         }
+    }
+
+    @Override
+    public final boolean isVisible() {
+        return visible;
+    }
+
+    @Override
+    public final int getWidth() {
+        return width;
+    }
+
+    @Override
+    public final int getHeight() {
+        return height;
+    }
+
+    @Override
+    public final int getLeft() {
+        return left;
+    }
+
+    @Override
+    public final int getTop() {
+        return top;
+    }
+
+    public final int getOpacity() {
+        return opacity;
     }
 
     /**

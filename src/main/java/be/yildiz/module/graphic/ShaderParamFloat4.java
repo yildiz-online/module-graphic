@@ -23,8 +23,6 @@
 
 package be.yildiz.module.graphic;
 
-import lombok.Getter;
-
 import java.util.Arrays;
 
 /**
@@ -37,7 +35,6 @@ public final class ShaderParamFloat4 {
     /**
      * Parameter name.
      */
-    @Getter
     private final String name;
 
     /**
@@ -69,5 +66,9 @@ public final class ShaderParamFloat4 {
      */
     public float[] getValues() {
         return Arrays.copyOf(this.values, this.values.length);
+    }
+
+    public String getName() {
+        return name;
     }
 }

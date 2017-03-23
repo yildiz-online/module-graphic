@@ -23,8 +23,6 @@
 
 package be.yildiz.module.graphic;
 
-import lombok.Getter;
-
 /**
  * Contains the data for a graphic mesh file.
  *
@@ -35,13 +33,11 @@ public final class GraphicMesh {
     /**
      * Mesh file path.
      */
-    @Getter
     private final String file;
 
     /**
      * Material to use with the mesh.
      */
-    @Getter
     private final Material material;
 
     /**
@@ -55,5 +51,13 @@ public final class GraphicMesh {
         //FIXME MEDIUM extension hardcoded
         this.file = path + ".msh";
         this.material = material;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public Material getMaterial() {
+        return material;
     }
 }
