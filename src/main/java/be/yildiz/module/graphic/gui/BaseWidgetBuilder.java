@@ -56,6 +56,7 @@ public class BaseWidgetBuilder {
     }
 
     public final void atPosition(final Position position) {
+        assert position != null;
         this.coordinates = new Coordinates(this.coordinates.getSize(), position);
     }
 
