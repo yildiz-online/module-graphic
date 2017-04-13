@@ -220,11 +220,9 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
     protected void highlightImpl(final boolean over) {
         if (over) {
             this.focused = true;
-            this.background.setMaterial(this.materials.highlight);
             this.cursor.show();
         } else {
             this.focused = false;
-            this.background.setMaterial(this.materials.material);
             this.cursor.hide();
         }
         this.showDefault();
