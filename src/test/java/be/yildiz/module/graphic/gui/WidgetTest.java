@@ -95,10 +95,12 @@ public class WidgetTest {
     @Test
     public void testAddKeyboardListener() {
         Widget w = givenAWidget();
+        System.out.println(w);
+        System.out.println(w.getParent().get());
         List<Character> list = Lists.newList();
         w.keyPressed('e');
         Assert.assertTrue(list.isEmpty());
-        w.addKeyboardListener(ch -> list.add(ch));
+        w.addKeyboardListener(list::add);
         w.keyPressed('e');
         Assert.assertTrue('e' == list.get(0));
     }
@@ -110,7 +112,7 @@ public class WidgetTest {
         List<Point2D> list = Lists.newList();
         w.mouseMove(new Point2D(4, 89));
         Assert.assertTrue(list.isEmpty());
-        w.addMouseMoveListener(p -> list.add(p));
+        w.addMouseMoveListener(list::add);
         w.mouseMove(new Point2D(4, 89));
         Assert.assertEquals(new Point2D(4, 89), list.get(0));
     }

@@ -434,17 +434,19 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
         }
 
         @Override
-        public void keyPressed(final char key) {
+        public boolean keyPressed(final char key) {
             InputBoxGui.this.addChar(key);
+            return true;
         }
 
         @Override
-        public void deleteKeyPressed() {
+        public boolean deleteKeyPressed() {
             InputBoxGui.this.removeChar();
+            return true;
         }
 
         @Override
-        public void arrowKeyPressed(final ArrowKey arrow) {
+        public boolean arrowKeyPressed(final ArrowKey arrow) {
             if (arrow == ArrowKey.LEFT) {
                 if (InputBoxGui.this.cursorIsLeft()) {
                     InputBoxGui.this.displayedTextPosition--;
@@ -453,7 +455,10 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
                 if (InputBoxGui.this.cursorPosition < 0) {
                     InputBoxGui.this.cursorPosition = 0;
                 }
-            } else if (arrow == ArrowKey.RIGHT) {
+                InputBoxGui.this.updateContent();
+                return true;
+            }
+            if (arrow == ArrowKey.RIGHT) {
                 if (!InputBoxGui.this.isCursorAfterText() && InputBoxGui.this.isCursorAtEndOfLine() && InputBoxGui.this.text.getFont().computeTextWidth(InputBoxGui.this.totalText) > InputBoxGui.this.maxLineSize) {
                     InputBoxGui.this.displayedTextPosition++;
                 }
@@ -461,8 +466,10 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
                 if (InputBoxGui.this.cursorPosition > InputBoxGui.this.totalText.length()) {
                     InputBoxGui.this.cursorPosition = InputBoxGui.this.totalText.length();
                 }
+                InputBoxGui.this.updateContent();
+                return true;
             }
-            InputBoxGui.this.updateContent();
+            return false;
         }
 
         @Override

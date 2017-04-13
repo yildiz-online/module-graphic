@@ -414,10 +414,18 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param key Character pressed.
      */
     final void keyPressed(final char key) {
+        boolean received = false;
         if (this.isVisible()) {
             for (final KeyboardListener listener : this.keyboardListener) {
-                listener.keyPressed(key);
+                if(!received) {
+                    received = listener.keyPressed(key);
+                } else {
+                    listener.keyPressed(key);
+                }
             }
+        }
+        if(!received) {
+            this.getParent().ifPresent(p -> p.keyPressed(key));
         }
     }
 
@@ -453,10 +461,18 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * Called when the key enter is pressed.
      */
     final void enterKeyPressed() {
+        boolean received = false;
         if (this.isVisible()) {
             for (final KeyboardListener listener : this.keyboardListener) {
-                listener.enterKeyPressed();
+                if(!received) {
+                    received = listener.enterKeyPressed();
+                } else {
+                    listener.enterKeyPressed();
+                }
             }
+        }
+        if(!received) {
+            this.getParent().ifPresent(Widget::enterKeyPressed);
         }
     }
 
