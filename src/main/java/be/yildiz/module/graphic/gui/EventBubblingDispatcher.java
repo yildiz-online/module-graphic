@@ -110,6 +110,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void mouseLeftClick(int x, int y) {
         this.debugListener.displayDebugMessage("Left click on: " + this.widgetUnderMouse);
+        this.currentWidgetFocus.highlightImpl(false);
         this.currentWidgetFocus = widgetUnderMouse;
         this.widgetUnderMouse.mouseLeftClick(x, y);
     }
