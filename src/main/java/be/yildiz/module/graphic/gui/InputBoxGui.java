@@ -305,7 +305,9 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
     @Override
     protected Element setPositionImpl(final int left, final int top) {
         this.innerContainer.setPosition(left, top);
-        this.captionText.setPosition(left - this.captionText.getTextWidth() - CAPTION_OFFSET, 0);
+        //FIXME set top does not affect the position
+        this.text.setTop(CAPTION_OFFSET);
+        this.captionText.setPosition(left - this.captionText.getTextWidth() - CAPTION_OFFSET, CAPTION_OFFSET);
         return this;
     }
 
