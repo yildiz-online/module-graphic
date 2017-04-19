@@ -65,6 +65,7 @@ public class BaseWidgetBuilder {
     }
 
     public final void withSize(Size size) {
+        assert size != null;
         this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
     }
 
