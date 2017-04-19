@@ -27,14 +27,12 @@ import be.yildiz.common.Size;
 import be.yildiz.common.util.Checker;
 import be.yildiz.common.vector.Point2D;
 import be.yildiz.common.vector.Point3D;
-import be.yildiz.module.window.Cursor;
 
 /**
  * Different virtual part of the screen.
  *
  * @author Grégory Van den Borre
  */
-//FIXME too many computations, make optimisations
 public enum ScreenPart {
 
     /**
@@ -92,8 +90,6 @@ public enum ScreenPart {
      */
     private final Point3D direction;
 
-    private Cursor cursor;
-
     /**
      * Full constructor.
      *
@@ -113,44 +109,33 @@ public enum ScreenPart {
     public static ScreenPart getFromPosition(Size res, final Point2D position) {
         final float x = position.getX();
         final float y = position.getY();
-        final boolean left = Checker.inRange(x, 0, ScreenPart.BORDER_SIZE);
-        final boolean right = Checker.inRange(x, res.width - ScreenPart.BORDER_SIZE, res.width);
-        final boolean up = Checker.inRange(y, 0, ScreenPart.BORDER_SIZE);
-        final boolean bottom = Checker.inRange(y, res.height - ScreenPart.BORDER_SIZE, res.height);
-        ScreenPart result;
-        if (left) {
-            if (up) {
-                result = ScreenPart.LEFT_UP;
-            } else if (bottom) {
-                result = ScreenPart.LEFT_BOTTOM;
-            } else {
-                result = ScreenPart.LEFT;
-            }
-        } else if (right) {
-            if (up) {
-                result = ScreenPart.RIGHT_UP;
-            } else if (bottom) {
-                result = ScreenPart.RIGHT_BOTTOM;
-            } else {
-                result = ScreenPart.RIGHT;
-            }
-        } else if (up) {
-            result = ScreenPart.UP;
-        } else if (bottom) {
-            result = ScreenPart.BOTTOM;
-        } else {
-            result = ScreenPart.CENTER;
+        final boolean centerX = Checker.inRange(x, ScreenPart.BORDER_SIZE, res.width - ScreenPart.BORDER_SIZE);
+        final boolean centerY = Checker.inRange(y, ScreenPart.BORDER_SIZE, res.height - ScreenPart.BORDER_SIZE);
+        if(centerX && centerY) {
+            return ScreenPart.CENTER;
         }
-
-        return result;
-    }
-
-    public void setCursor(Cursor cursor) {
-        this.cursor = cursor;
-    }
-
-    public Cursor getCursor() {
-        return cursor;
+        if (Checker.inRange(x, 0, ScreenPart.BORDER_SIZE)) {
+            if (Checker.inRange(y, 0, ScreenPart.BORDER_SIZE)) {
+                return ScreenPart.LEFT_UP;
+            } else if (Checker.inRange(y, res.height - ScreenPart.BORDER_SIZE, res.height)) {
+                return ScreenPart.LEFT_BOTTOM;
+            } else {
+                return ScreenPart.LEFT;
+            }
+        } else if (Checker.inRange(x, res.width - ScreenPart.BORDER_SIZE, res.width)) {
+            if (Checker.inRange(y, 0, ScreenPart.BORDER_SIZE)) {
+                return ScreenPart.RIGHT_UP;
+            } else if (Checker.inRange(y, res.height - ScreenPart.BORDER_SIZE, res.height)) {
+                return ScreenPart.RIGHT_BOTTOM;
+            } else {
+                return ScreenPart.RIGHT;
+            }
+        } else if (Checker.inRange(y, 0, ScreenPart.BORDER_SIZE)) {
+            return  ScreenPart.UP;
+        } else if (Checker.inRange(y, res.height - ScreenPart.BORDER_SIZE, res.height)) {
+            return ScreenPart.BOTTOM;
+        }
+        return ScreenPart.CENTER;
     }
 
     /**
