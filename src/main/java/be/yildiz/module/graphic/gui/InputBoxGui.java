@@ -389,6 +389,7 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
          * Input box font.
          */
         private final Font font;
+        private final Font captionFont;
 
         public InputBoxDefinition(Size size, Material material, Material focus, Material cursor, Font font) {
             this.size = size;
@@ -396,6 +397,16 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
             this.focus = focus;
             this.cursor = cursor;
             this.font = font;
+            this.captionFont = font;
+        }
+
+        public InputBoxDefinition(Size size, Material material, Material focus, Material cursor, Font font, Font captionFont) {
+            this.size = size;
+            this.material = material;
+            this.focus = focus;
+            this.cursor = cursor;
+            this.font = font;
+            this.captionFont = captionFont;
         }
 
         public Size getSize() {
@@ -416,6 +427,10 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
 
         public Font getFont() {
             return font;
+        }
+
+        public Font getCaptionFont() {
+            return captionFont;
         }
     }
 
