@@ -31,7 +31,7 @@ import be.yildiz.common.util.Registerer;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-import be.yildiz.module.graphic.gui.InputBoxGui.InputBoxDefinition;
+import be.yildiz.module.graphic.gui.InputBoxGui.InputBoxTemplate;
 
 import java.util.Optional;
 
@@ -479,7 +479,7 @@ public abstract class GuiBuilder {
      * @param container Container holding the input box.
      * @return The new input box widget.
      */
-    public final InputBoxGui buildInputBox(final Position position, final InputBoxDefinition def, final GuiContainer container) {
+    public final InputBoxGui buildInputBox(final Position position, final InputBoxTemplate def, final GuiContainer container) {
         return this.buildInputBox(StringUtil.buildRandomString("inputbox"), new Coordinates(def.getSize(), position), def.getFont(), def.getMaterial(), def.getFocus(), def.getCursor(), container);
     }
 

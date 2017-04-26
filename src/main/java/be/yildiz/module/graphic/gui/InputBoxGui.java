@@ -363,7 +363,7 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
      *
      * @author Van den Borre Grégory
      */
-    public static final class InputBoxDefinition {
+    public static final class InputBoxTemplate {
 
         /**
          * Input box size.
@@ -391,7 +391,7 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
         private final Font font;
         private final Font captionFont;
 
-        public InputBoxDefinition(Size size, Material material, Material focus, Material cursor, Font font) {
+        public InputBoxTemplate(Size size, Material material, Material focus, Material cursor, Font font) {
             this.size = size;
             this.material = material;
             this.focus = focus;
@@ -400,7 +400,7 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
             this.captionFont = font;
         }
 
-        public InputBoxDefinition(Size size, Material material, Material focus, Material cursor, Font font, Font captionFont) {
+        public InputBoxTemplate(Size size, Material material, Material focus, Material cursor, Font font, Font captionFont) {
             this.size = size;
             this.material = material;
             this.focus = focus;
