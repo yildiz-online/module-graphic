@@ -423,21 +423,23 @@ public abstract class GuiBuilder {
      *
      * @param name             Unique input box name.
      * @param coordinates      Input box coordinates.
-     * @param font             Font used for the caption.
+     * @param defaultFont      Font used for the default message.
+     * @param captionFont      Font used for the text and the caption.
      * @param background       Background material.
      * @param backgroundHlight Background material when the widget is focused.
      * @param cursorMaterial   Material to use for the cursor.
      * @param container        Container holding the input box.
      * @return The new input box widget.
      */
-    public final InputBoxGui buildInputBox(final String name, final BaseCoordinate coordinates, final Font font, final Font captionFont, final Material background, final Material backgroundHlight, final Material cursorMaterial,
+    public final InputBoxGui buildInputBox(final String name, final BaseCoordinate coordinates, final Font defaultFont, final Font captionFont, final Material background, final Material backgroundHlight, final Material cursorMaterial,
                                            final GuiContainer container) {
+        //FIXME the caption font is the same as the one for the text, for a password type input, it will not be the right font
         GuiContainer c = this.buildOverlayContainer(name, Material.empty(), coordinates, container, true);
         Image i = this.buildEmptyUnderlineImage(name + "_bi", new Coordinates(coordinates.width, coordinates.height, 0, 0), background, 1, c);
         final AbstractTextElement text = this.buildTextElement(coordinates, captionFont, c);
         final AbstractTextElement caption = this.buildTextElement(coordinates, captionFont, container);
         final AbstractIconElement cursor = this.buildIconElement(name + "_cursor", new Size(3, 20), cursorMaterial, c);
-        GuiTextLine defaultMessage = this.buildTextLine(name + "_text", new Coordinates(coordinates.width, coordinates.height, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), font, container);
+        GuiTextLine defaultMessage = this.buildTextLine(name + "_text", new Coordinates(coordinates.width, coordinates.height, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), defaultFont, container);
         defaultMessage.setStatic();
         ButtonMaterial materials = new ButtonMaterial(background, backgroundHlight);
         final InputBoxGui inputBox = new InputBoxGui(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, container);

@@ -33,8 +33,9 @@ public final class SimpleView extends View {
     /**
      * Full constructor.
      *
-     * @param container Wrapped container.
-     * @param z         Z value.
+     * @param container     Wrapped container.
+     * @param z             Z value.
+     * @param eventManager  Associated event manager.
      */
     public SimpleView(final GuiContainer container, final Zorder z, GuiEventManager eventManager) {
         super(container, z, eventManager);
@@ -42,10 +43,12 @@ public final class SimpleView extends View {
 
     @Override
     protected void setVisibleImpl(final boolean show) {
+        //Does nothing
     }
 
     @Override
     protected void setActiveImpl(final boolean active) {
+        //Does nothing
     }
 
 }

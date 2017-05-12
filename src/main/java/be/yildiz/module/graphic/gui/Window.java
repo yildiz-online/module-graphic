@@ -72,6 +72,7 @@ public abstract class Window extends View {
      * @param name    Container name.
      * @param builder GUI builder.
      * @param z       View Z position.
+     * @param eventManager Associated event manager.
      * @param params  Parameter to build the window.
      */
     public Window(final String name, final GuiBuilder builder, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
@@ -84,6 +85,7 @@ public abstract class Window extends View {
      * @param container Container to use for the window.
      * @param builder   GUI builder.
      * @param z         View Z position.
+     * @param eventManager Associated event manager.
      */
     public Window(final GuiContainer container, final GuiBuilder builder, final Zorder z, GuiEventManager eventManager) {
         this(container, builder, z, eventManager, Parameter.NOTHING);
@@ -95,6 +97,7 @@ public abstract class Window extends View {
      * @param container Container to use for the window.
      * @param builder   GUI builder.
      * @param z         View Z position.
+     * @param eventManager Associated event manager.
      * @param params    Parameter to build the window.
      */
     public Window(final GuiContainer container, final GuiBuilder builder, final Zorder z, GuiEventManager eventManager, final Parameter... params) {

@@ -95,8 +95,6 @@ public class WidgetTest {
     @Test
     public void testAddKeyboardListener() {
         Widget w = givenAWidget();
-        System.out.println(w);
-        System.out.println(w.getParent().get());
         List<Character> list = Lists.newList();
         w.keyPressed('e');
         Assert.assertTrue(list.isEmpty());

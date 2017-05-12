@@ -178,36 +178,4 @@ public final class GuiContainerTest {
         c.setVirtualHeight(80);
         Assert.assertTrue(c.contains(new Point2D(10, 60)));
     }
-
-    @Ignore
-    @Test
-    public void addToChildrenTest() {
-        // GuiContainer c = new GuiContainerMock(new Coordinates(100, 100, 0, 0));
-        // Widget w1 = new WidgetMock("w1", CR, c);
-        // Widget w2 = new WidgetMock("w2", CR, c);
-        // GuiContainer c2 = new GuiContainerMock(new Coordinates(50, 50, 10, 10), c);
-        // Widget w3 = new WidgetMock("w3", CR, c2);
-        // Assert.assertEquals(0, c.getCoordinates().left);
-        // Assert.assertEquals(0, c.getCoordinates().top);
-        // Assert.assertEquals(0, w1.getCoordinates().left);
-        // Assert.assertEquals(0, w1.getCoordinates().top);
-        // Assert.assertEquals(0, w2.getCoordinates().left);
-        // Assert.assertEquals(0, w2.getCoordinates().top);
-        // Assert.assertEquals(10, c2.getCoordinates().left);
-        // Assert.assertEquals(10, c2.getCoordinates().top);
-        // Assert.assertEquals(0, w3.getCoordinates().left);
-        // Assert.assertEquals(0, w3.getCoordinates().top);
-        // c.addChildrenPosition(5, 2);
-        // Assert.assertEquals(0, c.getCoordinates().left);
-        // Assert.assertEquals(0, c.getCoordinates().top);
-        // Assert.assertEquals(5, w1.getCoordinates().left);
-        // Assert.assertEquals(2, w1.getCoordinates().top);
-        // Assert.assertEquals(5, w2.getCoordinates().left);
-        // Assert.assertEquals(2, w2.getCoordinates().top);
-        // Assert.assertEquals(10, c2.getCoordinates().left);
-        // Assert.assertEquals(10, c2.getCoordinates().top);
-        // Assert.assertEquals(5, w3.getCoordinates().left);
-        // Assert.assertEquals(2, w3.getCoordinates().top);
-    }
-
 }
