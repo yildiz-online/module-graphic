@@ -342,7 +342,7 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
         } else {
             cursorSize = this.text.getFont().computeTextWidth(this.content);
         }
-        this.cursor.setLeft(this, PositionRelativeLeft.INSIDE_LEFT, this.text.getLeft() + cursorSize - 9);
+        this.cursor.setLeft(this, PositionRelativeLeft.INSIDE_LEFT, this.text.getLeft() + cursorSize);
         this.cursor.setTop(this.text.getTop());
     }
 
