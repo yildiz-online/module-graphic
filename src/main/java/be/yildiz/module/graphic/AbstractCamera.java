@@ -56,7 +56,7 @@ public abstract class AbstractCamera extends BaseRegisterable {
     /**
      * Tracked entity, if any.
      */
-    private Optional<Node> tracked = Optional.empty();
+    private Node tracked;
 
     /**
      * relative position of the camera toward an object when reinitialized.
@@ -156,7 +156,7 @@ public abstract class AbstractCamera extends BaseRegisterable {
      * @param posZ Camera position z value.
      */
     public final void setPosition(final float posX, final float posY, final float posZ) {
-        this.setPosition(Point3D.xyz(posX, posY, posZ));
+        this.setPosition(Point3D.valueOf(posX, posY, posZ));
     }
 
     /**
@@ -371,7 +371,7 @@ public abstract class AbstractCamera extends BaseRegisterable {
      * Stop auto tracking an entity or a position.
      */
     public final void stopAutoTrack() {
-        this.tracked = Optional.empty();
+        this.tracked = null;
         this.stopAutoTrackImpl();
     }
 
@@ -386,7 +386,7 @@ public abstract class AbstractCamera extends BaseRegisterable {
      * @param e Entity to track.
      */
     public final void autoTrack(final Node e) {
-        this.tracked = Optional.of(e);
+        this.tracked = e;
         this.autoTrackImpl(e);
     }
 
@@ -410,7 +410,7 @@ public abstract class AbstractCamera extends BaseRegisterable {
      * @param node Node to stop to track.
      */
     public final void stopAutoTrack(final Node node) {
-        if (node.equals(this.tracked.get())) {
+        if (node.equals(this.tracked)) {
             this.stopAutoTrack();
         }
     }
@@ -435,7 +435,7 @@ public abstract class AbstractCamera extends BaseRegisterable {
      * @return <code>true</code> if camera is tracking an entity.
      */
     public final boolean isAutoTrack() {
-        return this.tracked.isPresent();
+        return this.tracked != null;
     }
 
     /**
@@ -443,7 +443,7 @@ public abstract class AbstractCamera extends BaseRegisterable {
      */
     public final Point3D getTrackPosition() {
         if (this.isAutoTrack()) {
-            return this.tracked.get().getPosition();
+            return this.tracked.getPosition();
         } else {
             return this.getPosition();
         }
