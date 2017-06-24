@@ -27,6 +27,7 @@ import be.yildiz.common.vector.Point3D;
 
 /**
  * Force to apply on a particle emitter.
+ * [invariant force not null].
  *
  * @author Grégory Van Den Borre
  */
@@ -53,17 +54,26 @@ public abstract class ParticleForceAffector {
      * @param forceZ Force to apply on Z direction.
      */
     public final void setForce(final float forceX, final float forceY, final float forceZ) {
-        this.setForce(Point3D.xyz(forceX, forceY, forceZ));
+        this.setForce(Point3D.valueOf(forceX, forceY, forceZ));
     }
 
     /**
      * Set the force direction and strength.
      *
-     * @param force Force to apply.
+     * @param force Force to apply [assert not null].
      */
     public final void setForce(final Point3D force) {
+        assert force != null;
         this.force = force;
-        this.setForce(this.force.x, this.force.y, this.force.z);
+        this.setForceImpl(this.force.x, this.force.y, this.force.z);
+    }
+
+    /**
+     * Provide the current force.
+     * @return The current force applied, [ensure not null].
+     */
+    public Point3D getForce() {
+        return this.force;
     }
 
     /**
