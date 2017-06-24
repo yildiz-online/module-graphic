@@ -87,7 +87,7 @@ public abstract class Line {
      * @param z Last point Z coordinate.
      */
     public final void setEndPosition(final float x, final float y, final float z) {
-        this.setEndPosition(Point3D.xyz(x, y, z));
+        this.setEndPosition(Point3D.valueOf(x, y, z));
 
     }
 
