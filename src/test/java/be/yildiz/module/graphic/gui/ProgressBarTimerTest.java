@@ -62,9 +62,9 @@ public class ProgressBarTimerTest {
         ProgressBar b = Mockito.mock(ProgressBar.class);
         ProgressBarTimer t = new ProgressBarTimer(b, Time.seconds(0));
         Assert.assertFalse(t.frameEnded());
-        this.rule.expect(IllegalArgumentException.class);
+        this.rule.expect(AssertionError.class);
         t.setValues(-5, 10);
-        this.rule.expect(IllegalArgumentException.class);
+        this.rule.expect(AssertionError.class);
         t.setValues(5, -10);
     }
 }
