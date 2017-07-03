@@ -58,22 +58,22 @@ public enum ScreenPart {
     /**
      * From top and left part.
      */
-    LEFT_UP(Point3D.xz(-1, -1)),
+    LEFT_UP(Point3D.valueOfXZ(-1, -1)),
 
     /**
      * From top and right part.
      */
-    RIGHT_UP(Point3D.xz(1, -1)),
+    RIGHT_UP(Point3D.valueOfXZ(1, -1)),
 
     /**
      * From bottom and left part.
      */
-    LEFT_BOTTOM(Point3D.xz(-1, 1)),
+    LEFT_BOTTOM(Point3D.valueOfXZ(-1, 1)),
 
     /**
      * From bottom and right part.
      */
-    RIGHT_BOTTOM(Point3D.xz(1, 1)),
+    RIGHT_BOTTOM(Point3D.valueOfXZ(1, 1)),
 
     /**
      * If in none of the other screen parts.
