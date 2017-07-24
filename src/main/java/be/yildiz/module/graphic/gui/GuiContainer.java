@@ -28,6 +28,7 @@ import be.yildiz.common.Rectangle;
 import be.yildiz.common.collections.Lists;
 import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.Material;
+import be.yildiz.module.window.input.MousePosition;
 
 import java.util.List;
 import java.util.Optional;
@@ -406,6 +407,10 @@ public abstract class GuiContainer extends Widget {
     }
 
     public Optional<Widget> getWidgetAt(Point2D position) {
+        return this.getWidgetAt(position.getX(), position.getY());
+    }
+
+    public Optional<Widget> getWidgetAt(MousePosition position) {
         return this.getWidgetAt(position.getX(), position.getY());
     }
 

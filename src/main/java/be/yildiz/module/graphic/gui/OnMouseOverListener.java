@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.vector.Point2D;
+import be.yildiz.module.window.input.MousePosition;
 
 /**
  * Listener to notify When the mouse is over the widget.
@@ -40,5 +40,5 @@ public interface OnMouseOverListener {
      *                 <code>false</code> if it is no longer.
      * @param position Current mouse position.
      */
-    void notify(boolean over, Point2D position);
+    void notify(boolean over, MousePosition position);
 }

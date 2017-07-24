@@ -26,12 +26,13 @@ package be.yildiz.module.graphic.gui;
 import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Color;
 import be.yildiz.common.Size;
-import be.yildiz.common.client.gui.listener.ArrowKey;
-import be.yildiz.common.client.gui.listener.KeyboardListener;
-import be.yildiz.common.client.gui.listener.MouseLeftClickListener;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
+import be.yildiz.module.window.input.ArrowKey;
+import be.yildiz.module.window.input.KeyboardListener;
+import be.yildiz.module.window.input.MouseLeftClickListener;
+import be.yildiz.module.window.input.MousePosition;
 
 import java.util.Optional;
 
@@ -492,9 +493,9 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
         }
 
         @Override
-        public void clickAt(final int x, final int y) {
+        public void clickAt(final MousePosition position) {
             highlightImpl(true);
-            float cursorPixelPosition = x - getAbsoluteLeft();
+            float cursorPixelPosition = position.getX() - getAbsoluteLeft();
             while (cursorPosition != displayedTextPosition) {
                 this.arrowKeyPressed(ArrowKey.LEFT);
             }

@@ -26,10 +26,11 @@ package be.yildiz.module.graphic.gui;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
 import be.yildiz.common.Size;
-import be.yildiz.common.client.gui.listener.MouseLeftClickListener;
 import be.yildiz.common.collections.Lists;
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.gui.container.ContainerBuilder;
+import be.yildiz.module.window.input.MouseLeftClickListener;
+import be.yildiz.module.window.input.MouseMoveMockFactory;
+import be.yildiz.module.window.input.MousePosition;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -74,8 +75,8 @@ public class WidgetTest {
     @Test
     public void testAddMouseClickListener() {
         Widget w = givenAWidget();
-        List<Point2D> list = Lists.newList();
-        w.mouseLeftClick(12, 14);
+        List<MousePosition> list = Lists.newList();
+        w.mouseLeftClick(MouseMoveMockFactory.get(12, 14));
         Assert.assertTrue(list.isEmpty());
         w.addMouseLeftClickListener(new MouseLeftClickListener() {
 
@@ -83,12 +84,12 @@ public class WidgetTest {
             public void click() {
             }
 
-            public void clickAt(int x, int y) {
-                list.add(new Point2D(x, y));
+            public void clickAt(MousePosition p) {
+                list.add(p);
             }
         });
-        w.mouseLeftClick(12, 14);
-        Assert.assertEquals(new Point2D(12, 14), list.get(0));
+        w.mouseLeftClick(MouseMoveMockFactory.get(12, 14));
+        Assert.assertEquals(MouseMoveMockFactory.get(12, 14), list.get(0));
     }
 
     /***/
@@ -107,12 +108,12 @@ public class WidgetTest {
     @Test
     public void testAddMouseMoveListener() {
         Widget w = givenAWidget();
-        List<Point2D> list = Lists.newList();
-        w.mouseMove(new Point2D(4, 89));
+        List<MousePosition> list = Lists.newList();
+        w.mouseMove(MouseMoveMockFactory.get(4, 89));
         Assert.assertTrue(list.isEmpty());
         w.addMouseMoveListener(list::add);
-        w.mouseMove(new Point2D(4, 89));
-        Assert.assertEquals(new Point2D(4, 89), list.get(0));
+        w.mouseMove(MouseMoveMockFactory.get(4, 89));
+        Assert.assertEquals(MouseMoveMockFactory.get(4, 89), list.get(0));
     }
 
     /***/

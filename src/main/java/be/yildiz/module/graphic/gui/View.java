@@ -23,12 +23,11 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.client.gui.listener.*;
 import be.yildiz.common.util.BaseRegisterable;
 import be.yildiz.common.util.Registerer;
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.Visible;
+import be.yildiz.module.window.input.*;
 
 import java.util.Optional;
 
@@ -102,7 +101,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      * @param position Point to test.
      * @return <code>true</code> if the point is inside the view, <code>false</code> otherwise.
      */
-    public boolean contains(final Point2D position) {
+    public boolean contains(final MousePosition position) {
         return this.container.contains(position);
     }
 

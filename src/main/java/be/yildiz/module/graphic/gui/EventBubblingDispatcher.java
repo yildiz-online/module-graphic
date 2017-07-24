@@ -24,10 +24,10 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.client.debug.DebugListener;
-import be.yildiz.common.client.gui.listener.ArrowKey;
-import be.yildiz.common.client.gui.listener.SpecialKey;
 import be.yildiz.common.collections.Sets;
-import be.yildiz.common.vector.Point2D;
+import be.yildiz.module.window.input.ArrowKey;
+import be.yildiz.module.window.input.MousePosition;
+import be.yildiz.module.window.input.SpecialKey;
 
 import java.util.Optional;
 import java.util.Set;
@@ -98,52 +98,52 @@ public class EventBubblingDispatcher implements GuiEventManager {
     }
 
     @Override
-    public void mouseLeftReleased(Point2D position) {
+    public void mouseLeftReleased(MousePosition position) {
         this.widgetUnderMouse.mouseLeftReleased(position);
     }
 
     @Override
-    public void mouseRightReleased(Point2D position) {
+    public void mouseRightReleased(MousePosition position) {
         this.widgetUnderMouse.mouseRightReleased(position);
     }
 
     @Override
-    public void mouseLeftClick(int x, int y) {
+    public void mouseLeftClick(MousePosition position) {
         this.debugListener.displayDebugMessage("Left click on: " + this.widgetUnderMouse);
         this.currentWidgetFocus.highlightImpl(false);
         this.currentWidgetFocus = widgetUnderMouse;
-        this.widgetUnderMouse.mouseLeftClick(x, y);
+        this.widgetUnderMouse.mouseLeftClick(position);
     }
 
     @Override
-    public void mouseRightClick(Point2D position) {
+    public void mouseRightClick(MousePosition position) {
         this.debugListener.displayDebugMessage("Right click on: " + this.widgetUnderMouse);
         this.widgetUnderMouse.mouseRightClick(position);
     }
 
     @Override
-    public void mouseDoubleClick(Point2D position) {
+    public void mouseDoubleClick(MousePosition position) {
         this.widgetUnderMouse.mouseDoubleClick(position);
     }
 
     @Override
-    public void mouseDragRight(Point2D position, Point2D delta) {
+    public void mouseDragRight(MousePosition position, MousePosition delta) {
         this.widgetUnderMouse.mouseDragRight(position, delta);
     }
 
     @Override
-    public void mouseDragLeft(Point2D position, Point2D delta) {
+    public void mouseDragLeft(MousePosition position, MousePosition delta) {
         this.widgetUnderMouse.mouseDragLeft(position, delta);
 
     }
 
     @Override
-    public void mouseDragWheel(Point2D position, Point2D delta) {
+    public void mouseDragWheel(MousePosition position, MousePosition delta) {
         this.widgetUnderMouse.mouseDragWheel(position, delta);
     }
 
     @Override
-    public void mouseMove(Point2D position) {
+    public void mouseMove(MousePosition position) {
         for (View v : this.views) {
             if (v.isVisible()) {
                 GuiContainer viewContainer = v.getContainer();
@@ -172,7 +172,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
     }
 
     @Override
-    public void mouseWheel(Point2D cursorPosition, int count) {
+    public void mouseWheel(MousePosition cursorPosition, int count) {
         this.widgetUnderMouse.mouseWheel(cursorPosition, count);
     }
 

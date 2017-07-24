@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.client.gui.listener.MouseLeftClickListener;
+import be.yildiz.module.window.input.MouseLeftClickListener;
 
 /**
  * @author Grégory Van den Borre

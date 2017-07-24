@@ -23,10 +23,6 @@
 
 package be.yildiz.module.window.input;
 
-import be.yildiz.common.client.gui.listener.ArrowKey;
-import be.yildiz.common.client.gui.listener.SpecialKey;
-import be.yildiz.common.vector.Point2D;
-
 /**
  * Implementation of this listener are meant to receive the events from the underlying window element.
  *
@@ -91,7 +87,7 @@ public interface WindowInputListener {
      *
      * @param position Current mouse position.
      */
-    default void mouseLeftReleased(Point2D position) {
+    default void mouseLeftReleased(MousePosition position) {
     }
 
     /**
@@ -99,16 +95,15 @@ public interface WindowInputListener {
      *
      * @param position Current mouse position.
      */
-    default void mouseRightReleased(Point2D position) {
+    default void mouseRightReleased(MousePosition position) {
     }
 
     /**
      * Dispatch a left click from the mouse to all listeners in the current Widget. Check the mouse position to set the current focus view.
      *
-     * @param x Current mouse left position.
-     * @param y Current mouse top position.
+     * @param position Current mouse position.
      */
-    default void mouseLeftClick(int x, int y) {
+    default void mouseLeftClick(MousePosition position) {
     }
 
     /**
@@ -116,7 +111,7 @@ public interface WindowInputListener {
      *
      * @param position Current mouse position.
      */
-    default void mouseRightClick(Point2D position) {
+    default void mouseRightClick(MousePosition position) {
     }
 
     /**
@@ -124,7 +119,7 @@ public interface WindowInputListener {
      *
      * @param position Current mouse position
      */
-    default void mouseDoubleClick(Point2D position) {
+    default void mouseDoubleClick(MousePosition position) {
     }
 
     /**
@@ -133,7 +128,7 @@ public interface WindowInputListener {
      * @param position Current mouse position.
      * @param delta    Delta with the former mouse position.
      */
-    default void mouseDragRight(Point2D position, Point2D delta) {
+    default void mouseDragRight(MousePosition position, MousePosition delta) {
     }
 
     /**
@@ -142,7 +137,7 @@ public interface WindowInputListener {
      * @param position Current mouse position.
      * @param delta    Delta with the former mouse position.
      */
-    default void mouseDragLeft(Point2D position, Point2D delta) {
+    default void mouseDragLeft(MousePosition position, MousePosition delta) {
     }
 
     /**
@@ -151,7 +146,7 @@ public interface WindowInputListener {
      * @param position Current mouse position.
      * @param delta    Delta with the former mouse position.
      */
-    default void mouseDragWheel(Point2D position, Point2D delta) {
+    default void mouseDragWheel(MousePosition position, MousePosition delta) {
     }
 
     /**
@@ -159,7 +154,7 @@ public interface WindowInputListener {
      *
      * @param cursorPosition Current mouse position.
      */
-    default void mouseMove(Point2D cursorPosition) {
+    default void mouseMove(MousePosition cursorPosition) {
     }
 
     /**
@@ -168,7 +163,7 @@ public interface WindowInputListener {
      * @param cursorPosition Current mouse position.
      * @param count          Number of wheel roll.
      */
-    default void mouseWheel(Point2D cursorPosition, int count) {
+    default void mouseWheel(MousePosition cursorPosition, int count) {
     }
 
 }

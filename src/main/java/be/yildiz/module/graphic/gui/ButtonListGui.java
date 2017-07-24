@@ -23,10 +23,10 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.client.gui.listener.MouseLeftClickListener;
-import be.yildiz.common.client.gui.listener.MouseMoveListener;
 import be.yildiz.common.collections.Lists;
-import be.yildiz.common.vector.Point2D;
+import be.yildiz.module.window.input.MouseLeftClickListener;
+import be.yildiz.module.window.input.MouseMoveListener;
+import be.yildiz.module.window.input.MousePosition;
 
 import java.util.List;
 import java.util.Optional;
@@ -82,7 +82,7 @@ public final class ButtonListGui extends ContainerChild implements ButtonList, O
     }
 
     @Override
-    public void notify(boolean over, Point2D position) {
+    public void notify(boolean over, MousePosition position) {
         if (over) {
             this.open = true;
             this.registeredElement.forEach(Button::show);
@@ -150,7 +150,7 @@ public final class ButtonListGui extends ContainerChild implements ButtonList, O
     }
 
     @Override
-    public void move(Point2D position) {
+    public void move(MousePosition position) {
         for (Button b : this.registeredElement) {
             boolean contains = b.contains(position);
             b.highlight(contains);
@@ -162,8 +162,8 @@ public final class ButtonListGui extends ContainerChild implements ButtonList, O
 
     @Override
     public void click() {
-        this.selection.ifPresent(b -> b.mouseLeftClick(0, 0));
-        this.button.setMouseOver(false, Point2D.ZERO);
+        this.selection.ifPresent(b -> b.mouseLeftClick(MousePosition.ZERO));
+        this.button.setMouseOver(false, MousePosition.ZERO);
     }
 
     @Override

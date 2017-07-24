@@ -24,8 +24,7 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.Rectangle;
-import be.yildiz.common.client.gui.listener.*;
-import be.yildiz.common.vector.Point2D;
+import be.yildiz.module.window.input.*;
 
 /**
  * @author Grégory Van den Borre
@@ -107,7 +106,7 @@ public interface WidgetElement extends Element {
      * @return <code>true</code> if the point is contained in this container,
      * <code>false</code> otherwise.
      */
-    boolean contains(Point2D position);
+    boolean contains(MousePosition position);
 
     boolean contains(int x, int y);
 

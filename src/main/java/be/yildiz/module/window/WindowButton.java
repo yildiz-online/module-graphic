@@ -23,7 +23,7 @@
 
 package be.yildiz.module.window;
 
-import be.yildiz.common.client.gui.listener.MouseLeftClickListener;
+import be.yildiz.module.window.input.MouseLeftClickListener;
 
 /**
  * A button handled by the window system.

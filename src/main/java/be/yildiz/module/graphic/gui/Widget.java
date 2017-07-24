@@ -26,13 +26,13 @@ package be.yildiz.module.graphic.gui;
 import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Rectangle;
-import be.yildiz.common.client.gui.listener.*;
 import be.yildiz.common.collections.Lists;
 import be.yildiz.common.collections.Maps;
 import be.yildiz.common.collections.Sets;
 import be.yildiz.common.exeption.UnhandledSwitchCaseException;
 import be.yildiz.common.util.Checker;
 import be.yildiz.common.vector.Point2D;
+import be.yildiz.module.window.input.*;
 
 import java.util.List;
 import java.util.Map;
@@ -225,7 +225,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
     }
 
     @Override
-    public final boolean contains(final Point2D position) {
+    public final boolean contains(final MousePosition position) {
         return this.contains(position.getX(), position.getY());
     }
 
@@ -257,14 +257,13 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * Called when the mouse left button is pressed. Only to be used from the
      * EventDispatcher.
      *
-     * @param x Mouse X position.
-     * @param y Mouse Y position.
+     * @param position Mouse position.
      */
-    public final void mouseLeftClick(final int x, final int y) {
+    public final void mouseLeftClick(MousePosition position) {
         if (this.mouseClickActive) {
             for (final MouseLeftClickListener listener : this.leftClickListener) {
                 listener.click();
-                listener.clickAt(x, y);
+                listener.clickAt(position);
             }
         }
     }
@@ -281,7 +280,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      *
      * @param position Mouse position.
      */
-    final void mouseDoubleClick(final Point2D position) {
+    final void mouseDoubleClick(final MousePosition position) {
         if (this.mouseClickActive) {
             for (final MouseDoubleLeftClickListener listener : this.doubleLeftClickListener) {
                 listener.click(position);
@@ -295,7 +294,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      *
      * @param position Mouse position.
      */
-    final void mouseRightClick(final Point2D position) {
+    final void mouseRightClick(final MousePosition position) {
         if (this.mouseClickActive) {
             for (final MouseRightClickListener listener : this.rightClickListener) {
                 listener.click(position);
@@ -310,7 +309,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param position Mouse position.
      */
 
-    final void mouseLeftReleased(final Point2D position) {
+    final void mouseLeftReleased(final MousePosition position) {
         if (this.mouseClickActive) {
             for (final MouseReleaseListener listener : this.releaseListener) {
                 listener.mouseLeftReleased(position);
@@ -328,7 +327,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param position Mouse position.
      */
 
-    final void mouseRightReleased(final Point2D position) {
+    final void mouseRightReleased(final MousePosition position) {
         if (this.mouseClickActive) {
             for (final MouseReleaseListener listener : this.releaseListener) {
                 listener.mouseRightReleased(position);
@@ -347,7 +346,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param delta    Difference between the current mouse position and the last
      *                 position.
      */
-    final void mouseDragLeft(final Point2D position, final Point2D delta) {
+    final void mouseDragLeft(final MousePosition position, final MousePosition delta) {
         for (final MouseDragListener listener : this.mouseDragListener) {
             listener.mouseDragLeft(position, delta);
         }
@@ -361,7 +360,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param delta    Difference between the current mouse position and the last
      *                 position.
      */
-    final void mouseDragRight(final Point2D position, final Point2D delta) {
+    final void mouseDragRight(final MousePosition position, final MousePosition delta) {
         for (final MouseDragListener listener : this.mouseDragListener) {
             listener.mouseDragRight(position, delta);
         }
@@ -374,7 +373,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param mousePosition Mouse position.
      * @param count         Wheel roll count.
      */
-    final void mouseWheel(final Point2D mousePosition, final int count) {
+    final void mouseWheel(final MousePosition mousePosition, final int count) {
         for (final MouseWheelListener listener : this.wheelListener) {
             listener.scroll(mousePosition, count);
         }
@@ -388,7 +387,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param delta    Difference between the current mouse position and the last
      *                 position.
      */
-    final void mouseDragWheel(final Point2D position, final Point2D delta) {
+    final void mouseDragWheel(final MousePosition position, final MousePosition delta) {
         for (final MouseDragListener listener : this.mouseDragListener) {
             listener.mouseDragWheel(position, delta);
         }
@@ -400,7 +399,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param position Current mouse position.
      * @return false.
      */
-    final boolean mouseMove(final Point2D position) {
+    final boolean mouseMove(final MousePosition position) {
         for (final MouseMoveListener listener : this.mouseMoveListener) {
             listener.move(position);
         }
@@ -599,7 +598,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
      * @param position Current mouse position.
      * @return This object for chaining.
      */
-     public final Element setMouseOver(final boolean over, final Point2D position) {
+     public final Element setMouseOver(final boolean over, final MousePosition position) {
         if (over != this.mouseOver) {
             this.mouseOver = over;
             for (OnMouseOverListener listener : this.onMouseOverListenerList) {

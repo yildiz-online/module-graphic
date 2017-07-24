@@ -26,11 +26,10 @@ package be.yildiz.module.graphic.gui;
 import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Size;
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.container.ContainerBuilder;
+import be.yildiz.module.window.input.MouseMoveMockFactory;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -150,11 +149,11 @@ public final class GuiContainerTest {
         GuiContainer c = new ContainerBuilder(builder).withCoordinates(new Coordinates(cWidth, cHeight, cX, cY)).build();
         for (int x = cX; x <= cX + cWidth; x++) {
             for (int y = cY; y <= cY + cHeight; y++) {
-                Assert.assertTrue(c.contains(new Point2D(x, y)));
+                Assert.assertTrue(c.contains(MouseMoveMockFactory.get(x, y)));
             }
         }
-        Assert.assertFalse(c.contains(new Point2D(cX - 1, cY + 2)));
-        Assert.assertFalse(c.contains(new Point2D(cX + 2, cY - 1)));
+        Assert.assertFalse(c.contains(MouseMoveMockFactory.get(cX - 1, cY + 2)));
+        Assert.assertFalse(c.contains(MouseMoveMockFactory.get(cX + 2, cY - 1)));
         GuiContainer c2 = new ContainerBuilder(builder)
                 .withCoordinates(new Coordinates(c2Width, c2Height, c2X, c2Y))
                 .withParent(c)
@@ -162,20 +161,20 @@ public final class GuiContainerTest {
 
         for (int x = c2X + cX; x <= c2X + cX + c2Width; x++) {
             for (int y = c2Y + cY; y <= c2Y + cY + c2Width; y++) {
-                Assert.assertTrue("test:" + x + "," + y, c2.contains(new Point2D(x, y)));
+                Assert.assertTrue("test:" + x + "," + y, c2.contains(MouseMoveMockFactory.get(x, y)));
             }
         }
-        Assert.assertFalse(c2.contains(new Point2D(19, 30)));
-        Assert.assertFalse(c2.contains(new Point2D(20, 29)));
+        Assert.assertFalse(c2.contains(MouseMoveMockFactory.get(19, 30)));
+        Assert.assertFalse(c2.contains(MouseMoveMockFactory.get(20, 29)));
     }
 
     @Test
     public void testContainsVirtualHeight() {
         GuiBuilder builder = new DummyGuiBuilder();
         GuiContainer c = new ContainerBuilder(builder).withSize(new Size(50)).build();
-        Assert.assertTrue(c.contains(new Point2D(10, 10)));
-        Assert.assertFalse(c.contains(new Point2D(10, 60)));
+        Assert.assertTrue(c.contains(MouseMoveMockFactory.get(10, 10)));
+        Assert.assertFalse(c.contains(MouseMoveMockFactory.get(10, 60)));
         c.setVirtualHeight(80);
-        Assert.assertTrue(c.contains(new Point2D(10, 60)));
+        Assert.assertTrue(c.contains(MouseMoveMockFactory.get(10, 60)));
     }
 }

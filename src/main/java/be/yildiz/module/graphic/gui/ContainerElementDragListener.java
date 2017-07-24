@@ -24,9 +24,9 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.Rectangle;
-import be.yildiz.common.client.gui.listener.MouseDragListener;
 import be.yildiz.common.collections.Lists;
-import be.yildiz.common.vector.Point2D;
+import be.yildiz.module.window.input.MouseDragListener;
+import be.yildiz.module.window.input.MousePosition;
 
 import java.util.List;
 
@@ -83,7 +83,7 @@ final class ContainerElementDragListener implements MouseDragListener {
      * @param delta    Difference between this mouse position and the last one.
      */
     @Override
-    public void mouseDragLeft(final Point2D position, final Point2D delta) {
+    public void mouseDragLeft(final MousePosition position, final MousePosition delta) {
         final int dockDistance = 20;
         this.limit -= delta.getY();
         if (position.getY() < this.limit) {
@@ -117,9 +117,5 @@ final class ContainerElementDragListener implements MouseDragListener {
             }
 
         }
-    }
-
-    @Override
-    public void mouseDragWheel(final Point2D position, final Point2D delta) {
     }
 }

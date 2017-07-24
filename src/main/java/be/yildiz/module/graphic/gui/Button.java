@@ -24,11 +24,11 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.client.gui.listener.MouseLeftClickListener;
-import be.yildiz.common.client.gui.listener.MouseMoveListener;
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
+import be.yildiz.module.window.input.MouseLeftClickListener;
+import be.yildiz.module.window.input.MouseMoveListener;
+import be.yildiz.module.window.input.MousePosition;
 
 /**
  * @author Grégory Van den Borre
@@ -76,14 +76,14 @@ public interface Button extends ContainerElement {
 
     void delete();
 
-    void mouseLeftClick(int x, int y);
+    void mouseLeftClick(MousePosition position);
 
     @Override
-    boolean contains(Point2D position);
+    boolean contains(MousePosition position);
 
     void highlight(boolean contains);
 
-    Element setMouseOver(boolean b, Point2D zero);
+    Element setMouseOver(boolean b, MousePosition zero);
 
     /**
      * Replace all existing data for this button by new one. Old materials and click listeners will be removed and replaced by this ones.
@@ -122,9 +122,9 @@ public interface Button extends ContainerElement {
     /**
      * Set the caption vertical alignment.
      *
-     * @param alignement Caption alignment.
+     * @param alignment Caption alignment.
      */
-    void setCaptionTextTopAlignement(PositionRelativeTop alignement);
+    void setCaptionTextTopAlignement(PositionRelativeTop alignment);
 
     /**
      * Set the caption vertical alignment.
