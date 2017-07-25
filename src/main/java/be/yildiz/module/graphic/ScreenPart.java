@@ -25,8 +25,8 @@ package be.yildiz.module.graphic;
 
 import be.yildiz.common.Size;
 import be.yildiz.common.util.Checker;
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.common.vector.Point3D;
+import be.yildiz.module.window.input.MousePosition;
 
 /**
  * Different virtual part of the screen.
@@ -106,9 +106,9 @@ public enum ScreenPart {
      * @param position Position to check.
      * @return The screen part where the given position is.
      */
-    public static ScreenPart getFromPosition(Size res, final Point2D position) {
-        final float x = position.getX();
-        final float y = position.getY();
+    public static ScreenPart getFromPosition(Size res, final MousePosition position) {
+        final int x = position.getX();
+        final int y = position.getY();
         final boolean centerX = Checker.inRange(x, ScreenPart.BORDER_SIZE, res.width - ScreenPart.BORDER_SIZE);
         final boolean centerY = Checker.inRange(y, ScreenPart.BORDER_SIZE, res.height - ScreenPart.BORDER_SIZE);
         if(centerX && centerY) {
