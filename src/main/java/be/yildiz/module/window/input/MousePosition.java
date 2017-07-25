@@ -29,7 +29,7 @@ package be.yildiz.module.window.input;
  */
 public class MousePosition {
 
-    public static MousePosition ZERO = new MousePosition();
+    public static final MousePosition ZERO = new MousePosition();
 
     private int x;
 
