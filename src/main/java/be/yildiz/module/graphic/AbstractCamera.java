@@ -177,7 +177,18 @@ public abstract class AbstractCamera extends BaseRegisterable {
      * @param axis        Axis to use to retrieve 3D position.
      */
     public final void setPosition(final Point2D newPosition, final Axis axis) {
-        this.position = this.setPositionImpl(newPosition, axis);
+        this.setPosition(newPosition.getX(), newPosition.getY(), axis);
+    }
+
+    /**
+     * Set the position from 2D coordinates. The listeners are notified.
+     *
+     * @param newPositionX 2D position X.
+     * @param newPositionY 2D position Y.
+     * @param axis        Axis to use to retrieve 3D position.
+     */
+    public final void setPosition(final int newPositionX, int newPositionY, final Axis axis) {
+        this.position = this.setPositionImpl(newPositionX, newPositionY, axis);
         for (CameraListener l : this.listenerList) {
             l.update(this.position, this.direction);
         }
@@ -268,10 +279,11 @@ public abstract class AbstractCamera extends BaseRegisterable {
     /**
      * Compute a point from a click on the screen.
      *
-     * @param coordinate Screen coordinates.
+     * @param x Screen coordinates X.
+     * @param y Screen coordinates Y.
      * @return The point in 3D world.
      */
-    public abstract Point3D computeMoveDestination(Point2D coordinate);
+    public abstract Point3D computeMoveDestination(int x, int y);
 
     /**
      * Throw a rectangle and return all entity id contained in it.
@@ -340,11 +352,12 @@ public abstract class AbstractCamera extends BaseRegisterable {
     /**
      * Call implementation to set the position.
      *
-     * @param newPosition 2D position.
+     * @param x 2D position X.
+     * @param y 2D position Y.
      * @param axis        Axis to retrieve 3D position.
      * @return The new camera position.
      */
-    protected abstract Point3D setPositionImpl(final Point2D newPosition, final Axis axis);
+    protected abstract Point3D setPositionImpl(final int x, final int y, final Axis axis);
 
     /**
      * Call implementation to set the position.
