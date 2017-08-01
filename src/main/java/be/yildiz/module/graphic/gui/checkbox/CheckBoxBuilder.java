@@ -89,6 +89,18 @@ public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder>{
         return this;
     }
 
+    @Override
+    public CheckBoxBuilder atRelativeLeft(Relative r) {
+        this.base.atPosition((int)(this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
+        return this;
+    }
+
+    @Override
+    public CheckBoxBuilder atRelativeTop(Relative r) {
+        this.base.atPosition(this.base.getCoordinates().left, (int)(this.builder.getScreenSize().height * r.value));
+        return this;
+    }
+
     public CheckBoxBuilder withBackground(final Material background) {
         this.base.withBackground(background);
         return this;

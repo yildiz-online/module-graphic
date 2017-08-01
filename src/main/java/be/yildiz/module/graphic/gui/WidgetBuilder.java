@@ -48,4 +48,8 @@ public interface WidgetBuilder <T> {
     T withRelativeWidth(Relative r);
 
     T withRelativeHeight(Relative r);
+
+    T atRelativeLeft(Relative r);
+
+    T atRelativeTop(Relative r);
 }

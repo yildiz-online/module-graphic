@@ -162,6 +162,18 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
         return this;
     }
 
+    @Override
+    public ButtonBuilder atRelativeLeft(Relative r) {
+        this.base.atPosition((int)(this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
+        return this;
+    }
+
+    @Override
+    public ButtonBuilder atRelativeTop(Relative r) {
+        this.base.atPosition(this.base.getCoordinates().left, (int)(this.builder.getScreenSize().height * r.value));
+        return this;
+    }
+
     public Button build(final GuiContainer container) {
         Button result = this.builder.buildButton(this.base.getName(), this.base.getCoordinates(), this.material, container);
         result.setCaptionTextLeftAlignement(this.captionLeftAlignment, this.captionLeftDistance);

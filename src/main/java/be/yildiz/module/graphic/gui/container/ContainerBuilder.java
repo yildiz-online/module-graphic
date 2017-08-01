@@ -93,6 +93,18 @@ public class ContainerBuilder implements WidgetBuilder<ContainerBuilder>{
     }
 
     @Override
+    public ContainerBuilder atRelativeLeft(Relative r) {
+        this.base.atPosition((int)(this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
+        return this;
+    }
+
+    @Override
+    public ContainerBuilder atRelativeTop(Relative r) {
+        this.base.atPosition(this.base.getCoordinates().left, (int)(this.builder.getScreenSize().height * r.value));
+        return this;
+    }
+
+    @Override
     public ContainerBuilder withSize(Size size) {
         this.base.withSize(size);
         return this;

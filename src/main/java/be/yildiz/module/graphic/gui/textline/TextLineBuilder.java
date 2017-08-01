@@ -98,6 +98,18 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder>{
     }
 
     @Override
+    public TextLineBuilder atRelativeLeft(Relative r) {
+        this.base.atPosition((int)(this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
+        return this;
+    }
+
+    @Override
+    public TextLineBuilder atRelativeTop(Relative r) {
+        this.base.atPosition(this.base.getCoordinates().left, (int)(this.builder.getScreenSize().height * r.value));
+        return this;
+    }
+
+    @Override
     public TextLineBuilder withCoordinates(Coordinates coordinates) {
         this.base.withCoordinates(coordinates);
         return this;
