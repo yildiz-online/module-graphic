@@ -25,6 +25,7 @@ package be.yildiz.module.graphic.gui.textline;
 
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
+import be.yildiz.common.Relative;
 import be.yildiz.common.Size;
 import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Font;
@@ -81,6 +82,18 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder>{
     @Override
     public TextLineBuilder withSize(Size size) {
         this.base.withSize(size);
+        return this;
+    }
+
+    @Override
+    public TextLineBuilder withRelativeWidth(Relative r) {
+        this.base.withSize((int)(this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        return this;
+    }
+
+    @Override
+    public TextLineBuilder withRelativeHeight(Relative r) {
+        this.base.withSize(this.base.getCoordinates().width, (int)(this.builder.getScreenSize().height * r.value));
         return this;
     }
 

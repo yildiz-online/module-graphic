@@ -25,6 +25,7 @@ package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
+import be.yildiz.common.Relative;
 import be.yildiz.common.Size;
 
 /**
@@ -43,4 +44,8 @@ public interface WidgetBuilder <T> {
     T withSize(Size size);
 
     T withSize(int width, int length);
+
+    T withRelativeWidth(Relative r);
+
+    T withRelativeHeight(Relative r);
 }

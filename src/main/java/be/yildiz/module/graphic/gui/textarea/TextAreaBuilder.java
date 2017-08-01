@@ -25,6 +25,7 @@ package be.yildiz.module.graphic.gui.textarea;
 
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
+import be.yildiz.common.Relative;
 import be.yildiz.common.Size;
 import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Font;
@@ -88,6 +89,18 @@ public class TextAreaBuilder implements WidgetBuilder<TextAreaBuilder> {
     @Override
     public TextAreaBuilder withSize(Size size) {
         this.base.withSize(size);
+        return this;
+    }
+
+    @Override
+    public TextAreaBuilder withRelativeWidth(Relative r) {
+        this.base.withSize((int)(this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        return this;
+    }
+
+    @Override
+    public TextAreaBuilder withRelativeHeight(Relative r) {
+        this.base.withSize(this.base.getCoordinates().width, (int)(this.builder.getScreenSize().height * r.value));
         return this;
     }
 

@@ -25,6 +25,7 @@ package be.yildiz.module.graphic.gui.container;
 
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
+import be.yildiz.common.Relative;
 import be.yildiz.common.Size;
 import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Material;
@@ -76,6 +77,18 @@ public class ContainerBuilder implements WidgetBuilder<ContainerBuilder>{
     @Override
     public ContainerBuilder atPosition(int x, int y) {
         this.base.atPosition(x, y);
+        return this;
+    }
+
+    @Override
+    public ContainerBuilder withRelativeWidth(Relative r) {
+        this.base.withSize((int)(this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        return this;
+    }
+
+    @Override
+    public ContainerBuilder withRelativeHeight(Relative r) {
+        this.base.withSize(this.base.getCoordinates().width, (int)(this.builder.getScreenSize().height * r.value));
         return this;
     }
 

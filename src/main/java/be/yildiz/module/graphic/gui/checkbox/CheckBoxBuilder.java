@@ -25,6 +25,7 @@ package be.yildiz.module.graphic.gui.checkbox;
 
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
+import be.yildiz.common.Relative;
 import be.yildiz.common.Size;
 import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Font;
@@ -73,6 +74,18 @@ public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder>{
     @Override
     public CheckBoxBuilder withSize(final int width, final int length) {
         this.base.withSize(width, length);
+        return this;
+    }
+
+    @Override
+    public CheckBoxBuilder withRelativeWidth(Relative r) {
+        this.base.withSize((int)(this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        return this;
+    }
+
+    @Override
+    public CheckBoxBuilder withRelativeHeight(Relative r) {
+        this.base.withSize(this.base.getCoordinates().width, (int)(this.builder.getScreenSize().height * r.value));
         return this;
     }
 

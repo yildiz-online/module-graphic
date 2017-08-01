@@ -25,6 +25,7 @@ package be.yildiz.module.graphic.gui.image;
 
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.Position;
+import be.yildiz.common.Relative;
 import be.yildiz.common.Size;
 import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.Material;
@@ -82,6 +83,18 @@ public class ImageBuilder implements WidgetBuilder<ImageBuilder>{
     @Override
     public ImageBuilder withSize(int width, int length) {
         this.base.withSize(width, length);
+        return this;
+    }
+
+    @Override
+    public ImageBuilder withRelativeWidth(Relative r) {
+        this.base.withSize((int)(this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        return this;
+    }
+
+    @Override
+    public ImageBuilder withRelativeHeight(Relative r) {
+        this.base.withSize(this.base.getCoordinates().width, (int)(this.builder.getScreenSize().height * r.value));
         return this;
     }
 
