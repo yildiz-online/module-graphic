@@ -30,15 +30,36 @@ public abstract class GuiAnimation {
 
     private final String name;
 
+    private boolean completed = true;
+
     protected GuiAnimation(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    public final String getName() {
         return this.name;
     }
 
-    public abstract void update(long time);
+    public final void update(long time) {
+        if(!completed) {
+            this.updateImpl(time);
+        }
+    }
 
-    public abstract void start();
+    public final void start() {
+        this.completed = false;
+        this.startImpl();
+    }
+
+    public final void stopAnimation() {
+        this.completed = true;
+    }
+
+    protected abstract void startImpl();
+
+    protected abstract void updateImpl(long time);
+
+    protected final void setCompleted(boolean b) {
+        this.completed = b;
+    }
 }

@@ -30,28 +30,23 @@ public class MaximizeFromTop extends ContainerAnimation {
 
     private int originalSize;
 
-    private boolean complete = true;
-
     public MaximizeFromTop(String name) {
         super(name);
     }
 
     @Override
-    public void update(long time) {
-        if(!this.complete) {
-            int newSize = this.container.getHeight() + (int)time;
-            if (newSize > originalSize) {
-                newSize = originalSize;
-            }
-            this.container.setHeight(newSize);
-            this.complete = newSize == originalSize;
+    protected void updateImpl(long time) {
+        int newSize = this.container.getHeight() + (int)time;
+        if (newSize > originalSize) {
+            newSize = originalSize;
         }
+        this.container.setHeight(newSize);
+        this.setCompleted(newSize == originalSize);
     }
 
     @Override
-    public void start() {
+    protected void startImpl() {
         this.originalSize = this.container.getHeight();
         this.container.setHeight(0);
-        this.complete = false;
     }
 }

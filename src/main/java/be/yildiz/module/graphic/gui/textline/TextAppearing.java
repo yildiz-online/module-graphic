@@ -34,7 +34,6 @@ public class TextAppearing extends TextAnimation {
     private final ManualElapsedTimeComputer timer;
 
     private int currentPosition = 0;
-    private boolean completed = true;
 
     public TextAppearing(String name, long delay) {
         super(name);
@@ -42,18 +41,17 @@ public class TextAppearing extends TextAnimation {
     }
 
     @Override
-    public void update(long time) {
-        if (!completed && this.timer.isTimeElapsed(time)) {
+    protected void updateImpl(long time) {
+        if (this.timer.isTimeElapsed(time)) {
             currentPosition++;
             this.text.setText(this.textToDisplay.substring(0, currentPosition));
-            this.completed = currentPosition == textToDisplay.length() - 1;
+            this.setCompleted(currentPosition == textToDisplay.length() - 1);
         }
     }
 
     @Override
-    public void start() {
+    protected void startImpl() {
         this.textToDisplay = this.text.getContent();
         this.text.setText("");
-        this.completed = false;
     }
 }
