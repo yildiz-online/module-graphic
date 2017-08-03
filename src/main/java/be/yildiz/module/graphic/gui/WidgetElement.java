@@ -143,4 +143,6 @@ public interface WidgetElement extends Element {
     void registerAnimation(GuiAnimation anim);
 
     void playAnimation(String animation);
+
+    void stopAnimation(String name);
 }
