@@ -40,18 +40,18 @@ public abstract class GuiAnimation {
         return this.name;
     }
 
-    public final void update(long time) {
+    final void update(long time) {
         if(!completed) {
             this.updateImpl(time);
         }
     }
 
-    public final void start() {
+    final void start() {
         this.completed = false;
         this.startImpl();
     }
 
-    public final void stopAnimation() {
+    final void stop() {
         this.completed = true;
     }
 

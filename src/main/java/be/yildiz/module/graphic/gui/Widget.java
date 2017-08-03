@@ -207,6 +207,11 @@ public abstract class Widget extends BaseElement implements WidgetElement {
         Optional.ofNullable(this.animations.get(name)).ifPresent(GuiAnimation::start);
     }
 
+    @Override
+    public final void stopAnimation(String name) {
+        Optional.ofNullable(this.animations.get(name)).ifPresent(GuiAnimation::stop);
+    }
+
     /**
      * Implementation to set the widget highlight.
      *
