@@ -161,8 +161,6 @@ public abstract class Shader {
      * DirectX vertex profiles.
      *
      * @author Van den Borre Grégory
-     * @version 1.0(30/05/2013)
-     * @since 0.10
      */
     public enum VertexDx {
 
@@ -218,7 +216,7 @@ public abstract class Shader {
      *
      * @author Van den Borre Grégory
      */
-    public static final class ShaderTypeExeption extends RuntimeException {
+    public static final class ShaderTypeException extends RuntimeException {
 
         /***/
         private static final long serialVersionUID = 7602881241212061971L;
