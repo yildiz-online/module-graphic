@@ -148,8 +148,8 @@ public final class Explosion implements Animation {
         this.flash.setMaterial(Material.get("flash1"));
         final ParticleEmitter flashEmitter = this.flash.addEmitter(EmitterType.POINT);
         flashEmitter.setRate(40);
-        flashEmitter.setStartColor(new Color(255, 255, 80, 255));
-        flashEmitter.setEndColor(new Color(255, 255, 80, 255));
+        flashEmitter.setStartColor(Color.rgba(255, 255, 80, 255));
+        flashEmitter.setEndColor(Color.rgba(255, 255, 80, 255));
         flashEmitter.setMinSpeed(0);
         flashEmitter.setMaxSpeed(0);
         flashEmitter.setLifeTime(0.3f);
