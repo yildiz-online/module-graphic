@@ -23,6 +23,7 @@
 
 package be.yildiz.module.graphic;
 
+import be.yildiz.common.Color;
 import be.yildiz.common.collections.Lists;
 import be.yildiz.common.resource.Resource;
 import be.yildiz.common.util.Registerer;
@@ -172,12 +173,13 @@ public abstract class Material extends Resource {
      *
      * @param maskFile Texture mask to glow.
      */
-    public final void addGlowTechnique(final String maskFile) {
+    public final Material addGlowTechnique(final String maskFile) {
         final MaterialTechnique glow = this.getTechnique(0);
         final MaterialPass glowPass = glow.getPass(0);
         final TextureUnit glowUnit = glowPass.getUnit(0);
         glowUnit.setTexture(maskFile);
         glow.setGlow();
+        return this;
     }
 
     /**
@@ -185,12 +187,13 @@ public abstract class Material extends Resource {
      *
      * @param mode BlendMode to set.
      */
-    public final void setBlendMode(final BlendMode mode) {
+    public final Material setBlendMode(final BlendMode mode) {
         for (MaterialTechnique t : this.techniqueList) {
             for (MaterialPass p : t.getPassList()) {
                 p.setBlendMode(mode);
             }
         }
+        return this;
     }
 
     /**
@@ -199,8 +202,9 @@ public abstract class Material extends Resource {
      * @param sb1 Blending first parameter.
      * @param sb2 Blending second parameter.
      */
-    public final void setSceneBlend(final SceneBlend sb1, final SceneBlend sb2) {
+    public final Material setSceneBlend(final SceneBlend sb1, final SceneBlend sb2) {
         this.getTechnique(0).getPass(0).setSceneBlend(sb1, sb2);
+        return this;
     }
 
     /**
@@ -264,6 +268,60 @@ public abstract class Material extends Resource {
             throw new IllegalArgumentException("No technique found for this index.");
         }
         return technique;
+    }
+
+    /**
+     * Shortcut for set emissive in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     * @param c Emissive color to set.
+     * @return This material for chaining.
+     */
+    public final Material setEmissive(Color c) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setEmissive(c)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set vertex program in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     * @param s Shader to set.
+     * @return This material for chaining.
+     */
+    public final Material setVertexProgram(VertexShader s) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setVertexProgram(s)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set fragment program in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     * @param s Shader to set.
+     * @return This material for chaining.
+     */
+    public final Material setFragmentProgram(FragmentShader s) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setFragmentProgram(s)));
+        return this;
     }
 
     /**
