@@ -45,15 +45,6 @@ public abstract class Window extends View {
     private static final int MINIMIZED_SIZE = 30;
 
     /**
-     * Default font name, used if no font is specified for the window.
-     */
-    private static String font = Font.getDefault().getName();
-
-    /**
-     * Default background material name for the title bar close button, used if no background is specified for the button.
-     */
-    private static ButtonMaterial titleClose = new ButtonMaterial(Material.empty(), Material.empty(), Font.get(Window.font));
-    /**
      * Full height, to use to resize after a minimize.
      */
     private final int initialHeight;
@@ -61,6 +52,8 @@ public abstract class Window extends View {
      * Associated title bar.
      */
     private final TitleBar titleBar;
+
+    private final Font font;
     /**
      * Current state of the panel.
      */
@@ -75,8 +68,8 @@ public abstract class Window extends View {
      * @param eventManager Associated event manager.
      * @param params  Parameter to build the window.
      */
-    public Window(final String name, final GuiBuilder builder, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
-        this(builder.buildOverlayContainer(name, Material.empty(), BaseCoordinate.ZERO), builder, z, eventManager, params);
+    public Window(final String name, final GuiBuilder builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
+        this(builder.buildOverlayContainer(name, Material.empty(), BaseCoordinate.ZERO), builder, font, z, eventManager, params);
     }
 
     /**
@@ -87,8 +80,8 @@ public abstract class Window extends View {
      * @param z         View Z position.
      * @param eventManager Associated event manager.
      */
-    public Window(final GuiContainer container, final GuiBuilder builder, final Zorder z, GuiEventManager eventManager) {
-        this(container, builder, z, eventManager, Parameter.NOTHING);
+    public Window(final GuiContainer container, final GuiBuilder builder, Font font, final Zorder z, GuiEventManager eventManager) {
+        this(container, builder,font, z, eventManager, Parameter.NOTHING);
     }
 
     /**
@@ -100,28 +93,20 @@ public abstract class Window extends View {
      * @param eventManager Associated event manager.
      * @param params    Parameter to build the window.
      */
-    public Window(final GuiContainer container, final GuiBuilder builder, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
+    public Window(final GuiContainer container, final GuiBuilder builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
         super(container, z, eventManager);
+        this.font = font;
         final List<Parameter> paramList = Arrays.asList(params);
         if (!paramList.contains(Parameter.NOT_MOVABLE)) {
             container.addMouseDragListener(new ContainerElementDragListener(container, new Rectangle(0, 0, builder.getScreenSize().width, builder.getScreenSize().height)));
         }
         this.state = ContainerState.OPEN;
         if (!paramList.contains(Parameter.NO_TITLE_BAR)) {
-            this.titleBar = new BasicTitleBar(builder);
+            this.titleBar = new BasicTitleBar(builder, font);
         } else {
             this.titleBar = new NoTitleBar();
         }
         this.initialHeight = container.getHeight();
-    }
-
-    /**
-     * Set a common title bar materials for all windows, only windows created after this method call will be affected. As this method can be called before the material are created.
-     *
-     * @param close Close button background material.
-     */
-    public static void setDefaultTitleBarMaterials(final ButtonMaterial close) {
-        Window.titleClose = close;
     }
 
     /**
@@ -200,13 +185,13 @@ public abstract class Window extends View {
          *
          * @param builder GUI builder.
          */
-        public BasicTitleBar(final GuiBuilder builder) {
+        public BasicTitleBar(final GuiBuilder builder, Font font) {
             super();
             this.height = Window.MINIMIZED_SIZE;
             final GuiContainer container = Window.this.getContainer();
-            this.title = builder.buildTextLine("title_" + Window.this.getName(), new Coordinates(Window.this.getContainer().getWidth(), 20, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), Font.get(Window.font), container);
+            this.title = builder.buildTextLine("title_" + Window.this.getName(), new Coordinates(Window.this.getContainer().getWidth(), 20, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), font, container);
             final Coordinates closeCoordinates = new Coordinates(this.height, this.height, Window.this.getContainer().getWidth() - this.height, 0);
-            this.close = builder.buildButton("close_" + Window.this.getName(), closeCoordinates, Window.titleClose, container);
+            this.close = builder.buildButton("close_" + Window.this.getName(), closeCoordinates, new ButtonMaterial(Material.empty(), Material.empty(), font), container);
             this.close.addMouseLeftClickListener(Window.this::hide);
         }
 

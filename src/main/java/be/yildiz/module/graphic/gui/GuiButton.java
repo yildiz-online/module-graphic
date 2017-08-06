@@ -228,9 +228,14 @@ public final class GuiButton extends ContainerChild implements Button {
     }
 
     @Override
+    public Font getInactiveFont() {
+        return this.materials.inactiveFont;
+    }
+
+    @Override
     public void setInactiveMaterial(final Material material) {
         ButtonMaterial old = this.materials;
-        this.materials = new ButtonMaterial(old.material, old.highlight, material, old.font);
+        this.materials = new ButtonMaterial(old.material, old.highlight, material, old.font, old.font);
 
     }
 
@@ -265,7 +270,7 @@ public final class GuiButton extends ContainerChild implements Button {
         if (this.materials.inactive.equals(this.materials.material)) {
             this.materials = new ButtonMaterial(material, old.highlight, old.font);
         } else {
-            this.materials = new ButtonMaterial(material, old.highlight, old.inactive, old.font);
+            this.materials = new ButtonMaterial(material, old.highlight, old.inactive, old.font, old.inactiveFont);
         }
         this.buttonContainer.setMaterial(material);
     }
@@ -273,7 +278,7 @@ public final class GuiButton extends ContainerChild implements Button {
     /**
      * @return The text printed as caption.
      */
-    public String getCaptiontext() {
+    public String getCaptionText() {
         return this.caption.getText();
     }
 
@@ -306,7 +311,7 @@ public final class GuiButton extends ContainerChild implements Button {
      */
     public void setHighlightMaterial(final Material material) {
         ButtonMaterial old = this.materials;
-        this.materials = new ButtonMaterial(old.material, material, old.inactive, old.font);
+        this.materials = new ButtonMaterial(old.material, material, old.inactive, old.font, old.inactiveFont);
 
     }
 

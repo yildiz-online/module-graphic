@@ -31,6 +31,8 @@ import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 
+import java.util.Optional;
+
 /**
  * @author Grégory Van den Borre
  */
@@ -41,7 +43,7 @@ public class BaseWidgetBuilder {
     private Coordinates coordinates = new Coordinates(BaseCoordinate.ZERO.width, BaseCoordinate.ZERO.height,
             BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top);
 
-    private Font font = Font.getDefault();
+    private Font font;
 
     private Material background = Material.empty();
 
@@ -94,7 +96,7 @@ public class BaseWidgetBuilder {
     }
 
     public Font getFont() {
-        return font;
+        return this.font;
     }
 
     public Material getBackground() {

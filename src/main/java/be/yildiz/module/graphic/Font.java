@@ -79,22 +79,12 @@ public abstract class Font extends Resource {
     }
 
     /**
-     * @return The default font.
-     */
-    public static Font getDefault() {
-        return get("default");
-    }
-
-    /**
      * Retrieve a Font from its name.
      *
      * @param name Font to retrieve.
      * @return The matching font.
      */
     public static Font get(final String name) {
-        if (name.isEmpty()) {
-            return Font.getDefault();
-        }
         return Font.REGISTERER.get(name);
     }
 

@@ -139,6 +139,8 @@ public interface Button extends ContainerElement {
 
     Material getInactiveMaterial();
 
+    Font getInactiveFont();
+
     /**
      * Set a material for the button when in inactive state. If no material is set, base material will be used.
      *

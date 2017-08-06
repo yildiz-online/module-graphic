@@ -33,7 +33,6 @@ import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.*;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Grégory Van den Borre
@@ -44,7 +43,15 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private ButtonMaterial material = new ButtonMaterial(Material.empty(), Material.empty(), Font.getDefault());
+    private Material material = Material.empty();
+
+    private Material highlight = Material.empty();
+
+    private Material inactive = Material.empty();
+
+    private Font inactiveFont;
+
+    private Font captionFont;
 
     private Element.PositionRelativeTop captionTopAlignment= Element.PositionRelativeTop.CENTER;
 
@@ -69,7 +76,11 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
 
     public ButtonBuilder fromOther(Button button) {
         this.base.withCoordinates(new Coordinates(button.getWidth(), button.getHeight(), button.getLeft(), button.getTop()));
-        this.material = new ButtonMaterial(button.getMaterial(), button.getHighlightMaterial(), button.getInactiveMaterial(), Optional.of(button.getCaptionFont()));
+        this.material = button.getMaterial();
+        this.highlight = button.getHighlightMaterial();
+        this.inactive = button.getInactiveMaterial();
+        this.captionFont = button.getCaptionFont();
+        this.inactiveFont = button.getInactiveFont();
         this.captionLeftAlignment = button.getCaptionHorizontalAlignment();
         this.captionLeftDistance = button.getCaptionHorizontalPadding();
         this.captionTopAlignment = button.getCaptionVerticalAlignment();
@@ -77,34 +88,11 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
         return this;
     }
 
-    public ButtonBuilder withMaterial(final Material m) {
-        this.material = new ButtonMaterial(m, this.material.highlight, this.material.inactive, this.material.font);
-        return this;
-    }
-
-    public ButtonBuilder withHighlightMaterial(final Material m) {
-        this.material = new ButtonMaterial(this.material.material, m, this.material.inactive, this.material.font);
-        return this;
-    }
-
-    public ButtonBuilder withInactiveMaterial(final Material m) {
-        this.material = new ButtonMaterial(this.material.material, this.material.highlight, m, this.material.font);
-        return this;
-    }
-
     public ButtonBuilder withButtonMaterial(final ButtonMaterial m) {
-        this.material = m;
-        return this;
-    }
+        this.material = m.material;
+        this.highlight = m.highlight;
+        this.inactive = m.inactive;
 
-    /**
-     * Provide a font to the button.
-     * @param font Button font.
-     * @return This object for chaining.
-     * @throws NullPointerException if font is null.
-     */
-    public ButtonBuilder withFont(final Font font) {
-        this.material = new ButtonMaterial(this.material.material, this.material.highlight, this.material.inactive, Optional.of(font));
         return this;
     }
 
@@ -175,7 +163,8 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
     }
 
     public Button build(final GuiContainer container) {
-        Button result = this.builder.buildButton(this.base.getName(), this.base.getCoordinates(), this.material, container);
+        ButtonMaterial bm = new ButtonMaterial(this.material, this.highlight, this.inactive, this.captionFont, this.inactiveFont);
+        Button result = this.builder.buildButton(this.base.getName(), this.base.getCoordinates(), bm, container);
         result.setCaptionTextLeftAlignement(this.captionLeftAlignment, this.captionLeftDistance);
         result.setCaptionTextTopAlignement(this.captionTopAlignment, this.captionTopDistance);
         this.animations.forEach(a -> {

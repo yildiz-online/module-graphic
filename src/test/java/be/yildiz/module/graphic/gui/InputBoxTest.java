@@ -23,9 +23,12 @@
 
 package be.yildiz.module.graphic.gui;
 
+import be.yildiz.common.Color;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.util.StringUtil;
+import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
+import be.yildiz.module.graphic.dummy.DummyFont;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,20 +37,23 @@ import org.junit.Test;
  */
 public class InputBoxTest {
 
-    private GuiBuilder builder = new DummyGuiBuilder();
+    private static GuiBuilder builder = new DummyGuiBuilder();
 
-    private GuiContainer parent = builder.buildContainerElement("parent", new Coordinates(100,10,0,0), Material.empty());
+    private static Font f = new DummyFont("f", 5, Color.BLACK);
+
+    private static GuiContainer parent = builder.buildContainerElement("parent", new Coordinates(100,10,0,0), Material.empty());
+
 
     @Test
     public void testGetText() {
-        InputBox box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        InputBox box = givenAnInputBox();
         Assert.assertEquals("", box.getText());
         builder.delete(box);
     }
 
     @Test
     public void testSetText() {
-        InputBox box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        InputBox box = givenAnInputBox();
         box.setText("abc");
         Assert.assertEquals("abc", box.getText());
         builder.delete(box);
@@ -55,7 +61,7 @@ public class InputBoxTest {
 
     @Test
     public void testRemoveChar() {
-        InputBox box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        InputBox box = givenAnInputBox();
         box.setText("abc");
         box.removeChar();
         Assert.assertEquals("ab", box.getText());
@@ -64,7 +70,7 @@ public class InputBoxTest {
 
     @Test
     public void testRemoveCharNoText() {
-        InputBox box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        InputBox box = givenAnInputBox();
         box.removeChar();
         Assert.assertEquals("", box.getText());
         builder.delete(box);
@@ -72,7 +78,7 @@ public class InputBoxTest {
 
     @Test
     public void testAddChar() {
-        InputBoxGui box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        InputBoxGui box = givenAnInputBox();
         box.addChar(65);
         Assert.assertEquals("A", box.getText());
         builder.delete(box);
@@ -80,7 +86,7 @@ public class InputBoxTest {
 
     @Test
     public void testPressKey() {
-        InputBoxGui box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        InputBoxGui box = givenAnInputBox();
         box.show();
         box.keyPressed('a');
         Assert.assertEquals("a", box.getText());
@@ -89,7 +95,7 @@ public class InputBoxTest {
 
     @Test
     public void testPressDeleteKey() {
-        InputBoxGui box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        InputBoxGui box = givenAnInputBox();
         box.show();
         box.keyPressed('b');
         box.keyPressed('c');
@@ -100,9 +106,16 @@ public class InputBoxTest {
 
     @Test
     public void testAddCharAboveLimit256() {
-        InputBoxGui box = builder.buildInputBox(StringUtil.buildRandomString("ib"), parent);
+        InputBoxGui box = givenAnInputBox();
         box.addChar(257);
         Assert.assertEquals("", box.getText());
         builder.delete(box);
+    }
+
+    private static InputBoxGui givenAnInputBox() {
+        Material m = Material.empty();
+        return builder
+                .buildInputBox(StringUtil.buildRandomString("ib"),
+                        Coordinates.ZERO, f, m, m, m, parent);
     }
 }

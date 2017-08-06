@@ -26,6 +26,8 @@ package be.yildiz.module.graphic.dummy;
 import be.yildiz.common.Color;
 import be.yildiz.module.graphic.Font;
 
+import java.util.Arrays;
+
 /**
  * @author Grégory Van den Borre
  */
@@ -39,12 +41,15 @@ public class DummyFont extends Font {
      * @param fontSize Font height.
      * @param color    Font color.
      */
-    protected DummyFont(String fontName, int fontSize, Color color) {
+    public DummyFont(String fontName, int fontSize, Color color) {
         super(fontName, fontSize, color);
+        this.load();
     }
 
     @Override
     protected void loadImpl() {
-        // does nothing.
+        float[] c = new float[512];
+        Arrays.fill(c, 1);
+        this.setCharWidth(c);
     }
 }

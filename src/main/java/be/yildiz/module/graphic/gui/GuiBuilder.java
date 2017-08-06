@@ -23,10 +23,7 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.Position;
-import be.yildiz.common.Size;
+import be.yildiz.common.*;
 import be.yildiz.common.util.Registerer;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
@@ -127,8 +124,8 @@ public abstract class GuiBuilder {
     public final GuiButton buildButton(final String name, final BaseCoordinate coordinates, final ButtonMaterial material, final GuiContainer container) {
         final GuiContainer c = this.buildOverlayContainer(name, Material.empty(), coordinates, container, true);
         final GuiButton button;
-        final Font font = material.font.orElse(Font.getDefault());
-        final AbstractTextElement text = this.buildTextElement(coordinates, font, c);
+        final AbstractTextElement text = this.buildTextElement(coordinates, material.font, c);
+
         button = new GuiButton(name, text, c, material, container);
         this.buttonList.register(button);
         return button;
@@ -471,22 +468,11 @@ public abstract class GuiBuilder {
         final AbstractIconElement cursor = this.buildIconElement(name + "_cursor", new Size(3, 20), cursorMaterial, c);
         GuiTextLine defaultMessage = this.buildTextLine(name + "_text", new Coordinates(coordinates.width, coordinates.height, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), defaultFont, container);
         defaultMessage.setStatic();
-        ButtonMaterial materials = new ButtonMaterial(background, backgroundHlight);
+        ButtonMaterial materials = new ButtonMaterial(background, backgroundHlight, captionFont);
         final InputBoxGui inputBox = new InputBoxGui(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, container);
         this.inputList.register(inputBox);
 
         return inputBox;
-    }
-
-    /**
-     * Build a new input box widget, all parameters are set to empty.
-     *
-     * @param name      Unique input box name.
-     * @param container Container holding the input box.
-     * @return The new input box widget.
-     */
-    public final InputBoxGui buildInputBox(final String name, final GuiContainer container) {
-        return this.buildInputBox(name, Coordinates.ZERO, Font.getDefault(), Material.empty(), Material.empty(), Material.empty(), container);
     }
 
     /**
@@ -500,7 +486,7 @@ public abstract class GuiBuilder {
      * @return The new input box widget.
      */
     public final InputBoxGui buildInputBox(final String name, final BaseCoordinate coordinates, final ButtonMaterial material, final Material cursorMaterial, final GuiContainer container) {
-        return this.buildInputBox(name, coordinates, material.font.get(), material.material, material.highlight, cursorMaterial, container);
+        return this.buildInputBox(name, coordinates, material.font, material.material, material.highlight, cursorMaterial, container);
     }
 
     /**
@@ -512,7 +498,7 @@ public abstract class GuiBuilder {
      * @return The new input box widget.
      */
     public final InputBoxGui buildInputBox(final Position position, final InputBoxTemplate def, final GuiContainer container) {
-        return this.buildInputBox(StringUtil.buildRandomString("inputbox"), new Coordinates(def.getSize(), position), def.getFont(), def.getMaterial(), def.getFocus(), def.getCursor(), container);
+        return this.buildInputBox(StringUtil.buildRandomString("inputbox"), new Coordinates(def.getSize(), position), def.getFont(), def.getCaptionFont(), def.getMaterial(), def.getFocus(), def.getCursor(), container);
     }
 
     public final InputBoxGui buildInputBox(String name, final Position position, final InputBoxTemplate def, final GuiContainer container) {

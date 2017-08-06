@@ -27,8 +27,6 @@ import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 
-import java.util.Optional;
-
 /**
  * Wrapper class providing different material data for a button.
  *
@@ -54,43 +52,12 @@ public class ButtonMaterial {
     /**
      * Caption font.
      */
-    public final Optional<Font> font;
+    public final Font font;
 
     /**
      * Caption font.
      */
-    public final Optional<Font> inactiveFont;
-
-    /**
-     * Full constructor.
-     *
-     * @param material Background material.
-     * @param hlight   Highlight material.
-     * @param inactive Inactive material.
-     */
-    public ButtonMaterial(final Material material, final Material hlight, final Material inactive) {
-        super();
-        this.material = material;
-        this.highlight = hlight;
-        this.inactive = inactive;
-        this.font = Optional.empty();
-        this.inactiveFont = Optional.empty();
-    }
-
-    /**
-     * Full constructor.
-     *
-     * @param material Background material.
-     * @param hlight   Highlight material.
-     */
-    public ButtonMaterial(final Material material, final Material hlight) {
-        super();
-        this.material = material;
-        this.highlight = hlight;
-        this.inactive = material;
-        this.font = Optional.empty();
-        this.inactiveFont = Optional.empty();
-    }
+    public final Font inactiveFont;
 
     public ButtonMaterial(final Material material, final Material hlight, final Font font) {
         super();
@@ -100,8 +67,8 @@ public class ButtonMaterial {
         this.material = material;
         this.highlight = hlight;
         this.inactive = material;
-        this.font = Optional.of(font);
-        this.inactiveFont = Optional.empty();
+        this.font = font;
+        this.inactiveFont = font;
     }
 
     public ButtonMaterial(final Material material, final Material hlight, final Material inactive, final Font font, final Font inactiveFont) {
@@ -114,33 +81,8 @@ public class ButtonMaterial {
         this.material = material;
         this.highlight = hlight;
         this.inactive = inactive;
-        this.font = Optional.of(font);
-        this.inactiveFont = Optional.of(inactiveFont);
-    }
-
-    public ButtonMaterial(final Material material, final Material hlight, final Material inactive, final Optional<Font> font) {
-        super();
-        assert material != null;
-        assert hlight != null;
-        assert font != null;
-        assert inactive != null;
-        this.material = material;
-        this.highlight = hlight;
-        this.inactive = inactive;
         this.font = font;
-        this.inactiveFont = Optional.empty();
-    }
-
-    public ButtonMaterial(final Material material, final Material hlight, final Optional<Font> font) {
-        super();
-        assert material != null;
-        assert hlight != null;
-        assert font != null;
-        this.material = material;
-        this.highlight = hlight;
-        this.inactive = material;
-        this.font = font;
-        this.inactiveFont = Optional.empty();
+        this.inactiveFont = inactiveFont;
     }
 
     /**
@@ -149,6 +91,7 @@ public class ButtonMaterial {
     public ButtonMaterial copy() {
         Material m = this.material.copy(StringUtil.buildRandomString(this.material.getName()));
         Material hl = this.highlight.copy(StringUtil.buildRandomString(this.highlight.getName()));
-        return new ButtonMaterial(m, hl);
+        Material i = this.inactive.copy(StringUtil.buildRandomString(this.inactive.getName()));
+        return new ButtonMaterial(m, hl, i, font, inactiveFont);
     }
 }
