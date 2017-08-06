@@ -31,28 +31,19 @@ import be.yildiz.common.Color;
  * @author Grégory Van den Borre
  */
 public final class ShaderParamColor {
-//FIXME LOW set public
     /**
      * Parameter name.
      */
-    private final String name;
+    public final String name;
 
     /**
      * Wrapped Color.
      */
-    private final Color color;
+    public final Color color;
 
     public ShaderParamColor(String name, Color color) {
         super();
         this.name = name;
         this.color = color;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Color getColor() {
-        return color;
     }
 }

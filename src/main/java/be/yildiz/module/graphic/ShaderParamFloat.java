@@ -29,27 +29,19 @@ package be.yildiz.module.graphic;
  * @author Grégory Van den Borre
  */
 public final class ShaderParamFloat {
-//FIXME LOW set public
+
     /**
      * Parameter name.
      */
-    private final String name;
+    public final String name;
 
     /**
      * Parameter value.
      */
-    private final float value;
+    public final float value;
 
     public ShaderParamFloat(String name, float value) {
         this.name = name;
         this.value = value;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public float getValue() {
-        return value;
     }
 }

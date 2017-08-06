@@ -23,10 +23,9 @@
 
 package be.yildiz.module.graphic;
 
-import java.util.Arrays;
-
 /**
- * A parameter for a shader, wrap a float[4].
+ * A parameter for a shader with 4 float values.
+ * Immutable class.
  *
  * @author Grégory Van den Borre
  */
@@ -35,12 +34,27 @@ public final class ShaderParamFloat4 {
     /**
      * Parameter name.
      */
-    private final String name;
+    public final String name;
 
     /**
-     * Parameter values.
+     * Parameter value 1.
      */
-    private final float[] values;
+    public final float value1;
+
+    /**
+     * Parameter value 2.
+     */
+    public final float value2;
+
+    /**
+     * Parameter value 3.
+     */
+    public final float value3;
+
+    /**
+     * Parameter value 4.
+     */
+    public final float value4;
 
     /**
      * Full constructor.
@@ -54,21 +68,9 @@ public final class ShaderParamFloat4 {
     public ShaderParamFloat4(final String name, final float v1, final float v2, final float v3, final float v4) {
         super();
         this.name = name;
-        this.values = new float[4];
-        this.values[0] = v1;
-        this.values[1] = v2;
-        this.values[2] = v3;
-        this.values[3] = v4;
-    }
-
-    /**
-     * @return The param values.
-     */
-    public float[] getValues() {
-        return Arrays.copyOf(this.values, this.values.length);
-    }
-
-    public String getName() {
-        return name;
+        this.value1 = v1;
+        this.value2 = v2;
+        this.value3 = v3;
+        this.value4 = v4;
     }
 }

@@ -307,6 +307,20 @@ public abstract class MaterialPass {
      *
      * @param param Parameter param.
      */
+    public abstract void setFragmentProgramParameter(ShaderParamFloat3 param);
+
+    /**
+     * Set the parameters for a fragment program.
+     *
+     * @param param Parameter param.
+     */
+    public abstract void setFragmentProgramParameter(ShaderParamFloat2 param);
+
+    /**
+     * Set the parameters for a fragment program.
+     *
+     * @param param Parameter param.
+     */
     public abstract void setFragmentProgramParameter(ShaderParamFloat param);
 
     /**
