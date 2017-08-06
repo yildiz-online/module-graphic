@@ -348,6 +348,41 @@ public abstract class MaterialPass {
     public abstract void setFragmentProgramParameterAuto(String name, ShaderConstantType auto, int param);
 
     /**
+     * Set the parameters for a vertex program.
+     *
+     * @param param Parameter param.
+     */
+    public abstract void setVertexProgramParameter(ShaderParamFloat4 param);
+
+    /**
+     * Set the parameters for a vertex program.
+     *
+     * @param param Parameter param.
+     */
+    public abstract void setVertexProgramParameter(ShaderParamFloat3 param);
+
+    /**
+     * Set the parameters for a vertex program.
+     *
+     * @param param Parameter param.
+     */
+    public abstract void setVertexProgramParameter(ShaderParamFloat2 param);
+
+    /**
+     * Set the parameters for a vertex program.
+     *
+     * @param param Parameter param.
+     */
+    public abstract void setVertexProgramParameter(ShaderParamFloat param);
+
+    /**
+     * Set the parameters for a fragment program.
+     *
+     * @param param Parameter param.
+     */
+    public abstract void setVertexProgramParameter(ShaderParamColor param);
+
+    /**
      * Set the auto parameters for a vertex program.
      *
      * @param name  Parameter name.
