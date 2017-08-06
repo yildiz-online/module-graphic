@@ -92,7 +92,8 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
         this.material = m.material;
         this.highlight = m.highlight;
         this.inactive = m.inactive;
-
+        this.captionFont = m.font;
+        this.inactiveFont = m.inactiveFont;
         return this;
     }
 
