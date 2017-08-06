@@ -26,6 +26,8 @@ package be.yildiz.module.graphic.gui;
 import be.yildiz.common.Color;
 import be.yildiz.common.Coordinates;
 import be.yildiz.common.exeption.UnhandledSwitchCaseException;
+import be.yildiz.common.translation.Key;
+import be.yildiz.common.translation.Translation;
 import be.yildiz.module.graphic.Font;
 
 import java.util.Optional;
@@ -73,6 +75,11 @@ public final class GuiTextLine extends ContainerChild implements TextLine {
             this.setTextPosition(this.textPosition);
         }
         return this;
+    }
+
+    @Override
+    public GuiTextLine setText(final Key key) {
+        return this.setText(Translation.getInstance().translate(key));
     }
 
 

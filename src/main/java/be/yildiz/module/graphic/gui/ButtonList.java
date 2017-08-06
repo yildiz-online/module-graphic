@@ -23,6 +23,7 @@
 
 package be.yildiz.module.graphic.gui;
 
+import be.yildiz.common.translation.Key;
 import be.yildiz.module.window.input.MouseLeftClickListener;
 
 /**
@@ -31,6 +32,8 @@ import be.yildiz.module.window.input.MouseLeftClickListener;
 public interface ButtonList extends ContainerElement {
 
     void addElement(String caption, MouseLeftClickListener listener);
+
+    void addElement(Key caption, MouseLeftClickListener listener);
 
     boolean isEmpty();
 }

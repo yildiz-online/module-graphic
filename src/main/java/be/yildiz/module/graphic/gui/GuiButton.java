@@ -23,6 +23,8 @@
 
 package be.yildiz.module.graphic.gui;
 
+import be.yildiz.common.translation.Key;
+import be.yildiz.common.translation.Translation;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 
@@ -132,6 +134,11 @@ public final class GuiButton extends ContainerChild implements Button {
     public GuiButton setCaptionText(final String text) {
         this.caption.setText(text);
         return this;
+    }
+
+    @Override
+    public GuiButton setCaptionText(final Key key) {
+        return this.setCaptionText(Translation.getInstance().translate(key));
     }
 
     /**

@@ -23,6 +23,8 @@
 
 package be.yildiz.module.graphic.gui;
 
+import be.yildiz.common.translation.Key;
+
 /**
  * @author Grégory Van den Borre
  */
@@ -35,6 +37,8 @@ public interface CheckBox extends ContainerElement {
      * @return This object for chaining.
      */
     CheckBox setCaptionText(String captionText);
+
+    CheckBox setCaptionText(Key captionText);
 
     @Override
     void detachFromParent();

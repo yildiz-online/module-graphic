@@ -24,6 +24,7 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.Color;
+import be.yildiz.common.translation.Key;
 import be.yildiz.module.graphic.Font;
 
 /**
@@ -38,6 +39,8 @@ public interface TextLine extends ContainerElement {
      * @return This object for chaining.
      */
     TextLine setText(String text);
+
+    TextLine setText(Key key);
 
     /**
      * Set the text to print.

@@ -23,6 +23,7 @@
 
 package be.yildiz.module.graphic.gui;
 
+import be.yildiz.common.translation.Key;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 
@@ -32,6 +33,8 @@ import be.yildiz.module.graphic.Material;
 public interface InputBox extends ContainerElement {
 
     InputBox setDefaultMessage(String message);
+
+    InputBox setDefaultMessage(Key message);
 
     /**
      * All characters written in the box will be hidden and replaced by the replacement character(default is '*').
@@ -84,12 +87,16 @@ public interface InputBox extends ContainerElement {
      */
     InputBox setText(String text);
 
+    InputBox setText(Key text);
+
     /**
      * Set the caption text.
      *
      * @param caption Text to set for the caption.
      */
     void setCaptionText(String caption);
+
+    void setCaptionText(Key caption);
 
     /**
      * Delete all the current contained text.

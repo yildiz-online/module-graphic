@@ -26,6 +26,8 @@ package be.yildiz.module.graphic.gui;
 import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Color;
 import be.yildiz.common.Size;
+import be.yildiz.common.translation.Key;
+import be.yildiz.common.translation.Translation;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
@@ -145,6 +147,11 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
     public void setCaptionText(final String caption) {
         this.captionText.setText(caption);
         this.captionText.setLeft(this.getLeft() - this.captionText.getTextWidth() - CAPTION_OFFSET);
+    }
+
+    @Override
+    public void setCaptionText(final Key caption) {
+        this.setCaptionText(Translation.getInstance().translate(caption));
     }
 
     /**
@@ -304,6 +311,11 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
     }
 
     @Override
+    public InputBoxGui setText(final Key newText) {
+        return this.setText(Translation.getInstance().translate(newText));
+    }
+
+    @Override
     protected Element setPositionImpl(final int left, final int top) {
         this.innerContainer.setPosition(left, top);
         //FIXME set top does not affect the position
@@ -351,6 +363,11 @@ public final class InputBoxGui extends ContainerChild implements InputBox {
     public InputBox setDefaultMessage(String message) {
         this.defaultMessage.setText(message);
         return this;
+    }
+
+    @Override
+    public InputBox setDefaultMessage(Key message) {
+        return this.setDefaultMessage(Translation.getInstance().translate(message));
     }
 
     @Override

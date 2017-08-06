@@ -32,6 +32,12 @@ import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.InputBoxGui.InputBoxTemplate;
+import be.yildiz.module.graphic.gui.button.ButtonBuilder;
+import be.yildiz.module.graphic.gui.checkbox.CheckBoxBuilder;
+import be.yildiz.module.graphic.gui.container.ContainerBuilder;
+import be.yildiz.module.graphic.gui.image.ImageBuilder;
+import be.yildiz.module.graphic.gui.textarea.TextAreaBuilder;
+import be.yildiz.module.graphic.gui.textline.TextLineBuilder;
 
 import java.util.Optional;
 
@@ -83,6 +89,30 @@ public abstract class GuiBuilder {
 
     protected GuiBuilder(Size screenSize) {
         this.screenSize = screenSize;
+    }
+
+    public final ContainerBuilder container() {
+        return new ContainerBuilder(this);
+    }
+
+    public final ButtonBuilder button() {
+        return new ButtonBuilder(this);
+    }
+
+    public final TextLineBuilder textLine() {
+        return new TextLineBuilder(this);
+    }
+
+    public final TextAreaBuilder textArea() {
+        return new TextAreaBuilder(this);
+    }
+
+    public final CheckBoxBuilder checkbox() {
+        return new CheckBoxBuilder(this);
+    }
+
+    public final ImageBuilder image() {
+        return new ImageBuilder(this);
     }
 
     /**
