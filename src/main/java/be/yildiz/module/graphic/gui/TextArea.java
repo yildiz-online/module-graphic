@@ -24,6 +24,7 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.Color;
+import be.yildiz.common.translation.Key;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 
@@ -38,6 +39,10 @@ public interface TextArea extends Element {
      * @param line Text line to add to the current text.
      */
     void addLine(String line);
+
+    void addLine(Key line);
+
+    void addLine(Key.MultiKey line);
 
     void detachFromParent();
 
@@ -77,4 +82,8 @@ public interface TextArea extends Element {
      * @param text Replace former text by a new one.
      */
     void replaceText(String text);
+
+    void replaceText(Key text);
+
+    void replaceText(Key.MultiKey text);
 }

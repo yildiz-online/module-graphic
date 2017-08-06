@@ -26,6 +26,8 @@ package be.yildiz.module.graphic.gui;
 import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Color;
 import be.yildiz.common.collections.Lists;
+import be.yildiz.common.translation.Key;
+import be.yildiz.common.translation.Translation;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 
@@ -85,6 +87,16 @@ public final class TextAreaGui extends ContainerChild implements TextArea {
         this.padding = padding;
         // force padding.
         this.setPosition(this.getLeft(), this.getTop());
+    }
+
+    @Override
+    public void addLine(final Key line) {
+        this.addLine(Translation.getInstance().translate(line));
+    }
+
+    @Override
+    public void addLine(final Key.MultiKey line) {
+        this.addLine(Translation.getInstance().translate(line));
     }
 
     @Override
@@ -221,6 +233,16 @@ public final class TextAreaGui extends ContainerChild implements TextArea {
         this.text.setText("");
         this.lines.clear();
         this.addLine(text);
+    }
+
+    @Override
+    public void replaceText(final Key text) {
+        this.replaceText(Translation.getInstance().translate(text));
+    }
+
+    @Override
+    public void replaceText(final Key.MultiKey text) {
+        this.replaceText(Translation.getInstance().translate(text));
     }
 
 

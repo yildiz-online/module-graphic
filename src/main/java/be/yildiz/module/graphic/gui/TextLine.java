@@ -42,6 +42,8 @@ public interface TextLine extends ContainerElement {
 
     TextLine setText(Key key);
 
+    TextLine setText(Key.MultiKey key);
+
     /**
      * Set the text to print.
      *

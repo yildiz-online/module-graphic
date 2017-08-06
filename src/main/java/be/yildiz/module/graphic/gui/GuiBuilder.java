@@ -515,6 +515,10 @@ public abstract class GuiBuilder {
         return this.buildInputBox(StringUtil.buildRandomString("inputbox"), new Coordinates(def.getSize(), position), def.getFont(), def.getMaterial(), def.getFocus(), def.getCursor(), container);
     }
 
+    public final InputBoxGui buildInputBox(String name, final Position position, final InputBoxTemplate def, final GuiContainer container) {
+        return this.buildInputBox(name, new Coordinates(def.getSize(), position), def.getFont(), def.getMaterial(), def.getFocus(), def.getCursor(), container);
+    }
+
     /**
      * Retrieve a InputBoxGui from its name, if no name matches, an {@link IllegalArgumentException} is thrown.
      *

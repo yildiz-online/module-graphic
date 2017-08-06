@@ -82,6 +82,10 @@ public final class GuiTextLine extends ContainerChild implements TextLine {
         return this.setText(Translation.getInstance().translate(key));
     }
 
+    @Override
+    public GuiTextLine setText(final Key.MultiKey key) {
+        return this.setText(Translation.getInstance().translate(key));
+    }
 
     @Override
     public GuiTextLine setText(final int message) {
