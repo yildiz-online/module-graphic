@@ -203,12 +203,32 @@ public abstract class MaterialPass {
         return this;
     }
 
-    public Transparency getTransparency() {
+    public final Transparency getTransparency() {
         return transparency;
     }
 
-    public BlendMode getBlendMode() {
+    public final BlendMode getBlendMode() {
         return blendMode;
+    }
+
+    /**
+     * Pass the view matrix to the 'viewMatrix' vertex shader parameter.
+     * This is refreshed every frame automatically.
+     * @return This object for chaining.
+     */
+    public final MaterialPass passViewMatrixToVertexShader() {
+        this.setVertexProgramParameterAuto("viewMatrix", ShaderConstantType.VIEW_MATRIX);
+        return this;
+    }
+
+    /**
+     * Pass the projection matrix to the 'projectionMatrix' vertex shader parameter.
+     * This is refreshed every frame automatically.
+     * @return This object for chaining.
+     */
+    public final MaterialPass passProjectionMatrixToVertexShader() {
+        this.setVertexProgramParameterAuto("projectionMatrix", ShaderConstantType.PROJECTION_MATRIX);
+        return this;
     }
 
     /**
