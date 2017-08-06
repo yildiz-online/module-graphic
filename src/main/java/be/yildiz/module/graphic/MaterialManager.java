@@ -38,6 +38,10 @@ import be.yildiz.module.graphic.TextureUnit.LayerBlendSource;
  */
 public final class MaterialManager {
 
+    private static final VertexProfileList DEFAULT_VERTEX_PROFILE = new VertexProfileList(Shader.VertexDx.VS_1_1, Shader.VertexGL.ARBVP1);
+
+    private static final FragmentProfileList DEFAULT_FRAGMENT_PROFILE = new FragmentProfileList(Shader.FragmentDx.PS_1_1, Shader.FragmentGL.ARBFP1);
+
     /**
      * Engine used to create materials.
      */
@@ -179,6 +183,30 @@ public final class MaterialManager {
      */
     public Material createGuiMaterial(final String path) {
         return this.loadSimpleTexture(path, Transparency.ALPHA).disableLight();
+    }
+
+    /**
+     * Create a new fragment (pixel) shader with 'main' as entry point and 'PS_1_1', 'ARBFP1' as profiles.
+     *
+     * @param name    Shader name.
+     * @param file    File containing the shader code.
+     * @return The built shader.
+     */
+    public FragmentShader createFragmentShader(final String name, final String file) {
+        Shader shader = this.engine.createFragmentShader(name, file, "main", DEFAULT_FRAGMENT_PROFILE);
+        return new FragmentShader(shader);
+    }
+
+    /**
+     * Create a new vertex shader with 'main' as entry point and 'VS_1_1', 'ARBVP1' as profiles.
+     *
+     * @param name    Shader name.
+     * @param file    File containing the shader code.
+     * @return The built shader.
+     */
+    public VertexShader createVertexShader(final String name, final String file) {
+        Shader shader = this.engine.createVertexShader(name, file, "main", DEFAULT_VERTEX_PROFILE);
+        return new VertexShader(shader);
     }
 
     /**
