@@ -235,21 +235,23 @@ public abstract class MaterialPass {
      * Set the transparent capability in implementation.
      *
      * @param capability Value to set.
+     * @return This object for chaining.
      */
-    protected abstract void setTransparentCapabilityImpl(final Transparency capability);
+    protected abstract MaterialPass setTransparentCapabilityImpl(final Transparency capability);
 
     /**
      * Set the blend mode in implementation.
      *
      * @param mode Mode to apply.
+     * @return This object for chaining.
      */
-    protected abstract void setBlendModeImpl(BlendMode mode);
+    protected abstract MaterialPass setBlendModeImpl(BlendMode mode);
 
     /**
      * Set the emissive color.
      *
      * @param color Color to set as emissive.
-     * @return This object.
+     * @return This object for chaining.
      */
     public abstract MaterialPass setEmissive(Color color);
 
@@ -281,62 +283,72 @@ public abstract class MaterialPass {
      * Set a shader fragment program to this pass.
      *
      * @param shader Shader to set.
+     * @return This object for chaining.
      */
-    public final void setFragmentProgram(final FragmentShader shader) {
+    public final MaterialPass setFragmentProgram(final FragmentShader shader) {
         this.setFragmentProgram(shader.getName());
+        return this;
     }
 
     /**
      * Set a shader fragment program to this pass.
      *
      * @param shader Shader to set.
+     * @return This object for chaining.
      */
-    public final void setVertexProgram(final VertexShader shader) {
+    public final MaterialPass setVertexProgram(final VertexShader shader) {
         this.setVertexProgram(shader.getName());
+        return this;
     }
 
     /**
      * Set the parameters for a fragment program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setFragmentProgramParameter(ShaderParamFloat4 param);
+    public abstract MaterialPass setFragmentProgramParameter(ShaderParamFloat4 param);
 
     /**
      * Set the parameters for a fragment program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setFragmentProgramParameter(ShaderParamFloat3 param);
+    public abstract MaterialPass setFragmentProgramParameter(ShaderParamFloat3 param);
 
     /**
      * Set the parameters for a fragment program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setFragmentProgramParameter(ShaderParamFloat2 param);
+    public abstract MaterialPass setFragmentProgramParameter(ShaderParamFloat2 param);
 
     /**
      * Set the parameters for a fragment program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setFragmentProgramParameter(ShaderParamFloat param);
+    public abstract MaterialPass setFragmentProgramParameter(ShaderParamFloat param);
 
     /**
      * Set the parameters for a fragment program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setFragmentProgramParameter(ShaderParamColor param);
+    public abstract MaterialPass setFragmentProgramParameter(ShaderParamColor param);
 
     /**
      * Set the auto parameters for a fragment program.
      *
      * @param name Parameter name.
      * @param auto Parameter automatically updated from graphic engine.
+     * @return This object for chaining.
      */
-    public abstract void setFragmentProgramParameterAuto(String name, ShaderConstantType auto);
+    public abstract MaterialPass setFragmentProgramParameterAuto(String name, ShaderConstantType auto);
 
     /**
      * Set the auto parameters for a fragment program.
@@ -344,43 +356,49 @@ public abstract class MaterialPass {
      * @param name  Parameter name.
      * @param auto  Parameter automatically updated from graphic engine.
      * @param param Additional parameter.
+     * @return This object for chaining.
      */
-    public abstract void setFragmentProgramParameterAuto(String name, ShaderConstantType auto, int param);
+    public abstract MaterialPass setFragmentProgramParameterAuto(String name, ShaderConstantType auto, int param);
 
     /**
      * Set the parameters for a vertex program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setVertexProgramParameter(ShaderParamFloat4 param);
+    public abstract MaterialPass setVertexProgramParameter(ShaderParamFloat4 param);
 
     /**
      * Set the parameters for a vertex program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setVertexProgramParameter(ShaderParamFloat3 param);
+    public abstract MaterialPass setVertexProgramParameter(ShaderParamFloat3 param);
 
     /**
      * Set the parameters for a vertex program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setVertexProgramParameter(ShaderParamFloat2 param);
+    public abstract MaterialPass setVertexProgramParameter(ShaderParamFloat2 param);
 
     /**
      * Set the parameters for a vertex program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setVertexProgramParameter(ShaderParamFloat param);
+    public abstract MaterialPass setVertexProgramParameter(ShaderParamFloat param);
 
     /**
      * Set the parameters for a fragment program.
      *
      * @param param Parameter param.
+     * @return This object for chaining.
      */
-    public abstract void setVertexProgramParameter(ShaderParamColor param);
+    public abstract MaterialPass setVertexProgramParameter(ShaderParamColor param);
 
     /**
      * Set the auto parameters for a vertex program.
@@ -388,16 +406,18 @@ public abstract class MaterialPass {
      * @param name  Parameter name.
      * @param auto  Parameter automatically updated from graphic engine.
      * @param param Additional parameter.
+     * @return This object for chaining.
      */
-    public abstract void setVertexProgramParameterAuto(String name, ShaderConstantType auto, int param);
+    public abstract MaterialPass setVertexProgramParameterAuto(String name, ShaderConstantType auto, int param);
 
     /**
      * Set the auto parameters for a vertex program.
      *
      * @param name Parameter name.
      * @param auto Parameter automatically updated from graphic engine.
+     * @return This object for chaining.
      */
-    public abstract void setVertexProgramParameterAuto(String name, ShaderConstantType auto);
+    public abstract MaterialPass setVertexProgramParameterAuto(String name, ShaderConstantType auto);
 
     /**
      * The transparency can be computed in different ways, they are exposed in
