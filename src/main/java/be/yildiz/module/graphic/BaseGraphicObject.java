@@ -23,12 +23,15 @@
 
 package be.yildiz.module.graphic;
 
+import be.yildiz.common.gameobject.Movable;
+import be.yildiz.common.vector.Point3D;
+
 /**
  * Base class for graphic objects.
  *
  * @author Grégory Van den Borre
  */
-public abstract class BaseGraphicObject implements ClientGameEntity {
+public abstract class BaseGraphicObject {
 
     /**
      * <true> If the object cast shadows.
@@ -56,7 +59,6 @@ public abstract class BaseGraphicObject implements ClientGameEntity {
     /**
      * Set the object visible on screen.
      */
-    @Override
     public final void show() {
         if (!this.visible) {
             this.visible = true;
@@ -67,7 +69,6 @@ public abstract class BaseGraphicObject implements ClientGameEntity {
     /**
      * Set the object not visible on screen.
      */
-    @Override
     public final void hide() {
         if (this.visible) {
             this.visible = false;
@@ -75,25 +76,21 @@ public abstract class BaseGraphicObject implements ClientGameEntity {
         }
     }
 
-    @Override
     public final BaseGraphicObject setCastShadow(final boolean cast) {
         this.castingShadow = cast;
         this.castShadowImpl(cast);
         return this;
     }
 
-    @Override
     public final boolean isCastingShadow() {
         return this.castingShadow;
     }
 
-    @Override
     public final boolean isVisible() {
         return this.visible;
     }
 
-    @Override
-    public final ClientGameEntity setMaterial(final Material newMaterial) {
+    public final BaseGraphicObject setMaterial(final Material newMaterial) {
         if (!newMaterial.equals(this.material)) {
             this.material = newMaterial;
             this.setMaterialImpl(newMaterial);
@@ -125,4 +122,46 @@ public abstract class BaseGraphicObject implements ClientGameEntity {
      * Hide the object in implementation.
      */
     protected abstract void hideImpl();
+
+    public abstract BaseGraphicObject setRenderBehind();
+
+    public abstract BaseGraphicObject setRenderingDistance(int distance);
+
+    public abstract Point3D getScaleSize();
+
+    public abstract BaseGraphicObject scale(float x, float y, float z);
+
+    public abstract void delete();
+
+    public abstract BaseGraphicObject setParameter(int index, float v1, float v2, float v3, float v4);
+
+    public abstract BaseGraphicObject setUnpickable();
+
+    public abstract void rotate(float yaw, float pitch);
+
+    public abstract void lookAt(Point3D target);
+
+    public abstract void rotate(float x, float y, float z, float w);
+
+    public abstract void setPosition(final Point3D pos);
+
+    public abstract Point3D getDirection();
+
+    public abstract void setAbsolutePosition(Point3D pos);
+
+    public abstract Point3D getAbsolutePosition();
+
+    public abstract Point3D getPosition();
+
+    public abstract void setDirection(Point3D newDirection);
+
+    public abstract void detach(Movable other);
+
+    public abstract void addChild(Movable other);
+
+    public abstract void attachToOptional(Movable other);
+
+    public abstract void attachTo(Movable other);
+
+    public abstract Point3D getAbsoluteDirection();
 }

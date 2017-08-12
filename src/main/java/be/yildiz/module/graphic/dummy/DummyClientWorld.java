@@ -36,77 +36,77 @@ import be.yildiz.module.graphic.*;
  */
 public class DummyClientWorld implements GraphicWorld {
     @Override
-    public ClientGameEntity createMovableDoodad(Box box, Material material) {
+    public BaseGraphicObject createMovableDoodad(Box box, Material material) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createMovableDoodad(Sphere sphere, Material material) {
+    public BaseGraphicObject createMovableDoodad(Sphere sphere, Material material) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createMovableDoodad(Plane plane, Material material) {
+    public BaseGraphicObject createMovableDoodad(Plane plane, Material material) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createMovableDoodad(GraphicMesh mesh) {
+    public BaseGraphicObject createMovableDoodad(GraphicMesh mesh) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createStaticDoodad(Box box, Material material, Point3D position, Point3D direction) {
+    public BaseGraphicObject createStaticDoodad(Box box, Material material, Point3D position, Point3D direction) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createStaticDoodad(Plane plane, Material material, Point3D position, Point3D direction) {
+    public BaseGraphicObject createStaticDoodad(Plane plane, Material material, Point3D position, Point3D direction) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createStaticDoodad(Sphere sphere, Material material, Point3D position, Point3D direction) {
+    public BaseGraphicObject createStaticDoodad(Sphere sphere, Material material, Point3D position, Point3D direction) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createStaticDoodad(Sphere sphere, Material material, Point3D position) {
+    public BaseGraphicObject createStaticDoodad(Sphere sphere, Material material, Point3D position) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createStaticDoodad(GraphicMesh mesh, Point3D position, Point3D direction) {
+    public BaseGraphicObject createStaticDoodad(GraphicMesh mesh, Point3D position, Point3D direction) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createStaticObject(EntityId id, Box box, Material material, Point3D position, Point3D direction) {
+    public BaseGraphicObject createStaticObject(EntityId id, Box box, Material material, Point3D position, Point3D direction) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createStaticObject(EntityId id, Sphere sphere, Material material, Point3D position, Point3D direction) {
+    public BaseGraphicObject createStaticObject(EntityId id, Sphere sphere, Material material, Point3D position, Point3D direction) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createStaticObject(EntityId id, GraphicMesh shape, Point3D position) {
+    public BaseGraphicObject createStaticObject(EntityId id, GraphicMesh shape, Point3D position) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createMovableObject(EntityId id, Box box, Material material, Point3D position) {
+    public BaseGraphicObject createMovableObject(EntityId id, Box box, Material material, Point3D position) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createMovableObject(EntityId id, Sphere sphere, Material material, Point3D position) {
+    public BaseGraphicObject createMovableObject(EntityId id, Sphere sphere, Material material, Point3D position) {
         return null;
     }
 
     @Override
-    public ClientGameEntity createMovableObject(EntityId id, GraphicMesh shape, Point3D position) {
+    public BaseGraphicObject createMovableObject(EntityId id, GraphicMesh shape, Point3D position) {
         return null;
     }
 
@@ -226,7 +226,7 @@ public class DummyClientWorld implements GraphicWorld {
     }
 
     @Override
-    public ClientGameEntity createStaticObject(EntityId id, GraphicMesh mesh, Point3D position, Point3D direction) {
+    public BaseGraphicObject createStaticObject(EntityId id, GraphicMesh mesh, Point3D position, Point3D direction) {
         return null;
     }
 }
