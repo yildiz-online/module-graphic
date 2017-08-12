@@ -289,12 +289,12 @@ public abstract class Material extends Resource {
     }
 
     /**
-     * Shortcut for set vertex program in technique 0, pass 0.
+     * Shortcut for set vertex shader in technique 0, pass 0.
      * If technique 0 pass 0 does not exist, nothing is done.
      * @param s Shader to set.
      * @return This material for chaining.
      */
-    public final Material setVertexProgram(VertexShader s) {
+    public final Material setVertexShader(VertexShader s) {
         this.techniqueList
                 .stream()
                 .findFirst()
@@ -302,17 +302,17 @@ public abstract class Material extends Resource {
                         t -> t.getPassList()
                                 .stream()
                                 .findFirst()
-                                .ifPresent(p -> p.setVertexProgram(s)));
+                                .ifPresent(p -> p.setVertexShader(s)));
         return this;
     }
 
     /**
-     * Shortcut for set fragment program in technique 0, pass 0.
+     * Shortcut for set fragment shader in technique 0, pass 0.
      * If technique 0 pass 0 does not exist, nothing is done.
      * @param s Shader to set.
      * @return This material for chaining.
      */
-    public final Material setFragmentProgram(FragmentShader s) {
+    public final Material setFragmentShader(FragmentShader s) {
         this.techniqueList
                 .stream()
                 .findFirst()
@@ -320,7 +320,279 @@ public abstract class Material extends Resource {
                         t -> t.getPassList()
                                 .stream()
                                 .findFirst()
-                                .ifPresent(p -> p.setFragmentProgram(s)));
+                                .ifPresent(p -> p.setFragmentShader(s)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set fragment shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setFragmentShaderParameter(ShaderParamFloat4 param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setFragmentShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set fragment shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setFragmentShaderParameter(ShaderParamFloat3 param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setFragmentShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set fragment shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setFragmentShaderParameter(ShaderParamFloat2 param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setFragmentShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set fragment shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setFragmentShaderParameter(ShaderParamFloat param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setFragmentShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set fragment shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setFragmentShaderParameter(ShaderParamColor param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setFragmentShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set fragment shader parameter auto in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param name Parameter name.
+     * @param auto  Parameter automatically updated from graphic engine.
+     * @return This material for chaining.
+     */
+    public final Material setFragmentShaderParameterAuto(String name, ShaderConstantType auto) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setFragmentShaderParameterAuto(name, auto)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set fragment shader parameter auto in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param name  Parameter name.
+     * @param auto  Parameter automatically updated from graphic engine.
+     * @param param Additional parameter.
+     * @return This material for chaining.
+     */
+    public final Material setFragmentShaderParameterAuto(String name, ShaderConstantType auto, int param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setFragmentShaderParameterAuto(name, auto, param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set vertex shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setVertexShaderParameter(ShaderParamFloat4 param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setVertexShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set vertex shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setVertexShaderParameter(ShaderParamFloat3 param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setVertexShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set vertex shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setVertexShaderParameter(ShaderParamFloat2 param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setVertexShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set vertex shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setVertexShaderParameter(ShaderParamFloat param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setVertexShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set vertex shader parameter in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param param Parameter param.
+     * @return This material for chaining.
+     */
+    public final Material setVertexShaderParameter(ShaderParamColor param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setVertexShaderParameter(param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set vertex shader parameter auto in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param name  Parameter name.
+     * @param auto  Parameter automatically updated from graphic engine.
+     * @param param Additional parameter.
+     * @return This material for chaining.
+     */
+    public final Material setVertexShaderParameterAuto(String name, ShaderConstantType auto, int param) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setVertexShaderParameterAuto(name, auto, param)));
+        return this;
+    }
+
+    /**
+     * Shortcut for set vertex shader parameter auto in technique 0, pass 0.
+     * If technique 0 pass 0 does not exist, nothing is done.
+     *
+     * @param name  Parameter name.
+     * @param auto  Parameter automatically updated from graphic engine.
+     * @return This material for chaining.
+     */
+    public final Material setVertexShaderParameterAuto(String name, ShaderConstantType auto) {
+        this.techniqueList
+                .stream()
+                .findFirst()
+                .ifPresent(
+                        t -> t.getPassList()
+                                .stream()
+                                .findFirst()
+                                .ifPresent(p -> p.setVertexShaderParameterAuto(name, auto)));
         return this;
     }
 

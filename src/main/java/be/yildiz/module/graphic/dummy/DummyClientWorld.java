@@ -34,7 +34,7 @@ import be.yildiz.module.graphic.*;
 /**
  * @author Grégory Van den Borre
  */
-public class DummyClientWorld implements ClientWorld {
+public class DummyClientWorld implements GraphicWorld {
     @Override
     public ClientGameEntity createMovableDoodad(Box box, Material material) {
         return null;

@@ -127,7 +127,7 @@ public interface GraphicEngine extends FpsProvider {
      * @param shadowType Type of the shadow to use.
      * @return The created GraphicWorld.
      */
-    GraphicWorld createGraphicWorld(String worldName, ShadowType shadowType);
+    SceneManager createGraphicWorld(String worldName, ShadowType shadowType);
 
     /**
      * Create a shader fragment type.
@@ -151,7 +151,7 @@ public interface GraphicEngine extends FpsProvider {
      */
     Shader createVertexShader(String name, String file, String entry, VertexProfileList profile);
 
-    ClientWorld createWorld();
+    GraphicWorld createWorld();
 
     Size getScreenSize();
 

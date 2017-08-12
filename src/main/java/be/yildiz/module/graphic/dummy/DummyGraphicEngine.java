@@ -124,7 +124,7 @@ public final class DummyGraphicEngine implements GraphicEngine {
     }
 
     @Override
-    public GraphicWorld createGraphicWorld(final String worldName, final ShadowType shadowType) {
+    public SceneManager createGraphicWorld(final String worldName, final ShadowType shadowType) {
         return null;
     }
 
@@ -144,7 +144,7 @@ public final class DummyGraphicEngine implements GraphicEngine {
     }
 
     @Override
-    public ClientWorld createWorld() {
+    public GraphicWorld createWorld() {
         return new DummyClientWorld();
     }
 
