@@ -24,44 +24,41 @@
 package be.yildiz.module.graphic;
 
 import be.yildiz.common.collections.Maps;
-import be.yildiz.common.collections.Sets;
+import be.yildiz.common.gameobject.Movable;
 import be.yildiz.common.id.EntityId;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.common.vector.Quaternion;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * A node is a movable object, all objects to move are attached to it.
  *
  * @author Grégry Van den Borre
  */
-public abstract class Node {
+public abstract class Node implements Movable {
 
     /**
      * List of nodes by Id.
      */
-    private static final Map<EntityId, Node> nodes = Maps.newMap();
+    private static final Map<EntityId, Movable> nodes = Maps.newMap();
 
-    private final Set<Node> childrenList = Sets.newSet();
-
-    private final Set<Node> optionalList = Sets.newSet();
     /**
      * Node unique Id, optional.
      */
     private final EntityId id;
-    private Node parent;
 
-    protected Node(final EntityId id, final Node parent) {
+    private Movable parent;
+
+    protected Node(final EntityId id, final Movable parent) {
         super();
         nodes.put(id, this);
         this.id = id;
         this.parent = parent;
     }
 
-    protected Node(final Node parent) {
+    protected Node(final Movable parent) {
         super();
         this.id = null;
         this.parent = parent;
@@ -73,7 +70,7 @@ public abstract class Node {
      * @param id Id to get.
      * @return The matching node.
      */
-    public static Node getById(final EntityId id) {
+    public static Movable getById(final EntityId id) {
         return nodes.get(id);
     }
 
@@ -94,7 +91,9 @@ public abstract class Node {
      *
      * @param scale Scale factor.
      */
-    public abstract void scale(float scale);
+    public final void scale(float scale) {
+        this.scale(scale, scale, scale);
+    }
 
     /**
      * Scale the node.
@@ -105,26 +104,6 @@ public abstract class Node {
      */
     public abstract void scale(float scaleX, float scaleY, float scaleZ);
 
-    /**
-     * Attach this node to an other.
-     *
-     * @param other Other node.
-     */
-    public final void attachTo(final Node other) {
-        this.parent.childrenList.remove(this);
-        other.childrenList.add(this);
-        this.parent = other;
-        this.attachToImpl(other);
-    }
-
-    protected abstract void attachToImpl(Node other);
-
-    public final void attachToOptional(final Node other) {
-        this.parent.optionalList.remove(this);
-        other.optionalList.add(this);
-        this.parent = other;
-        this.attachToImpl(other);
-    }
 
     /**
      * Translate the node in a direction.
@@ -162,7 +141,7 @@ public abstract class Node {
     /**
      * @return The node facing direction derivated from the parents.
      */
-    public abstract Point3D getWorldDirection();
+    public abstract Point3D getAbsoluteDirection();
 
     /**
      * Set the objects attached to the node visible or invisible.
@@ -215,26 +194,17 @@ public abstract class Node {
      * @return The position in the world, not the one relative to the parent.
      */
     public final Point3D getAbsolutePosition() {
-        return this.addPositions(this.getPosition());
+        return this.parent.getAbsolutePosition().add(this.getPosition());
     }
 
-    private Point3D addPositions(Point3D pos) {
-        return this.parent.addPositions(pos);
-    }
 
     /**
      * Delete the node and attached objects.
      */
     public final void delete() {
         Optional.ofNullable(this.id).ifPresent(nodes::remove);
-        this.optionalList.forEach(Node::detachFromParent);
-        this.childrenList.forEach(Node::delete);
-        this.optionalList.clear();
-        this.childrenList.clear();
         this.deleteImpl();
     }
-
-    protected abstract void detachFromParent();
 
     /**
      * Delete the node and attached objects.

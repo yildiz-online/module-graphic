@@ -29,7 +29,7 @@ import be.yildiz.common.vector.Point3D;
 /**
  * @author Grégory Van den Borre
  */
-public abstract class BaseMovable implements Movable, GraphicMovable {
+public abstract class BaseMovable implements Movable {
 
     /**
      * Wrapped node.
@@ -54,12 +54,12 @@ public abstract class BaseMovable implements Movable, GraphicMovable {
 
     @Override
     public final void attachTo(final Movable other) {
-        this.node.attachTo(((GraphicMovable) other).getNode());
+        this.node.attachTo(other);
     }
 
     @Override
     public final void attachToOptional(final Movable other) {
-        this.node.attachToOptional(((GraphicMovable) other).getNode());
+        this.node.attachToOptional(other);
     }
 
     @Override
@@ -89,7 +89,7 @@ public abstract class BaseMovable implements Movable, GraphicMovable {
 
     @Override
     public final Point3D getAbsoluteDirection() {
-        return this.node.getWorldDirection();
+        return this.node.getAbsoluteDirection();
     }
 
     @Override
@@ -97,10 +97,9 @@ public abstract class BaseMovable implements Movable, GraphicMovable {
         this.node.delete();
     }
 
-    @Override
-    public final Node getNode() {
-        return node;
-    }
+    //public final Node getNode() {
+    //    return node;
+    //}
 
     /**
      * Set the object visible.

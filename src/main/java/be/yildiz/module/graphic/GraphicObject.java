@@ -31,7 +31,7 @@ import be.yildiz.common.vector.Point3D;
  *
  * @author Grégory Van den Borre
  */
-public abstract class BaseGraphicObject {
+public abstract class GraphicObject {
 
     /**
      * <true> If the object cast shadows.
@@ -51,7 +51,7 @@ public abstract class BaseGraphicObject {
     /**
      * Simple constructor.
      */
-    protected BaseGraphicObject() {
+    protected GraphicObject() {
         super();
         this.visible = true;
     }
@@ -76,7 +76,7 @@ public abstract class BaseGraphicObject {
         }
     }
 
-    public final BaseGraphicObject setCastShadow(final boolean cast) {
+    public final GraphicObject setCastShadow(final boolean cast) {
         this.castingShadow = cast;
         this.castShadowImpl(cast);
         return this;
@@ -90,7 +90,7 @@ public abstract class BaseGraphicObject {
         return this.visible;
     }
 
-    public final BaseGraphicObject setMaterial(final Material newMaterial) {
+    public final GraphicObject setMaterial(final Material newMaterial) {
         if (!newMaterial.equals(this.material)) {
             this.material = newMaterial;
             this.setMaterialImpl(newMaterial);
@@ -123,19 +123,19 @@ public abstract class BaseGraphicObject {
      */
     protected abstract void hideImpl();
 
-    public abstract BaseGraphicObject setRenderBehind();
+    public abstract GraphicObject setRenderBehind();
 
-    public abstract BaseGraphicObject setRenderingDistance(int distance);
+    public abstract GraphicObject setRenderingDistance(int distance);
 
     public abstract Point3D getScaleSize();
 
-    public abstract BaseGraphicObject scale(float x, float y, float z);
+    public abstract GraphicObject scale(float x, float y, float z);
 
     public abstract void delete();
 
-    public abstract BaseGraphicObject setParameter(int index, float v1, float v2, float v3, float v4);
+    public abstract GraphicObject setParameter(int index, float v1, float v2, float v3, float v4);
 
-    public abstract BaseGraphicObject setUnpickable();
+    public abstract GraphicObject setUnpickable();
 
     public abstract void rotate(float yaw, float pitch);
 
