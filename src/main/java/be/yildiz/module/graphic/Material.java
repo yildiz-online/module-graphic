@@ -172,6 +172,7 @@ public abstract class Material extends Resource {
      * Add a technique with a glow texture.
      *
      * @param maskFile Texture mask to glow.
+     * @return This material for chaining.
      */
     public final Material addGlowTechnique(final String maskFile) {
         final MaterialTechnique glow = this.getTechnique(0);
@@ -186,6 +187,7 @@ public abstract class Material extends Resource {
      * Set the blend mode for the first technique, first pass.
      *
      * @param mode BlendMode to set.
+     * @return This material for chaining.
      */
     public final Material setBlendMode(final BlendMode mode) {
         for (MaterialTechnique t : this.techniqueList) {
@@ -201,6 +203,7 @@ public abstract class Material extends Resource {
      *
      * @param sb1 Blending first parameter.
      * @param sb2 Blending second parameter.
+     * @return This material for chaining.
      */
     public final Material setSceneBlend(final SceneBlend sb1, final SceneBlend sb2) {
         this.getTechnique(0).getPass(0).setSceneBlend(sb1, sb2);
@@ -210,7 +213,7 @@ public abstract class Material extends Resource {
     /**
      * The material will no longer be affected by light and will always be visible(useful for GUI elements...).
      *
-     * @return This object.
+     * @return This material for chaining.
      */
     public final Material disableLight() {
         for (MaterialTechnique t : this.techniqueList) {

@@ -64,6 +64,7 @@ public abstract class Window extends View {
      *
      * @param name    Container name.
      * @param builder GUI builder.
+     * @param font    Font to use.
      * @param z       View Z position.
      * @param eventManager Associated event manager.
      * @param params  Parameter to build the window.
@@ -77,6 +78,7 @@ public abstract class Window extends View {
      *
      * @param container Container to use for the window.
      * @param builder   GUI builder.
+     * @param font      Font to use.
      * @param z         View Z position.
      * @param eventManager Associated event manager.
      */
@@ -89,6 +91,7 @@ public abstract class Window extends View {
      *
      * @param container Container to use for the window.
      * @param builder   GUI builder.
+     * @param font      Font to use.
      * @param z         View Z position.
      * @param eventManager Associated event manager.
      * @param params    Parameter to build the window.
