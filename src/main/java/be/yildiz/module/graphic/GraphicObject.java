@@ -31,7 +31,7 @@ import be.yildiz.common.vector.Point3D;
  *
  * @author Grégory Van den Borre
  */
-public abstract class GraphicObject {
+public abstract class GraphicObject implements Movable{
 
     /**
      * <true> If the object cast shadows.
@@ -143,25 +143,4 @@ public abstract class GraphicObject {
 
     public abstract void rotate(float x, float y, float z, float w);
 
-    public abstract void setPosition(final Point3D pos);
-
-    public abstract Point3D getDirection();
-
-    public abstract void setAbsolutePosition(Point3D pos);
-
-    public abstract Point3D getAbsolutePosition();
-
-    public abstract Point3D getPosition();
-
-    public abstract void setDirection(Point3D newDirection);
-
-    public abstract void detach(Movable other);
-
-    public abstract void addChild(Movable other);
-
-    public abstract void attachToOptional(Movable other);
-
-    public abstract void attachTo(Movable other);
-
-    public abstract Point3D getAbsoluteDirection();
 }
