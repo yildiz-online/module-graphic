@@ -139,11 +139,6 @@ public abstract class Node implements Movable {
     }
 
     /**
-     * @return The node facing direction derivated from the parents.
-     */
-    public abstract Point3D getAbsoluteDirection();
-
-    /**
      * Set the objects attached to the node visible or invisible.
      *
      * @param visible <code>true</code> to set the objects attached to the node visible, false to hide them.
@@ -197,6 +192,10 @@ public abstract class Node implements Movable {
         return this.parent.getAbsolutePosition().add(this.getPosition());
     }
 
+    public final Point3D getAbsoluteDirection() {
+        //FIXME values should be normalized before being added together?
+        return this.parent.getAbsoluteDirection().add(this.getDirection());
+    }
 
     /**
      * Delete the node and attached objects.
