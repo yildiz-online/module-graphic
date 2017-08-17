@@ -42,7 +42,7 @@ public abstract class Node implements Movable {
     /**
      * List of nodes by Id.
      */
-    private static final Map<EntityId, Movable> nodes = Maps.newMap();
+    private static final Map<EntityId, Node> nodes = Maps.newMap();
 
     /**
      * Node unique Id, optional.
@@ -70,7 +70,7 @@ public abstract class Node implements Movable {
      * @param id Id to get.
      * @return The matching node.
      */
-    public static Movable getById(final EntityId id) {
+    public static Node getById(final EntityId id) {
         return nodes.get(id);
     }
 
