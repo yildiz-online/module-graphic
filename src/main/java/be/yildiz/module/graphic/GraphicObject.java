@@ -31,7 +31,7 @@ import be.yildiz.common.vector.Point3D;
  *
  * @author Grégory Van den Borre
  */
-public abstract class GraphicObject implements Movable{
+public abstract class GraphicObject implements Movable {
 
     /**
      * <true> If the object cast shadows.
