@@ -91,12 +91,22 @@ public class DummyClientWorld implements GraphicWorld {
     }
 
     @Override
+    public GraphicObject createStaticObject(EntityId id, Plane plane, Material material, Point3D position, Point3D direction) {
+        return null;
+    }
+
+    @Override
     public GraphicObject createStaticObject(EntityId id, GraphicMesh shape, Point3D position) {
         return null;
     }
 
     @Override
     public GraphicObject createMovableObject(EntityId id, Box box, Material material, Point3D position) {
+        return null;
+    }
+
+    @Override
+    public GraphicObject createMovableObject(EntityId id, Plane plane, Material material, Point3D position) {
         return null;
     }
 
