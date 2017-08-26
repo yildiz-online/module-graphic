@@ -25,7 +25,7 @@ package be.yildiz.module.graphic;
 
 import be.yildiz.common.Color;
 import be.yildiz.common.Size;
-import be.yildiz.common.resource.FileResource.FileType;
+import be.yildiz.common.resource.ResourcePath;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.graphic.gui.GuiBuilder;
@@ -56,11 +56,9 @@ public interface GraphicEngine extends FpsProvider {
     /**
      * Add a folder to use to load resources.
      *
-     * @param name Name of the resource group.
-     * @param path Path of the folder to scan.
-     * @param type Resource type.
+     * @param resource Data for the resources.
      */
-    void addResourcePath(String name, String path, FileType type);
+    void addResourcePath(ResourcePath resource);
 
     /**
      * Provide the module responsible to build GUI elements.

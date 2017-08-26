@@ -25,14 +25,14 @@ package be.yildiz.module.graphic.dummy;
 
 import be.yildiz.common.Color;
 import be.yildiz.common.Size;
-import be.yildiz.common.resource.FileResource.FileType;
+import be.yildiz.common.resource.ResourcePath;
 import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.*;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.graphic.gui.GuiBuilder;
-import be.yildiz.module.window.dummy.DummyWindowEngine;
 import be.yildiz.module.window.WindowEngine;
+import be.yildiz.module.window.dummy.DummyWindowEngine;
 
 /**
  * dummy implementation for graphic engine.
@@ -64,7 +64,7 @@ public final class DummyGraphicEngine implements GraphicEngine {
     }
 
     @Override
-    public void addResourcePath(final String name, final String path, final FileType type) {
+    public void addResourcePath(final ResourcePath resourcePath) {
         // does nothing.
     }
 
