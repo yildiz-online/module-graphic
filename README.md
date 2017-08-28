@@ -56,8 +56,9 @@ In your maven project, add the dependency
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-graphic</artifactId>
-    <version>2.0.1</version>
+    <version>LATEST</version>
 </dependency>
 ```
+Replace LATEST with the correct version.
 ## Contact
 Owner of this repository: Grégory Van den Borre
