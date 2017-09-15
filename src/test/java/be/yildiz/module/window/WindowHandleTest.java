@@ -23,18 +23,19 @@
 
 package be.yildiz.module.window;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Grégory Van den Borre
  */
-public class WindowHandleTest {
+class WindowHandleTest {
 
     @Test
-    public void testWindowHandle() {
+    void testWindowHandle() {
         WindowHandle h = new WindowHandle(17);
-        Assert.assertEquals(17, h.value);
+        assertEquals(17, h.value);
     }
 
 }

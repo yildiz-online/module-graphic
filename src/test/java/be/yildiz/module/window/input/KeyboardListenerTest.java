@@ -24,20 +24,21 @@
 
 package be.yildiz.module.window.input;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * @author Grégory Van den Borre
  */
-public class KeyboardListenerTest {
+class KeyboardListenerTest {
 
     @Test
-    public void testDefaultInterface() {
+    void testDefaultInterface() {
         KeyboardListener kb = (c) -> true;
-        Assert.assertFalse(kb.enterKeyPressed());
-        Assert.assertFalse(kb.deleteKeyPressed());
-        Assert.assertFalse(kb.arrowKeyPressed(ArrowKey.DOWN));
-        Assert.assertFalse(kb.numberPressed(0));
+        assertFalse(kb.enterKeyPressed());
+        assertFalse(kb.deleteKeyPressed());
+        assertFalse(kb.arrowKeyPressed(ArrowKey.DOWN));
+        assertFalse(kb.numberPressed(0));
     }
 }

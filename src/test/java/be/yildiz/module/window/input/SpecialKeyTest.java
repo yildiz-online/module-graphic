@@ -24,18 +24,20 @@
 
 package be.yildiz.module.window.input;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Grégory Van den Borre
  */
-public final class SpecialKeyTest {
+final class SpecialKeyTest {
 
     @Test
-    public void test() {
-        Assert.assertEquals(4, SpecialKey.values().length);
-        Assert.assertArrayEquals(new SpecialKey[]{SpecialKey.TAB, SpecialKey.CTRL, SpecialKey.ESC, SpecialKey.SHIFT}, SpecialKey.values());
+    void test() {
+        assertEquals(4, SpecialKey.values().length);
+        assertArrayEquals(new SpecialKey[]{SpecialKey.TAB, SpecialKey.CTRL, SpecialKey.ESC, SpecialKey.SHIFT}, SpecialKey.values());
     }
 
 }

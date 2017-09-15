@@ -24,15 +24,16 @@
 
 package be.yildiz.module.window.input;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Grégory Van den Borre
  */
-public class MouseLeftClickListenerTest {
+class MouseLeftClickListenerTest {
 
     @Test
-    public void testClickAt() {
+    void testClickAt() {
         MouseLeftClickListener l = () -> {};
         l.clickAt(MouseMoveMockFactory.get(10,10));
     }

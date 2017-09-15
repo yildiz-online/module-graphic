@@ -24,81 +24,74 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.util.Util;
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Grégory Van den Borre
  */
-public final class ZOrderTest {
-
-    @Rule
-    public final ExpectedException rule = ExpectedException.none();
+final class ZOrderTest {
 
     @Test
-    public void testHashCode() {
-        Assert.assertEquals(new Zorder(12).hashCode(), new Zorder(12).hashCode());
-        Assert.assertEquals(new Zorder(222).hashCode(), new Zorder(222).hashCode());
-        Assert.assertEquals(new Zorder(473).hashCode(), new Zorder(473).hashCode());
-        Assert.assertEquals(new Zorder(0).hashCode(), new Zorder(0).hashCode());
-        Assert.assertNotEquals(new Zorder(17).hashCode(), new Zorder(16).hashCode());
+    void testHashCode() {
+        assertEquals(new Zorder(12).hashCode(), new Zorder(12).hashCode());
+        assertEquals(new Zorder(222).hashCode(), new Zorder(222).hashCode());
+        assertEquals(new Zorder(473).hashCode(), new Zorder(473).hashCode());
+        assertEquals(new Zorder(0).hashCode(), new Zorder(0).hashCode());
+        assertNotEquals(new Zorder(17).hashCode(), new Zorder(16).hashCode());
     }
 
     @Test
-    public void testZorderMin() {
+    void testZorderMin() {
         new Zorder(0);
-        this.rule.expect(IllegalArgumentException.class);
-        new Zorder(-1);
+        assertThrows(IllegalArgumentException.class, () -> new Zorder(-1));
     }
 
     @Test
-    public void testZorderMax() {
+    void testZorderMax() {
         new Zorder(650);
-        this.rule.expect(IllegalArgumentException.class);
-        new Zorder(651);
+        assertThrows(IllegalArgumentException.class, () -> new Zorder(651));
     }
 
     @Test
-    public void testZorder() {
-        Assert.assertEquals(new Zorder(640), Zorder.GUI);
-        Assert.assertEquals(new Zorder(0), Zorder.ZERO);
+    void testZorder() {
+        assertEquals(new Zorder(640), Zorder.GUI);
+        assertEquals(new Zorder(0), Zorder.ZERO);
     }
 
     @Test
-    public void testAdd() {
-        Assert.assertEquals(new Zorder(10), new Zorder(3).add(7));
-        this.rule.expect(IllegalArgumentException.class);
-        new Zorder(10).add(650);
+    void testAdd() {
+        assertEquals(new Zorder(10), new Zorder(3).add(7));
+        assertThrows(IllegalArgumentException.class, () -> new Zorder(10).add(650));
     }
 
     @Test
-    public void testCompareTo() {
-        Assert.assertEquals(1, new Zorder(10).compareTo(new Zorder(11)));
-        Assert.assertEquals(0, new Zorder(8).compareTo(new Zorder(8)));
-        Assert.assertEquals(-1, new Zorder(200).compareTo(new Zorder(45)));
+    void testCompareTo() {
+        assertEquals(1, new Zorder(10).compareTo(new Zorder(11)));
+        assertEquals(0, new Zorder(8).compareTo(new Zorder(8)));
+        assertEquals(-1, new Zorder(200).compareTo(new Zorder(45)));
     }
 
     @Test
-    public void testToString() {
-        Assert.assertEquals("Z order:12", new Zorder(12).toString());
+    void testToString() {
+        assertEquals("Z order:12", new Zorder(12).toString());
     }
 
     @Test
-    public void testGetValue() {
-        Assert.assertEquals(17, new Zorder(17).getValue());
+    void testGetValue() {
+        assertEquals(17, new Zorder(17).getValue());
     }
 
     @Test
-    public void testEqualsObject() {
+    void testEqualsObject() {
         for (int i = 0; i < 100; i++) {
             int v = Util.getRandom(650);
-            Assert.assertEquals(new Zorder(v), new Zorder(v));
+            assertEquals(new Zorder(v), new Zorder(v));
         }
-        Assert.assertNotEquals(new Zorder(10), null);
-        Assert.assertNotEquals(new Zorder(10), new Zorder(11));
-        Assert.assertNotEquals(new Zorder(10), 10);
+        assertNotEquals(new Zorder(10), null);
+        assertNotEquals(new Zorder(10), new Zorder(11));
+        assertNotEquals(new Zorder(10), 10);
     }
 
 }

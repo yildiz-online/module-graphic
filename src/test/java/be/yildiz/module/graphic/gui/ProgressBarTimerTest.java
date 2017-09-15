@@ -24,47 +24,39 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.util.Time;
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Grégory Van den Borre
  */
-public class ProgressBarTimerTest {
-
-    @Rule
-    public final ExpectedException rule = ExpectedException.none();
+class ProgressBarTimerTest {
 
     @Test
-    public void test() {
+    void test() {
         ProgressBar b = Mockito.mock(ProgressBar.class);
         new ProgressBarTimer(b, Time.seconds(10));
-        this.rule.expect(AssertionError.class);
-        new ProgressBarTimer(null, Time.seconds(10));
-        this.rule.expect(AssertionError.class);
-        new ProgressBarTimer(b, null);
+        assertThrows(AssertionError.class, () -> new ProgressBarTimer(null, Time.seconds(10)));
+        assertThrows(AssertionError.class, () -> new ProgressBarTimer(b, null));
     }
 
     @Test
-    public void testNeverStop() {
+    void testNeverStop() {
         ProgressBar b = Mockito.mock(ProgressBar.class);
         ProgressBarTimer t = new ProgressBarTimer(b, Time.seconds(0));
-        Assert.assertFalse(t.frameEnded());
+        assertFalse(t.frameEnded());
         t.neverStop();
-        Assert.assertTrue(t.frameEnded());
+        assertTrue(t.frameEnded());
     }
 
     @Test
-    public void testSetValuesNegative() {
+    void testSetValuesNegative() {
         ProgressBar b = Mockito.mock(ProgressBar.class);
         ProgressBarTimer t = new ProgressBarTimer(b, Time.seconds(0));
-        Assert.assertFalse(t.frameEnded());
-        this.rule.expect(AssertionError.class);
-        t.setValues(-5, 10);
-        this.rule.expect(AssertionError.class);
-        t.setValues(5, -10);
+        assertFalse(t.frameEnded());
+        assertThrows(AssertionError.class, () -> t.setValues(-5, 10));
+        assertThrows(AssertionError.class, () -> t.setValues(5, -10));
     }
 }

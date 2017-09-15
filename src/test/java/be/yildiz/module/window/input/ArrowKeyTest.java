@@ -24,20 +24,21 @@
 
 package be.yildiz.module.window.input;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Grégory Van den Borre
  */
-public class ArrowKeyTest {
+class ArrowKeyTest {
 
     @Test
-    public void testKey() {
-        Assert.assertEquals(4, ArrowKey.values().length);
-        Assert.assertEquals(ArrowKey.UP, ArrowKey.values()[0]);
-        Assert.assertEquals(ArrowKey.DOWN, ArrowKey.values()[1]);
-        Assert.assertEquals(ArrowKey.LEFT, ArrowKey.values()[2]);
-        Assert.assertEquals(ArrowKey.RIGHT, ArrowKey.values()[3]);
+    void testKey() {
+        assertEquals(4, ArrowKey.values().length);
+        assertEquals(ArrowKey.UP, ArrowKey.values()[0]);
+        assertEquals(ArrowKey.DOWN, ArrowKey.values()[1]);
+        assertEquals(ArrowKey.LEFT, ArrowKey.values()[2]);
+        assertEquals(ArrowKey.RIGHT, ArrowKey.values()[3]);
     }
 }

@@ -29,13 +29,14 @@ import be.yildiz.common.util.StringUtil;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.dummy.DummyFont;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Grégory Van den Borre
  */
-public class InputBoxTest {
+class InputBoxTest {
 
     private static GuiBuilder builder = new DummyGuiBuilder();
 
@@ -45,70 +46,70 @@ public class InputBoxTest {
 
 
     @Test
-    public void testGetText() {
+    void testGetText() {
         InputBox box = givenAnInputBox();
-        Assert.assertEquals("", box.getText());
+        assertEquals("", box.getText());
         builder.delete(box);
     }
 
     @Test
-    public void testSetText() {
+    void testSetText() {
         InputBox box = givenAnInputBox();
         box.setText("abc");
-        Assert.assertEquals("abc", box.getText());
+        assertEquals("abc", box.getText());
         builder.delete(box);
     }
 
     @Test
-    public void testRemoveChar() {
+    void testRemoveChar() {
         InputBox box = givenAnInputBox();
         box.setText("abc");
         box.removeChar();
-        Assert.assertEquals("ab", box.getText());
+        assertEquals("ab", box.getText());
         builder.delete(box);
     }
 
     @Test
-    public void testRemoveCharNoText() {
+    void testRemoveCharNoText() {
         InputBox box = givenAnInputBox();
         box.removeChar();
-        Assert.assertEquals("", box.getText());
+        assertEquals("", box.getText());
         builder.delete(box);
     }
 
     @Test
-    public void testAddChar() {
+    void testAddChar() {
         InputBoxGui box = givenAnInputBox();
         box.addChar(65);
-        Assert.assertEquals("A", box.getText());
+        assertEquals("A", box.getText());
         builder.delete(box);
     }
 
     @Test
-    public void testPressKey() {
+    void testPressKey() {
         InputBoxGui box = givenAnInputBox();
         box.show();
         box.keyPressed('a');
-        Assert.assertEquals("a", box.getText());
+        assertEquals("a", box.getText());
         builder.delete(box);
     }
 
     @Test
-    public void testPressDeleteKey() {
+    void testPressDeleteKey() {
         InputBoxGui box = givenAnInputBox();
         box.show();
         box.keyPressed('b');
         box.keyPressed('c');
         box.deleteKeyPressed();
-        Assert.assertEquals("b", box.getText());
+        assertEquals("b", box.getText());
         builder.delete(box);
     }
 
     @Test
-    public void testAddCharAboveLimit256() {
+    void testAddCharAboveLimit256() {
         InputBoxGui box = givenAnInputBox();
         box.addChar(257);
-        Assert.assertEquals("", box.getText());
+        assertEquals("", box.getText());
         builder.delete(box);
     }
 

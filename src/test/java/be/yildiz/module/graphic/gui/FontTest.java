@@ -24,52 +24,53 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.module.graphic.Font;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.runners.Enclosed;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Grégory Van den Borre
  */
-@RunWith(Enclosed.class)
-public class FontTest {
+class FontTest {
 
-    public static class Crop {
+    @Nested
+    class Crop {
 
         @Test
-        public void nothing() {
+        void nothing() {
             Font f = DummyGuiBuilder.defaultFont;
             f.load();
-            Assert.assertEquals("azerty", f.crop("azerty", 10));
+            assertEquals("azerty", f.crop("azerty", 10));
         }
 
         @Test
-        public void tooLong() {
+        void tooLong() {
             Font f = DummyGuiBuilder.defaultFont;
             f.load();
-            Assert.assertEquals("a...", f.crop("azerty", 4));
+            assertEquals("a...", f.crop("azerty", 4));
         }
 
         @Test
-        public void tooShort() {
+        void tooShort() {
             Font f = DummyGuiBuilder.defaultFont;
             f.load();
-            Assert.assertEquals("", f.crop("azerty", 2));
+            assertEquals("", f.crop("azerty", 2));
         }
 
         @Test
-        public void tooLong3chars() {
+        void tooLong3chars() {
             Font f = DummyGuiBuilder.defaultFont;
             f.load();
-            Assert.assertEquals("...", f.crop("azerty", 3));
+            assertEquals("...", f.crop("azerty", 3));
         }
 
-        @Test(expected = NullPointerException.class)
-        public void withNullParameter() {
+        @Test
+        void withNullParameter() {
             Font f = DummyGuiBuilder.defaultFont;
             f.load();
-            f.crop(null, 3);
+            assertThrows(NullPointerException.class, () -> f.crop(null, 3));
         }
     }
 
