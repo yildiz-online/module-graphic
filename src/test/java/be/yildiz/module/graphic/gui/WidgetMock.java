@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Coordinates;
+import be.yildiz.module.coordinate.Coordinates;
 
 import java.util.Optional;
 

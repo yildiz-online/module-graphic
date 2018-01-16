@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.vector.Point3D;
+import be.yildizgames.common.geometry.Point3D;
 
 /**
  * A SpotLight is a light with a spot shape, emitting in a direction.

@@ -23,9 +23,9 @@
 
 package be.yildiz.module.graphic.gui.table;
 
-import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.gui.GuiContainer;
 import be.yildiz.module.graphic.gui.Widget;
+import be.yildizgames.common.collection.Lists;
 
 import java.util.List;
 

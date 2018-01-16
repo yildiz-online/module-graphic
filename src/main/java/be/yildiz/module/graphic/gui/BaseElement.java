@@ -23,11 +23,11 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.coordinate.BaseCoordinate;
 import be.yildiz.module.coordinate.Coordinates;
 import be.yildiz.module.coordinate.Relative;
 import be.yildiz.module.coordinate.Size;
+import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.util.BaseRegisterable;
 
 /**
@@ -140,7 +140,7 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
                 this.setLeft(other.getLeft() + diff);
                 break;
             default:
-                throw new IllegalArgumentException(relative);
+                throw new IllegalArgumentException(relative + " is not a valid option.");
         }
         return this;
     }
@@ -227,7 +227,7 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
                 this.setTop(other.getBottom() - this.height + diff);
                 break;
             default:
-                throw new IllegalArgumentException(relative);
+                throw new IllegalArgumentException(relative + " is not a valid option.");
         }
         return this;
     }

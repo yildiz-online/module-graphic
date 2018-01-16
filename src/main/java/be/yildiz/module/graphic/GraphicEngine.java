@@ -23,13 +23,13 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.Size;
-import be.yildiz.common.resource.ResourcePath;
+import be.yildiz.module.color.Color;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.graphic.gui.GuiBuilder;
 import be.yildiz.module.window.WindowEngine;
+import be.yildizgames.common.file.ResourcePath;
 
 /**
  * Behavior for a graphic engine. Specification: The engine must be able to load resources, show a sky box, show the GUI, move and rotate 3d meshes.

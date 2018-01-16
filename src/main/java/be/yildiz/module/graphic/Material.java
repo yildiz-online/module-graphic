@@ -23,13 +23,13 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.resource.Resource;
+import be.yildiz.module.color.Color;
 import be.yildiz.module.graphic.MaterialPass.BlendMode;
 import be.yildiz.module.graphic.MaterialPass.SceneBlend;
 import be.yildiz.module.graphic.MaterialPass.Transparency;
 import be.yildizgames.common.collection.Lists;
 import be.yildizgames.common.util.Registerer;
+import be.yildizgames.common.util.Resource;
 
 import java.util.List;
 

@@ -23,7 +23,8 @@
 
 package be.yildiz.module.graphic;
 
-import javafx.geometry.Point3D;
+
+import be.yildizgames.common.geometry.Point3D;
 
 /**
  * A lens flare is composed of 3 Material moving when the camera moves.

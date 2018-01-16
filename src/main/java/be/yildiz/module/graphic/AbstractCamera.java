@@ -23,13 +23,13 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Rectangle;
-import be.yildiz.common.collections.Lists;
-import be.yildiz.common.id.EntityId;
-import be.yildiz.common.util.BaseRegisterable;
-import be.yildiz.common.vector.Axis;
-import be.yildiz.common.vector.Point2D;
-import be.yildiz.common.vector.Point3D;
+import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.geometry.Axis;
+import be.yildizgames.common.geometry.Point2D;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.geometry.Rectangle;
+import be.yildizgames.common.model.EntityId;
+import be.yildizgames.common.util.BaseRegisterable;
 
 import java.util.List;
 import java.util.Optional;

@@ -23,12 +23,12 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Rectangle;
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.coordinate.BaseCoordinate;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.window.input.MousePosition;
 import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.geometry.Point2D;
+import be.yildizgames.common.geometry.Rectangle;
 
 import java.util.List;
 import java.util.Optional;

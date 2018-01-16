@@ -23,10 +23,10 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.collections.Lists;
-import be.yildiz.common.collections.Maps;
-import be.yildiz.common.framelistener.EndFrameListener;
-import be.yildiz.common.vector.Point3D;
+import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.collection.Maps;
+import be.yildizgames.common.frame.EndFrameListener;
+import be.yildizgames.common.geometry.Point3D;
 
 import java.util.List;
 import java.util.Map;

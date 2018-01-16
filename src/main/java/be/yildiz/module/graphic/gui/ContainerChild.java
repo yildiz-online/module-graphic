@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Rectangle;
 import be.yildiz.module.coordinate.BaseCoordinate;
+import be.yildizgames.common.geometry.Rectangle;
 
 import java.util.Optional;
 

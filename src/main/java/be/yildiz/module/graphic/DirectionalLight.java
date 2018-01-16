@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.vector.Point3D;
+import be.yildizgames.common.geometry.Point3D;
 
 /**
  * A direction light is like a cylinder of light, it has a position and a direction.

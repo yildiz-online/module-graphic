@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.collections.Lists;
-import be.yildiz.common.framelistener.EndFrameListener;
+import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.frame.EndFrameListener;
 
 import java.util.List;
 

@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Rectangle;
 import be.yildiz.module.window.input.*;
+import be.yildizgames.common.geometry.Rectangle;
 
 /**
  * @author Grégory Van den Borre

@@ -23,11 +23,11 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.collections.Maps;
-import be.yildiz.common.gameobject.Movable;
-import be.yildiz.common.id.EntityId;
-import be.yildiz.common.vector.Point3D;
-import be.yildiz.common.vector.Quaternion;
+import be.yildizgames.common.collection.Maps;
+import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.geometry.Quaternion;
+import be.yildizgames.common.model.EntityId;
 
 import java.util.Map;
 import java.util.Optional;

@@ -23,9 +23,9 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Color;
 import be.yildiz.common.translation.Key;
 import be.yildiz.common.translation.Translation;
+import be.yildiz.module.color.Color;
 import be.yildiz.module.coordinate.Coordinates;
 import be.yildiz.module.graphic.Font;
 
@@ -156,7 +156,7 @@ public final class GuiTextLine extends ContainerChild implements TextLine {
                 this.setLeft(this.getLeft());
             }
         } else {
-            throw new IllegalArgumentException(textPosition);
+            throw new IllegalArgumentException(textPosition + " is not a valid option.");
         }
         return this;
     }

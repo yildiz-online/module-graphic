@@ -23,10 +23,10 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Rectangle;
-import be.yildiz.common.collections.Lists;
 import be.yildiz.module.window.input.MouseDragListener;
 import be.yildiz.module.window.input.MousePosition;
+import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.geometry.Rectangle;
 
 import java.util.List;
 

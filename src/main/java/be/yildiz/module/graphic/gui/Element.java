@@ -23,11 +23,11 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.coordinate.BaseCoordinate;
 import be.yildiz.module.coordinate.Coordinates;
 import be.yildiz.module.coordinate.Relative;
 import be.yildiz.module.coordinate.Size;
+import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.util.Registerable;
 
 /**

@@ -23,11 +23,11 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.Rectangle;
+import be.yildiz.module.coordinate.BaseCoordinate;
+import be.yildiz.module.coordinate.Coordinates;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
+import be.yildizgames.common.geometry.Rectangle;
 
 import java.util.Arrays;
 import java.util.List;

@@ -23,10 +23,10 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.gameobject.Deletable;
 import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.util.BaseRegisterable;
-import javafx.geometry.Point3D;
+import be.yildizgames.common.util.Deletable;
 
 import java.util.List;
 

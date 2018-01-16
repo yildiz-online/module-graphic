@@ -23,12 +23,12 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.util.StringUtil;
+import be.yildiz.module.color.Color;
+import be.yildiz.module.coordinate.Coordinates;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.dummy.DummyFont;
+import be.yildizgames.common.util.StringUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

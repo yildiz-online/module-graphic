@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.resource.Resource;
+import be.yildizgames.common.util.Resource;
 
 /**
  * A skybox is cube enclosing the scene to show a textured background in every direction. This class contains the path to load the data.

@@ -24,10 +24,10 @@
 package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.client.debug.DebugListener;
-import be.yildiz.common.collections.Sets;
 import be.yildiz.module.window.input.ArrowKey;
 import be.yildiz.module.window.input.MousePosition;
 import be.yildiz.module.window.input.SpecialKey;
+import be.yildizgames.common.collection.Sets;
 
 import java.util.Optional;
 import java.util.Set;

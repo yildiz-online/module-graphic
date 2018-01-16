@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.vector.Point3D;
+import be.yildizgames.common.geometry.Point3D;
 
 /**
  * An animation will run during a given time at a given position.

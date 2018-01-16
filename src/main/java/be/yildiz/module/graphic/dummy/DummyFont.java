@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic.dummy;
 
-import be.yildiz.common.Color;
+import be.yildiz.module.color.Color;
 import be.yildiz.module.graphic.Font;
 
 import java.util.Arrays;

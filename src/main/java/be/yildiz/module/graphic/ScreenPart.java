@@ -23,10 +23,10 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Size;
-import be.yildiz.common.util.Checker;
-import be.yildiz.common.vector.Point3D;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.window.input.MousePosition;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.util.Checker;
 
 /**
  * Different virtual part of the screen.

@@ -23,9 +23,10 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.util.Time;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,15 +38,15 @@ class ProgressBarTimerTest {
     @Test
     void test() {
         ProgressBar b = Mockito.mock(ProgressBar.class);
-        new ProgressBarTimer(b, Time.seconds(10));
-        assertThrows(AssertionError.class, () -> new ProgressBarTimer(null, Time.seconds(10)));
+        new ProgressBarTimer(b, Duration.ofSeconds(10));
+        assertThrows(AssertionError.class, () -> new ProgressBarTimer(null, Duration.ofSeconds(10)));
         assertThrows(AssertionError.class, () -> new ProgressBarTimer(b, null));
     }
 
     @Test
     void testNeverStop() {
         ProgressBar b = Mockito.mock(ProgressBar.class);
-        ProgressBarTimer t = new ProgressBarTimer(b, Time.seconds(0));
+        ProgressBarTimer t = new ProgressBarTimer(b, Duration.ofSeconds(0));
         assertFalse(t.frameEnded());
         t.neverStop();
         assertTrue(t.frameEnded());
@@ -54,7 +55,7 @@ class ProgressBarTimerTest {
     @Test
     void testSetValuesNegative() {
         ProgressBar b = Mockito.mock(ProgressBar.class);
-        ProgressBarTimer t = new ProgressBarTimer(b, Time.seconds(0));
+        ProgressBarTimer t = new ProgressBarTimer(b, Duration.ofSeconds(0));
         assertFalse(t.frameEnded());
         assertThrows(AssertionError.class, () -> t.setValues(-5, 10));
         assertThrows(AssertionError.class, () -> t.setValues(5, -10));

@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Rectangle;
+import be.yildizgames.common.geometry.Rectangle;
 
 /**
  * A visual rectangle, usually used for selection.

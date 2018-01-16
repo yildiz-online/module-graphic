@@ -23,13 +23,13 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.util.StringUtil;
+import be.yildiz.module.color.Color;
 import be.yildiz.module.graphic.MaterialPass.Transparency;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.graphic.TextureUnit.LayerBlendOperationEx;
 import be.yildiz.module.graphic.TextureUnit.LayerBlendSource;
+import be.yildizgames.common.util.StringUtil;
 
 /**
  * Manage the construction of materials.

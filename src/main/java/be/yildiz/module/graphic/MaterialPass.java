@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Color;
+import be.yildiz.module.color.Color;
 import be.yildizgames.common.collection.Lists;
 
 import java.util.List;

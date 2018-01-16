@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic.gui.textline;
 
-import be.yildiz.common.util.ManualElapsedTimeComputer;
+import be.yildizgames.common.time.ManualElapsedTimeComputer;
 
 /**
  * @author Grégory Van den Borre

@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.collections.Lists;
 import be.yildiz.module.graphic.ParticleEmitter.EmitterType;
+import be.yildizgames.common.collection.Lists;
 
 import java.util.List;
 

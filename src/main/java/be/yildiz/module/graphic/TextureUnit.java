@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Color;
+import be.yildiz.module.color.Color;
 
 /**
  * A texture unit is the base part of a material.

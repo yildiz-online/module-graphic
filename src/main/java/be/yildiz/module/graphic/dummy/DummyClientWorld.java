@@ -23,13 +23,13 @@
 
 package be.yildiz.module.graphic.dummy;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.id.EntityId;
-import be.yildiz.common.shape.Box;
-import be.yildiz.common.shape.Plane;
-import be.yildiz.common.shape.Sphere;
-import be.yildiz.common.vector.Point3D;
+import be.yildiz.module.color.Color;
 import be.yildiz.module.graphic.*;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.model.EntityId;
+import be.yildizgames.common.shape.Box;
+import be.yildizgames.common.shape.Plane;
+import be.yildizgames.common.shape.Sphere;
 
 /**
  * @author Grégory Van den Borre

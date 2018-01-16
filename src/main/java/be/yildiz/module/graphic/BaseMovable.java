@@ -23,13 +23,14 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.gameobject.Movable;
-import be.yildiz.common.vector.Point3D;
+import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.util.Deletable;
 
 /**
  * @author Grégory Van den Borre
  */
-public abstract class BaseMovable implements Movable {
+public abstract class BaseMovable implements Movable, Deletable {
 
     /**
      * Wrapped node.

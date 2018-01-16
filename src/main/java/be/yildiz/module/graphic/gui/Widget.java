@@ -23,16 +23,15 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Rectangle;
-import be.yildiz.common.exeption.UnhandledSwitchCaseException;
-import be.yildiz.common.util.Checker;
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.module.coordinate.BaseCoordinate;
 import be.yildiz.module.coordinate.Coordinates;
 import be.yildiz.module.window.input.*;
 import be.yildizgames.common.collection.Lists;
 import be.yildizgames.common.collection.Maps;
 import be.yildizgames.common.collection.Sets;
+import be.yildizgames.common.geometry.Point2D;
+import be.yildizgames.common.geometry.Rectangle;
+import be.yildizgames.common.util.Checker;
 
 import java.util.List;
 import java.util.Map;
@@ -547,7 +546,7 @@ public abstract class Widget extends BaseElement implements WidgetElement {
             this.addToLeft(-this.getWidth() >> 1);
             this.addToTop(-this.getHeight() >> 1);
         } else {
-            throw new UnhandledSwitchCaseException(alignment);
+            throw new IllegalArgumentException(alignment + " is not a valid option.");
         }
     }
 

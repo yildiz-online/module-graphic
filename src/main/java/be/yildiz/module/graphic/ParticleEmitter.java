@@ -23,9 +23,9 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.util.Util;
-import be.yildiz.common.vector.Point3D;
+import be.yildiz.module.color.Color;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.util.Util;
 
 /**
  * Emitter for a particle system.

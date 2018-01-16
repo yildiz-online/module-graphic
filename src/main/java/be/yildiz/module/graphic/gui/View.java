@@ -23,11 +23,11 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.util.BaseRegisterable;
-import be.yildiz.common.util.Registerer;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.Visible;
 import be.yildiz.module.window.input.*;
+import be.yildizgames.common.util.BaseRegisterable;
+import be.yildizgames.common.util.Registerer;
 
 import java.util.Optional;
 

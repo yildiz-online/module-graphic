@@ -23,9 +23,9 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.Size;
+import be.yildiz.module.coordinate.BaseCoordinate;
+import be.yildiz.module.coordinate.Coordinates;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.container.ContainerBuilder;
 import be.yildiz.module.window.input.MouseMoveMockFactory;

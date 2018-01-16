@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.vector.Point3D;
+import be.yildiz.module.color.Color;
+import be.yildizgames.common.geometry.Point3D;
 
 /**
  * A billboard is a plane always facing the camera.

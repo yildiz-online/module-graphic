@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.vector.Point3D;
+import be.yildiz.module.color.Color;
+import be.yildizgames.common.geometry.Point3D;
 
 /**
  * Text to position in 3D world.

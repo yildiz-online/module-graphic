@@ -23,10 +23,10 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.vector.Point3D;
+import be.yildiz.module.color.Color;
 import be.yildiz.module.graphic.AbstractParticleSystem.Orientation;
 import be.yildiz.module.graphic.ParticleEmitter.EmitterType;
+import be.yildizgames.common.geometry.Point3D;
 
 /**
  * Explosion animation.

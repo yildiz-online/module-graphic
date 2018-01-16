@@ -23,14 +23,14 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.Position;
-import be.yildiz.common.Size;
-import be.yildiz.common.collections.Lists;
+import be.yildiz.module.coordinate.Coordinates;
+import be.yildiz.module.coordinate.Position;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.gui.container.ContainerBuilder;
 import be.yildiz.module.window.input.MouseLeftClickListener;
 import be.yildiz.module.window.input.MouseMoveMockFactory;
 import be.yildiz.module.window.input.MousePosition;
+import be.yildizgames.common.collection.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

@@ -23,12 +23,12 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.framelistener.EndFrameListener;
-import be.yildiz.common.util.Checker;
-import be.yildiz.common.util.StringUtil;
-import be.yildiz.common.util.Time;
+import be.yildiz.module.graphic.gui.textline.EmptyTimeTextLine;
+import be.yildiz.module.graphic.gui.textline.TimeTextLine;
+import be.yildizgames.common.frame.EndFrameListener;
+import be.yildizgames.common.util.Checker;
 
-import java.util.Optional;
+import java.time.Duration;
 
 /**
  * Update a ProgressBar over the time.
@@ -41,14 +41,12 @@ public final class ProgressBarTimer extends EndFrameListener {
      * Progress bar to update.
      */
     private final ProgressBar bar;
+
     /**
      * Text line to print the current progress.
      */
-    private final Optional<GuiTextLine> text;
-    /**
-     * Associated message.
-     */
-    private final Optional<String> message;
+    private final TimeTextLine text;
+
     /**
      * Total time to use from start to complete.
      */
@@ -59,17 +57,6 @@ public final class ProgressBarTimer extends EndFrameListener {
     private long elapsedTime;
     private boolean neverStop = false;
 
-    /**
-     * Full constructor, will update the progress bar and print the remaining time.
-     *
-     * @param bar     Associated progress bar.
-     * @param text    Widget where result will be printed.
-     * @param message Message to print.
-     * @param time    Total time to complete the bar.
-     */
-    public ProgressBarTimer(final ProgressBar bar, final GuiTextLine text, final String message, final Time time) {
-        this(bar, Optional.of(text), Optional.of(message), time);
-    }
 
     /**
      * Full constructor, will only update the progress bar and wont print anything.
@@ -77,20 +64,25 @@ public final class ProgressBarTimer extends EndFrameListener {
      * @param bar  Associated bar.
      * @param time Total time to complete the bar.
      */
-    public ProgressBarTimer(final ProgressBar bar, final Time time) {
-        this(bar, Optional.empty(), Optional.empty(), time);
+    public ProgressBarTimer(final ProgressBar bar, final Duration time) {
+        this(bar, new EmptyTimeTextLine(), time);
     }
 
-    private ProgressBarTimer(final ProgressBar bar, final Optional<GuiTextLine> text,  final Optional<String> message, final Time time) {
+    /**
+     * Full constructor, will update the progress bar and print the remaining time.
+     *
+     * @param bar     Associated progress bar.
+     * @param text    Widget where result will be printed.
+     * @param time    Total time to complete the bar.
+     */
+    public ProgressBarTimer(final ProgressBar bar, final TimeTextLine text, final Duration time) {
         super();
         assert bar != null;
         assert text != null;
-        assert message != null;
         assert time != null;
         this.bar = bar;
-        this.totalTime = time.timeInMs;
+        this.totalTime = time.toMillis();
         this.text = text;
-        this.message = message;
     }
 
     public void neverStop() {
@@ -108,7 +100,7 @@ public final class ProgressBarTimer extends EndFrameListener {
         this.elapsedTime += frameTime;
         if (this.bar.isVisible()) {
             this.bar.setProgress((float) this.elapsedTime / (float) this.totalTime * 100.0f);
-            text.ifPresent(guiTextLine -> guiTextLine.setText(this.message.get() + " " + StringUtil.formatTime(this.totalTime - this.elapsedTime + 1000)));
+            this.text.display(this.totalTime - this.elapsedTime + 1000);
         }
         return this.neverStop || this.elapsedTime < this.totalTime;
     }
@@ -127,7 +119,7 @@ public final class ProgressBarTimer extends EndFrameListener {
 
     public void setVisible(final boolean visible) {
         this.bar.setVisible(visible);
-        text.ifPresent(guiTextLine -> guiTextLine.setVisible(visible));
+        this.text.setVisible(visible);
     }
 
     public void setValues(final long total, final long timeLeft) {
