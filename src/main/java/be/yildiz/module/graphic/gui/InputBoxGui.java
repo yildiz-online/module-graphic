@@ -23,18 +23,18 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Color;
-import be.yildiz.common.Size;
 import be.yildiz.common.translation.Key;
 import be.yildiz.common.translation.Translation;
-import be.yildiz.common.util.StringUtil;
+import be.yildiz.module.coordinate.BaseCoordinate;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.window.input.ArrowKey;
 import be.yildiz.module.window.input.KeyboardListener;
 import be.yildiz.module.window.input.MouseLeftClickListener;
 import be.yildiz.module.window.input.MousePosition;
+import be.yildizgames.common.util.StringUtil;
 
 import java.util.Optional;
 

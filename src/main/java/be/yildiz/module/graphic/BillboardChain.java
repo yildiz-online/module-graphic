@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildiz.common.vector.Point3D;
+import javafx.geometry.Point3D;
 
 /**
  * Billboards attached together.

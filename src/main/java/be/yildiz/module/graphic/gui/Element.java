@@ -23,12 +23,12 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.Relative;
-import be.yildiz.common.Size;
-import be.yildiz.common.util.Registerable;
 import be.yildiz.common.vector.Point2D;
+import be.yildiz.module.coordinate.BaseCoordinate;
+import be.yildiz.module.coordinate.Coordinates;
+import be.yildiz.module.coordinate.Relative;
+import be.yildiz.module.coordinate.Size;
+import be.yildizgames.common.util.Registerable;
 
 /**
  * @author Grégory Van den Borre

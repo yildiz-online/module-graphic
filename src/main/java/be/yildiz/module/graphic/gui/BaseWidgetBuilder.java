@@ -23,15 +23,13 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.Position;
-import be.yildiz.common.Size;
-import be.yildiz.common.util.StringUtil;
+import be.yildiz.module.coordinate.BaseCoordinate;
+import be.yildiz.module.coordinate.Coordinates;
+import be.yildiz.module.coordinate.Position;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
-
-import java.util.Optional;
+import be.yildizgames.common.util.StringUtil;
 
 /**
  * @author Grégory Van den Borre

@@ -23,9 +23,9 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.util.Registerer;
+import be.yildiz.module.coordinate.BaseCoordinate;
 import be.yildiz.module.graphic.Material;
+import be.yildizgames.common.util.Registerer;
 
 /**
  * An Icon element is a simple texture on a plane. The element can be moved,

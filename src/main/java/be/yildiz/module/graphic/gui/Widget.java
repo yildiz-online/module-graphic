@@ -23,16 +23,16 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.Coordinates;
 import be.yildiz.common.Rectangle;
-import be.yildiz.common.collections.Lists;
-import be.yildiz.common.collections.Maps;
-import be.yildiz.common.collections.Sets;
 import be.yildiz.common.exeption.UnhandledSwitchCaseException;
 import be.yildiz.common.util.Checker;
 import be.yildiz.common.vector.Point2D;
+import be.yildiz.module.coordinate.BaseCoordinate;
+import be.yildiz.module.coordinate.Coordinates;
 import be.yildiz.module.window.input.*;
+import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.collection.Maps;
+import be.yildizgames.common.collection.Sets;
 
 import java.util.List;
 import java.util.Map;

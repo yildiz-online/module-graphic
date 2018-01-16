@@ -23,15 +23,15 @@
 
 package be.yildiz.module.graphic.gui.button;
 
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.Position;
-import be.yildiz.common.Relative;
-import be.yildiz.common.Size;
-import be.yildiz.common.collections.Lists;
+import be.yildiz.module.coordinate.Coordinates;
+import be.yildiz.module.coordinate.Position;
+import be.yildiz.module.coordinate.Relative;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,7 +61,7 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder>{
 
     private int captionLeftDistance = 0;
 
-    private final List<ButtonAnimation> animations = Lists.newList();
+    private final List<ButtonAnimation> animations = new ArrayList<>();
 
     public ButtonBuilder(final GuiBuilder builder) {
         super();

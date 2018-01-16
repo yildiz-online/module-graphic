@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.translation.Key;
+import be.yildiz.module.coordinate.BaseCoordinate;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.window.input.MouseLeftClickListener;

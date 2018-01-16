@@ -24,7 +24,7 @@
 package be.yildiz.module.graphic;
 
 import be.yildiz.common.Color;
-import be.yildiz.common.collections.Lists;
+import be.yildizgames.common.collection.Lists;
 
 import java.util.List;
 

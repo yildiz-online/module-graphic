@@ -23,10 +23,10 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.Position;
-import be.yildiz.common.Relative;
-import be.yildiz.common.Size;
+import be.yildiz.module.coordinate.Coordinates;
+import be.yildiz.module.coordinate.Position;
+import be.yildiz.module.coordinate.Relative;
+import be.yildiz.module.coordinate.Size;
 
 /**
  * @author Grégory Van den Borre

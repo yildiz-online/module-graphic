@@ -25,7 +25,7 @@ package be.yildiz.module.graphic;
 
 import be.yildiz.common.Color;
 import be.yildiz.common.resource.Resource;
-import be.yildiz.common.util.Registerer;
+import be.yildizgames.common.util.Registerer;
 
 import java.util.Arrays;
 

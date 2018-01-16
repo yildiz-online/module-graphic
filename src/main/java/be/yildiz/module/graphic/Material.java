@@ -24,12 +24,12 @@
 package be.yildiz.module.graphic;
 
 import be.yildiz.common.Color;
-import be.yildiz.common.collections.Lists;
 import be.yildiz.common.resource.Resource;
-import be.yildiz.common.util.Registerer;
 import be.yildiz.module.graphic.MaterialPass.BlendMode;
 import be.yildiz.module.graphic.MaterialPass.SceneBlend;
 import be.yildiz.module.graphic.MaterialPass.Transparency;
+import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.util.Registerer;
 
 import java.util.List;
 

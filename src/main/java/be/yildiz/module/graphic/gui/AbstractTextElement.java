@@ -23,10 +23,10 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Color;
-import be.yildiz.common.util.Registerer;
+import be.yildiz.module.coordinate.BaseCoordinate;
 import be.yildiz.module.graphic.Font;
+import be.yildizgames.common.util.Registerer;
 
 /**
  * Base element to print text.
@@ -58,7 +58,7 @@ public abstract class AbstractTextElement extends BaseElement {
      * @param coordinates Text position and size.
      * @param textFont    Font to use to print the text.
      */
-    protected AbstractTextElement(final BaseCoordinate coordinates,  final Font textFont) {
+    protected AbstractTextElement(final BaseCoordinate coordinates, final Font textFont) {
         super("text" + System.nanoTime(), coordinates);
         assert textFont != null;
         this.font = textFont;

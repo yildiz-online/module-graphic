@@ -23,9 +23,10 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.*;
-import be.yildiz.common.util.Registerer;
-import be.yildiz.common.util.StringUtil;
+import be.yildiz.module.coordinate.BaseCoordinate;
+import be.yildiz.module.coordinate.Coordinates;
+import be.yildiz.module.coordinate.Position;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.InputBoxGui.InputBoxTemplate;
@@ -35,6 +36,8 @@ import be.yildiz.module.graphic.gui.container.ContainerBuilder;
 import be.yildiz.module.graphic.gui.image.ImageBuilder;
 import be.yildiz.module.graphic.gui.textarea.TextAreaBuilder;
 import be.yildiz.module.graphic.gui.textline.TextLineBuilder;
+import be.yildizgames.common.util.Registerer;
+import be.yildizgames.common.util.StringUtil;
 
 import java.util.Optional;
 

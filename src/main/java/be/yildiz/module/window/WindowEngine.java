@@ -23,7 +23,7 @@
 
 package be.yildiz.module.window;
 
-import be.yildiz.common.Size;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.window.input.WindowInputListener;
 
 /**

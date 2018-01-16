@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.Position;
+import be.yildiz.module.coordinate.Position;
 import be.yildiz.module.graphic.Font;
 
 /**

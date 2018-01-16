@@ -23,16 +23,16 @@
 
 package be.yildiz.module.graphic.gui.container;
 
-import be.yildiz.common.Coordinates;
-import be.yildiz.common.Position;
-import be.yildiz.common.Relative;
-import be.yildiz.common.Size;
-import be.yildiz.common.collections.Lists;
+import be.yildiz.module.coordinate.Coordinates;
+import be.yildiz.module.coordinate.Position;
+import be.yildiz.module.coordinate.Relative;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.BaseWidgetBuilder;
 import be.yildiz.module.graphic.gui.GuiBuilder;
 import be.yildiz.module.graphic.gui.GuiContainer;
 import be.yildiz.module.graphic.gui.WidgetBuilder;
+import be.yildizgames.common.collection.Lists;
 
 import java.util.List;
 import java.util.Optional;
