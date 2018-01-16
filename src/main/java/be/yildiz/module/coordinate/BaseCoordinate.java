@@ -66,8 +66,8 @@ public class BaseCoordinate {
      */
     protected BaseCoordinate(final int widthValue, final int heightValue, final int leftValue, final int topValue) {
         super();
-        assert widthValue > 0;
-        assert heightValue > 0;
+        assert widthValue >= 0 : "Width must be greater or equals than 0";
+        assert heightValue >= 0 : "Height must be greater or equals than 0";
         this.width = widthValue;
         this.height = heightValue;
         this.left = leftValue;
