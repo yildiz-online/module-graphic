@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic;
 
-import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 
 /**

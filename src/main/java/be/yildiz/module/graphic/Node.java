@@ -24,7 +24,7 @@
 package be.yildiz.module.graphic;
 
 import be.yildizgames.common.collection.Maps;
-import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Quaternion;
 import be.yildizgames.common.model.EntityId;

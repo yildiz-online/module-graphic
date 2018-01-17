@@ -24,9 +24,9 @@
 package be.yildiz.module.graphic;
 
 import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.gameobject.Deletable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.util.BaseRegisterable;
-import be.yildizgames.common.util.Deletable;
 
 import java.util.List;
 
