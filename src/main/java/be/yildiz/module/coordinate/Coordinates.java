@@ -31,7 +31,7 @@ package be.yildiz.module.coordinate;
  *
  * @author Grégory Van den Borre
  */
-public final class Coordinates extends BaseCoordinate implements Cloneable {
+public final class Coordinates extends BaseCoordinate {
 
     /**
      * Full constructor.
@@ -70,8 +70,7 @@ public final class Coordinates extends BaseCoordinate implements Cloneable {
         this(width, height, position.left, position.top);
     }
 
-    @Override
-    public Coordinates clone() {
+    public Coordinates copy() {
         return new Coordinates(this.width, this.height, this.left, this.top);
     }
 

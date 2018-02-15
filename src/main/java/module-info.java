@@ -22,13 +22,5 @@
  *
  */
 
-package be.yildiz.module.window;
-
-/**
- * An image handled by the window system.
- *
- * @author Grégory Van den Borre
- */
-public interface WindowImage {
-
+module be.yildizgames.module.graphic {
 }

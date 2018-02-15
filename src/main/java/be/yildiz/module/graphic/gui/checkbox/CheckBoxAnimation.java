@@ -24,7 +24,6 @@
 
 package be.yildiz.module.graphic.gui.checkbox;
 
-import be.yildiz.module.graphic.gui.CheckBox;
 import be.yildiz.module.graphic.gui.GuiAnimation;
 
 /**

@@ -22,23 +22,8 @@
  *
  */
 
-package be.yildiz.module.window;
-
-import be.yildiz.module.window.input.MouseLeftClickListener;
-
 /**
- * A button handled by the window system.
- *
+ * Contains the classes to compute GUI coordinates.
  * @author Grégory Van den Borre
  */
-@FunctionalInterface
-public interface WindowButton {
-
-    /**
-     * Register a listener to be fired when a left click is done on the button.
-     *
-     * @param l Listener.
-     */
-    void setMouseLeftClickListener(MouseLeftClickListener l);
-
-}
+package be.yildiz.module.coordinate;

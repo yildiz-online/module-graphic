@@ -22,34 +22,8 @@
  *
  */
 
-package be.yildiz.module.graphic.gui;
-
-import be.yildiz.common.translation.Key;
-
 /**
+ * Contains the classes to manipulate colors.
  * @author Grégory Van den Borre
  */
-public interface CheckBox extends ContainerElement {
-
-    /**
-     * Update the text associated with the check box.
-     *
-     * @param captionText New text to set.
-     * @return This object for chaining.
-     */
-    CheckBox setCaptionText(String captionText);
-
-    CheckBox setCaptionText(Key captionText);
-
-    @Override
-    void detachFromParent();
-
-    /**
-     * Set the check box state.
-     *
-     * @param checked <code>true</code> will set checked state while <code>false</code> is unchecked.
-     */
-    void check(boolean checked);
-
-    boolean isChecked();
-}
+package be.yildiz.module.color;

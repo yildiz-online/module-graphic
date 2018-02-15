@@ -26,6 +26,7 @@ package be.yildiz.module.graphic.gui;
 
 import be.yildiz.common.translation.Key;
 import be.yildiz.common.translation.Translation;
+import be.yildiz.module.graphic.gui.button.Button;
 import be.yildiz.module.window.input.MouseLeftClickListener;
 import be.yildiz.module.window.input.MouseMoveListener;
 import be.yildiz.module.window.input.MousePosition;

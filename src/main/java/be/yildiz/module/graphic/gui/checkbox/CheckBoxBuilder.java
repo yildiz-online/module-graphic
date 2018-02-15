@@ -31,7 +31,6 @@ import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.BaseWidgetBuilder;
-import be.yildiz.module.graphic.gui.CheckBox;
 import be.yildiz.module.graphic.gui.GuiBuilder;
 import be.yildiz.module.graphic.gui.GuiContainer;
 import be.yildiz.module.graphic.gui.WidgetBuilder;

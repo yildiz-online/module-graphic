@@ -24,7 +24,6 @@
 
 package be.yildiz.module.graphic.gui.button;
 
-import be.yildiz.module.graphic.gui.Button;
 import be.yildiz.module.graphic.gui.GuiAnimation;
 
 /**

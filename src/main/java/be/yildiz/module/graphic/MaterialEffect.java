@@ -24,6 +24,8 @@
 
 package be.yildiz.module.graphic;
 
+import java.time.Duration;
+
 /**
  * Create an effect on a material during a given time, a copy of the material
  * will be created internally, modifying the material from outside will not
@@ -33,25 +35,29 @@ package be.yildiz.module.graphic;
  */
 public abstract class MaterialEffect {
 
+     private final Duration duration;
+
+     private final Material material;
+
     /**
      * @param material Material to use.
      * @param time Time to last.
      */
-    protected MaterialEffect(final Material material, final long time) {
+    protected MaterialEffect(final Material material, final Duration time) {
         super();
-        // this.timer = new ElapsedTimeComputer(time);
-        // this.material = material;
+        this.duration = time;
+        this.material = material;
     }
 
-    //FIXME LOW Implement
+    public final void execute() {
+        this.executeImpl(this.material);
+    }
 
-    // private final ElapsedTimeComputer timer;
-    //
-    // private final Material material;
+    protected abstract void executeImpl(Material material);
 
     public enum EffectType {
 
-        FadeIn, FadeOut
+        FADE_IN, FADE_OUT
 
     }
 

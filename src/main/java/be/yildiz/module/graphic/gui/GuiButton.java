@@ -28,6 +28,7 @@ import be.yildiz.common.translation.Key;
 import be.yildiz.common.translation.Translation;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
+import be.yildiz.module.graphic.gui.button.Button;
 
 import java.util.Optional;
 

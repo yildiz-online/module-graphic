@@ -25,10 +25,10 @@
 package be.yildiz.module.graphic.dummy;
 
 import be.yildiz.module.color.Color;
-import be.yildiz.module.graphic.AbstractCamera;
 import be.yildiz.module.graphic.AbstractLight;
 import be.yildiz.module.graphic.AbstractParticleSystem;
 import be.yildiz.module.graphic.BillboardSet;
+import be.yildiz.module.graphic.Camera;
 import be.yildiz.module.graphic.DirectionalLight;
 import be.yildiz.module.graphic.ElectricArc;
 import be.yildiz.module.graphic.Explosion;
@@ -141,7 +141,7 @@ public class DummyClientWorld implements GraphicWorld {
     }
 
     @Override
-    public AbstractCamera createCamera(String name) {
+    public Camera createCamera(String name) {
         return null;
     }
 
@@ -191,7 +191,7 @@ public class DummyClientWorld implements GraphicWorld {
     }
 
     @Override
-    public AbstractCamera getDefaultCamera() {
+    public Camera getDefaultCamera() {
         return null;
     }
 
@@ -231,7 +231,7 @@ public class DummyClientWorld implements GraphicWorld {
     }
 
     @Override
-    public AbstractCamera getCamera(String name) {
+    public Camera getCamera(String name) {
         return null;
     }
 
