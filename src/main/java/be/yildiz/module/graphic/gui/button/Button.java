@@ -24,7 +24,6 @@
 
 package be.yildiz.module.graphic.gui.button;
 
-import be.yildiz.common.translation.Key;
 import be.yildiz.module.coordinate.BaseCoordinate;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
@@ -36,6 +35,7 @@ import be.yildiz.module.graphic.gui.OnMouseOverListener;
 import be.yildiz.module.window.input.MouseLeftClickListener;
 import be.yildiz.module.window.input.MouseMoveListener;
 import be.yildiz.module.window.input.MousePosition;
+import be.yildizgames.common.client.translation.Key;
 
 /**
  * @author Grégory Van den Borre

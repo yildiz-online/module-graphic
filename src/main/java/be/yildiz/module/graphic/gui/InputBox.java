@@ -24,9 +24,9 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.translation.Key;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.Material;
+import be.yildizgames.common.client.translation.Key;
 
 /**
  * @author Grégory Van den Borre

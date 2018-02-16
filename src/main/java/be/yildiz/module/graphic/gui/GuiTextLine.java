@@ -24,11 +24,11 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.translation.Key;
-import be.yildiz.common.translation.Translation;
 import be.yildiz.module.color.Color;
 import be.yildiz.module.coordinate.Coordinates;
 import be.yildiz.module.graphic.Font;
+import be.yildizgames.common.client.translation.Key;
+import be.yildizgames.common.client.translation.Translation;
 
 import java.util.Optional;
 

@@ -24,8 +24,8 @@
 
 package be.yildiz.module.graphic.gui;
 
-import be.yildiz.common.client.debug.DebugListener;
 import be.yildiz.module.window.input.WindowInputListener;
+import be.yildizgames.common.client.debug.DebugListener;
 
 /**
  * @author Grégory Van den Borre
