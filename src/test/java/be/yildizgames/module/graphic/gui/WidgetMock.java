@@ -22,14 +22,52 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.gui;
+
+import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
+import be.yildizgames.module.graphic.gui.internal.Element;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+
+import java.util.Optional;
+
+/**
+ * @author Grégory Van den Borre
+ */
+public final class WidgetMock extends BaseContainerChild {
+
+    protected WidgetMock(final Coordinates coordinates, final SimpleContainer parent) {
+        this("random_" + System.nanoTime(), coordinates, parent);
+    }
+
+    protected WidgetMock(final String name, final Coordinates coordinates, final SimpleContainer parent) {
+        super("mock " + name, coordinates, Optional.of(parent));
+        this.show();
+    }
+
+    @Override
+    protected void delete() {
+    }
+
+    @Override
+    protected void highlightImpl(final boolean highlighted) {
+    }
+
+    @Override
+    protected void setSizeImpl(final int w, final int h) {
+    }
+
+    @Override
+    protected void showImpl() {
+    }
+
+    @Override
+    protected void hideImpl() {
+    }
+
+    @Override
+    protected Element setPositionImpl(final int x, final int y) {
+        return this;
+    }
+
 }

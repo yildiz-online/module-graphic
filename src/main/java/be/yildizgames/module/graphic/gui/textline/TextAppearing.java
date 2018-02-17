@@ -22,14 +22,37 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.gui.textline;
+
+import be.yildizgames.common.time.ManualElapsedTimeComputer;
+
+/**
+ * @author Grégory Van den Borre
+ */
+public class TextAppearing extends TextAnimation {
+
+    private String textToDisplay;
+    private final ManualElapsedTimeComputer timer;
+
+    private int currentPosition = 0;
+
+    public TextAppearing(String name, long delay) {
+        super(name);
+        this.timer = new ManualElapsedTimeComputer(delay);
+    }
+
+    @Override
+    protected void updateImpl(long time) {
+        if (this.timer.isTimeElapsed(time)) {
+            currentPosition++;
+            this.text.setText(this.textToDisplay.substring(0, currentPosition));
+            this.setCompleted(currentPosition == textToDisplay.length() - 1);
+        }
+    }
+
+    @Override
+    protected void startImpl() {
+        this.textToDisplay = this.text.getContent();
+        this.text.setText("");
+    }
 }

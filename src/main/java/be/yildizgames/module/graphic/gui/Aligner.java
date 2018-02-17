@@ -22,14 +22,43 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.gui;
+
+/**
+ * @author Grégory Van den Borre
+ */
+public class Aligner {
+
+    private final int baseLeft;
+    private final int baseTop;
+    private final int left;
+    private final int top;
+
+    private Aligner(final int baseLeft, final int baseTop, final int left, final int top) {
+        super();
+        this.baseLeft = baseLeft;
+        this.baseTop = baseTop;
+        this.left = left;
+        this.top = top;
+    }
+
+    public static Aligner leftAligner(final int baseLeft, final int baseTop, final int left) {
+        return new Aligner(baseLeft, baseTop, left, 0);
+    }
+
+    public static Aligner topAligner(final int baseLeft, final int baseTop, final int top) {
+        return new Aligner(baseLeft, baseTop, 0, top);
+    }
+
+    public void align(final Widget... widgets) {
+        int leftValue = this.baseLeft;
+        int topValue = this.baseTop;
+        for (Widget w : widgets) {
+            w.setLeft(leftValue);
+            w.setTop(topValue);
+            leftValue += this.left;
+            topValue += this.top;
+        }
+    }
+
 }

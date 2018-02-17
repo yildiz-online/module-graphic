@@ -22,14 +22,10 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
-}
+/**
+ * Contains All the element to build and manage the GUI.
+ *
+ * @author Grégory Van den Borre
+ */
+package be.yildizgames.module.graphic.gui;
+

@@ -22,14 +22,45 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.gui;
+
+import be.yildizgames.common.client.debug.DebugListener;
+import be.yildizgames.module.graphic.gui.internal.BaseWidget;
+import be.yildizgames.module.window.input.WindowInputListener;
+
+/**
+ * @author Grégory Van den Borre
+ */
+public interface GuiEventManager extends WindowInputListener {
+
+    /**
+     * Add a view to the dispatcher and set all listeners list for that view.
+     *
+     * @param view View to add.
+     */
+    void addView(View view);
+
+    /**
+     * Remove a View from the event dispatch.
+     *
+     * @param view View to remove, it will no longer be affected by mouse and keyboard events.
+     */
+    void removeView(View view);
+
+    /**
+     * Set the focus on a particular View.
+     *
+     * @param view View to set the focus on.
+     */
+    void setFocus(View view);
+
+    /**
+     * @return The current widget under the mouse.
+     */
+    BaseWidget getWidgetUnderMouse();
+
+    void setDebugListener(DebugListener listener);
+
+    void setDefaultView(View view);
+
 }

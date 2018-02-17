@@ -22,14 +22,24 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.gui;
+
+import be.yildizgames.module.window.input.MousePosition;
+
+/**
+ * Listener to notify When the mouse is over the widget.
+ *
+ * @author Grégory Van den Borre
+ */
+@FunctionalInterface
+public interface OnMouseOverListener {
+
+    /**
+     * The mouse over state changed.
+     *
+     * @param over     <code>true</code> if the mouse is over the widget,
+     *                 <code>false</code> if it is no longer.
+     * @param position Current mouse position.
+     */
+    void notify(boolean over, MousePosition position);
 }

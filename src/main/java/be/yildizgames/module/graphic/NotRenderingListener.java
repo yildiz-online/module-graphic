@@ -22,14 +22,23 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic;
+
+/**
+ * Called when the graphic rendering is stopped. (useful i.e to avoid crash with
+ * openGL when loading graphic during rendering).
+ *
+ * @author Grégory Van den Borre
+ */
+@FunctionalInterface
+public interface NotRenderingListener {
+
+    /**
+     * Called when the rendering is stopped.
+     *
+     * @return <code>true</code> if the listener must be executed again,
+     * <code>false</code> if the job is finished.
+     */
+    boolean renderingStopped();
+
 }

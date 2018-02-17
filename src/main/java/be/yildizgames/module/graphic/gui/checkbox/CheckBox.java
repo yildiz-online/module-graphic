@@ -22,14 +22,37 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.gui.checkbox;
+
+import be.yildizgames.common.client.translation.Key;
+import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.gui.ContainerChild;
+import be.yildizgames.module.graphic.gui.Widget;
+
+/**
+ * @author Grégory Van den Borre
+ */
+public interface CheckBox extends Widget, ContainerChild {
+
+    /**
+     * Update the text associated with the check box.
+     *
+     * @param captionText New text to set.
+     * @return This object for chaining.
+     */
+    CheckBox setCaptionText(String captionText);
+
+    CheckBox setCaptionText(Key captionText);
+
+    CheckBox setCaptionColor(Color color);
+
+    /**
+     * Set the check box state.
+     *
+     * @param checked <code>true</code> will set checked state while <code>false</code> is unchecked.
+     */
+    CheckBox check(boolean checked);
+
+    boolean isChecked();
+
 }

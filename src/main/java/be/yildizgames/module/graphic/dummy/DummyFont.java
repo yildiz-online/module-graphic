@@ -22,14 +22,35 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.dummy;
+
+import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.Font;
+
+import java.util.Arrays;
+
+/**
+ * @author Grégory Van den Borre
+ */
+public class DummyFont extends Font {
+
+
+    /**
+     * Full constructor.
+     *
+     * @param fontName Font name, must be unique.
+     * @param fontSize Font height.
+     * @param color    Font color.
+     */
+    public DummyFont(String fontName, int fontSize, Color color) {
+        super(fontName, fontSize, color);
+        this.load();
+    }
+
+    @Override
+    protected void loadImpl() {
+        float[] c = new float[512];
+        Arrays.fill(c, 1);
+        this.setCharWidth(c);
+    }
 }

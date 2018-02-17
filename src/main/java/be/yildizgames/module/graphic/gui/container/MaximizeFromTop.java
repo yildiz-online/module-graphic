@@ -22,14 +22,32 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.gui.container;
+
+/**
+ * @author Grégory Van den Borre
+ */
+public class MaximizeFromTop extends ContainerAnimation {
+
+    private int originalSize;
+
+    public MaximizeFromTop(String name) {
+        super(name);
+    }
+
+    @Override
+    protected final void updateImpl(long time) {
+        int newSize = this.container.getHeight() + (int) time;
+        if (newSize > originalSize) {
+            newSize = originalSize;
+        }
+        this.container.setHeight(newSize);
+        this.setCompleted(newSize == originalSize);
+    }
+
+    @Override
+    protected final void startImpl() {
+        this.originalSize = this.container.getHeight();
+        this.container.setHeight(0);
+    }
 }

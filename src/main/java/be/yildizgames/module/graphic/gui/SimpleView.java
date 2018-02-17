@@ -22,14 +22,36 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.gui;
+
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+
+/**
+ * Basic implementation of a View.
+ *
+ * @author Grégory Van den Borre
+ */
+public final class SimpleView extends View {
+
+    /**
+     * Full constructor.
+     *
+     * @param container    Wrapped container.
+     * @param z            Z value.
+     * @param eventManager Associated event manager.
+     */
+    public SimpleView(final SimpleContainer container, final Zorder z, GuiEventManager eventManager) {
+        super(container, z, eventManager);
+    }
+
+    @Override
+    protected void setVisibleImpl(final boolean show) {
+        //Does nothing
+    }
+
+    @Override
+    protected void setActiveImpl(final boolean active) {
+        //Does nothing
+    }
+
 }

@@ -22,14 +22,28 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.window.input;
+
+/**
+ * Listener notified when a the left button of the mouse is pressed.
+ *
+ * @author Grégory Van den Borre
+ */
+@FunctionalInterface
+public interface MouseLeftClickListener {
+
+    /**
+     * Called when the left button of the mouse is pressed.
+     */
+    void click();
+
+    /**
+     * Called when the left button of the mouse is pressed.
+     * The default implementation is empty.
+     *
+     * @param position Mouse position when the click is done.
+     */
+    default void clickAt(MousePosition position) {
+        //Default empty implementation.
+    }
 }

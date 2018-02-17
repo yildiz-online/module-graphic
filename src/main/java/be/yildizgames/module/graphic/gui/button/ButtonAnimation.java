@@ -22,14 +22,22 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic.gui.button;
+
+import be.yildizgames.module.graphic.gui.internal.BaseAnimationGui;
+
+/**
+ * @author Grégory Van den Borre
+ */
+public abstract class ButtonAnimation extends BaseAnimationGui {
+
+    protected Button button;
+
+    protected ButtonAnimation(String name) {
+        super(name);
+    }
+
+    void setElement(Button element) {
+        this.button = element;
+    }
 }

@@ -22,14 +22,45 @@
  *
  */
 
-module be.yildizgames.module.graphic {
-    requires be.yildizgames.common.geometry;
-    requires be.yildizgames.common.gameobject;
-    requires be.yildizgames.common.util;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.file;
-    requires be.yildizgames.common.shape;
-    requires be.yildizgames.common.client;
-    requires be.yildizgames.common.frame;
-    requires be.yildizgames.common.time;
+package be.yildizgames.module.graphic;
+
+import be.yildizgames.module.graphic.material.Material;
+
+/**
+ * Contains the data for a graphic mesh file.
+ *
+ * @author Grégory Van den Borre
+ */
+public final class GraphicMesh {
+
+    /**
+     * Mesh file path.
+     */
+    private final String file;
+
+    /**
+     * Material to use with the mesh.
+     */
+    private final Material material;
+
+    /**
+     * Full constructor.
+     *
+     * @param path     Path and name of the mesh to use(without extension, msh is expected as extension).
+     * @param material Material to use with the mesh.
+     */
+    public GraphicMesh(final String path, final Material material) {
+        super();
+        //FIXME MEDIUM extension hardcoded
+        this.file = path + ".msh";
+        this.material = material;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
 }
