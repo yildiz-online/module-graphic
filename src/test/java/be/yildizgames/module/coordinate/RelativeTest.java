@@ -22,57 +22,23 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
+package be.yildizgames.module.coordinate;
 
-import be.yildizgames.module.graphic.Font;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Grégory Van den Borre
  */
-class FontTest {
+class RelativeTest {
 
-    @Nested
-    class Crop {
-
-        @Test
-        void nothing() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("azerty", f.crop("azerty", 10));
-        }
-
-        @Test
-        void tooLong() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("a...", f.crop("azerty", 4));
-        }
-
-        @Test
-        void tooShort() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("", f.crop("azerty", 2));
-        }
-
-        @Test
-        void tooLong3chars() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("...", f.crop("azerty", 3));
-        }
-
-        @Test
-        void withNullParameter() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertThrows(NullPointerException.class, () -> f.crop(null, 3));
-        }
+    @Test
+    void testRelative() {
+        assertEquals(15, new Relative(15).value, 0.000001);
+        assertEquals(0.5f, Relative.HALF.value, 0.000001);
+        assertEquals(0.25f, Relative.QUARTER.value, 0.000001);
+        assertEquals(0.333333f, Relative.THIRD.value, 0.000001);
     }
 
 }

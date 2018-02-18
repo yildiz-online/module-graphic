@@ -29,7 +29,7 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.GuiBuilder;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
@@ -45,12 +45,12 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder> {
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private final GuiBuilder builder;
+    private final GuiFactory builder;
 
     private final List<TextAnimation> animations = new ArrayList<>();
 
 
-    public TextLineBuilder(GuiBuilder builder) {
+    public TextLineBuilder(GuiFactory builder) {
         super();
         this.builder = builder;
     }

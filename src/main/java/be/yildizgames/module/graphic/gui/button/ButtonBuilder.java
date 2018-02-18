@@ -30,7 +30,7 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.GuiBuilder;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.container.Container;
@@ -46,7 +46,7 @@ import java.util.List;
  */
 public class ButtonBuilder implements WidgetBuilder<ButtonBuilder> {
 
-    private final GuiBuilder builder;
+    private final GuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
@@ -70,7 +70,7 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder> {
 
     private final List<ButtonAnimation> animations = new ArrayList<>();
 
-    public ButtonBuilder(final GuiBuilder builder) {
+    public ButtonBuilder(final GuiFactory builder) {
         super();
         this.builder = builder;
     }

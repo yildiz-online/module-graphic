@@ -22,57 +22,51 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
-
-import be.yildizgames.module.graphic.Font;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+package be.yildizgames.module.coordinate;
 
 /**
+ * Wrapper class for a relative value.
+ *
  * @author Grégory Van den Borre
  */
-class FontTest {
+public final class Relative {
 
-    @Nested
-    class Crop {
+    /**
+     * Constant for 1 / 2.
+     */
+    public static final Relative HALF = new Relative(0.5f);
 
-        @Test
-        void nothing() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("azerty", f.crop("azerty", 10));
-        }
+    /**
+     * Constant for 1 / 3.
+     */
+    public static final Relative THIRD = new Relative(0.3333333f);
 
-        @Test
-        void tooLong() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("a...", f.crop("azerty", 4));
-        }
+    /**
+     * Constant for 1 / 4.
+     */
+    public static final Relative QUARTER = new Relative(0.25f);
 
-        @Test
-        void tooShort() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("", f.crop("azerty", 2));
-        }
+    /**
+     * Constant for 1 / 5.
+     */
+    public static final Relative FIFTH = new Relative(0.2f);
 
-        @Test
-        void tooLong3chars() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("...", f.crop("azerty", 3));
-        }
+    /**
+     * Constant for 1 / 8.
+     */
+    public static final Relative HEIGHTH = new Relative(0.125f);
 
-        @Test
-        void withNullParameter() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertThrows(NullPointerException.class, () -> f.crop(null, 3));
-        }
+    /**
+     * Constant for 1 / 10.
+     */
+    public static final Relative TENTH = new Relative(0.1f);
+
+    /**
+     * Relative value.
+     */
+    public final float value;
+
+    public Relative(float value) {
+        this.value = value;
     }
-
 }

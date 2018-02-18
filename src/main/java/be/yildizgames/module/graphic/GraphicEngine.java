@@ -33,7 +33,7 @@ import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.graphic.shader.Shader;
 import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
 import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
-import be.yildizgames.module.graphic.gui.GuiBuilder;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.window.WindowEngine;
 
 /**
@@ -70,7 +70,7 @@ public interface GraphicEngine extends FpsProvider {
      *
      * @return The GuiBuilder.
      */
-    GuiBuilder getGuiBuilder();
+    GuiFactory getGuiBuilder();
 
     /**
      * Build a new Material.

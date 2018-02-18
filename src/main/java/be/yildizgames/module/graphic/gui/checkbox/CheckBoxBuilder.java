@@ -29,7 +29,7 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.GuiBuilder;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
@@ -43,7 +43,7 @@ import java.util.List;
  */
 public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder> {
 
-    private final GuiBuilder builder;
+    private final GuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
@@ -52,7 +52,7 @@ public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder> {
 
     private final List<CheckBoxAnimation> animations = new ArrayList<>();
 
-    public CheckBoxBuilder(GuiBuilder builder) {
+    public CheckBoxBuilder(GuiFactory builder) {
         super();
         this.builder = builder;
     }

@@ -22,57 +22,44 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
+package be.yildizgames.module.coordinate;
 
-import be.yildizgames.module.graphic.Font;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.security.InvalidParameterException;
 
 /**
+ * Simple data class to wrap width and height coordinates.
+ *
  * @author Grégory Van den Borre
  */
-class FontTest {
+public final class Size extends BaseCoordinate {
 
-    @Nested
-    class Crop {
-
-        @Test
-        void nothing() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("azerty", f.crop("azerty", 10));
-        }
-
-        @Test
-        void tooLong() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("a...", f.crop("azerty", 4));
-        }
-
-        @Test
-        void tooShort() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("", f.crop("azerty", 2));
-        }
-
-        @Test
-        void tooLong3chars() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("...", f.crop("azerty", 3));
-        }
-
-        @Test
-        void withNullParameter() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertThrows(NullPointerException.class, () -> f.crop(null, 3));
-        }
+    /**
+     * Full constructor.
+     *
+     * @param coordinate Coordination to extract size, left and top are set to 0.
+     */
+    public Size(final BaseCoordinate coordinate) {
+        super(coordinate.width, coordinate.height, 0, 0);
     }
 
+    /**
+     * Full constructor.
+     *
+     * @param size Width and height size.
+     * @throws InvalidParameterException if a value is negative.
+     */
+    public Size(final int size) {
+        this(size, size);
+    }
+
+    /**
+     * Full constructor.
+     *
+     * @param width  Width size.
+     * @param height Height size.
+     * @throws InvalidParameterException if a value is negative.
+     */
+    public Size(final int width, final int height) {
+        super(width, height, 0, 0);
+    }
 }

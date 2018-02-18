@@ -22,57 +22,9 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
-
-import be.yildizgames.module.graphic.Font;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 /**
+ * Contains the classes to manipulate colors.
+ *
  * @author Grégory Van den Borre
  */
-class FontTest {
-
-    @Nested
-    class Crop {
-
-        @Test
-        void nothing() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("azerty", f.crop("azerty", 10));
-        }
-
-        @Test
-        void tooLong() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("a...", f.crop("azerty", 4));
-        }
-
-        @Test
-        void tooShort() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("", f.crop("azerty", 2));
-        }
-
-        @Test
-        void tooLong3chars() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("...", f.crop("azerty", 3));
-        }
-
-        @Test
-        void withNullParameter() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertThrows(NullPointerException.class, () -> f.crop(null, 3));
-        }
-    }
-
-}
+package be.yildizgames.module.color;

@@ -28,11 +28,10 @@ import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
-import be.yildizgames.module.graphic.gui.GuiBuilder;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.ArrayList;
@@ -43,14 +42,14 @@ import java.util.List;
  */
 public class ImageBuilder implements WidgetBuilder<ImageBuilder> {
 
-    private final GuiBuilder builder;
+    private final GuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
     private final List<ImageAnimation> animations = new ArrayList<>();
 
 
-    public ImageBuilder(final GuiBuilder builder) {
+    public ImageBuilder(final GuiFactory builder) {
         super();
         this.builder = builder;
     }

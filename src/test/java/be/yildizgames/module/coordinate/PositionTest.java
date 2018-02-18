@@ -22,10 +22,8 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
+package be.yildizgames.module.coordinate;
 
-import be.yildizgames.module.graphic.Font;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,45 +32,26 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * @author Grégory Van den Borre
  */
-class FontTest {
+class PositionTest {
 
-    @Nested
-    class Crop {
-
-        @Test
-        void nothing() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("azerty", f.crop("azerty", 10));
-        }
-
-        @Test
-        void tooLong() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("a...", f.crop("azerty", 4));
-        }
-
-        @Test
-        void tooShort() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("", f.crop("azerty", 2));
-        }
-
-        @Test
-        void tooLong3chars() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("...", f.crop("azerty", 3));
-        }
-
-        @Test
-        void withNullParameter() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertThrows(NullPointerException.class, () -> f.crop(null, 3));
-        }
+    @Test
+    void testPositionBaseCoordinate() {
+        BaseCoordinate bc = new Position(5, 10);
+        Position p = new Position(bc);
+        assertEquals(bc, p);
+        assertThrows(NullPointerException.class, () -> new Position(null));
     }
 
+    @Test
+    void testPositionInt() {
+        Position p = new Position(10);
+        assertEquals(new Position(10, 10), p);
+    }
+
+    @Test
+    void testPositionIntInt() {
+        Position p = new Position(10, 15);
+        assertEquals(10, p.left);
+        assertEquals(15, p.top);
+    }
 }

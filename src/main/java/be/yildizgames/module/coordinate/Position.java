@@ -22,57 +22,40 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
-
-import be.yildizgames.module.graphic.Font;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+package be.yildizgames.module.coordinate;
 
 /**
+ * Simple data class to wrap horizontal and vertical coordinates.
+ *
  * @author Grégory Van den Borre
  */
-class FontTest {
+public final class Position extends BaseCoordinate {
 
-    @Nested
-    class Crop {
-
-        @Test
-        void nothing() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("azerty", f.crop("azerty", 10));
-        }
-
-        @Test
-        void tooLong() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("a...", f.crop("azerty", 4));
-        }
-
-        @Test
-        void tooShort() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("", f.crop("azerty", 2));
-        }
-
-        @Test
-        void tooLong3chars() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("...", f.crop("azerty", 3));
-        }
-
-        @Test
-        void withNullParameter() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertThrows(NullPointerException.class, () -> f.crop(null, 3));
-        }
+    /**
+     * Copy constructor.
+     *
+     * @param coordinates Coordinates used to get the position.
+     */
+    public Position(final BaseCoordinate coordinates) {
+        this(coordinates.left, coordinates.top);
     }
 
+    /**
+     * Full constructor.
+     *
+     * @param leftAndTop Left and top positions.
+     */
+    public Position(final int leftAndTop) {
+        this(leftAndTop, leftAndTop);
+    }
+
+    /**
+     * Full constructor.
+     *
+     * @param left Left position.
+     * @param top  Top position.
+     */
+    public Position(final int left, final int top) {
+        super(0, 0, left, top);
+    }
 }

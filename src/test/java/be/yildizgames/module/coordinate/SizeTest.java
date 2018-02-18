@@ -22,10 +22,8 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
+package be.yildizgames.module.coordinate;
 
-import be.yildizgames.module.graphic.Font;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,45 +32,37 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * @author Grégory Van den Borre
  */
-class FontTest {
+class SizeTest {
 
-    @Nested
-    class Crop {
+    @Test
+    void test() {
+        Size s = new Size(15, 20);
+        assertEquals(15, s.width);
+        assertEquals(20, s.height);
+        assertEquals(0, s.left);
+        assertEquals(0, s.top);
+        Size s2 = new Size(s);
+        assertEquals(s, s2);
+        BaseCoordinate bc = new Position(5, 10);
+        Size s3 = new Size(bc);
+        assertEquals(s3, BaseCoordinate.ZERO);
+        s = new Size(10);
+        assertEquals(new BaseCoordinate(10, 10, 0, 0), s);
+    }
 
-        @Test
-        void nothing() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("azerty", f.crop("azerty", 10));
-        }
+    @Test
+    void testNegative() {
+        assertThrows(AssertionError.class, () -> new Size(-1));
+    }
 
-        @Test
-        void tooLong() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("a...", f.crop("azerty", 4));
-        }
+    @Test
+    void testNegativeHeight() {
+        assertThrows(AssertionError.class, () -> new Size(10, -1));
+    }
 
-        @Test
-        void tooShort() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("", f.crop("azerty", 2));
-        }
-
-        @Test
-        void tooLong3chars() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertEquals("...", f.crop("azerty", 3));
-        }
-
-        @Test
-        void withNullParameter() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertThrows(NullPointerException.class, () -> f.crop(null, 3));
-        }
+    @Test
+    void testNegativeWidth() {
+        assertThrows(AssertionError.class, () -> new Size(-1, 10));
     }
 
 }

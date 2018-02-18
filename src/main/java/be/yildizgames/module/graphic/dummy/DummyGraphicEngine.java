@@ -40,7 +40,7 @@ import be.yildizgames.module.graphic.shader.Shader;
 import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
 import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
 import be.yildizgames.module.graphic.misc.Skybox;
-import be.yildizgames.module.graphic.gui.GuiBuilder;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.window.WindowEngine;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
 
@@ -79,7 +79,7 @@ public final class DummyGraphicEngine implements GraphicEngine {
     }
 
     @Override
-    public GuiBuilder getGuiBuilder() {
+    public GuiFactory getGuiBuilder() {
         return null;
     }
 

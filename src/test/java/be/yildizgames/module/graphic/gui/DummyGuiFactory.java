@@ -41,7 +41,7 @@ import java.util.Arrays;
 /**
  * @author Grégory Van den Borre
  */
-public class DummyGuiBuilder extends GuiBuilder {
+public class DummyGuiFactory extends GuiFactory {
 
     public static final Font defaultFont = new Font("default", 0, Color.BLACK) {
 
@@ -86,7 +86,7 @@ public class DummyGuiBuilder extends GuiBuilder {
         }
     };
 
-    public DummyGuiBuilder() {
+    public DummyGuiFactory() {
         super(new Size(1024, 768));
         defaultFont.load();
     }

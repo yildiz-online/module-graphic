@@ -28,7 +28,7 @@ import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
-import be.yildizgames.module.graphic.gui.GuiBuilder;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
@@ -43,17 +43,17 @@ import java.util.Optional;
  */
 public class ContainerBuilder implements WidgetBuilder<ContainerBuilder> {
 
-    private final GuiBuilder builder;
+    private final GuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private Optional<Container> parent = Optional.empty();
+    private Optional<SimpleContainer> parent = Optional.empty();
 
     private boolean fullScreen;
 
     private final List<ContainerAnimation> animations = new ArrayList<>();
 
-    public ContainerBuilder(GuiBuilder builder) {
+    public ContainerBuilder(GuiFactory builder) {
         this.builder = builder;
     }
 

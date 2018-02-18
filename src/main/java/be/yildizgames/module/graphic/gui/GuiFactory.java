@@ -70,7 +70,7 @@ import java.util.Optional;
  *
  * @author Grégory Van den Borre
  */
-public abstract class GuiBuilder {
+public abstract class GuiFactory {
 
     /**
      * Contains the screen size data.
@@ -119,7 +119,7 @@ public abstract class GuiBuilder {
 
     private final GuiAnimationManager animationManager = new GuiAnimationManager();
 
-    protected GuiBuilder(Size screenSize) {
+    protected GuiFactory(Size screenSize) {
         this.screenSize = screenSize;
     }
 

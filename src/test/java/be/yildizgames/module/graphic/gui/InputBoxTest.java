@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class InputBoxTest {
 
-    private static GuiBuilder builder = new DummyGuiBuilder();
+    private static GuiFactory builder = new DummyGuiFactory();
 
     private static Font f = new DummyFont("f", 5, Color.BLACK);
 

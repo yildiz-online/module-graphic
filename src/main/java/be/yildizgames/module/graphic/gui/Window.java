@@ -74,7 +74,7 @@ public abstract class Window extends View {
      * @param eventManager Associated event manager.
      * @param params       Parameter to build the window.
      */
-    public Window(final String name, final GuiBuilder builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
+    public Window(final String name, final GuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
         this(builder.buildOverlayContainer(name, Material.empty(), BaseCoordinate.ZERO), builder, font, z, eventManager, params);
     }
 
@@ -87,7 +87,7 @@ public abstract class Window extends View {
      * @param z            View Z position.
      * @param eventManager Associated event manager.
      */
-    public Window(final SimpleContainer container, final GuiBuilder builder, Font font, final Zorder z, GuiEventManager eventManager) {
+    public Window(final SimpleContainer container, final GuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager) {
         this(container, builder, font, z, eventManager, Parameter.NOTHING);
     }
 
@@ -101,7 +101,7 @@ public abstract class Window extends View {
      * @param eventManager Associated event manager.
      * @param params       Parameter to build the window.
      */
-    public Window(final SimpleContainer container, final GuiBuilder builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
+    public Window(final SimpleContainer container, final GuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
         super(container, z, eventManager);
         this.font = font;
         final List<Parameter> paramList = Arrays.asList(params);
@@ -193,7 +193,7 @@ public abstract class Window extends View {
          *
          * @param builder GUI builder.
          */
-        public BasicTitleBar(final GuiBuilder builder, Font font) {
+        public BasicTitleBar(final GuiFactory builder, Font font) {
             super();
             this.height = Window.MINIMIZED_SIZE;
             final SimpleContainer container = Window.this.getContainer();

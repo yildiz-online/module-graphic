@@ -29,11 +29,10 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.GuiBuilder;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.ArrayList;
@@ -46,13 +45,13 @@ public class TextAreaBuilder implements WidgetBuilder<TextAreaBuilder> {
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private final GuiBuilder builder;
+    private final GuiFactory builder;
 
     private int padding = 0;
 
     private final List<TextAreaAnimation> animations = new ArrayList<>();
 
-    public TextAreaBuilder(GuiBuilder builder) {
+    public TextAreaBuilder(GuiFactory builder) {
         super();
         this.builder = builder;
     }
