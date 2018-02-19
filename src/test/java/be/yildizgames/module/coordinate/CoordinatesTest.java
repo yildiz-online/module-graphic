@@ -64,15 +64,7 @@ class CoordinatesTest {
         assertThrows(NullPointerException.class, () -> new Coordinates(new Size(10, 15), null));
     }
 
-    @Test
-    void testClone() {
-        Coordinates c = new Coordinates(new Size(10, 15), 14, 16);
-        BaseCoordinate c2 = c.clone();
-        assertEquals(10, c2.width);
-        assertEquals(15, c2.height);
-        assertEquals(14, c2.left);
-        assertEquals(16, c2.top);
-    }
+
 
     @Test
     void testGetSize() {

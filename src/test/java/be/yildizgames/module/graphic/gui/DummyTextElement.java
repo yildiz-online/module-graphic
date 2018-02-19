@@ -56,11 +56,11 @@ public final class DummyTextElement extends AbstractTextElement {
     }
 
     @Override
-    protected void setColor(final Color color) {
+    public void setColor(final Color color) {
     }
 
     @Override
-    protected void delete() {
+    public void delete() {
         removeFromRegisterer();
     }
 

@@ -56,16 +56,19 @@ final class SimpleContainerTest {
     void functionalTestGetNextFocusableElement() {
         SimpleGuiFactory builder = new DummyGuiFactory();
         ContainerBuilder cb = new ContainerBuilder(builder);
-        SimpleContainer c = cb.withCoordinates(new Coordinates(50, 60, 10, 20)).build();
+        SimpleContainer c = (SimpleContainer)cb.withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         // A
-        BaseWidget w1 = new WidgetMock("w1", CR, c).setFocusable(true);
-        BaseWidget w2 = new WidgetMock("w2", CR, c).setFocusable(true);
+        BaseWidget w1 = new WidgetMock("w1", CR, c);
+        w1.setFocusable(true);
+        BaseWidget w2 = new WidgetMock("w2", CR, c);
+        w2.setFocusable(true);
         assertEquals(w1, c.getNextFocusableElement());
         assertEquals(w2, c.getNextFocusableElement());
         assertEquals(w1, c.getNextFocusableElement());
         assertEquals(w2, c.getNextFocusableElement());
         // B
-        BaseWidget w3 = new WidgetMock("w3", CR, c).setFocusable(true);
+        BaseWidget w3 = new WidgetMock("w3", CR, c);
+        w3.setFocusable(true);
         assertEquals(w3, c.getNextFocusableElement());
         assertEquals(w1, c.getNextFocusableElement());
         assertEquals(w2, c.getNextFocusableElement());
@@ -74,11 +77,12 @@ final class SimpleContainerTest {
         assertEquals(w2, c.getNextFocusableElement());
         assertEquals(w3, c.getNextFocusableElement());
         // C
-        SimpleContainer c2 = new ContainerBuilder(builder)
+        SimpleContainer c2 = (SimpleContainer) new ContainerBuilder(builder)
                 .withCoordinates(new Coordinates(50, 60, 10, 20))
                 .withParent(c)
                 .build();
-        BaseWidget w4 = new WidgetMock("w4", CR, c2).setFocusable(true);
+        BaseWidget w4 = new WidgetMock("w4", CR, c2);
+        w4.setFocusable(true);
         assertEquals(w4, c.getNextFocusableElement());
         assertEquals(w1, c.getNextFocusableElement());
         assertEquals(w2, c.getNextFocusableElement());
@@ -89,7 +93,8 @@ final class SimpleContainerTest {
         assertEquals(w3, c.getNextFocusableElement());
         assertEquals(w4, c.getNextFocusableElement());
         // D
-        BaseWidget w5 = new WidgetMock("w5", CR, c).setFocusable(true);
+        BaseWidget w5 = new WidgetMock("w5", CR, c);
+        w5.setFocusable(true);
         assertEquals(w5, c.getNextFocusableElement());
         assertEquals(w4, c.getNextFocusableElement());
         assertEquals(w1, c.getNextFocusableElement());
@@ -119,7 +124,7 @@ final class SimpleContainerTest {
     @Test
     void testGetNextFocusableElement() {
         SimpleGuiFactory builder = new DummyGuiFactory();
-        SimpleContainer c = new ContainerBuilder(builder).withCoordinates(new Coordinates(50, 60, 10, 20)).build();
+        SimpleContainer c = (SimpleContainer)new ContainerBuilder(builder).withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         assertNull(c.getNextFocusableElement());
         BaseWidget w1 = new WidgetMock("w1", CR, c);
         assertNull(c.getNextFocusableElement());
@@ -131,7 +136,7 @@ final class SimpleContainerTest {
     void testGuiContainer() {
         SimpleGuiFactory builder = new DummyGuiFactory();
         Coordinates cr = new Coordinates(50, 60, 10, 20);
-        SimpleContainer c = new ContainerBuilder(builder).withName("test").withCoordinates(cr).build();
+        SimpleContainer c = (SimpleContainer)new ContainerBuilder(builder).withName("test").withCoordinates(cr).build();
         assertEquals("test", c.getName());
         assertEquals(cr.left, c.getLeft());
         assertEquals(cr.top, c.getTop());
@@ -154,7 +159,7 @@ final class SimpleContainerTest {
         final int c2X = 10;
         final int c2Y = 10;
 
-        SimpleContainer c = new ContainerBuilder(builder).withCoordinates(new Coordinates(cWidth, cHeight, cX, cY)).build();
+        SimpleContainer c = (SimpleContainer)new ContainerBuilder(builder).withCoordinates(new Coordinates(cWidth, cHeight, cX, cY)).build();
         for (int x = cX; x <= cX + cWidth; x++) {
             for (int y = cY; y <= cY + cHeight; y++) {
                 assertTrue(c.contains(MouseMoveMockFactory.get(x, y)));
@@ -162,7 +167,7 @@ final class SimpleContainerTest {
         }
         assertFalse(c.contains(MouseMoveMockFactory.get(cX - 1, cY + 2)));
         assertFalse(c.contains(MouseMoveMockFactory.get(cX + 2, cY - 1)));
-        SimpleContainer c2 = new ContainerBuilder(builder)
+        SimpleContainer c2 = (SimpleContainer)new ContainerBuilder(builder)
                 .withCoordinates(new Coordinates(c2Width, c2Height, c2X, c2Y))
                 .withParent(c)
                 .build();
@@ -179,7 +184,7 @@ final class SimpleContainerTest {
     @Test
     void testContainsVirtualHeight() {
         SimpleGuiFactory builder = new DummyGuiFactory();
-        SimpleContainer c = new ContainerBuilder(builder).withSize(new Size(50)).build();
+        SimpleContainer c = (SimpleContainer)new ContainerBuilder(builder).withSize(new Size(50)).build();
         assertTrue(c.contains(MouseMoveMockFactory.get(10, 10)));
         assertFalse(c.contains(MouseMoveMockFactory.get(10, 60)));
         c.setVirtualHeight(80);

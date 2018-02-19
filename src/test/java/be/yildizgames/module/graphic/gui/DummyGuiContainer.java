@@ -30,8 +30,6 @@ import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.graphic.material.Material;
 
-import java.util.Optional;
-
 /**
  * Empty container element.
  *
@@ -47,17 +45,17 @@ public final class DummyGuiContainer extends SimpleContainer {
      * @param backgroundMaterial Material to use.
      */
     public DummyGuiContainer(final String name, final Coordinates coordinates, final Material backgroundMaterial, final boolean widget) {
-        super(name, coordinates, backgroundMaterial, Optional.empty(), widget);
+        super(name, coordinates, backgroundMaterial, widget);
     }
 
 
-    public DummyGuiContainer(String name, BaseCoordinate coordinates, Material background) {
-        super(name, coordinates, background, Optional.empty(), false);
+    DummyGuiContainer(String name, BaseCoordinate coordinates, Material background) {
+        super(name, coordinates, background, false);
     }
 
 
-    public DummyGuiContainer(String name, BaseCoordinate coordinates, Material background, SimpleContainer parent, boolean widget) {
-        super(name, coordinates, background, Optional.of(parent), widget);
+    DummyGuiContainer(String name, BaseCoordinate coordinates, Material background, SimpleContainer parent, boolean widget) {
+        super(name, coordinates, background, parent, widget);
     }
 
 
@@ -79,7 +77,7 @@ public final class DummyGuiContainer extends SimpleContainer {
     }
 
     @Override
-    protected void delete() {
+    public void delete() {
     }
 
     @Override
@@ -101,5 +99,15 @@ public final class DummyGuiContainer extends SimpleContainer {
 
     @Override
     protected void setZImpl(final Zorder z) {
+    }
+
+    @Override
+    public void addWidget(ContainerChild child) {
+
+    }
+
+    @Override
+    public void remove(ContainerChild child) {
+
     }
 }

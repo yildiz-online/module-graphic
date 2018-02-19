@@ -48,7 +48,7 @@ public final class DummyIconElement extends AbstractIconElement {
     }
 
     @Override
-    protected void rotateRadian(final float value) {
+    public void rotateRadian(final float value) {
     }
 
     @Override
@@ -61,12 +61,12 @@ public final class DummyIconElement extends AbstractIconElement {
     }
 
     @Override
-    protected String getParentName() {
+    public String getParentName() {
         return "";
     }
 
     @Override
-    protected void delete() {
+    public void delete() {
     }
 
     @Override

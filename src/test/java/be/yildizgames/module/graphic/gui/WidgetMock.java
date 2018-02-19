@@ -29,24 +29,22 @@ import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 
-import java.util.Optional;
-
 /**
  * @author Grégory Van den Borre
  */
 public final class WidgetMock extends BaseContainerChild {
 
-    protected WidgetMock(final Coordinates coordinates, final SimpleContainer parent) {
+    public WidgetMock(final Coordinates coordinates, final SimpleContainer parent) {
         this("random_" + System.nanoTime(), coordinates, parent);
     }
 
-    protected WidgetMock(final String name, final Coordinates coordinates, final SimpleContainer parent) {
-        super("mock " + name, coordinates, Optional.of(parent));
+    WidgetMock(final String name, final Coordinates coordinates, final SimpleContainer parent) {
+        super("mock " + name, coordinates, parent);
         this.show();
     }
 
     @Override
-    protected void delete() {
+    public void delete() {
     }
 
     @Override

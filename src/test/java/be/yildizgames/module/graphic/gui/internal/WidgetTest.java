@@ -22,14 +22,14 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
+package be.yildizgames.module.graphic.gui.internal;
 
-import be.yildizgames.common.collection.Lists;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.graphic.gui.DummyGuiFactory;
+import be.yildizgames.module.graphic.gui.WidgetMock;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
-import be.yildizgames.module.graphic.gui.internal.BaseWidget;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.window.input.MouseLeftClickListener;
@@ -37,6 +37,7 @@ import be.yildizgames.module.window.input.MouseMoveMockFactory;
 import be.yildizgames.module.window.input.MousePosition;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -50,7 +51,7 @@ class WidgetTest {
 
     private BaseWidget givenAWidget() {
         SimpleGuiFactory builder = new DummyGuiFactory();
-        SimpleContainer c = new ContainerBuilder(builder).withSize(new Size(50)).atPosition(new Position(30)).build();
+        SimpleContainer c = (SimpleContainer)new ContainerBuilder(builder).withSize(new Size(50)).atPosition(new Position(30)).build();
         return new WidgetMock(new Coordinates(new Size(10), new Position(10)), c);
     }
 
@@ -58,9 +59,9 @@ class WidgetTest {
     @Test
     void testWidget() {
         SimpleGuiFactory builder = new DummyGuiFactory();
-        SimpleContainer c = new ContainerBuilder(builder).withSize(new Size(50)).atPosition(new Position(30)).build();
+        SimpleContainer c = (SimpleContainer)new ContainerBuilder(builder).withSize(new Size(50)).atPosition(new Position(30)).build();
         BaseWidget w = new WidgetMock(new Coordinates(new Size(10), new Position(10)), c);
-        assertEquals(c, w.getParent().get());
+        assertEquals(c, w.findParent().get());
     }
 
     /***/
@@ -79,7 +80,7 @@ class WidgetTest {
     @Test
     void testAddMouseClickListener() {
         BaseWidget w = givenAWidget();
-        List<MousePosition> list = Lists.newList();
+        List<MousePosition> list = new ArrayList<>();
         w.mouseLeftClick(MouseMoveMockFactory.get(12, 14));
         assertTrue(list.isEmpty());
         w.addMouseLeftClickListener(new MouseLeftClickListener() {
@@ -100,7 +101,7 @@ class WidgetTest {
     @Test
     void testAddKeyboardListener() {
         BaseWidget w = givenAWidget();
-        List<Character> list = Lists.newList();
+        List<Character> list = new ArrayList<>();
         w.keyPressed('e');
         assertTrue(list.isEmpty());
         w.addKeyboardListener(list::add);
@@ -112,7 +113,7 @@ class WidgetTest {
     @Test
     void testAddMouseMoveListener() {
         BaseWidget w = givenAWidget();
-        List<MousePosition> list = Lists.newList();
+        List<MousePosition> list = new ArrayList<>();
         w.mouseMove(MouseMoveMockFactory.get(4, 89));
         assertTrue(list.isEmpty());
         w.addMouseMoveListener(list::add);
