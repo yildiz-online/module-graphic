@@ -30,12 +30,13 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ import java.util.List;
  */
 public class ButtonBuilder implements WidgetBuilder<ButtonBuilder> {
 
-    private final GuiFactory builder;
+    private final SimpleGuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
@@ -70,7 +71,7 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder> {
 
     private final List<ButtonAnimation> animations = new ArrayList<>();
 
-    public ButtonBuilder(final GuiFactory builder) {
+    public ButtonBuilder(final SimpleGuiFactory builder) {
         super();
         this.builder = builder;
     }
@@ -171,8 +172,9 @@ public class ButtonBuilder implements WidgetBuilder<ButtonBuilder> {
     }
 
     public Button build(final Container container) {
+        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
         ButtonMaterial bm = new ButtonMaterial(this.material, this.highlight, this.inactive, this.captionFont, this.inactiveFont);
-        Button result = this.builder.buildButton(this.base.getName(), this.base.getCoordinates(), bm, container);
+        Button result = this.builder.buildButton(this.base.getName(), this.base.getCoordinates(), bm, c);
         result.setCaptionTextLeftAlignment(this.captionLeftAlignment, this.captionLeftDistance);
         result.setCaptionTextTopAlignment(this.captionTopAlignment, this.captionTopDistance);
         this.animations.forEach(a -> {

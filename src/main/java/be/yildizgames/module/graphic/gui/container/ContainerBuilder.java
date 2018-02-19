@@ -28,10 +28,10 @@ import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
-import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ import java.util.Optional;
  */
 public class ContainerBuilder implements WidgetBuilder<ContainerBuilder> {
 
-    private final GuiFactory builder;
+    private final SimpleGuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
@@ -53,7 +53,7 @@ public class ContainerBuilder implements WidgetBuilder<ContainerBuilder> {
 
     private final List<ContainerAnimation> animations = new ArrayList<>();
 
-    public ContainerBuilder(GuiFactory builder) {
+    public ContainerBuilder(SimpleGuiFactory builder) {
         this.builder = builder;
     }
 
@@ -143,7 +143,8 @@ public class ContainerBuilder implements WidgetBuilder<ContainerBuilder> {
         return result;
     }
 
-    public ContainerBuilder withParent(Container c) {
+    public ContainerBuilder withParent(Container container) {
+        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
         this.parent = Optional.of(c);
         return this;
     }

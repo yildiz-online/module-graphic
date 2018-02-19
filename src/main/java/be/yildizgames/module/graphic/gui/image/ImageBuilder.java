@@ -28,10 +28,11 @@ import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
-import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
+import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.ArrayList;
@@ -42,14 +43,14 @@ import java.util.List;
  */
 public class ImageBuilder implements WidgetBuilder<ImageBuilder> {
 
-    private final GuiFactory builder;
+    private final SimpleGuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
     private final List<ImageAnimation> animations = new ArrayList<>();
 
 
-    public ImageBuilder(final GuiFactory builder) {
+    public ImageBuilder(final SimpleGuiFactory builder) {
         super();
         this.builder = builder;
     }
@@ -120,7 +121,8 @@ public class ImageBuilder implements WidgetBuilder<ImageBuilder> {
     }
 
     public Image build(final Container container) {
-        Image result = this.builder.buildImage(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), container);
+        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
+        Image result = this.builder.buildImage(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), c);
         this.animations.forEach(a -> {
             a.setElement(result);
             result.registerAnimation(a);

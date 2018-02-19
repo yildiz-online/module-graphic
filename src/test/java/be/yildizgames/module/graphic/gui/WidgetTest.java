@@ -31,6 +31,7 @@ import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
 import be.yildizgames.module.graphic.gui.internal.BaseWidget;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.window.input.MouseLeftClickListener;
 import be.yildizgames.module.window.input.MouseMoveMockFactory;
 import be.yildizgames.module.window.input.MousePosition;
@@ -48,7 +49,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class WidgetTest {
 
     private BaseWidget givenAWidget() {
-        GuiFactory builder = new DummyGuiFactory();
+        SimpleGuiFactory builder = new DummyGuiFactory();
         SimpleContainer c = new ContainerBuilder(builder).withSize(new Size(50)).atPosition(new Position(30)).build();
         return new WidgetMock(new Coordinates(new Size(10), new Position(10)), c);
     }
@@ -56,7 +57,7 @@ class WidgetTest {
     /***/
     @Test
     void testWidget() {
-        GuiFactory builder = new DummyGuiFactory();
+        SimpleGuiFactory builder = new DummyGuiFactory();
         SimpleContainer c = new ContainerBuilder(builder).withSize(new Size(50)).atPosition(new Position(30)).build();
         BaseWidget w = new WidgetMock(new Coordinates(new Size(10), new Position(10)), c);
         assertEquals(c, w.getParent().get());

@@ -29,10 +29,11 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ import java.util.List;
  */
 public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder> {
 
-    private final GuiFactory builder;
+    private final SimpleGuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
@@ -52,7 +53,7 @@ public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder> {
 
     private final List<CheckBoxAnimation> animations = new ArrayList<>();
 
-    public CheckBoxBuilder(GuiFactory builder) {
+    public CheckBoxBuilder(SimpleGuiFactory builder) {
         super();
         this.builder = builder;
     }
@@ -138,7 +139,8 @@ public class CheckBoxBuilder implements WidgetBuilder<CheckBoxBuilder> {
     }
 
     public CheckBox build(Container container) {
-        CheckBox result = this.builder.buildCheckBox(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), this.hover, this.checked, this.base.getFont(), container);
+        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
+        CheckBox result = this.builder.buildCheckBox(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), this.hover, this.checked, this.base.getFont(), c);
         this.animations.forEach(a -> {
             a.setElement(result);
             result.registerAnimation(a);

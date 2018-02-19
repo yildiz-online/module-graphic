@@ -27,13 +27,13 @@ package be.yildizgames.module.graphic;
 import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.graphic.shader.Shader;
 import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
 import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
-import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.window.WindowEngine;
 
 /**
@@ -70,7 +70,7 @@ public interface GraphicEngine extends FpsProvider {
      *
      * @return The GuiBuilder.
      */
-    GuiFactory getGuiBuilder();
+    SimpleGuiFactory getGuiBuilder();
 
     /**
      * Build a new Material.

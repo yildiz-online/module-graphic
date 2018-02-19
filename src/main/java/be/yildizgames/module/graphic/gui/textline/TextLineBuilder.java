@@ -29,10 +29,10 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleTextLine;
 
 import java.util.ArrayList;
@@ -45,12 +45,12 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder> {
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private final GuiFactory builder;
+    private final SimpleGuiFactory builder;
 
     private final List<TextAnimation> animations = new ArrayList<>();
 
 
-    public TextLineBuilder(GuiFactory builder) {
+    public TextLineBuilder(SimpleGuiFactory builder) {
         super();
         this.builder = builder;
     }
@@ -120,7 +120,8 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder> {
         return this;
     }
 
-    public TextLine build(final SimpleContainer c) {
+    public TextLine build(final SimpleContainer container) {
+        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
         SimpleTextLine result = this.builder.buildTextLine(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), c);
         this.animations.forEach(a -> {
             a.setElement(result);

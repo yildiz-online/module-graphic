@@ -29,10 +29,11 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.ArrayList;
@@ -45,13 +46,13 @@ public class TextAreaBuilder implements WidgetBuilder<TextAreaBuilder> {
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private final GuiFactory builder;
+    private final SimpleGuiFactory builder;
 
     private int padding = 0;
 
     private final List<TextAreaAnimation> animations = new ArrayList<>();
 
-    public TextAreaBuilder(GuiFactory builder) {
+    public TextAreaBuilder(SimpleGuiFactory builder) {
         super();
         this.builder = builder;
     }
@@ -132,7 +133,8 @@ public class TextAreaBuilder implements WidgetBuilder<TextAreaBuilder> {
     }
 
     public TextArea build(final Container container) {
-        return this.builder.buildTextArea(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), this.base.getBackground(), this.padding, container);
+        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
+        return this.builder.buildTextArea(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), this.base.getBackground(), this.padding, c);
     }
 
     public TextAreaBuilder animate(TextAreaAnimation animation) {

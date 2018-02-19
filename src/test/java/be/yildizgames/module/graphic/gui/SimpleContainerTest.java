@@ -27,10 +27,11 @@ package be.yildizgames.module.graphic.gui;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
 import be.yildizgames.module.graphic.gui.internal.BaseWidget;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
 import be.yildizgames.module.window.input.MouseMoveMockFactory;
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +54,7 @@ final class SimpleContainerTest {
      */
     @Test
     void functionalTestGetNextFocusableElement() {
-        GuiFactory builder = new DummyGuiFactory();
+        SimpleGuiFactory builder = new DummyGuiFactory();
         ContainerBuilder cb = new ContainerBuilder(builder);
         SimpleContainer c = cb.withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         // A
@@ -117,7 +118,7 @@ final class SimpleContainerTest {
 
     @Test
     void testGetNextFocusableElement() {
-        GuiFactory builder = new DummyGuiFactory();
+        SimpleGuiFactory builder = new DummyGuiFactory();
         SimpleContainer c = new ContainerBuilder(builder).withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         assertNull(c.getNextFocusableElement());
         BaseWidget w1 = new WidgetMock("w1", CR, c);
@@ -128,7 +129,7 @@ final class SimpleContainerTest {
 
     @Test
     void testGuiContainer() {
-        GuiFactory builder = new DummyGuiFactory();
+        SimpleGuiFactory builder = new DummyGuiFactory();
         Coordinates cr = new Coordinates(50, 60, 10, 20);
         SimpleContainer c = new ContainerBuilder(builder).withName("test").withCoordinates(cr).build();
         assertEquals("test", c.getName());
@@ -142,7 +143,7 @@ final class SimpleContainerTest {
 
     @Test
     void testContains() {
-        GuiFactory builder = new DummyGuiFactory();
+        SimpleGuiFactory builder = new DummyGuiFactory();
         final int cWidth = 50;
         final int cHeight = 60;
         final int cX = 10;
@@ -177,7 +178,7 @@ final class SimpleContainerTest {
 
     @Test
     void testContainsVirtualHeight() {
-        GuiFactory builder = new DummyGuiFactory();
+        SimpleGuiFactory builder = new DummyGuiFactory();
         SimpleContainer c = new ContainerBuilder(builder).withSize(new Size(50)).build();
         assertTrue(c.contains(MouseMoveMockFactory.get(10, 10)));
         assertFalse(c.contains(MouseMoveMockFactory.get(10, 60)));

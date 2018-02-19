@@ -31,16 +31,16 @@ import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicEngine;
 import be.yildizgames.module.graphic.GraphicWorld;
+import be.yildizgames.module.graphic.SceneManager;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialEffect;
 import be.yildizgames.module.graphic.material.MaterialTechnique;
-import be.yildizgames.module.graphic.SceneManager;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
+import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.graphic.shader.Shader;
 import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
 import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
-import be.yildizgames.module.graphic.misc.Skybox;
-import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.window.WindowEngine;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
 
@@ -79,7 +79,7 @@ public final class DummyGraphicEngine implements GraphicEngine {
     }
 
     @Override
-    public GuiFactory getGuiBuilder() {
+    public SimpleGuiFactory getGuiBuilder() {
         return null;
     }
 

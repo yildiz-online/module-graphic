@@ -22,17 +22,16 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
+package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.module.graphic.gui.internal.impl.InputBoxGui;
+import be.yildizgames.module.graphic.dummy.DummyFont;
+import be.yildizgames.module.graphic.gui.DummyGuiFactory;
 import be.yildizgames.module.graphic.gui.inputbox.InputBox;
 import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.graphic.dummy.DummyFont;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,7 +41,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class InputBoxTest {
 
-    private static GuiFactory builder = new DummyGuiFactory();
+    private static SimpleGuiFactory builder = new DummyGuiFactory();
 
     private static Font f = new DummyFont("f", 5, Color.BLACK);
 
@@ -83,7 +82,7 @@ class InputBoxTest {
 
     @Test
     void testAddChar() {
-        InputBoxGui box = givenAnInputBox();
+        SimpleInputBox box = givenAnInputBox();
         box.addChar(65);
         assertEquals("A", box.getText());
         builder.delete(box);
@@ -91,7 +90,7 @@ class InputBoxTest {
 
     @Test
     void testPressKey() {
-        InputBoxGui box = givenAnInputBox();
+        SimpleInputBox box = givenAnInputBox();
         box.show();
         box.keyPressed('a');
         assertEquals("a", box.getText());
@@ -100,7 +99,7 @@ class InputBoxTest {
 
     @Test
     void testPressDeleteKey() {
-        InputBoxGui box = givenAnInputBox();
+        SimpleInputBox box = givenAnInputBox();
         box.show();
         box.keyPressed('b');
         box.keyPressed('c');
@@ -111,13 +110,13 @@ class InputBoxTest {
 
     @Test
     void testAddCharAboveLimit256() {
-        InputBoxGui box = givenAnInputBox();
+        SimpleInputBox box = givenAnInputBox();
         box.addChar(257);
         assertEquals("", box.getText());
         builder.delete(box);
     }
 
-    private static InputBoxGui givenAnInputBox() {
+    private static SimpleInputBox givenAnInputBox() {
         Material m = Material.empty();
         return builder
                 .buildInputBox(StringUtil.buildRandomString("ib"),

@@ -443,7 +443,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
      *
      * @param key Character pressed.
      */
-    protected final void keyPressed(final char key) {
+    public final void keyPressed(final char key) {
         boolean received = false;
         if (this.isVisible()) {
             for (final KeyboardListener listener : this.keyboardListener) {
@@ -509,7 +509,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
     /**
      * Called when the delete enter is pressed.
      */
-    final void deleteKeyPressed() {
+    public final void deleteKeyPressed() {
         if (this.isVisible()) {
             for (final KeyboardListener listener : this.keyboardListener) {
                 listener.deleteKeyPressed();
