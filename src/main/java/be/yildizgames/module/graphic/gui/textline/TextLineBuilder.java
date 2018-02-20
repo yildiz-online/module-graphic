@@ -29,6 +29,7 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
@@ -120,7 +121,7 @@ public class TextLineBuilder implements WidgetBuilder<TextLineBuilder> {
         return this;
     }
 
-    public TextLine build(final SimpleContainer container) {
+    public TextLine build(final Container container) {
         SimpleContainer c = this.builder.getSimpleContainer(container.getName());
         SimpleTextLine result = this.builder.buildTextLine(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), c);
         this.animations.forEach(a -> {

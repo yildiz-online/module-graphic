@@ -45,7 +45,7 @@ class InputBoxTest {
 
     private static Font f = new DummyFont("f", 5, Color.BLACK);
 
-    private static SimpleContainer parent = builder.buildContainerElement("parent", new Coordinates(100, 10, 0, 0), Material.empty());
+    private static SimpleContainer parent = builder.buildOverlayContainer("parent", Material.empty(), new Coordinates(100, 10, 0, 0));
 
 
     @Test

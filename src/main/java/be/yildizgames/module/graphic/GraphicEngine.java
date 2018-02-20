@@ -27,7 +27,8 @@ package be.yildizgames.module.graphic;
 import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.Size;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
+import be.yildizgames.module.graphic.dummy.DummyGraphicEngineProvider;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.misc.Skybox;
@@ -36,41 +37,48 @@ import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
 import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
 import be.yildizgames.module.window.WindowEngine;
 
+import java.util.ServiceLoader;
+
 /**
  * Behavior for a graphic engine. Specification: The engine must be able to load resources, show a sky box, show the GUI, move and rotate 3d meshes.
  *
  * @author Grégory Van den Borre
  */
-public interface GraphicEngine extends FpsProvider {
+public abstract class GraphicEngine implements FpsProvider {
+
+    public static GraphicEngine getEngine() {
+        ServiceLoader<GraphicEngineProvider> provider = ServiceLoader.load(GraphicEngineProvider.class);
+        return provider.findFirst().orElseGet(DummyGraphicEngineProvider::new).getEngine();
+    }
 
     /**
      * Free resources used by the engine.
      */
-    void close();
+    public abstract void close();
 
     /**
      * Render one frame.
      */
-    void update();
+    public abstract void update();
 
     /**
      * Print the current rendering frame and save it in a file.
      */
-    void printScreen();
+    public abstract void printScreen();
 
     /**
      * Add a folder to use to load resources.
      *
      * @param resource Data for the resources.
      */
-    void addResourcePath(ResourcePath resource);
+    public abstract void addResourcePath(ResourcePath resource);
 
     /**
      * Provide the module responsible to build GUI elements.
      *
      * @return The GuiBuilder.
      */
-    SimpleGuiFactory getGuiBuilder();
+    public abstract GuiFactory getGuiBuilder();
 
     /**
      * Build a new Material.
@@ -78,7 +86,7 @@ public interface GraphicEngine extends FpsProvider {
      * @param name Material name, must be unique.
      * @return The newly built material.
      */
-    Material createMaterial(String name);
+    public abstract Material createMaterial(String name);
 
     /**
      * Create a sky box.
@@ -87,7 +95,7 @@ public interface GraphicEngine extends FpsProvider {
      * @param path Path to images to use.
      * @return The created object.
      */
-    Skybox createSkybox(String name, String path);
+    public abstract Skybox createSkybox(String name, String path);
 
     /**
      * Create a new Selection Rectangle, only one can be used at a time, if more
@@ -97,7 +105,7 @@ public interface GraphicEngine extends FpsProvider {
      * @param inner  Inner material.
      * @return The created object.
      */
-    SelectionRectangle createSelectionRectangle(Material border, Material inner);
+    public abstract SelectionRectangle createSelectionRectangle(Material border, Material inner);
 
     /**
      * Create a new font to use to print text.
@@ -109,7 +117,7 @@ public interface GraphicEngine extends FpsProvider {
      * @param color Font color.
      * @return The newly built font.
      */
-    Font createFont(String name, String path, int size, Color color);
+    public abstract Font createFont(String name, String path, int size, Color color);
 
     /**
      * Create a new font to use to print text.
@@ -119,7 +127,7 @@ public interface GraphicEngine extends FpsProvider {
      * @param size Size of the font.
      * @return The newly built font.
      */
-    default Font createFont(final String name, final String path, final int size) {
+    public final Font createFont(final String name, final String path, final int size) {
         return this.createFont(name, path, size, Color.WHITE);
     }
 
@@ -130,7 +138,7 @@ public interface GraphicEngine extends FpsProvider {
      * @param shadowType Type of the shadow to use.
      * @return The created GraphicWorld.
      */
-    SceneManager createGraphicWorld(String worldName, ShadowType shadowType);
+    public abstract SceneManager createGraphicWorld(String worldName, ShadowType shadowType);
 
     /**
      * Create a shader fragment type.
@@ -141,7 +149,7 @@ public interface GraphicEngine extends FpsProvider {
      * @param profile Profile to set.
      * @return The created shader.
      */
-    Shader createFragmentShader(String name, String file, String entry, FragmentProfileList profile);
+    public abstract Shader createFragmentShader(String name, String file, String entry, FragmentProfileList profile);
 
     /**
      * Create a shader vertex type.
@@ -152,20 +160,20 @@ public interface GraphicEngine extends FpsProvider {
      * @param profile Profile to set.
      * @return The created shader.
      */
-    Shader createVertexShader(String name, String file, String entry, VertexProfileList profile);
+    public abstract Shader createVertexShader(String name, String file, String entry, VertexProfileList profile);
 
-    GraphicWorld createWorld();
+    public abstract GraphicWorld createWorld();
 
-    Size getScreenSize();
+    public abstract Size getScreenSize();
 
-    WindowEngine getWindowEngine();
+    public abstract WindowEngine getWindowEngine();
 
     /**
      * Possible type of shadows.
      *
      * @author Van Den Borre Grégory
      */
-    enum ShadowType {
+    public enum ShadowType {
         /**
          * No shadows.
          */

@@ -32,7 +32,7 @@ import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicEngine;
 import be.yildizgames.module.graphic.GraphicWorld;
 import be.yildizgames.module.graphic.SceneManager;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialEffect;
 import be.yildizgames.module.graphic.material.MaterialTechnique;
@@ -49,12 +49,12 @@ import be.yildizgames.module.window.dummy.DummyWindowEngine;
  *
  * @author Grégory Van den Borre
  */
-public final class DummyGraphicEngine implements GraphicEngine {
+public final class DummyGraphicEngine extends GraphicEngine {
 
     /**
      * Simple constructor.
      */
-    public DummyGraphicEngine() {
+    DummyGraphicEngine() {
         super();
     }
 
@@ -79,7 +79,7 @@ public final class DummyGraphicEngine implements GraphicEngine {
     }
 
     @Override
-    public SimpleGuiFactory getGuiBuilder() {
+    public GuiFactory getGuiBuilder() {
         return null;
     }
 
@@ -121,11 +121,6 @@ public final class DummyGraphicEngine implements GraphicEngine {
     @Override
     public SelectionRectangle createSelectionRectangle(final Material texture, final Material texture2) {
         return null;
-    }
-
-    @Override
-    public Font createFont(final String name, final String path, final int size) {
-        return new DummyFont(name, size, Color.WHITE);
     }
 
     @Override

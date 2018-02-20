@@ -39,6 +39,7 @@ import be.yildizgames.module.graphic.gui.button.ButtonBuilder;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBoxBuilder;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
@@ -473,7 +474,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
      * @return The new input box widget.
      */
     public final SimpleInputBox buildInputBox(final String name, final BaseCoordinate coordinates, final Font font, final Material background, final Material backgroundHlight, final Material cursorMaterial,
-                                              final SimpleContainer container) {
+                                              final Container container) {
         return this.buildInputBox(name, coordinates, font, font, background, backgroundHlight, cursorMaterial, container);
     }
 
@@ -491,17 +492,17 @@ public abstract class SimpleGuiFactory implements GuiFactory {
      * @return The new input box widget.
      */
     public final SimpleInputBox buildInputBox(final String name, final BaseCoordinate coordinates, final Font defaultFont, final Font captionFont, final Material background, final Material backgroundHlight, final Material cursorMaterial,
-                                           final SimpleContainer container) {
+                                           final Container container) {
         //FIXME the caption font is the same as the one for the text, for a password type input, it will not be the right font
-        SimpleContainer c = this.buildOverlayContainer(name, Material.empty(), coordinates, container, true);
+        SimpleContainer c = this.buildOverlayContainer(name, Material.empty(), coordinates, this.containerList.get(container.getName()), true);
         Image i = this.buildEmptyUnderlineImage(name + "_bi", new Coordinates(coordinates.width, coordinates.height, 0, 0), background, 1, c);
         final AbstractTextElement text = this.buildTextElement(coordinates, captionFont, c);
-        final AbstractTextElement caption = this.buildTextElement(coordinates, captionFont, container);
+        final AbstractTextElement caption = this.buildTextElement(coordinates, captionFont, this.containerList.get(container.getName()));
         final AbstractIconElement cursor = this.buildIconElement(name + "_cursor", new Size(3, 20), cursorMaterial, c);
-        SimpleTextLine defaultMessage = this.buildTextLine(name + "_text", new Coordinates(coordinates.width, coordinates.height, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), defaultFont, container);
+        SimpleTextLine defaultMessage = this.buildTextLine(name + "_text", new Coordinates(coordinates.width, coordinates.height, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), defaultFont, c);
         defaultMessage.setStatic();
         ButtonMaterial materials = new ButtonMaterial(background, backgroundHlight, captionFont);
-        final SimpleInputBox inputBox = new SimpleInputBox(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, container);
+        final SimpleInputBox inputBox = new SimpleInputBox(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, c);
         this.inputList.register(inputBox);
 
         return inputBox;
