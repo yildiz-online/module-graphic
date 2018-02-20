@@ -26,7 +26,7 @@
 package be.yildizgames.module.graphic.gui.table;
 
 import be.yildizgames.module.graphic.gui.View;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleButton;
 
 import java.util.Objects;
@@ -124,7 +124,7 @@ public final class TabElement {
     /**
      * @return The associated container to add widgets.
      */
-    SimpleContainer getContainer() {
+    Container getContainer() {
         return this.view.getContainer();
     }
 

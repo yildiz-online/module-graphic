@@ -24,7 +24,7 @@
 
 package be.yildizgames.module.graphic.gui;
 
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.container.Container;
 
 /**
  * Basic implementation of a View.
@@ -40,7 +40,7 @@ public final class SimpleView extends View {
      * @param z            Z value.
      * @param eventManager Associated event manager.
      */
-    public SimpleView(final SimpleContainer container, final Zorder z, GuiEventManager eventManager) {
+    public SimpleView(final Container container, final Zorder z, GuiEventManager eventManager) {
         super(container, z, eventManager);
     }
 

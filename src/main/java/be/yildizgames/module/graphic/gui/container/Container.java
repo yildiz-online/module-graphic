@@ -25,19 +25,41 @@
 
 package be.yildizgames.module.graphic.gui.container;
 
+import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.module.graphic.gui.ContainerChild;
-import be.yildizgames.module.graphic.gui.internal.Element;
+import be.yildizgames.module.graphic.gui.Widget;
+import be.yildizgames.module.graphic.gui.Zorder;
+import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.window.input.MousePosition;
+
+import java.util.Optional;
 
 /**
  * @author Grégory Van den Borre
  */
-public interface Container extends Element {
+public interface Container extends Widget {
 
     void addWidget(ContainerChild child);
 
-    int getAbsoluteLeft();
-
-    int getAbsoluteTop();
-
     void remove(ContainerChild child);
+
+    void setZ(Zorder z);
+
+    void setCurrentFocus(Widget focus);
+
+    Widget getNextFocusableElement();
+
+    void showContent();
+
+    void setMaterial(Material background);
+
+    void disableHighlight();
+
+    void hideContent();
+
+    Optional<Widget> getWidgetAt(Point2D position);
+
+    Optional<Widget> getWidgetAt(MousePosition position);
+
+    Optional<Widget> getWidgetAt(int x, int y);
 }

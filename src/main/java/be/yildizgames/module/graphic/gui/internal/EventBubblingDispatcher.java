@@ -28,7 +28,8 @@ package be.yildizgames.module.graphic.gui.internal;
 import be.yildizgames.common.client.debug.DebugListener;
 import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.View;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.Widget;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.window.input.ArrowKey;
 import be.yildizgames.module.window.input.MousePosition;
 import be.yildizgames.module.window.input.SpecialKey;
@@ -151,13 +152,13 @@ public class EventBubblingDispatcher implements GuiEventManager {
     public void mouseMove(MousePosition position) {
         for (View v : this.views) {
             if (v.isVisible()) {
-                SimpleContainer viewContainer = v.getContainer();
-                Optional<BaseWidget> foundWidget = viewContainer.getWidgetAt(position);
+                Container viewContainer = v.getContainer();
+                Optional<Widget> foundWidget = viewContainer.getWidgetAt(position);
                 if (foundWidget.isPresent() && foundWidget.get() != this.widgetUnderMouse) {
                     this.widgetUnderMouse.highlight(false);
                     this.widgetUnderMouse.setMouseOver(false, position);
 
-                    this.widgetUnderMouse = foundWidget.get();
+                    this.widgetUnderMouse = BaseWidget.class.cast(foundWidget.get());
                     this.widgetUnderMouse.highlight(true);
                     this.debugListener.displayDebugMessage(this.widgetUnderMouse);
                     this.widgetUnderMouse.mouseMove(position);
@@ -190,7 +191,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
 
     @Override
     public void setDefaultView(View view) {
-        this.defaultWidget = view.getContainer();
+        this.defaultWidget = BaseWidget.class.cast(view.getContainer());
     }
 
     @Override
@@ -201,7 +202,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void setFocus(View view) {
         this.debugListener.displayDebugMessage("New focus:" + view.getContainer().getName());
-        this.currentWidgetFocus = view.getContainer();
+        this.currentWidgetFocus = BaseWidget.class.cast(view.getContainer());
     }
 
     @Override

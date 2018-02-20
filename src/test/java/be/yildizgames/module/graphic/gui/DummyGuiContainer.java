@@ -110,4 +110,9 @@ public final class DummyGuiContainer extends SimpleContainer {
     public void remove(ContainerChild child) {
 
     }
+
+    @Override
+    public void setCurrentFocus(Widget focus) {
+
+    }
 }

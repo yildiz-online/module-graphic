@@ -29,6 +29,7 @@ import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleButton;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
@@ -197,7 +198,7 @@ public abstract class Window extends View {
         public BasicTitleBar(final SimpleGuiFactory builder, Font font) {
             super();
             this.height = Window.MINIMIZED_SIZE;
-            final SimpleContainer container = Window.this.getContainer();
+            final SimpleContainer container = builder.getContainer(Window.this.getContainer().getName());
             this.title = builder.buildTextLine("title_" + Window.this.getName(), new Coordinates(Window.this.getContainer().getWidth(), 20, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), font, container);
             final Coordinates closeCoordinates = new Coordinates(this.height, this.height, Window.this.getContainer().getWidth() - this.height, 0);
             this.close = builder.buildButton("close_" + Window.this.getName(), closeCoordinates, new ButtonMaterial(Material.empty(), Material.empty(), font), container);

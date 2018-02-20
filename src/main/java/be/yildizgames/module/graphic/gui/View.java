@@ -26,18 +26,11 @@ package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.util.BaseRegisterable;
 import be.yildizgames.common.util.Registerer;
-import be.yildizgames.module.graphic.gui.internal.BaseWidget;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.Visible;
-import be.yildizgames.module.window.input.KeyboardListener;
-import be.yildizgames.module.window.input.MouseDragListener;
-import be.yildizgames.module.window.input.MouseLeftClickListener;
-import be.yildizgames.module.window.input.MouseMoveListener;
-import be.yildizgames.module.window.input.MousePosition;
-import be.yildizgames.module.window.input.MouseReleaseListener;
-import be.yildizgames.module.window.input.MouseWheelListener;
-import be.yildizgames.module.window.input.SpecialKeyPressedListener;
+import be.yildizgames.module.graphic.gui.container.Container;
+import be.yildizgames.module.graphic.gui.internal.BaseWidget;
+import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.window.input.*;
 
 import java.util.Optional;
 
@@ -62,7 +55,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
     /**
      * Container to hold the view elements.
      */
-    private final SimpleContainer container;
+    private final Container container;
 
     private final GuiEventManager eventManager;
 
@@ -74,7 +67,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
     /**
      * Widget to use when view is focused, default is the wrapped container.
      */
-    private BaseWidget focus;
+    private Widget focus;
 
     /**
      * Full constructor, initialize the visibility to true, add the view to the event dispatcher.
@@ -83,7 +76,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      * @param z                Z order.
      * @param eventManager     Event manager to notify.
      */
-    public View(final SimpleContainer wrappedContainer, final Zorder z, GuiEventManager eventManager) {
+    public View(final Container wrappedContainer, final Zorder z, GuiEventManager eventManager) {
         super(wrappedContainer.getName());
         this.container = wrappedContainer;
         this.container.setZ(z);
@@ -220,8 +213,8 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
     /**
      * @return The next focusable element from the widget list of this view.
      */
-    final BaseWidget getNextFocusableElement() {
-        BaseWidget w = this.container.getNextFocusableElement();
+    final Widget getNextFocusableElement() {
+        Widget w = this.container.getNextFocusableElement();
         this.container.setCurrentFocus(w);
         return w;
     }
@@ -338,7 +331,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
         this.container.disableHighlight();
     }
 
-    public SimpleContainer getContainer() {
+    public Container getContainer() {
         return container;
     }
 
@@ -346,7 +339,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
         return active;
     }
 
-    public BaseWidget getFocus() {
+    public Widget getFocus() {
         return focus;
     }
 

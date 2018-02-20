@@ -28,6 +28,7 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.Zorder;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
@@ -422,6 +423,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      */
     protected abstract void setZImpl(Zorder z);
 
+    @Override
     public void disableHighlight() {
         this.highlight(false);
         for (BaseWidget w : this.dynamicChildrenList) {
@@ -430,18 +432,21 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
         this.childrenContainerList.forEach(SimpleContainer::disableHighlight);
     }
 
-    public Optional<BaseWidget> getWidgetAt(Point2D position) {
+    @Override
+    public Optional<Widget> getWidgetAt(Point2D position) {
         return this.getWidgetAt(position.getX(), position.getY());
     }
 
-    public Optional<BaseWidget> getWidgetAt(MousePosition position) {
+    @Override
+    public Optional<Widget> getWidgetAt(MousePosition position) {
         return this.getWidgetAt(position.getX(), position.getY());
     }
 
-    public Optional<BaseWidget> getWidgetAt(int x, int y) {
+    @Override
+    public Optional<Widget> getWidgetAt(int x, int y) {
         for (SimpleContainer c : this.childrenContainerList) {
             if (c.isVisible()) {
-                Optional<BaseWidget> result = c.getWidgetAt(x, y);
+                Optional<Widget> result = c.getWidgetAt(x, y);
                 if (result.isPresent()) {
                     return result;
                 }

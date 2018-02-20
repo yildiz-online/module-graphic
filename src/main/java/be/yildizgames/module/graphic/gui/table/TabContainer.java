@@ -27,6 +27,7 @@ package be.yildizgames.module.graphic.gui.table;
 
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.gui.View;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.image.Image;
 import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
@@ -123,7 +124,7 @@ public final class TabContainer extends BaseContainerChild {
         return this;
     }
 
-    public SimpleContainer getContainer(final int tab) {
+    public Container getContainer(final int tab) {
         return this.elements[tab].getContainer();
     }
 }

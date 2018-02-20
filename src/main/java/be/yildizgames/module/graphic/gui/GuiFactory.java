@@ -25,6 +25,7 @@
 package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.frame.FrameListener;
+import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.gui.button.ButtonBuilder;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBoxBuilder;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
@@ -50,4 +51,6 @@ public interface GuiFactory {
     ImageBuilder image();
 
     FrameListener getAnimationManager();
+
+    Size getScreenSize();
 }
