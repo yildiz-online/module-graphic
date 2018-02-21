@@ -30,6 +30,7 @@ import be.yildizgames.module.graphic.gui.button.ButtonBuilder;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBoxBuilder;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
 import be.yildizgames.module.graphic.gui.image.ImageBuilder;
+import be.yildizgames.module.graphic.gui.inputbox.InputBoxBuilder;
 import be.yildizgames.module.graphic.gui.textarea.TextAreaBuilder;
 import be.yildizgames.module.graphic.gui.textline.TextLineBuilder;
 
@@ -51,6 +52,8 @@ public interface GuiFactory {
     ImageBuilder image();
 
     FrameListener getAnimationManager();
+
+    InputBoxBuilder inputBox();
 
     Size getScreenSize();
 }
