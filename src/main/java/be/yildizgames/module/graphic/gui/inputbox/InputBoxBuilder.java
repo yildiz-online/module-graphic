@@ -145,4 +145,9 @@ public class InputBoxBuilder implements WidgetBuilder<InputBoxBuilder>{
         this.base.withFont(font);
         return this;
     }
+
+    public InputBoxBuilder withBackground(Material material) {
+        this.base.withBackground(material);
+        return this;
+    }
 }
