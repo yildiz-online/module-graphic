@@ -140,4 +140,9 @@ public class InputBoxBuilder implements WidgetBuilder<InputBoxBuilder>{
                 this.cursorMaterial,
                 container);
     }
+
+    public InputBoxBuilder withFont(Font font) {
+        this.base.withFont(font);
+        return this;
+    }
 }
