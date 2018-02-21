@@ -50,6 +50,7 @@ public interface CheckBox extends Widget, ContainerChild {
      * Set the check box state.
      *
      * @param checked <code>true</code> will set checked state while <code>false</code> is unchecked.
+     * @return This object for chaining.
      */
     CheckBox check(boolean checked);
 

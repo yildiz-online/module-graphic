@@ -27,7 +27,7 @@ package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 
-public interface ContainerChild {
+public interface ContainerChild extends Widget{
     /**
      * Remove this widget from its parent.
      */
@@ -68,4 +68,8 @@ public interface ContainerChild {
     ContainerChild setTopFromParent(PositionRelativeTop relative, int diff);
 
     SimpleContainer getParent();
+
+    void updateAddPositionValue(int left, int top);
+
+    void updateSizeAfterZoom(float zoomFactor);
 }

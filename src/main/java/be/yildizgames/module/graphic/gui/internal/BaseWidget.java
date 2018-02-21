@@ -560,6 +560,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
      *
      * @param over New focus status.
      */
+    @Override
     public final void focus(final boolean over) {
         if (this.isVisible() && this.focusable && this.highlighted != over) {
             this.highlighted = over;
@@ -590,6 +591,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
     /**
      * @return <code>true</code> if the widget can be focused, false otherwise.
      */
+    @Override
     public final boolean isFocusable() {
         return this.focusable;
     }

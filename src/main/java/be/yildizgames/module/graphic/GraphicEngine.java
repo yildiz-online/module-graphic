@@ -28,7 +28,9 @@ import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.dummy.DummyGraphicEngineProvider;
+import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.GuiFactory;
+import be.yildizgames.module.graphic.gui.internal.EventBubblingDispatcher;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.misc.Skybox;
@@ -46,9 +48,15 @@ import java.util.ServiceLoader;
  */
 public abstract class GraphicEngine implements FpsProvider {
 
+    private final GuiEventManager eventManager = new EventBubblingDispatcher();
+
     public static GraphicEngine getEngine() {
         ServiceLoader<GraphicEngineProvider> provider = ServiceLoader.load(GraphicEngineProvider.class);
         return provider.findFirst().orElseGet(DummyGraphicEngineProvider::new).getEngine();
+    }
+
+    public final GuiEventManager getEventManager() {
+        return this.eventManager;
     }
 
     /**

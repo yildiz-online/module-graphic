@@ -62,4 +62,6 @@ public interface Container extends Widget {
     Optional<Widget> getWidgetAt(MousePosition position);
 
     Optional<Widget> getWidgetAt(int x, int y);
+
+    Zorder getZ();
 }

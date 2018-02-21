@@ -25,8 +25,8 @@
 package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.geometry.Rectangle;
-import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.gui.internal.BaseAnimationGui;
+import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.window.input.KeyboardListener;
 import be.yildizgames.module.window.input.MouseDoubleLeftClickListener;
 import be.yildizgames.module.window.input.MouseDragListener;
@@ -156,4 +156,10 @@ public interface Widget extends Element {
     void playAnimation(String animation);
 
     void stopAnimation(String name);
+
+    void focus(boolean b);
+
+    boolean isFocusable();
+
+    void highlight(boolean b);
 }

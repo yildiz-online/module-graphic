@@ -28,6 +28,7 @@ import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
@@ -93,12 +94,12 @@ public class DummyGuiFactory extends SimpleGuiFactory {
     }
 
     @Override
-    protected AbstractIconElement buildIconElement(String name, BaseCoordinate coordinates, Material material, SimpleContainer container) {
+    protected AbstractIconElement buildIconElement(String name, BaseCoordinate coordinates, Material material, Container container) {
         return new DummyIconElement(name, coordinates, material);
     }
 
     @Override
-    protected AbstractTextElement buildTextElement(BaseCoordinate coordinates, Font font, SimpleContainer container) {
+    protected AbstractTextElement buildTextElement(BaseCoordinate coordinates, Font font, Container container) {
         return new DummyTextElement(coordinates, font);
     }
 
@@ -107,8 +108,9 @@ public class DummyGuiFactory extends SimpleGuiFactory {
         return new DummyGuiContainer(name, coordinates, background);
     }
 
+
     @Override
-    public SimpleContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, SimpleContainer parent, boolean widget) {
+    public SimpleContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, Container parent, boolean widget) {
         return new DummyGuiContainer(name, coordinates, background, parent, widget);
     }
 }

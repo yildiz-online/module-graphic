@@ -28,13 +28,12 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.Zorder;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
-import be.yildizgames.module.graphic.gui.internal.BaseElement;
 import be.yildizgames.module.graphic.gui.internal.BaseWidget;
-import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.window.input.MousePosition;
 
@@ -53,9 +52,9 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
     /**
      * List of all Widget contained in this container.
      */
-    private final List<BaseContainerChild> childrenList = new ArrayList<>();
+    private final List<ContainerChild> childrenList = new ArrayList<>();
 
-    private final List<BaseContainerChild> dynamicChildrenList = new ArrayList<>();
+    private final List<ContainerChild> dynamicChildrenList = new ArrayList<>();
     /**
      * List of all child containers.
      */
@@ -127,7 +126,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      */
     public final void zoom(final float zoomFactor) {
         this.zoomImpl(zoomFactor);
-        for (final BaseContainerChild w : this.childrenList) {
+        for (final ContainerChild w : this.childrenList) {
             w.updateSizeAfterZoom(zoomFactor);
         }
     }
@@ -166,7 +165,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @param rectangle Rectangle containing the elements.
      * @return All Widget in the rectangle.
      */
-    public final List<BaseWidget> getElements(final Rectangle rectangle) {
+    public final List<Widget> getElements(final Rectangle rectangle) {
         return this.childrenList.stream().filter(w -> rectangle.contain(w.getLeft(), w.getTop()) || rectangle.contain(w.getRight(), w.getTop())
                 || rectangle.contain(w.getLeft(), w.getBottom())
                 || rectangle.contain(w.getRight(), w.getBottom())).collect(Collectors.toList());
@@ -178,9 +177,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @param left Value to add to the children current x position.
      */
     public final void addChildrenLeft(final int left) {
-        for (final BaseWidget w : this.childrenList) {
-            w.addToLeft(left);
-        }
+        this.childrenList.forEach(w -> w.addToLeft(left));
     }
 
     /**
@@ -189,9 +186,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @param top Value to add to the children current y position.
      */
     public final void addChildrenTop(final int top) {
-        for (final BaseWidget w : this.childrenList) {
-            w.addToTop(top);
-        }
+        this.childrenList.forEach(w -> w.addToTop(top));
     }
 
     /**
@@ -203,7 +198,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
     public final void addChildrenPosition(final int left, final int top) {
         this.addChildrenPositionImpl(left, top);
         BaseCoordinate c = this.getCoordinates();
-        for (final BaseWidget w : this.childrenList) {
+        for (final ContainerChild w : this.childrenList) {
             w.updateAddPositionValue(left, top);
             w.setVisible(c.contains(w.getCoordinates()));
         }
@@ -271,13 +266,11 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @param widget Child to focus.
      */
     public final void setCurrentFocus(final BaseWidget widget) {
-        for (final BaseWidget w : this.dynamicChildrenList) {
+        for (final Widget w : this.dynamicChildrenList) {
             w.focus(false);
         }
         for (SimpleContainer c : this.childrenContainerList) {
-            for (final BaseWidget w : c.dynamicChildrenList) {
-                w.focus(false);
-            }
+            c.dynamicChildrenList.forEach(w -> w.focus(false));
         }
         if (this.dynamicChildrenList.contains(widget) && widget.isFocusable()) {
             this.currentFocusable = this.dynamicChildrenList.indexOf(widget);
@@ -298,7 +291,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @return The focusable child following the current focused child,
      * <code>null</code> if none found.
      */
-    public final BaseWidget getNextFocusableElement() {
+    public final Widget getNextFocusableElement() {
         // first iterate from current position to end of list.
         for (int i = this.currentFocusable + 1; i < this.dynamicChildrenList.size(); i++) {
             if (this.dynamicChildrenList.get(i).isFocusable()) {
@@ -307,7 +300,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
             }
         }
         for (SimpleContainer child : this.childrenContainerList) {
-            BaseWidget w = child.getNextFocusableElement();
+            Widget w = child.getNextFocusableElement();
             if (w != null) {
                 return w;
             }
@@ -352,7 +345,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      */
     private void showSubElement() {
         if (this.showContent) {
-            this.childrenList.forEach(Element::show);
+            this.childrenList.forEach(Widget::show);
             for (final SimpleContainer c : this.childrenContainerList) {
                 c.setVisible(true);
                 c.showContent();
@@ -365,7 +358,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      */
     private void hideSubElement() {
         if (!this.showContent) {
-            this.childrenList.forEach(BaseElement::hide);
+            this.childrenList.forEach(Widget::hide);
             for (final SimpleContainer c : this.childrenContainerList) {
                 c.setVisible(false);
                 c.hideContent();
@@ -424,26 +417,26 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
     protected abstract void setZImpl(Zorder z);
 
     @Override
-    public void disableHighlight() {
+    public final void disableHighlight() {
         this.highlight(false);
-        for (BaseWidget w : this.dynamicChildrenList) {
+        for (Widget w : this.dynamicChildrenList) {
             w.highlight(false);
         }
         this.childrenContainerList.forEach(SimpleContainer::disableHighlight);
     }
 
     @Override
-    public Optional<Widget> getWidgetAt(Point2D position) {
+    public final Optional<Widget> getWidgetAt(Point2D position) {
         return this.getWidgetAt(position.getX(), position.getY());
     }
 
     @Override
-    public Optional<Widget> getWidgetAt(MousePosition position) {
+    public final Optional<Widget> getWidgetAt(MousePosition position) {
         return this.getWidgetAt(position.getX(), position.getY());
     }
 
     @Override
-    public Optional<Widget> getWidgetAt(int x, int y) {
+    public final Optional<Widget> getWidgetAt(int x, int y) {
         for (SimpleContainer c : this.childrenContainerList) {
             if (c.isVisible()) {
                 Optional<Widget> result = c.getWidgetAt(x, y);
@@ -453,7 +446,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
             }
         }
 
-        for (BaseWidget w : this.dynamicChildrenList) {
+        for (Widget w : this.dynamicChildrenList) {
             if (w.isVisible() && w.contains(x, y)) {
                 return Optional.of(w);
             }
@@ -465,7 +458,23 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
         return material;
     }
 
-    public Zorder getZ() {
-        return z;
+    @Override
+    public final Zorder getZ() {
+        return this.z;
+    }
+
+    @Override
+    public void addWidget(ContainerChild child) {
+        this.childrenList.add(child);
+    }
+
+    @Override
+    public void remove(ContainerChild child) {
+        this.childrenList.remove(child);
+    }
+
+    @Override
+    public void setCurrentFocus(Widget focus) {
+        //FIXME implements
     }
 }

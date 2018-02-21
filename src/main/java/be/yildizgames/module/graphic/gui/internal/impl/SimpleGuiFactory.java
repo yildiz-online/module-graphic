@@ -376,7 +376,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
         final AbstractIconElement rightEmpty = this.buildIconElement(name + "rtempty",
                 new Coordinates(borderWidth, coordinates.height, coordinates.left + coordinates.width - borderWidth, coordinates.top), emptyRightMat, container);
 
-        final SimpleContainer child = this.buildContainerElement(container.getName() + name + "_child", container.getCoordinates(), Material.empty(), container, false);
+        final Container child = this.buildContainerElement(container.getName() + name + "_child", container.getCoordinates(), Material.empty(), container, false);
         final AbstractIconElement middle = this.buildIconElement(name + "mdfilled", middleC, middleMat, child);
         final AbstractIconElement right = this.buildIconElement(name + "rtfilled", border, rightMat, child);
         final ProgressBar progressBar = new ComplexProgressBar(name, coordinates, left, middle, right, middleEmpty, rightEmpty, container);
@@ -715,7 +715,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
 
         View[] children = new View[titles.length];
         for (int i = 0; i < children.length; i++) {
-            SimpleContainer c = this.buildContainerElement("childc" + name + i, coordinates, Material.empty());
+            Container c = this.buildContainerElement("childc" + name + i, coordinates, Material.empty());
             children[i] = new SimpleView(c, container.getZ().add(10), null);
         }
         Image bg = this.buildImage(name + "bg", new Coordinates(coordinates.width, coordinates.height - tabHeight, coordinates.left, coordinates.top), background, container);
@@ -752,7 +752,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
      * @param container   Container holding the image.
      * @return The newly built image.
      */
-    protected abstract AbstractIconElement buildIconElement(String name, BaseCoordinate coordinates, Material material, SimpleContainer container);
+    protected abstract AbstractIconElement buildIconElement(String name, BaseCoordinate coordinates, Material material, Container container);
 
     /**
      * Build an text base element in implementation.
@@ -762,7 +762,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
      * @param container   Container holding the text.
      * @return The newly built text.
      */
-    protected abstract AbstractTextElement buildTextElement(BaseCoordinate coordinates, Font font, SimpleContainer container);
+    protected abstract AbstractTextElement buildTextElement(BaseCoordinate coordinates, Font font, Container container);
 
     /**
      * Build a container base element in implementation.
@@ -784,6 +784,6 @@ public abstract class SimpleGuiFactory implements GuiFactory {
      * @param widget      <code>true</code> to use this container as part of a widget instead of widget container.
      * @return The newly built container.
      */
-    public abstract SimpleContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, SimpleContainer parent, boolean widget);
+    public abstract SimpleContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, Container parent, boolean widget);
 
 }
