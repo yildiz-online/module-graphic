@@ -30,7 +30,7 @@
   <url>https://bitbucket.org/yildiz-engine-team/module-graphic</url>
 
   <artifactId>module-graphic</artifactId>
-  <version>2.0.2-SNAPSHOT</version>
+  <version>2.0.2</version>
 
   <packaging>jar</packaging>
   <inceptionYear>2014</inceptionYear>
@@ -93,20 +93,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
