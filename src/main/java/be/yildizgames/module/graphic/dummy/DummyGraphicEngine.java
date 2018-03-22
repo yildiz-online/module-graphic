@@ -42,7 +42,6 @@ import be.yildizgames.module.graphic.shader.Shader;
 import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
 import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
 import be.yildizgames.module.window.WindowEngine;
-import be.yildizgames.module.window.dummy.DummyWindowEngine;
 
 /**
  * dummy implementation for graphic engine.
@@ -160,6 +159,6 @@ public final class DummyGraphicEngine extends GraphicEngine {
 
     @Override
     public WindowEngine getWindowEngine() {
-        return new DummyWindowEngine();
+        return WindowEngine.getEngine();
     }
 }
