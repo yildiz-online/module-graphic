@@ -25,10 +25,12 @@
 
 package be.yildizgames.module.graphic;
 
+import be.yildizgames.module.window.WindowEngine;
+
 /**
  * @author Grégory Van den Borre
  */
 public interface GraphicEngineProvider {
 
-    GraphicEngine getEngine();
+    GraphicEngine getEngine(WindowEngine windowEngine);
 }

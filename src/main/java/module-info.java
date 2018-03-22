@@ -32,9 +32,8 @@ module be.yildizgames.module.graphic {
     requires be.yildizgames.common.client;
     requires be.yildizgames.common.frame;
     requires be.yildizgames.common.time;
+    requires be.yildizgames.module.window;
 
-    exports be.yildizgames.module.color;
-    exports be.yildizgames.module.coordinate;
     exports be.yildizgames.module.graphic;
     exports be.yildizgames.module.graphic.animation;
     exports be.yildizgames.module.graphic.billboard;
@@ -57,7 +56,4 @@ module be.yildizgames.module.graphic {
     exports be.yildizgames.module.graphic.gui.table;
     exports be.yildizgames.module.graphic.gui.textarea;
     exports be.yildizgames.module.graphic.gui.textline;
-    exports be.yildizgames.module.window;
-    exports be.yildizgames.module.window.dummy;
-    exports be.yildizgames.module.window.input;
 }

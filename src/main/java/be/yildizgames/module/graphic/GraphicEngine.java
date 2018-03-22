@@ -50,9 +50,14 @@ public abstract class GraphicEngine implements FpsProvider {
 
     private final GuiEventManager eventManager = new EventBubblingDispatcher();
 
+    public static GraphicEngine getEngine(WindowEngine windowEngine) {
+        ServiceLoader<GraphicEngineProvider> provider = ServiceLoader.load(GraphicEngineProvider.class);
+        return provider.findFirst().orElseGet(DummyGraphicEngineProvider::new).getEngine(windowEngine);
+    }
+
     public static GraphicEngine getEngine() {
         ServiceLoader<GraphicEngineProvider> provider = ServiceLoader.load(GraphicEngineProvider.class);
-        return provider.findFirst().orElseGet(DummyGraphicEngineProvider::new).getEngine();
+        return provider.findFirst().orElseGet(DummyGraphicEngineProvider::new).getEngine(WindowEngine.getEngine());
     }
 
     public final GuiEventManager getEventManager() {
