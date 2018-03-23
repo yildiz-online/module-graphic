@@ -33,8 +33,6 @@ import be.yildizgames.module.window.input.MousePosition;
 public class MouseMoveMockFactory {
 
     public static MousePosition get(int x, int y) {
-        MousePosition p = new MousePosition();
-        p.setValues(x, y);
-        return p;
+        return new MousePosition(x, y);
     }
 }
