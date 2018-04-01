@@ -27,40 +27,31 @@ package be.yildizgames.module.graphic.material;
 
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.shader.FragmentShader;
-import be.yildizgames.module.graphic.GraphicEngine;
-import be.yildizgames.module.graphic.shader.VertexShader;
 import be.yildizgames.module.graphic.material.MaterialPass.Transparency;
+import be.yildizgames.module.graphic.material.TextureUnit.LayerBlendOperationEx;
+import be.yildizgames.module.graphic.material.TextureUnit.LayerBlendSource;
+import be.yildizgames.module.graphic.shader.FragmentShader;
 import be.yildizgames.module.graphic.shader.Shader;
 import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
 import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
-import be.yildizgames.module.graphic.material.TextureUnit.LayerBlendOperationEx;
-import be.yildizgames.module.graphic.material.TextureUnit.LayerBlendSource;
+import be.yildizgames.module.graphic.shader.VertexShader;
 
 /**
  * Manage the construction of materials.
  *
  * @author Grégory Van den Borre
  */
-public final class MaterialManager {
+public abstract class MaterialManager {
 
     private static final VertexProfileList DEFAULT_VERTEX_PROFILE = new VertexProfileList(Shader.VertexDx.VS_1_1, Shader.VertexGL.ARBVP1);
 
     private static final FragmentProfileList DEFAULT_FRAGMENT_PROFILE = new FragmentProfileList(Shader.FragmentDx.PS_1_1, Shader.FragmentGL.ARBFP1);
 
     /**
-     * Engine used to create materials.
-     */
-    private final GraphicEngine engine;
-
-    /**
      * Full constructor.
-     *
-     * @param graphicEngine Engine used to create materials.
      */
-    public MaterialManager(final GraphicEngine graphicEngine) {
+     protected MaterialManager() {
         super();
-        this.engine = graphicEngine;
         Material empty = this.createMaterial(Material.EMPTY_NAME);
         empty.getTechnique(0).getPass(0).enableColor(false);
         empty.load();
@@ -79,8 +70,8 @@ public final class MaterialManager {
      * @param name Material name, must be unique.
      * @return The newly built material.
      */
-    public Material createMaterial(final String name) {
-        return this.engine.createMaterial(name);
+    public final Material createMaterial(final String name) {
+        return this.createMaterialImpl(name);
     }
 
     /**
@@ -91,7 +82,7 @@ public final class MaterialManager {
      *              technique.
      * @return The newly built material.
      */
-    public Material createMaterial(final Color color) {
+    public final Material createMaterial(final Color color) {
         return this.createMaterial(color, StringUtil.buildRandomString(color));
     }
 
@@ -103,7 +94,7 @@ public final class MaterialManager {
      * @param name  Material name, must be unique.
      * @return The newly built material.
      */
-    public Material createMaterial(final Color color, final String name) {
+    public final Material createMaterial(final Color color, final String name) {
         final Material mat = this.createMaterial(name);
         mat.getTechnique(0).getPass(0).getUnit(0).setColorOperationEx(LayerBlendOperationEx.SOURCE1, LayerBlendSource.MANUAL, LayerBlendSource.CURRENT, color);
         mat.load();
@@ -116,7 +107,7 @@ public final class MaterialManager {
      * @param path File used as image for the texture.
      * @return The created and loaded texture.
      */
-    public Material loadSimpleTexture(final String path) {
+    public final Material loadSimpleTexture(final String path) {
         return this.loadSimpleTexture(StringUtil.buildRandomString(path), path);
     }
 
@@ -128,7 +119,7 @@ public final class MaterialManager {
      * @param path2 Second file.
      * @return The created material.
      */
-    public Material createBlendMaterial(final String name, final String path, final String path2) {
+    public final Material createBlendMaterial(final String name, final String path, final String path2) {
         Material m = this.createMaterial(name);
         TextureUnit u = m.getTechnique(0).getPass(0).getUnit(0);
         u.setTexture(path);
@@ -144,8 +135,8 @@ public final class MaterialManager {
      * @param path File used as image for the texture.
      * @return The created and loaded texture.
      */
-    public Material loadSimpleTexture(final String name, final String path) {
-        final Material texture = this.engine.createMaterial(name);
+    public final Material loadSimpleTexture(final String name, final String path) {
+        final Material texture = this.createMaterialImpl(name);
         texture.getTechnique(0).getPass(0).getUnit(0).setTexture(path);
         texture.load();
         return texture;
@@ -159,7 +150,7 @@ public final class MaterialManager {
      * @param transparent Transparency type.
      * @return The created and loaded texture.
      */
-    public Material loadSimpleTexture(final String path, final Transparency transparent) {
+    public final Material loadSimpleTexture(final String path, final Transparency transparent) {
         return this.loadSimpleTexture(StringUtil.buildRandomString(path), path, transparent);
 
     }
@@ -173,8 +164,8 @@ public final class MaterialManager {
      * @param transparent Transparency type.
      * @return The created and loaded texture.
      */
-    public Material loadSimpleTexture(final String name, final String path, final Transparency transparent) {
-        final Material texture = this.engine.createMaterial(name);
+    public final Material loadSimpleTexture(final String name, final String path, final Transparency transparent) {
+        final Material texture = this.createMaterialImpl(name);
         texture.getTechnique(0).getPass(0).setTransparency(transparent);
         texture.getTechnique(0).getPass(0).getUnit(0).setTexture(path);
         texture.load();
@@ -187,7 +178,7 @@ public final class MaterialManager {
      * @param path Texture file path.
      * @return The created and loaded texture.
      */
-    public Material createGuiMaterial(final String path) {
+    public final Material createGuiMaterial(final String path) {
         return this.loadSimpleTexture(path, Transparency.ALPHA).disableLight();
     }
 
@@ -198,8 +189,8 @@ public final class MaterialManager {
      * @param file File containing the shader code.
      * @return The built shader.
      */
-    public FragmentShader createFragmentShader(final String name, final String file) {
-        Shader shader = this.engine.createFragmentShader(name, file, "main", DEFAULT_FRAGMENT_PROFILE);
+    public final FragmentShader createFragmentShader(final String name, final String file) {
+        Shader shader = this.createFragmentShaderImpl(name, file, "main", DEFAULT_FRAGMENT_PROFILE);
         return new FragmentShader(shader);
     }
 
@@ -211,7 +202,7 @@ public final class MaterialManager {
      * @return The built shader.
      */
     public VertexShader createVertexShader(final String name, final String file) {
-        Shader shader = this.engine.createVertexShader(name, file, "main", DEFAULT_VERTEX_PROFILE);
+        Shader shader = this.createVertexShaderImpl(name, file, "main", DEFAULT_VERTEX_PROFILE);
         return new VertexShader(shader);
     }
 
@@ -225,7 +216,7 @@ public final class MaterialManager {
      * @return The built shader.
      */
     public FragmentShader createFragmentShader(final String name, final String file, final String entry, final FragmentProfileList profile) {
-        Shader shader = this.engine.createFragmentShader(name, file, entry, profile);
+        Shader shader = this.createFragmentShaderImpl(name, file, entry, profile);
         return new FragmentShader(shader);
     }
 
@@ -239,7 +230,31 @@ public final class MaterialManager {
      * @return The built shader.
      */
     public VertexShader createVertexShader(final String name, final String file, final String entry, final VertexProfileList profile) {
-        Shader shader = this.engine.createVertexShader(name, file, entry, profile);
+        Shader shader = this.createVertexShaderImpl(name, file, entry, profile);
         return new VertexShader(shader);
     }
+
+    /**
+     * Create a shader fragment type.
+     *
+     * @param name    Shader name.
+     * @param file    Shader file.
+     * @param entry   Entry point name.
+     * @param profile Profile to set.
+     * @return The created shader.
+     */
+    protected abstract Shader createFragmentShaderImpl(String name, String file, String entry, FragmentProfileList profile);
+
+    /**
+     * Create a shader vertex type.
+     *
+     * @param name    Shader name.
+     * @param file    Shader file.
+     * @param entry   Entry point name.
+     * @param profile Profile to set.
+     * @return The created shader.
+     */
+    protected abstract Shader createVertexShaderImpl(String name, String file, String entry, VertexProfileList profile);
+
+    protected abstract Material createMaterialImpl(String name);
 }

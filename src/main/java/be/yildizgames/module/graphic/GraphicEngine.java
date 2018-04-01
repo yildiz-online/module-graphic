@@ -32,11 +32,9 @@ import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.internal.EventBubblingDispatcher;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.graphic.material.MaterialManager;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.misc.Skybox;
-import be.yildizgames.module.graphic.shader.Shader;
-import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
-import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
 import be.yildizgames.module.window.WindowEngine;
 
 import java.util.ServiceLoader;
@@ -93,13 +91,7 @@ public abstract class GraphicEngine implements FpsProvider {
      */
     public abstract GuiFactory getGuiBuilder();
 
-    /**
-     * Build a new Material.
-     *
-     * @param name Material name, must be unique.
-     * @return The newly built material.
-     */
-    public abstract Material createMaterial(String name);
+    public abstract MaterialManager getMaterialManager();
 
     /**
      * Create a sky box.
@@ -152,28 +144,6 @@ public abstract class GraphicEngine implements FpsProvider {
      * @return The created GraphicWorld.
      */
     public abstract SceneManager createGraphicWorld(String worldName, ShadowType shadowType);
-
-    /**
-     * Create a shader fragment type.
-     *
-     * @param name    Shader name.
-     * @param file    Shader file.
-     * @param entry   Entry point name.
-     * @param profile Profile to set.
-     * @return The created shader.
-     */
-    public abstract Shader createFragmentShader(String name, String file, String entry, FragmentProfileList profile);
-
-    /**
-     * Create a shader vertex type.
-     *
-     * @param name    Shader name.
-     * @param file    Shader file.
-     * @param entry   Entry point name.
-     * @param profile Profile to set.
-     * @return The created shader.
-     */
-    public abstract Shader createVertexShader(String name, String file, String entry, VertexProfileList profile);
 
     public abstract GraphicWorld createWorld();
 

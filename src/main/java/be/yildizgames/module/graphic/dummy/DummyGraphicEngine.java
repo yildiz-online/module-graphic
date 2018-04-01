@@ -25,7 +25,6 @@
 package be.yildizgames.module.graphic.dummy;
 
 import be.yildizgames.common.file.ResourcePath;
-import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
@@ -34,13 +33,9 @@ import be.yildizgames.module.graphic.GraphicWorld;
 import be.yildizgames.module.graphic.SceneManager;
 import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.graphic.material.MaterialEffect;
-import be.yildizgames.module.graphic.material.MaterialTechnique;
+import be.yildizgames.module.graphic.material.MaterialManager;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.misc.Skybox;
-import be.yildizgames.module.graphic.shader.Shader;
-import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
-import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
 import be.yildizgames.module.window.WindowEngine;
 
 /**
@@ -83,33 +78,8 @@ public final class DummyGraphicEngine extends GraphicEngine {
     }
 
     @Override
-    public Material createMaterial(final String name) {
-        return new Material(StringUtil.buildRandomString("material")) {
-            @Override
-            public MaterialEffect addEffect(MaterialEffect.EffectType type, long time) {
-                return null;
-            }
-
-            @Override
-            protected Material copyImpl(String name) {
-                return this;
-            }
-
-            @Override
-            protected MaterialTechnique createTechniqueImpl(int techniqueIndex) {
-                return null;
-            }
-
-            @Override
-            protected void receiveShadowImpl(boolean receive) {
-                // does nothing.
-            }
-
-            @Override
-            protected void loadImpl() {
-                // does nothing.
-            }
-        };
+    public MaterialManager getMaterialManager() {
+        return null;
     }
 
     @Override
@@ -129,16 +99,6 @@ public final class DummyGraphicEngine extends GraphicEngine {
 
     @Override
     public SceneManager createGraphicWorld(final String worldName, final ShadowType shadowType) {
-        return null;
-    }
-
-    @Override
-    public Shader createFragmentShader(final String name, final String file, final String entry, final FragmentProfileList profile) {
-        return null;
-    }
-
-    @Override
-    public Shader createVertexShader(final String name, final String file, final String entry, final VertexProfileList profile) {
         return null;
     }
 
