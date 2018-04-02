@@ -121,6 +121,20 @@ public abstract class Camera extends BaseRegisterable {
     }
 
     /**
+     * An object further than the provided value will not be rendered.
+     * @param far Maximum rendering distance.
+     * @return This object for chaining.
+     */
+    public abstract Camera setFarClip(int far);
+
+    /**
+     * An object closer than the provided value will not be rendered.
+     * @param near Minimum rendering distance.
+     * @return This object for chaining.
+     */
+    public abstract Camera setNearClip(int near);
+
+    /**
      * @return The camera current position.
      */
     public final Point3D getPosition() {
