@@ -105,7 +105,7 @@ public abstract class ParticleEmitter {
      * Set the emission rate per second, minimum value is 0.
      *
      * @param newRate Number of particles emitted per second.
-     * @return This object.
+     * @return This object for chaining.
      */
     public final ParticleEmitter setRate(final float newRate) {
         this.rate = Util.setPositiveValue(newRate);
@@ -117,113 +117,136 @@ public abstract class ParticleEmitter {
      * Set the emission duration, in second, minimum value is 0. 0 is infinite duration.
      *
      * @param newDuration New emission duration value.
+     * @return This object for chaining.
      */
-    public final void setDuration(final float newDuration) {
+    public final ParticleEmitter setDuration(final float newDuration) {
         this.duration = Util.setPositiveValue(newDuration);
         this.setDurationImpl(this.duration);
+        return this;
     }
 
     /**
      * Set the time a particle live, in seconds.
      *
      * @param lifeTime Particle life time.
+     * @return This object for chaining.
      */
-    public final void setLifeTime(final float lifeTime) {
+    public final ParticleEmitter setLifeTime(final float lifeTime) {
         this.lifeTime = lifeTime;
         this.setLifeTimeImpl(lifeTime);
+        return this;
     }
 
     /**
      * Change the emitter direction.
      *
-     * @param direction Emitter direction, it is a copy, modifying it from outside wont affect the emitter direction.
+     * @param direction Emitter direction, it is a copy,
+     *                  modifying it from outside wont affect the emitter direction.
+     * @return This object for chaining.
      */
-    public final void setDirection(final Point3D direction) {
+    public final ParticleEmitter setDirection(final Point3D direction) {
         this.direction = direction;
         this.setDirectionImpl(direction);
+        return this;
     }
 
     /**
      * Set the particle minimum speed.
      *
      * @param minSpeed Particle minimum speed value.
+     * @return This object for chaining.
      */
-    public final void setMinSpeed(final float minSpeed) {
+    public final ParticleEmitter setMinSpeed(final float minSpeed) {
         this.minSpeed = minSpeed;
         this.setMinSpeedImpl(minSpeed);
+        return this;
     }
 
     /**
      * Set the particle maximum speed.
      *
      * @param maxSpeed Particle maximum speed value.
+     * @return This object for chaining.
      */
-    public final void setMaxSpeed(final float maxSpeed) {
+    public final ParticleEmitter setMaxSpeed(final float maxSpeed) {
         this.maxSpeed = maxSpeed;
         this.setMaxSpeedImpl(maxSpeed);
+        return this;
     }
 
     /**
      * Set the particle color when created.
      *
      * @param start Particle color at the beginning of their life.
+     * @return This object for chaining.
      */
-    public final void setStartColor(final Color start) {
+    public final ParticleEmitter setStartColor(final Color start) {
         this.startColor = start;
         this.setStartColorImpl(start);
+        return this;
     }
 
     /**
      * Set the particle color when dying.
      *
      * @param end Particle color at the end of their life.
+     * @return This object for chaining.
      */
-    public final void setEndColor(final Color end) {
+    public final ParticleEmitter setEndColor(final Color end) {
         this.endColor = end;
         this.setEndColorImpl(end);
+        return this;
     }
 
     /**
      * Set the time to wait for the emitter restart when it has finished its job.
      *
      * @param repeatDelay Time to wait.
+     * @return This object for chaining.
      */
-    public final void setRepeatDelay(final float repeatDelay) {
+    public final ParticleEmitter setRepeatDelay(final float repeatDelay) {
         this.repeatDelay = repeatDelay;
         this.setRepeatDelayImpl(repeatDelay);
+        return this;
     }
 
     /**
      * Stop the emission by setting the rate at 0, call start to restart it.
+     * @return This object for chaining.
      */
-    public final void stop() {
+    public final ParticleEmitter stop() {
         if (this.started) {
             // call impl to avoid overwriting rate value.
             // FIXME use setEmitting(false)
             this.setRateImpl(0);
             this.started = false;
         }
+        return this;
     }
 
     /**
      * Restart the emission if it has been stopped by the stop method.
+     * @return This object for chaining.
      */
-    public final void start() {
+    public final ParticleEmitter start() {
         // FIXME use setEmitting(true)
         if (!this.started) {
             this.setRateImpl(this.rate);
             this.started = true;
         }
+        return this;
     }
 
     /**
      * Set a constant speed for the emission.
      *
      * @param speed The particles speed.
+     * @return This object for chaining.
      */
-    public final void setSpeed(final float speed) {
+    public final ParticleEmitter setSpeed(final float speed) {
         this.setMinSpeed(speed);
         this.setMaxSpeed(speed);
+        return this;
     }
 
     public float getAngle() {
