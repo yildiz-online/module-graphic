@@ -455,6 +455,8 @@ public abstract class Camera extends BaseRegisterable {
         return this.tracked != null;
     }
 
+    public abstract void setAspectRatio(float ratio);
+
     /**
      * @return The position of the tracked entity or camera position if none.
      */
