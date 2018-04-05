@@ -25,13 +25,12 @@
 
 package be.yildizgames.module.graphic.gui.inputbox;
 
-import be.yildizgames.common.client.translation.Key;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.Widget;
-import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
 
 /**
@@ -41,7 +40,7 @@ public interface InputBox extends Widget, ContainerChild {
 
     InputBox setDefaultMessage(String message);
 
-    InputBox setDefaultMessage(Key message);
+    InputBox setDefaultMessage(TranslationKey message);
 
     /**
      * All characters written in the box will be hidden and replaced by the replacement character(default is '*').
@@ -94,7 +93,7 @@ public interface InputBox extends Widget, ContainerChild {
      */
     InputBox setText(String text);
 
-    InputBox setText(Key text);
+    InputBox setText(TranslationKey text);
 
     /**
      * Set the caption text.
@@ -103,7 +102,7 @@ public interface InputBox extends Widget, ContainerChild {
      */
     void setCaptionText(String caption);
 
-    void setCaptionText(Key caption);
+    void setCaptionText(TranslationKey caption);
 
     /**
      * Delete all the current contained text.

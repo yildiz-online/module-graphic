@@ -25,8 +25,8 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.common.client.translation.Key;
 import be.yildizgames.common.client.translation.Translation;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.Font;
@@ -95,12 +95,12 @@ public final class SimpleTextArea extends BaseContainerChild implements TextArea
     }
 
     @Override
-    public void addLine(final Key line) {
+    public void addLine(final TranslationKey line) {
         this.addLine(Translation.getInstance().translate(line));
     }
 
     @Override
-    public void addLine(final Key.MultiKey line) {
+    public void addLine(final TranslationKey.MultiKey line) {
         this.addLine(Translation.getInstance().translate(line));
     }
 
@@ -241,12 +241,12 @@ public final class SimpleTextArea extends BaseContainerChild implements TextArea
     }
 
     @Override
-    public void replaceText(final Key text) {
+    public void replaceText(final TranslationKey text) {
         this.replaceText(Translation.getInstance().translate(text));
     }
 
     @Override
-    public void replaceText(final Key.MultiKey text) {
+    public void replaceText(final TranslationKey.MultiKey text) {
         this.replaceText(Translation.getInstance().translate(text));
     }
 

@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.textline;
 
-import be.yildizgames.common.client.translation.Key;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.util.Registerable;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.Font;
@@ -44,9 +44,9 @@ public interface TextLine extends ContainerChild, Registerable {
      */
     TextLine setText(String text);
 
-    TextLine setText(Key key);
+    TextLine setText(TranslationKey key);
 
-    TextLine setText(Key.MultiKey key);
+    TextLine setText(TranslationKey.MultiKey key);
 
     /**
      * Set the text to print.

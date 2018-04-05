@@ -30,7 +30,13 @@ import be.yildizgames.module.graphic.Visible;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidget;
 import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.window.input.*;
+import be.yildizgames.module.window.input.KeyboardListener;
+import be.yildizgames.module.window.input.MouseDragListener;
+import be.yildizgames.module.window.input.MouseLeftClickListener;
+import be.yildizgames.module.window.input.MouseMoveListener;
+import be.yildizgames.module.window.input.MousePosition;
+import be.yildizgames.module.window.input.MouseReleaseListener;
+import be.yildizgames.module.window.input.MouseWheelListener;
 
 import java.util.Optional;
 
@@ -172,15 +178,6 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      */
     public final void addKeyboardListener(final KeyboardListener listener) {
         this.container.addKeyboardListener(listener);
-    }
-
-    /**
-     * Add a keyboard special key listener to this view.
-     *
-     * @param listener Listener to use when the keyboard is used in the view.
-     */
-    public final void addSpecialKeyListener(SpecialKeyPressedListener listener) {
-        this.container.addSpecialKeyListener(listener);
     }
 
     /**

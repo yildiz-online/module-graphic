@@ -25,8 +25,8 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.common.client.translation.Key;
 import be.yildizgames.common.client.translation.Translation;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.Font;
@@ -80,12 +80,12 @@ public final class SimpleTextLine extends BaseContainerChild implements TextLine
     }
 
     @Override
-    public SimpleTextLine setText(final Key key) {
+    public SimpleTextLine setText(final TranslationKey key) {
         return this.setText(Translation.getInstance().translate(key));
     }
 
     @Override
-    public SimpleTextLine setText(final Key.MultiKey key) {
+    public SimpleTextLine setText(final TranslationKey.MultiKey key) {
         return this.setText(Translation.getInstance().translate(key));
     }
 

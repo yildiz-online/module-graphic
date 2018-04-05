@@ -25,8 +25,8 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.common.client.translation.Key;
 import be.yildizgames.common.client.translation.Translation;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.graphic.gui.OnMouseOverListener;
 import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonList;
@@ -91,7 +91,7 @@ final class SimpleButtonList extends BaseContainerChild implements ButtonList, O
     }
 
     @Override
-    public void addElement(Key key, MouseLeftClickListener listener) {
+    public void addElement(TranslationKey key, MouseLeftClickListener listener) {
         this.addElement(Translation.getInstance().translate(key), listener);
     }
 

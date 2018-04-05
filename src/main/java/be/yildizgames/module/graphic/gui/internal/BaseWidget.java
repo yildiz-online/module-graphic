@@ -34,7 +34,7 @@ import be.yildizgames.module.graphic.gui.OnMouseOverListener;
 import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.module.window.input.ArrowKey;
+import be.yildizgames.module.window.input.Key;
 import be.yildizgames.module.window.input.KeyboardListener;
 import be.yildizgames.module.window.input.MouseDoubleLeftClickListener;
 import be.yildizgames.module.window.input.MouseDragListener;
@@ -44,8 +44,6 @@ import be.yildizgames.module.window.input.MousePosition;
 import be.yildizgames.module.window.input.MouseReleaseListener;
 import be.yildizgames.module.window.input.MouseRightClickListener;
 import be.yildizgames.module.window.input.MouseWheelListener;
-import be.yildizgames.module.window.input.SpecialKey;
-import be.yildizgames.module.window.input.SpecialKeyPressedListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -106,10 +104,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
      * Listener for the keyboard events.
      */
     private final List<KeyboardListener> keyboardListener = new ArrayList<>();
-    /**
-     * Listener for the keyboard special keys events.
-     */
-    private final List<SpecialKeyPressedListener> specialKeyListener = new ArrayList<>();
+
     /**
      * Listeners for mouse over state changes.
      */
@@ -194,12 +189,6 @@ public abstract class BaseWidget extends BaseElement implements Widget {
     @Override
     public final void addKeyboardListener(final KeyboardListener listener) {
         this.keyboardListener.add(listener);
-        this.focusable = true;
-    }
-
-    @Override
-    public void addSpecialKeyListener(SpecialKeyPressedListener listener) {
-        this.specialKeyListener.add(listener);
         this.focusable = true;
     }
 
@@ -460,72 +449,15 @@ public abstract class BaseWidget extends BaseElement implements Widget {
     }
 
     /**
-     * Called when a key number is pressed on the keyboard. Only to be used from
-     * the EventDispatcher.
-     *
-     * @param number Number pressed.
-     */
-    final void numberKeyPressed(final int number) {
-        if (this.isVisible()) {
-            for (final KeyboardListener listener : this.keyboardListener) {
-                listener.numberPressed(number);
-            }
-        }
-    }
-
-    /**
      * Called when a special key is pressed on the keyboard. Only to be used
      * from the EventDispatcher.
      *
      * @param keyCode Key pressed value.
      */
-    final void specialKeyPressed(final SpecialKey keyCode) {
-        if (this.isVisible()) {
-            for (final SpecialKeyPressedListener listener : this.specialKeyListener) {
-                listener.pressed(keyCode);
-            }
-        }
-    }
-
-    /**
-     * Called when the key enter is pressed.
-     */
-    public final void enterKeyPressed() {
-        boolean received = false;
+    public final void specialKeyPressed(final Key keyCode) {
         if (this.isVisible()) {
             for (final KeyboardListener listener : this.keyboardListener) {
-                if (!received) {
-                    received = listener.enterKeyPressed();
-                } else {
-                    listener.enterKeyPressed();
-                }
-            }
-        }
-        if (!received) {
-            Optional.ofNullable(this.parent).ifPresent(BaseWidget::enterKeyPressed);
-        }
-    }
-
-    /**
-     * Called when the delete enter is pressed.
-     */
-    public final void deleteKeyPressed() {
-        if (this.isVisible()) {
-            for (final KeyboardListener listener : this.keyboardListener) {
-                listener.deleteKeyPressed();
-            }
-        }
-    }
-
-    /**
-     * Called when an arrow key has been pressed.
-     *
-     * @param arrow Enum value to get witch arrow has been pressed.
-     */
-    final void arrowKeyPressed(final ArrowKey arrow) {
-        if (this.isVisible()) {
-            for (final KeyboardListener listener : this.keyboardListener) {
-                listener.arrowKeyPressed(arrow);
+                listener.specialKeyPressed(keyCode);
             }
         }
     }
@@ -535,10 +467,23 @@ public abstract class BaseWidget extends BaseElement implements Widget {
      *
      * @param keyCode Code of the released key.
      */
-    final void keyReleased(final int keyCode) {
+    final void keyReleased(final char keyCode) {
         if (this.isVisible()) {
             for (final KeyboardListener listener : this.keyboardListener) {
                 listener.keyReleased(keyCode);
+            }
+        }
+    }
+
+    /**
+     * Called when a keyboard key is released.
+     *
+     * @param keyCode Code of the released key.
+     */
+    final void specialKeyReleased(final Key keyCode) {
+        if (this.isVisible()) {
+            for (final KeyboardListener listener : this.keyboardListener) {
+                listener.specialKeyReleased(keyCode);
             }
         }
     }

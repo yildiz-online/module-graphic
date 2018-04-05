@@ -24,7 +24,7 @@
 
 package be.yildizgames.module.graphic.gui.checkbox;
 
-import be.yildizgames.common.client.translation.Key;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.Widget;
@@ -42,7 +42,7 @@ public interface CheckBox extends Widget, ContainerChild {
      */
     CheckBox setCaptionText(String captionText);
 
-    CheckBox setCaptionText(Key captionText);
+    CheckBox setCaptionText(TranslationKey captionText);
 
     CheckBox setCaptionColor(Color color);
 

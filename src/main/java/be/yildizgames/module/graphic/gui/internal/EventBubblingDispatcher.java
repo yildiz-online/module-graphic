@@ -30,9 +30,8 @@ import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.View;
 import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.window.input.ArrowKey;
+import be.yildizgames.module.window.input.Key;
 import be.yildizgames.module.window.input.MousePosition;
-import be.yildizgames.module.window.input.SpecialKey;
 
 import java.util.Optional;
 import java.util.Set;
@@ -64,43 +63,20 @@ public class EventBubblingDispatcher implements GuiEventManager {
     }
 
     @Override
-    public void keyboardEnterKeyPressed() {
-        this.debugListener.displayDebugMessage("Key enter pressed for: " + this.currentWidgetFocus);
-        this.currentWidgetFocus.enterKeyPressed();
-
-    }
-
-    @Override
-    public void specialKeyPressed(SpecialKey key) {
+    public void specialKeyPressed(Key key) {
         this.debugListener.displayDebugMessage("Key " + key + " pressed for: " + this.currentWidgetFocus);
         this.currentWidgetFocus.specialKeyPressed(key);
-
     }
 
-    @Override
-    public void keyboardNumberPressed(int number) {
-        this.debugListener.displayDebugMessage("Key " + number + " pressed for: " + this.currentWidgetFocus);
-        this.currentWidgetFocus.numberKeyPressed(number);
-
-    }
 
     @Override
-    public void keyboardDeleteKeyPressed() {
-        this.debugListener.displayDebugMessage("Key delete pressed for: " + this.currentWidgetFocus);
-        this.currentWidgetFocus.deleteKeyPressed();
-
-    }
-
-    @Override
-    public void keyboardArrowPressed(ArrowKey key) {
-        this.debugListener.displayDebugMessage("Key " + key + " pressed for: " + this.currentWidgetFocus);
-        this.currentWidgetFocus.arrowKeyPressed(key);
-
-    }
-
-    @Override
-    public void keyReleased(int keyCode) {
+    public void keyboardKeyReleased(char keyCode) {
         this.currentWidgetFocus.keyReleased(keyCode);
+    }
+
+    @Override
+    public void specialKeyReleased(Key key) {
+        this.currentWidgetFocus.specialKeyReleased(key);
     }
 
     @Override

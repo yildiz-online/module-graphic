@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.textarea;
 
-import be.yildizgames.common.client.translation.Key;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.internal.Element;
@@ -43,9 +43,9 @@ public interface TextArea extends Element {
      */
     void addLine(String line);
 
-    void addLine(Key line);
+    void addLine(TranslationKey line);
 
-    void addLine(Key.MultiKey line);
+    void addLine(TranslationKey.MultiKey line);
 
     void detachFromParent();
 
@@ -86,7 +86,7 @@ public interface TextArea extends Element {
      */
     void replaceText(String text);
 
-    void replaceText(Key text);
+    void replaceText(TranslationKey text);
 
-    void replaceText(Key.MultiKey text);
+    void replaceText(TranslationKey.MultiKey text);
 }

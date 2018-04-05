@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.button;
 
-import be.yildizgames.common.client.translation.Key;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.window.input.MouseLeftClickListener;
 
@@ -36,7 +36,7 @@ public interface ButtonList extends ContainerChild {
 
     void addElement(String caption, MouseLeftClickListener listener);
 
-    void addElement(Key caption, MouseLeftClickListener listener);
+    void addElement(TranslationKey caption, MouseLeftClickListener listener);
 
     boolean isEmpty();
 }

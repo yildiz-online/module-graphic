@@ -25,21 +25,19 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.common.client.translation.Key;
 import be.yildizgames.common.client.translation.Translation;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
+import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
+import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
-import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
-
-import java.util.Optional;
 
 /**
  * A check box is a simple element with 2 states, checked and unchecked. An AbstractMouseLeftClickListener is added to switch states when the checkbox is clicked on.
@@ -111,7 +109,7 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
     }
 
     @Override
-    public SimpleCheckBox setCaptionText(final Key text) {
+    public SimpleCheckBox setCaptionText(final TranslationKey text) {
         return this.setCaptionText(Translation.getInstance().translate(text));
     }
 

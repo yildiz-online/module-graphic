@@ -24,7 +24,7 @@
 
 package be.yildizgames.module.graphic.gui.button;
 
-import be.yildizgames.common.client.translation.Key;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.OnMouseOverListener;
@@ -43,7 +43,7 @@ public interface Button extends Widget, ContainerChild {
 
     Button setCaptionText(String text);
 
-    Button setCaptionText(Key text);
+    Button setCaptionText(TranslationKey text);
 
     Font getCaptionFont();
 

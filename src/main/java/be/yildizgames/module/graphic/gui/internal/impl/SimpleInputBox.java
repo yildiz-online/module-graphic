@@ -25,8 +25,8 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.common.client.translation.Key;
 import be.yildizgames.common.client.translation.Translation;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.BaseCoordinate;
@@ -41,7 +41,7 @@ import be.yildizgames.module.graphic.gui.inputbox.InputBox;
 import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.window.input.ArrowKey;
+import be.yildizgames.module.window.input.Key;
 import be.yildizgames.module.window.input.KeyboardListener;
 import be.yildizgames.module.window.input.MouseLeftClickListener;
 import be.yildizgames.module.window.input.MousePosition;
@@ -158,7 +158,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
     }
 
     @Override
-    public void setCaptionText(final Key caption) {
+    public void setCaptionText(final TranslationKey caption) {
         this.setCaptionText(Translation.getInstance().translate(caption));
     }
 
@@ -171,7 +171,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
         if (key < 256) {
             this.totalText = new StringBuilder(this.totalText).insert(this.cursorPosition, (char) key).toString();
             this.updateContent();
-            this.listener.arrowKeyPressed(ArrowKey.RIGHT);
+            this.listener.specialKeyPressed(Key.RIGHT);
         }
         this.showDefault();
     }
@@ -187,7 +187,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
                 this.displayedTextPosition = 0;
             }
         }
-        this.listener.arrowKeyPressed(ArrowKey.LEFT);
+        this.listener.specialKeyPressed(Key.LEFT);
         this.showDefault();
     }
 
@@ -319,7 +319,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
     }
 
     @Override
-    public SimpleInputBox setText(final Key newText) {
+    public SimpleInputBox setText(final TranslationKey newText) {
         return this.setText(Translation.getInstance().translate(newText));
     }
 
@@ -374,7 +374,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
     }
 
     @Override
-    public InputBox setDefaultMessage(Key message) {
+    public InputBox setDefaultMessage(TranslationKey message) {
         return this.setDefaultMessage(Translation.getInstance().translate(message));
     }
 
@@ -405,14 +405,8 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
         }
 
         @Override
-        public boolean deleteKeyPressed() {
-            SimpleInputBox.this.removeChar();
-            return true;
-        }
-
-        @Override
-        public boolean arrowKeyPressed(final ArrowKey arrow) {
-            if (arrow == ArrowKey.LEFT) {
+        public void specialKeyPressed(final Key arrow) {
+            if (arrow == Key.LEFT) {
                 if (SimpleInputBox.this.cursorIsLeft()) {
                     SimpleInputBox.this.displayedTextPosition--;
                 }
@@ -421,9 +415,8 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
                     SimpleInputBox.this.cursorPosition = 0;
                 }
                 SimpleInputBox.this.updateContent();
-                return true;
             }
-            if (arrow == ArrowKey.RIGHT) {
+            else if (arrow == Key.RIGHT) {
                 if (!SimpleInputBox.this.isCursorAfterText() && SimpleInputBox.this.isCursorAtEndOfLine() && SimpleInputBox.this.text.getFont().computeTextWidth(SimpleInputBox.this.totalText) > SimpleInputBox.this.maxLineSize) {
                     SimpleInputBox.this.displayedTextPosition++;
                 }
@@ -432,9 +425,10 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
                     SimpleInputBox.this.cursorPosition = SimpleInputBox.this.totalText.length();
                 }
                 SimpleInputBox.this.updateContent();
-                return true;
+
+            } else if (arrow == Key.DELETE) {
+                SimpleInputBox.this.removeChar();
             }
-            return false;
         }
 
         @Override
@@ -446,13 +440,13 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
             highlightImpl(true);
             float cursorPixelPosition = position.getX() - getAbsoluteLeft();
             while (cursorPosition != displayedTextPosition) {
-                this.arrowKeyPressed(ArrowKey.LEFT);
+                this.specialKeyPressed(Key.LEFT);
             }
             for (int i = 0; i < SimpleInputBox.this.content.length(); i++) {
                 if (SimpleInputBox.this.cursor.getLeft() > cursorPixelPosition) {
                     break;
                 }
-                this.arrowKeyPressed(ArrowKey.RIGHT);
+                this.specialKeyPressed(Key.RIGHT);
             }
 
         }

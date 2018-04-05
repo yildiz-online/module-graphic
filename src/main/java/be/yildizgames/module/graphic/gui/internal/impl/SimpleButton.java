@@ -25,8 +25,8 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.common.client.translation.Key;
 import be.yildizgames.common.client.translation.Translation;
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
@@ -145,7 +145,7 @@ public final class SimpleButton extends BaseContainerChild implements Button {
     }
 
     @Override
-    public SimpleButton setCaptionText(final Key key) {
+    public SimpleButton setCaptionText(final TranslationKey key) {
         return this.setCaptionText(Translation.getInstance().translate(key));
     }
 

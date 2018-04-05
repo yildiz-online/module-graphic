@@ -35,7 +35,6 @@ import be.yildizgames.module.window.input.MouseMoveListener;
 import be.yildizgames.module.window.input.MousePosition;
 import be.yildizgames.module.window.input.MouseReleaseListener;
 import be.yildizgames.module.window.input.MouseWheelListener;
-import be.yildizgames.module.window.input.SpecialKeyPressedListener;
 
 /**
  * @author Grégory Van den Borre
@@ -74,13 +73,6 @@ public interface Widget extends Element {
      * @param listener Listener to add.
      */
     void addKeyboardListener(KeyboardListener listener);
-
-    /**
-     * Add a new SpecialKeyListener on this widget and set the widget focusable.
-     *
-     * @param listener Listener to add.
-     */
-    void addSpecialKeyListener(SpecialKeyPressedListener listener);
 
     /**
      * Add a new MouseMoveListener on this widget.

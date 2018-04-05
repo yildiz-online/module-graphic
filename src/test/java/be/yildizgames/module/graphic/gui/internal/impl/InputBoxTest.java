@@ -32,6 +32,7 @@ import be.yildizgames.module.graphic.dummy.DummyFont;
 import be.yildizgames.module.graphic.gui.DummyGuiFactory;
 import be.yildizgames.module.graphic.gui.inputbox.InputBox;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.window.input.Key;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -103,7 +104,7 @@ class InputBoxTest {
         box.show();
         box.keyPressed('b');
         box.keyPressed('c');
-        box.deleteKeyPressed();
+        box.specialKeyPressed(Key.DELETE);
         assertEquals("b", box.getText());
         builder.delete(box);
     }
