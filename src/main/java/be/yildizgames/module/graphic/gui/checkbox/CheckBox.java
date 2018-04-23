@@ -26,8 +26,10 @@ package be.yildizgames.module.graphic.gui.checkbox;
 
 import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.Widget;
+import be.yildizgames.module.graphic.material.Material;
 
 /**
  * @author Grégory Van den Borre
@@ -43,6 +45,12 @@ public interface CheckBox extends Widget, ContainerChild {
     CheckBox setCaptionText(String captionText);
 
     CheckBox setCaptionText(TranslationKey captionText);
+
+    CheckBox setMaterial(Material material);
+
+    CheckBox setCheckedMaterial(Material material);
+
+    CheckBox setFont(Font font);
 
     CheckBox setCaptionColor(Color color);
 

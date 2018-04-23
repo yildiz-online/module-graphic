@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui;
 
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.container.Container;
 
 public interface ContainerChild extends Widget{
     /**
@@ -67,7 +67,7 @@ public interface ContainerChild extends Widget{
      */
     ContainerChild setTopFromParent(PositionRelativeTop relative, int diff);
 
-    SimpleContainer getParent();
+    Container getParent();
 
     void updateAddPositionValue(int left, int top);
 
