@@ -33,7 +33,6 @@ import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
-import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
@@ -89,7 +88,7 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
             final Material hoverMaterial,
             final AbstractIconElement checkedImage,
             final AbstractTextElement text,
-            final Container container) {
+            final SimpleContainer container) {
         super(name, coordinates, container);
         assert hoverMaterial != null : "hoverMaterial parameter is null";
         assert backgroundImage != null : "backgroundImage parameter is null";
