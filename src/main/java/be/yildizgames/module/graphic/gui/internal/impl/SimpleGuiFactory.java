@@ -522,7 +522,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
         final AbstractIconElement cursor = this.buildIconElement(name + "_cursor", new Size(3, 20), cursorMaterial, c);
         final AbstractTextElement defaultMessage = this.buildTextElement(coordinates, captionFont, c);
         ButtonMaterial materials = new ButtonMaterial(background, backgroundHlight, captionFont);
-        final SimpleInputBox inputBox = new SimpleInputBox(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, c);
+        final SimpleInputBox inputBox = new SimpleInputBox(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, container);
         this.inputList.register(inputBox);
 
         return inputBox;
