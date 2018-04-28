@@ -51,7 +51,7 @@ import be.yildizgames.module.window.input.MousePosition;
  *
  * @author Grégory Van den Borre
  */
-public final class SimpleInputBox extends BaseContainerChild implements InputBox {
+final class SimpleInputBox extends BaseContainerChild implements InputBox {
 
     /**
      * Caption distance from the input box.
@@ -68,7 +68,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
     /**
      * Default message to display when the input box is empty.
      */
-    private final SimpleTextLine defaultMessage;
+    private final AbstractTextElement defaultMessage;
     /**
      * Box background image.
      */
@@ -81,6 +81,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
      * Cursor image.
      */
     private final AbstractIconElement cursor;
+
     private final SimpleContainer innerContainer;
     /**
      * Content currently printed.
@@ -114,6 +115,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
      * Flag to check if box is focused or not.
      */
     private boolean focused;
+
     private ButtonMaterial materials;
 
     /**
@@ -129,8 +131,17 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
      * @param cursor            Cursor image.
      * @param container         Container holding the input box.
      */
-    public SimpleInputBox(final String name, final BaseCoordinate coordinates, final AbstractTextElement textElement, final AbstractTextElement caption, SimpleContainer c, final Image backgroundElement,
-                   final ButtonMaterial material, final AbstractIconElement cursor, final SimpleTextLine defaultMessage, final SimpleContainer container) {
+    SimpleInputBox(
+            final String name,
+            final BaseCoordinate coordinates,
+            final AbstractTextElement textElement,
+            final AbstractTextElement caption,
+            final SimpleContainer c,
+            final Image backgroundElement,
+            final ButtonMaterial material,
+            final AbstractIconElement cursor,
+            final AbstractTextElement defaultMessage,
+            final SimpleContainer container) {
         super(name, coordinates, container);
         this.text = textElement;
         this.captionText = caption;
@@ -145,7 +156,6 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
         this.showImpl();
         this.listener = new InputBoxListener();
         this.defaultMessage.setLeft(this, PositionRelativeLeft.CENTER);
-        this.defaultMessage.setTop(this, PositionRelativeTop.CENTER);
         this.defaultMessage.hide();
         this.addKeyboardListener(this.listener);
         this.addMouseLeftClickListener(this.listener);
@@ -286,6 +296,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
     public SimpleInputBox setTextAlignment(final PositionRelativeLeft left, final PositionRelativeTop top) {
         this.text.setLeft(this, left, -this.getLeft());
         this.text.setTop(this, top, -this.getTop());
+        this.defaultMessage.setTop(this, top, -this.getTop());
         // FIXME dirty fix to avoid the getLeft = 0 even if centered if text
         // empty
         this.addChar('a');
@@ -329,6 +340,7 @@ public final class SimpleInputBox extends BaseContainerChild implements InputBox
         //FIXME set top does not affect the position
         this.text.setTop(CAPTION_OFFSET);
         this.captionText.setPosition(left - this.captionText.getTextWidth() - CAPTION_OFFSET, CAPTION_OFFSET);
+        this.defaultMessage.setTop(CAPTION_OFFSET);
         return this;
     }
 
