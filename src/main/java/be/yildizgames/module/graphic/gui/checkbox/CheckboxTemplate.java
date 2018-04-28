@@ -59,11 +59,14 @@ public final class CheckboxTemplate {
      */
     private final Font font;
 
-    public CheckboxTemplate(Material backgroundMaterial, Material hoverMaterial, Material checkedMaterial, Size size, Font font) {
+    private final Material checkedHover;
+
+    public CheckboxTemplate(Material backgroundMaterial, Material hoverMaterial, Material checkedMaterial, Material checkedHover, Size size, Font font) {
         super();
         this.backgroundMaterial = backgroundMaterial;
         this.hoverMaterial = hoverMaterial;
         this.checkedMaterial = checkedMaterial;
+        this.checkedHover = checkedHover;
         this.size = size;
         this.font = font;
     }
@@ -86,5 +89,9 @@ public final class CheckboxTemplate {
 
     public Font getFont() {
         return font;
+    }
+
+    public Material getCheckedHover() {
+        return checkedHover;
     }
 }

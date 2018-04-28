@@ -38,7 +38,6 @@ import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonBuilder;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
-import be.yildizgames.module.graphic.gui.checkbox.CheckBoxBuilder;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
@@ -138,8 +137,8 @@ public abstract class SimpleGuiFactory implements GuiFactory {
     }
 
     @Override
-    public final CheckBoxBuilder checkbox() {
-        return new CheckBoxBuilder(this);
+    public final SimpleCheckBoxBuilder checkbox() {
+        return new SimpleCheckBoxBuilder(this);
     }
 
     @Override
@@ -581,6 +580,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
                                            final Material background,
                                            final Material hover,
                                            final Material check,
+                                              final Material checkHover,
                                            final Font font,
                                            final SimpleContainer container) {
         assert name != null;
@@ -600,7 +600,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
         final Coordinates textCoord = new Coordinates(textWidth, textHeight, textXPosition, textYPosition);
         final AbstractTextElement text = this.buildTextElement(textCoord, font, container);
 
-        final SimpleCheckBox checkbox = new SimpleCheckBox(name, coordinates, icon, hover, checkIcon, text, container);
+        final SimpleCheckBox checkbox = new SimpleCheckBox(name, coordinates, icon, hover, checkIcon, checkHover, text, container);
         this.checkBoxList.register(checkbox);
         checkbox.setCaptionColor(font.color);
         return checkbox;

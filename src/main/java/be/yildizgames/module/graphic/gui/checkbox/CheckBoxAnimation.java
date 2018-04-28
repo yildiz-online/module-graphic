@@ -37,7 +37,7 @@ public abstract class CheckBoxAnimation extends BaseAnimationGui {
         super(name);
     }
 
-    void setElement(CheckBox element) {
+    public void setElement(CheckBox element) {
         this.checkBox = element;
     }
 }

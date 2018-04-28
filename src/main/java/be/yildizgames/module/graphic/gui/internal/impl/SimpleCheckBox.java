@@ -44,7 +44,7 @@ import be.yildizgames.module.graphic.material.Material;
  *
  * @author Grégory Van Den Borre
  */
-public final class SimpleCheckBox extends BaseContainerChild implements CheckBox {
+final class SimpleCheckBox extends BaseContainerChild implements CheckBox {
 
     /**
      * Distance in pixel to put the caption from the box.
@@ -62,6 +62,7 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
      * Caption associated to the check box.
      */
     private final AbstractTextElement caption;
+    private Material checkMaterial;
     /**
      * Current check box state.
      */
@@ -70,6 +71,8 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
     private Material material;
 
     private Material highlightMaterial;
+
+    private Material checkedHighlightMaterial;
 
     /**
      * Full constructor, initialize parameters and add a mouse click listener to switch checked state.
@@ -81,8 +84,15 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
      * @param text            Check box caption text.
      * @param container       Container holding the check box.
      */
-    public SimpleCheckBox(final String name, final BaseCoordinate coordinates, final AbstractIconElement backgroundImage, final Material hoverMaterial, final AbstractIconElement checkedImage,
-                   final AbstractTextElement text, final SimpleContainer container) {
+    SimpleCheckBox(
+            final String name,
+            final BaseCoordinate coordinates,
+            final AbstractIconElement backgroundImage,
+            final Material hoverMaterial,
+            final AbstractIconElement checkedImage,
+            final Material checkedHoverMaterial,
+            final AbstractTextElement text,
+            final SimpleContainer container) {
         super(name, coordinates, container);
         //FIXME low assert
         assert backgroundImage != null : "backgroundImage parameter is null";
@@ -90,7 +100,9 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
         assert text != null : "text parameter is null";
         this.background = backgroundImage;
         this.material = backgroundImage.getMaterial();
+        this.checkMaterial = checkedImage.getMaterial();
         this.highlightMaterial = hoverMaterial;
+        this.checkedHighlightMaterial = checkedHoverMaterial;
         this.check = checkedImage;
         this.caption = text;
         this.caption.setHeight(this.caption.getFontHeight());
@@ -117,8 +129,10 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
     public CheckBox check(final boolean checkedState) {
         this.checked = checkedState;
         if (this.checked) {
+            this.background.hide();
             this.check.show();
         } else {
+            this.background.show();
             this.check.hide();
         }
         return this;
@@ -151,6 +165,7 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
      */
     public CheckBox setCheckedMaterial(final Material material) {
         this.check.setMaterial(material);
+        this.checkMaterial = material;
         return this;
     }
 
@@ -170,8 +185,10 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
     protected void highlightImpl(final boolean over) {
         if (over) {
             this.background.setMaterial(this.highlightMaterial);
+            this.check.setMaterial(this.checkedHighlightMaterial);
         } else {
             this.background.setMaterial(this.material);
+            this.check.setMaterial(this.checkMaterial);
         }
     }
 
@@ -222,6 +239,7 @@ public final class SimpleCheckBox extends BaseContainerChild implements CheckBox
      * @param color Color of the caption.
      * @return This object for chaining.
      */
+    @Override
     public CheckBox setCaptionColor(final Color color) {
         this.caption.setColor(color);
         return this;
