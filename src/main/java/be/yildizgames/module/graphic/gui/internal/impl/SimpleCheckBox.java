@@ -94,7 +94,7 @@ final class SimpleCheckBox extends BaseContainerChild implements CheckBox {
             final AbstractTextElement text,
             final SimpleContainer container) {
         super(name, coordinates, container);
-        //FIXME low assert
+        assert hoverMaterial != null : "hoverMaterial parameter is null";
         assert backgroundImage != null : "backgroundImage parameter is null";
         assert checkedImage != null : "checkedImage parameter is null";
         assert text != null : "text parameter is null";
@@ -115,13 +115,13 @@ final class SimpleCheckBox extends BaseContainerChild implements CheckBox {
     }
 
     @Override
-    public SimpleCheckBox setCaptionText(final String text) {
+    public CheckBox setCaptionText(final String text) {
         this.caption.setText(text);
         return this;
     }
 
     @Override
-    public SimpleCheckBox setCaptionText(final TranslationKey text) {
+    public CheckBox setCaptionText(final TranslationKey text) {
         return this.setCaptionText(Translation.getInstance().translate(text));
     }
 
@@ -151,7 +151,8 @@ final class SimpleCheckBox extends BaseContainerChild implements CheckBox {
      * @param material New material to use.
      * @return This object for chaining.
      */
-    public SimpleCheckBox setMaterial(final Material material) {
+    @Override
+    public CheckBox setMaterial(final Material material) {
         this.material = material;
         this.background.setMaterial(material);
         return this;
@@ -163,6 +164,7 @@ final class SimpleCheckBox extends BaseContainerChild implements CheckBox {
      * @param material New material to use.
      * @return This object for chaining.
      */
+    @Override
     public CheckBox setCheckedMaterial(final Material material) {
         this.check.setMaterial(material);
         this.checkMaterial = material;
@@ -175,10 +177,28 @@ final class SimpleCheckBox extends BaseContainerChild implements CheckBox {
      * @param font New font to use.
      * @return This object for chaining.
      */
+    @Override
     public CheckBox setFont(final Font font) {
         this.caption.setFont(font);
         this.updateCaptionPosition();
         return this;
+    }
+
+    /**
+     * Change the caption text color.
+     *
+     * @param color Color of the caption.
+     * @return This object for chaining.
+     */
+    @Override
+    public CheckBox setCaptionColor(final Color color) {
+        this.caption.setColor(color);
+        return this;
+    }
+
+    @Override
+    public boolean isChecked() {
+        return checked;
     }
 
     @Override
