@@ -184,23 +184,6 @@ final class SimpleCheckBox extends BaseContainerChild implements CheckBox {
         return this;
     }
 
-    /**
-     * Change the caption text color.
-     *
-     * @param color Color of the caption.
-     * @return This object for chaining.
-     */
-    @Override
-    public CheckBox setCaptionColor(final Color color) {
-        this.caption.setColor(color);
-        return this;
-    }
-
-    @Override
-    public boolean isChecked() {
-        return checked;
-    }
-
     @Override
     protected void highlightImpl(final boolean over) {
         if (over) {
