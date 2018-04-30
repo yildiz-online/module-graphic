@@ -418,8 +418,8 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
         }
 
         @Override
-        public void specialKeyPressed(final Key arrow) {
-            if (arrow == Key.LEFT) {
+        public void specialKeyPressed(final Key key) {
+            if (key == Key.LEFT) {
                 if (SimpleInputBox.this.cursorIsLeft()) {
                     SimpleInputBox.this.displayedTextPosition--;
                 }
@@ -429,7 +429,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
                 }
                 SimpleInputBox.this.updateContent();
             }
-            else if (arrow == Key.RIGHT) {
+            else if (key == Key.RIGHT) {
                 if (!SimpleInputBox.this.isCursorAfterText() && SimpleInputBox.this.isCursorAtEndOfLine() && SimpleInputBox.this.text.getFont().computeTextWidth(SimpleInputBox.this.totalText) > SimpleInputBox.this.maxLineSize) {
                     SimpleInputBox.this.displayedTextPosition++;
                 }
@@ -439,7 +439,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
                 }
                 SimpleInputBox.this.updateContent();
 
-            } else if (arrow == Key.DELETE) {
+            } else if (key == Key.DELETE) {
                 SimpleInputBox.this.removeChar();
             }
         }

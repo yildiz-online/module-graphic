@@ -45,7 +45,6 @@ import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.image.Image;
 import be.yildizgames.module.graphic.gui.image.ImageBuilder;
 import be.yildizgames.module.graphic.gui.inputbox.InputBox;
-import be.yildizgames.module.graphic.gui.inputbox.InputBoxBuilder;
 import be.yildizgames.module.graphic.gui.inputbox.InputBoxTemplate;
 import be.yildizgames.module.graphic.gui.internal.GuiAnimationManager;
 import be.yildizgames.module.graphic.gui.progressbar.ProgressBar;
@@ -147,8 +146,8 @@ public abstract class SimpleGuiFactory implements GuiFactory {
     }
 
     @Override
-    public final InputBoxBuilder inputBox() {
-        return new InputBoxBuilder(this);
+    public final SimpleInputBoxBuilder inputBox() {
+        return new SimpleInputBoxBuilder(this);
     }
 
     /**
