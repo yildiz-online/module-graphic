@@ -28,12 +28,10 @@ import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleButton;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleTextLine;
+import be.yildizgames.module.graphic.gui.textline.TextLine;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.Arrays;
@@ -55,12 +53,13 @@ public abstract class Window extends View {
      * Full height, to use to resize after a minimize.
      */
     private final int initialHeight;
+
     /**
      * Associated title bar.
      */
     private final TitleBar titleBar;
+    private final Container container;
 
-    private final Font font;
     /**
      * Current state of the panel.
      */
@@ -76,8 +75,8 @@ public abstract class Window extends View {
      * @param eventManager Associated event manager.
      * @param params       Parameter to build the window.
      */
-    public Window(final String name, final SimpleGuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
-        this(builder.buildOverlayContainer(name, Material.empty(), BaseCoordinate.ZERO), builder, font, z, eventManager, params);
+    public Window(final String name, final GuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
+        this(builder.container().withName(name).build(), builder, font, z, eventManager, params);
     }
 
     /**
@@ -89,7 +88,7 @@ public abstract class Window extends View {
      * @param z            View Z position.
      * @param eventManager Associated event manager.
      */
-    public Window(final SimpleContainer container, final SimpleGuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager) {
+    public Window(final Container container, final GuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager) {
         this(container, builder, font, z, eventManager, Parameter.NOTHING);
     }
 
@@ -103,9 +102,9 @@ public abstract class Window extends View {
      * @param eventManager Associated event manager.
      * @param params       Parameter to build the window.
      */
-    public Window(final SimpleContainer container, final SimpleGuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
+    public Window(final Container container, final GuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
         super(container, z, eventManager);
-        this.font = font;
+        this.container = container;
         final List<Parameter> paramList = Arrays.asList(params);
         if (!paramList.contains(Parameter.NOT_MOVABLE)) {
             container.addMouseDragListener(new ContainerElementDragListener(container, new Rectangle(0, 0, builder.getScreenSize().width, builder.getScreenSize().height)));
@@ -183,25 +182,35 @@ public abstract class Window extends View {
         /**
          * Text to print as title for the window.
          */
-        private final SimpleTextLine title;
+        private final TextLine title;
 
         /**
          * GuiButton to close the Window.
          */
-        private final SimpleButton close;
+        private final Button close;
 
         /**
          * Full constructor.
          *
          * @param builder GUI builder.
          */
-        public BasicTitleBar(final SimpleGuiFactory builder, Font font) {
+        public BasicTitleBar(final GuiFactory builder, Font font) {
             super();
             this.height = Window.MINIMIZED_SIZE;
-            final SimpleContainer container = builder.getContainer(Window.this.getContainer().getName());
-            this.title = builder.buildTextLine("title_" + Window.this.getName(), new Coordinates(Window.this.getContainer().getWidth(), 20, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top), font, container);
+            final Container container = Window.this.container;
+            this.title = builder
+                    .textLine()
+                    .withName("title_" + Window.this.getName())
+                    .withCoordinates(new Coordinates(Window.this.getContainer().getWidth(), 20, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top))
+                    .withFont(font)
+                    .build(container);
             final Coordinates closeCoordinates = new Coordinates(this.height, this.height, Window.this.getContainer().getWidth() - this.height, 0);
-            this.close = builder.buildButton("close_" + Window.this.getName(), closeCoordinates, new ButtonMaterial(Material.empty(), Material.empty(), font), container);
+            this.close = builder
+                    .button()
+                    .withName("close_" + Window.this.getName())
+                    .withCoordinates(closeCoordinates)
+                    .withButtonMaterial(new ButtonMaterial(Material.empty(), Material.empty(), font))
+                    .build(container);
             this.close.addMouseLeftClickListener(Window.this::hide);
         }
 

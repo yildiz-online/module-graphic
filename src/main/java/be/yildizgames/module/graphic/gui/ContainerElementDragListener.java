@@ -25,7 +25,7 @@
 package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.geometry.Rectangle;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.window.input.MouseDragListener;
 import be.yildizgames.module.window.input.MousePosition;
 
@@ -44,12 +44,12 @@ final class ContainerElementDragListener implements MouseDragListener {
     /**
      * List of all draggable container.
      */
-    private static final List<SimpleContainer> DOCKABLE_LIST = new ArrayList<>();
+    private static final List<Container> DOCKABLE_LIST = new ArrayList<>();
 
     /**
      * Container associated with this listener.
      */
-    private final SimpleContainer container;
+    private final Container container;
     /**
      * Limit to dock the container, it can be a parent container border, or the
      * screen border.
@@ -69,7 +69,7 @@ final class ContainerElementDragListener implements MouseDragListener {
      * @param container  Container receiving ability to be dragged.
      * @param dragZoneLimit Limit to dock the container.
      */
-    ContainerElementDragListener(final SimpleContainer container, final Rectangle dragZoneLimit) {
+    ContainerElementDragListener(final Container container, final Rectangle dragZoneLimit) {
         super();
         this.container = container;
         this.limit = this.container.getTop() + 30;
