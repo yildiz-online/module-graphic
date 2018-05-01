@@ -31,7 +31,7 @@ import be.yildizgames.module.graphic.gui.container.Container;
  *
  * @author Grégory Van den Borre
  */
-public final class SimpleView extends View {
+public class SimpleView extends View {
 
     /**
      * Full constructor.
@@ -45,12 +45,12 @@ public final class SimpleView extends View {
     }
 
     @Override
-    protected void setVisibleImpl(final boolean show) {
+    protected final void setVisibleImpl(final boolean show) {
         //Does nothing
     }
 
     @Override
-    protected void setActiveImpl(final boolean active) {
+    protected final void setActiveImpl(final boolean active) {
         //Does nothing
     }
 
