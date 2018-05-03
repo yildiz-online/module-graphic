@@ -49,8 +49,10 @@ module be.yildizgames.module.graphic {
     exports be.yildizgames.module.graphic.gui.button;
     exports be.yildizgames.module.graphic.gui.checkbox;
     exports be.yildizgames.module.graphic.gui.container;
+    exports be.yildizgames.module.graphic.gui.container.animation;
     exports be.yildizgames.module.graphic.gui.element;
     exports be.yildizgames.module.graphic.gui.image;
+    exports be.yildizgames.module.graphic.gui.image.animation;
     exports be.yildizgames.module.graphic.gui.inputbox;
     exports be.yildizgames.module.graphic.gui.progressbar;
     exports be.yildizgames.module.graphic.gui.table;
