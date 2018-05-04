@@ -44,6 +44,10 @@ public class SimpleView extends View {
         super(container, z, eventManager);
     }
 
+    public SimpleView(final Container container, final Zorder z) {
+        super(container, z);
+    }
+
     @Override
     protected final void setVisibleImpl(final boolean show) {
         //Does nothing

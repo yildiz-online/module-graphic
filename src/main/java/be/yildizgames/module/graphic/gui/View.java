@@ -94,6 +94,10 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
                 .ifPresent(m -> m.addView(this));
     }
 
+    public View(final Container wrappedContainer, final Zorder z) {
+        this(wrappedContainer, z, null);
+    }
+
     /**
      * Get a view from its name.
      *
