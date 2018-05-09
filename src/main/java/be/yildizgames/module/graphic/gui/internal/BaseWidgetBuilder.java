@@ -59,7 +59,7 @@ public class BaseWidgetBuilder {
 
     public final void atPosition(final Position position) {
         assert position != null;
-        this.coordinates = new Coordinates(this.coordinates.left, this.coordinates.top, position);
+        this.coordinates = new Coordinates(this.coordinates.width, this.coordinates.height, position);
     }
 
     public final void atPosition(final int x, final int y) {
