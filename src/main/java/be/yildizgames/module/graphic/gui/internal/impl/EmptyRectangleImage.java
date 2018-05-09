@@ -35,7 +35,7 @@ import be.yildizgames.module.graphic.material.Material;
 /**
  * @author Grégory Van den Borre
  */
-public final class EmptyRectangleImage extends BaseContainerChild implements Image {
+final class EmptyRectangleImage extends BaseContainerChild implements Image {
 
     /**
      * Textured element to use.
@@ -57,7 +57,7 @@ public final class EmptyRectangleImage extends BaseContainerChild implements Ima
      */
     private final AbstractIconElement bottom;
 
-    public EmptyRectangleImage(String name, BaseCoordinate coordinates, AbstractIconElement left, AbstractIconElement top, AbstractIconElement right, AbstractIconElement bottom, SimpleContainer container) {
+    EmptyRectangleImage(String name, BaseCoordinate coordinates, AbstractIconElement left, AbstractIconElement top, AbstractIconElement right, AbstractIconElement bottom, SimpleContainer container) {
         super(name, coordinates, container);
         this.left = left;
         this.top = top;

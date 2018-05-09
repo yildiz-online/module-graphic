@@ -37,7 +37,7 @@ public abstract class ContainerAnimation extends BaseAnimationGui {
         super(name);
     }
 
-    void setElement(Container element) {
+    public void setElement(Container element) {
         this.container = element;
     }
 }

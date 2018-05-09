@@ -35,7 +35,6 @@ import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.SimpleView;
 import be.yildizgames.module.graphic.gui.View;
 import be.yildizgames.module.graphic.gui.button.Button;
-import be.yildizgames.module.graphic.gui.button.ButtonBuilder;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
 import be.yildizgames.module.graphic.gui.container.Container;
@@ -50,9 +49,7 @@ import be.yildizgames.module.graphic.gui.internal.GuiAnimationManager;
 import be.yildizgames.module.graphic.gui.progressbar.ProgressBar;
 import be.yildizgames.module.graphic.gui.table.TabContainer;
 import be.yildizgames.module.graphic.gui.textarea.TextArea;
-import be.yildizgames.module.graphic.gui.textarea.TextAreaBuilder;
 import be.yildizgames.module.graphic.gui.textline.TextLine;
-import be.yildizgames.module.graphic.gui.textline.TextLineBuilder;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.Optional;
@@ -117,22 +114,22 @@ public abstract class SimpleGuiFactory implements GuiFactory {
 
     @Override
     public final ContainerBuilder container() {
-        return new ContainerBuilder(this);
+        return new SimpleContainerBuilder(this);
     }
 
     @Override
-    public final ButtonBuilder button() {
-        return new ButtonBuilder(this);
+    public final SimpleButtonBuilder button() {
+        return new SimpleButtonBuilder(this);
     }
 
     @Override
-    public final TextLineBuilder textLine() {
-        return new TextLineBuilder(this);
+    public final SimpleTextLineBuilder textLine() {
+        return new SimpleTextLineBuilder(this);
     }
 
     @Override
-    public final TextAreaBuilder textArea() {
-        return new TextAreaBuilder(this);
+    public final SimpleTextAreaBuilder textArea() {
+        return new SimpleTextAreaBuilder(this);
     }
 
     @Override
@@ -148,6 +145,11 @@ public abstract class SimpleGuiFactory implements GuiFactory {
     @Override
     public final SimpleInputBoxBuilder inputBox() {
         return new SimpleInputBoxBuilder(this);
+    }
+
+    @Override
+    public final SimpleProgressBarBuilder progressBar() {
+        return new SimpleProgressBarBuilder(this);
     }
 
     /**
@@ -291,7 +293,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
      * @param container   Container holding the text line.
      * @return The new text line.
      */
-    public final SimpleTextLine buildTextLine(final String name, final Coordinates coordinates, final Font font, final SimpleContainer container) {
+    public final SimpleTextLine buildTextLine(final String name, final BaseCoordinate coordinates, final Font font, final SimpleContainer container) {
         final AbstractTextElement text = this.buildTextElement(coordinates, font, container);
         final SimpleTextLine textLine = new SimpleTextLine(name, text, container);
         textLine.setStatic();
@@ -505,11 +507,12 @@ public abstract class SimpleGuiFactory implements GuiFactory {
             final Material cursorMaterial,
             final Container container) {
         //FIXME the caption font is the same as the one for the text, for a password type input, it will not be the right font
+        SimpleContainer parent = this.containerList.get(container.getName());
         SimpleContainer c = this.buildOverlayContainer(
                 name,
                 Material.empty(),
                 coordinates,
-                this.containerList.get(container.getName()),
+                parent,
                 true);
         //Use an image to create complex background.
         Image i = this.buildEmptyUnderlineImage(
@@ -521,7 +524,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
         final AbstractIconElement cursor = this.buildIconElement(name + "_cursor", new Size(3, 20), cursorMaterial, c);
         final AbstractTextElement defaultMessage = this.buildTextElement(coordinates, captionFont, c);
         ButtonMaterial materials = new ButtonMaterial(background, backgroundHlight, captionFont);
-        final SimpleInputBox inputBox = new SimpleInputBox(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, container);
+        final SimpleInputBox inputBox = new SimpleInputBox(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, parent);
         this.inputList.register(inputBox);
 
         return inputBox;
@@ -670,7 +673,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
         return c;
     }
 
-    public SimpleContainer buildOverlayContainer(String name, Material background, Coordinates coordinates, SimpleContainer container) {
+    public SimpleContainer buildOverlayContainer(String name, Material background, BaseCoordinate coordinates, SimpleContainer container) {
         return this.buildOverlayContainer(name, background, coordinates, container, false);
     }
 

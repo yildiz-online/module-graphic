@@ -30,141 +30,121 @@ import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.graphic.gui.inputbox.InputBox;
-import be.yildizgames.module.graphic.gui.inputbox.InputBoxBuilder;
-import be.yildizgames.module.graphic.gui.inputbox.InputBoxTemplate;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
+import be.yildizgames.module.graphic.gui.textarea.TextArea;
+import be.yildizgames.module.graphic.gui.textarea.TextAreaAnimation;
+import be.yildizgames.module.graphic.gui.textarea.TextAreaBuilder;
 import be.yildizgames.module.graphic.material.Material;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Grégory Van den Borre
  */
-class SimpleInputBoxBuilder implements InputBoxBuilder {
-
-    private final SimpleGuiFactory builder;
+class SimpleTextAreaBuilder implements TextAreaBuilder {
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private Font captionFont;
+    private final SimpleGuiFactory builder;
 
-    private Material backgroundHighlight;
+    private int padding = 0;
 
-    private Material cursorMaterial;
+    private final List<TextAreaAnimation> animations = new ArrayList<>();
 
-    SimpleInputBoxBuilder(SimpleGuiFactory simpleGuiFactory) {
-        this.builder = simpleGuiFactory;
+    SimpleTextAreaBuilder(SimpleGuiFactory builder) {
+        super();
+        this.builder = builder;
     }
 
     @Override
-    public SimpleInputBoxBuilder withName(String name) {
+    public SimpleTextAreaBuilder withName(final String name) {
         this.base.withName(name);
         return this;
     }
 
     @Override
-    public SimpleInputBoxBuilder withCoordinates(BaseCoordinate coordinates) {
-        this.base.withCoordinates(coordinates);
-        return this;
-    }
-
-    @Override
-    public SimpleInputBoxBuilder atPosition(Position position) {
-        this.base.atPosition(position);
-        return this;
-    }
-
-    @Override
-    public SimpleInputBoxBuilder atPosition(int x, int y) {
-        this.base.atPosition(x, y);
-        return this;
-    }
-
-    @Override
-    public SimpleInputBoxBuilder withSize(Size size) {
-        this.base.withSize(size);
-        return this;
-    }
-
-    @Override
-    public SimpleInputBoxBuilder withSize(int width, int length) {
-        this.base.withSize(width, length);
-        return this;
-    }
-
-    @Override
-    public SimpleInputBoxBuilder withRelativeWidth(Relative r) {
-        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
-        return this;
-    }
-
-    @Override
-    public SimpleInputBoxBuilder withRelativeHeight(Relative r) {
-        this.base.withSize(this.base.getCoordinates().width, (int) (this.builder.getScreenSize().height * r.value));
-        return this;
-    }
-
-    @Override
-    public SimpleInputBoxBuilder atRelativeLeft(Relative r) {
-        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
-        return this;
-    }
-
-    @Override
-    public SimpleInputBoxBuilder atRelativeTop(Relative r) {
-        this.base.atPosition(this.base.getCoordinates().left, (int) (this.builder.getScreenSize().height * r.value));
-        return this;
-    }
-
-    @Override
-    public InputBoxBuilder withCaptionFont(Font caption) {
-        this.captionFont = caption;
-        return this;
-    }
-
-    @Override
-    public InputBoxBuilder withBackgroundHighlight(Material m) {
-        this.backgroundHighlight = m;
-        return this;
-    }
-
-    @Override
-    public InputBoxBuilder withCursor(Material m) {
-        this.cursorMaterial = m;
-        return this;
-    }
-
-    @Override
-    public InputBox build(Container container) {
-        return this.builder.buildInputBox(
-                this.base.getName(),
-                this.base.getCoordinates(),
-                this.base.getFont(),
-                this.captionFont,
-                this.base.getBackground(),
-                this.backgroundHighlight,
-                this.cursorMaterial,
-                container);
-    }
-
-    @Override
-    public InputBoxBuilder withFont(Font font) {
+    public SimpleTextAreaBuilder withFont(final Font font) {
         this.base.withFont(font);
         return this;
     }
 
     @Override
-    public InputBoxBuilder withBackground(Material material) {
-        this.base.withBackground(material);
+    public SimpleTextAreaBuilder withBackground(final Material background) {
+        this.base.withBackground(background);
         return this;
     }
 
     @Override
-    public InputBoxBuilder fromTemplate(InputBoxTemplate template) {
-        return this.withSize(template.getSize())
-                .withBackground(template.getMaterial())
-                .withCursor(template.getCursor())
-                .withFont(template.getFont())
-                .withCaptionFont(template.getCaptionFont())
-                .withFont(template.getFont());
+    public SimpleTextAreaBuilder atPosition(final Position position) {
+        this.base.atPosition(position);
+        return this;
+    }
+
+    @Override
+    public SimpleTextAreaBuilder atPosition(final int x, final int y) {
+        this.base.atPosition(x, y);
+        return this;
+    }
+
+    @Override
+    public SimpleTextAreaBuilder withSize(final int width, final int length) {
+        this.base.withSize(width, length);
+        return this;
+    }
+
+    @Override
+    public SimpleTextAreaBuilder withSize(Size size) {
+        this.base.withSize(size);
+        return this;
+    }
+
+    @Override
+    public SimpleTextAreaBuilder withRelativeWidth(Relative r) {
+        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        return this;
+    }
+
+    @Override
+    public SimpleTextAreaBuilder withRelativeHeight(Relative r) {
+        this.base.withSize(this.base.getCoordinates().width, (int) (this.builder.getScreenSize().height * r.value));
+        return this;
+    }
+
+    @Override
+    public SimpleTextAreaBuilder atRelativeLeft(Relative r) {
+        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
+        return this;
+    }
+
+    @Override
+    public SimpleTextAreaBuilder atRelativeTop(Relative r) {
+        this.base.atPosition(this.base.getCoordinates().left, (int) (this.builder.getScreenSize().height * r.value));
+        return this;
+    }
+
+    @Override
+    public SimpleTextAreaBuilder withCoordinates(BaseCoordinate coordinates) {
+        this.base.withCoordinates(coordinates);
+        return this;
+    }
+
+    @Override
+    public SimpleTextAreaBuilder withPadding(final int padding) {
+        this.padding = padding;
+        return this;
+    }
+
+    @Override
+    public TextArea build(final Container container) {
+        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
+        return this.builder.buildTextArea(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), this.base.getBackground(), this.padding, c);
+    }
+
+    @Override
+    public SimpleTextAreaBuilder animate(TextAreaAnimation animation) {
+        this.builder.getAnimationManager().addAnimation(animation);
+        this.animations.add(animation);
+        return this;
     }
 }

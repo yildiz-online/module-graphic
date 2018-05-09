@@ -45,7 +45,7 @@ import java.util.List;
  *
  * @author Grégory Van den Borre
  */
-public final class SimpleTextArea extends BaseContainerChild implements TextArea {
+final class SimpleTextArea extends BaseContainerChild implements TextArea {
 
     /**
      * End of line.
@@ -82,7 +82,7 @@ public final class SimpleTextArea extends BaseContainerChild implements TextArea
      * @param padding         Text padding.
      * @param container       Container holding the TextAreaGui widget.
      */
-    public SimpleTextArea(final String name, final BaseCoordinate coordinates, final AbstractIconElement backgroundImage, final AbstractTextElement textElement, final int padding, final SimpleContainer container) {
+    SimpleTextArea(final String name, final BaseCoordinate coordinates, final AbstractIconElement backgroundImage, final AbstractTextElement textElement, final int padding, final SimpleContainer container) {
         super(name, coordinates, container);
         assert backgroundImage != null : "i parameter is null.";
         assert textElement != null : "t parameter is null.";

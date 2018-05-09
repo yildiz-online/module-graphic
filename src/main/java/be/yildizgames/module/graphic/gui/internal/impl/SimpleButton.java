@@ -43,7 +43,7 @@ import be.yildizgames.module.graphic.material.Material;
  *
  * @author Grégory Van Den Borre
  */
-public final class SimpleButton extends BaseContainerChild implements Button {
+final class SimpleButton extends BaseContainerChild implements Button {
 
     /**
      * Container.
@@ -90,7 +90,7 @@ public final class SimpleButton extends BaseContainerChild implements Button {
      * @param materials   GuiButton materials.
      * @param parent      Container holding the button.
      */
-    public SimpleButton(final String name, final AbstractTextElement captionText, final SimpleContainer container, final ButtonMaterial materials, final SimpleContainer parent) {
+     SimpleButton(final String name, final AbstractTextElement captionText, final SimpleContainer container, final ButtonMaterial materials, final SimpleContainer parent) {
         super(name, container.getCoordinates(), parent);
         container.setMaterial(materials.material);
         this.buttonContainer = container;

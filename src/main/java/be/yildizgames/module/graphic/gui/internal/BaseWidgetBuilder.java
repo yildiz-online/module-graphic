@@ -40,7 +40,7 @@ public class BaseWidgetBuilder {
 
     private String name = StringUtil.buildRandomString("widget");
 
-    private Coordinates coordinates = new Coordinates(BaseCoordinate.ZERO.width, BaseCoordinate.ZERO.height,
+    private BaseCoordinate coordinates = new Coordinates(BaseCoordinate.ZERO.width, BaseCoordinate.ZERO.height,
             BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top);
 
     private Font font;
@@ -59,7 +59,7 @@ public class BaseWidgetBuilder {
 
     public final void atPosition(final Position position) {
         assert position != null;
-        this.coordinates = new Coordinates(this.coordinates.getSize(), position);
+        this.coordinates = new Coordinates(this.coordinates.left, this.coordinates.top, position);
     }
 
     public final void atPosition(final int x, final int y) {
@@ -71,7 +71,7 @@ public class BaseWidgetBuilder {
         this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
     }
 
-    public final void withCoordinates(Coordinates coordinates) {
+    public final void withCoordinates(BaseCoordinate coordinates) {
         this.coordinates = coordinates;
     }
 
@@ -91,7 +91,7 @@ public class BaseWidgetBuilder {
         return name;
     }
 
-    public Coordinates getCoordinates() {
+    public BaseCoordinate getCoordinates() {
         return coordinates;
     }
 

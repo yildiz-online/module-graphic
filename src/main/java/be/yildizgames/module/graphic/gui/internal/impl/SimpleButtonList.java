@@ -67,7 +67,7 @@ final class SimpleButtonList extends BaseContainerChild implements ButtonList, O
 
     private Optional<Button> selection = Optional.empty();
 
-    public SimpleButtonList(final String name, final SimpleButton button, final List<SimpleButton> elements) {
+    SimpleButtonList(final String name, final SimpleButton button, final List<SimpleButton> elements) {
         super(name, button.getCoordinates(), button.getParent());
         this.button = button;
         this.elements.addAll(elements);

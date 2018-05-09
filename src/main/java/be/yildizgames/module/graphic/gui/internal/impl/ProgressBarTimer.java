@@ -36,7 +36,7 @@ import java.time.Duration;
  *
  * @author Grégory Van den Borre
  */
-public final class ProgressBarTimer extends EndFrameListener {
+final class ProgressBarTimer extends EndFrameListener {
 
     /**
      * Progress bar to update.
@@ -65,7 +65,7 @@ public final class ProgressBarTimer extends EndFrameListener {
      * @param bar  Associated bar.
      * @param time Total time to complete the bar.
      */
-    public ProgressBarTimer(final BaseProgressBar bar, final Duration time) {
+    ProgressBarTimer(final BaseProgressBar bar, final Duration time) {
         this(bar, new EmptyTimeTextLine(), time);
     }
 

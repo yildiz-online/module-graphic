@@ -22,32 +22,18 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui.container;
+package be.yildizgames.module.graphic.gui.progressbar;
+
+import be.yildizgames.module.graphic.gui.container.Container;
+import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
+import be.yildizgames.module.graphic.material.Material;
 
 /**
  * @author Grégory Van den Borre
  */
-public class MaximizeFromTop extends ContainerAnimation {
+public interface ProgressBarBuilder extends WidgetBuilder<ProgressBarBuilder> {
 
-    private int originalSize;
+    ProgressBar build(Container parent, Material empty, Material filled);
 
-    public MaximizeFromTop(String name) {
-        super(name);
-    }
-
-    @Override
-    protected final void updateImpl(long time) {
-        int newSize = this.container.getHeight() + (int) time;
-        if (newSize > originalSize) {
-            newSize = originalSize;
-        }
-        this.container.setHeight(newSize);
-        this.setCompleted(newSize == originalSize);
-    }
-
-    @Override
-    protected final void startImpl() {
-        this.originalSize = this.container.getHeight();
-        this.container.setHeight(0);
-    }
+    ProgressBar buildRectangle(Container parent, Material border, Material content);
 }

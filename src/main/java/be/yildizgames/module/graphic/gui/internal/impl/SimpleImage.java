@@ -37,7 +37,7 @@ import be.yildizgames.module.graphic.material.Material;
  *
  * @author Grégory Van den Borre
  */
-public final class SimpleImage extends BaseContainerChild implements Image {
+final class SimpleImage extends BaseContainerChild implements Image {
 
     /**
      * Textured element to use.
@@ -52,7 +52,7 @@ public final class SimpleImage extends BaseContainerChild implements Image {
      * @param icon        Icon element to use for the image.
      * @param container   Container holding the image.
      */
-    public SimpleImage(final String name, final BaseCoordinate coordinates, final AbstractIconElement icon, final SimpleContainer container) {
+    SimpleImage(final String name, final BaseCoordinate coordinates, final AbstractIconElement icon, final SimpleContainer container) {
         super(name, coordinates, container);
         this.image = icon;
     }

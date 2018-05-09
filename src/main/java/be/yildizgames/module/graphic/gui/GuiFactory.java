@@ -31,6 +31,7 @@ import be.yildizgames.module.graphic.gui.checkbox.CheckBoxBuilder;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
 import be.yildizgames.module.graphic.gui.image.ImageBuilder;
 import be.yildizgames.module.graphic.gui.inputbox.InputBoxBuilder;
+import be.yildizgames.module.graphic.gui.progressbar.ProgressBarBuilder;
 import be.yildizgames.module.graphic.gui.textarea.TextAreaBuilder;
 import be.yildizgames.module.graphic.gui.textline.TextLineBuilder;
 
@@ -54,6 +55,8 @@ public interface GuiFactory {
     FrameListener getAnimationManager();
 
     InputBoxBuilder inputBox();
+
+    ProgressBarBuilder progressBar();
 
     Size getScreenSize();
 }

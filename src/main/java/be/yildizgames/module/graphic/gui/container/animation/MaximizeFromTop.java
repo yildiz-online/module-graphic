@@ -22,37 +22,34 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui.textline;
+package be.yildizgames.module.graphic.gui.container.animation;
 
-import be.yildizgames.common.time.ManualElapsedTimeComputer;
+import be.yildizgames.module.graphic.gui.container.ContainerAnimation;
 
 /**
  * @author Grégory Van den Borre
  */
-public class TextAppearing extends TextAnimation {
+public class MaximizeFromTop extends ContainerAnimation {
 
-    private String textToDisplay;
-    private final ManualElapsedTimeComputer timer;
+    private int originalSize;
 
-    private int currentPosition = 0;
-
-    public TextAppearing(String name, long delay) {
+    public MaximizeFromTop(String name) {
         super(name);
-        this.timer = new ManualElapsedTimeComputer(delay);
     }
 
     @Override
-    protected void updateImpl(long time) {
-        if (this.timer.isTimeElapsed(time)) {
-            currentPosition++;
-            this.text.setText(this.textToDisplay.substring(0, currentPosition));
-            this.setCompleted(currentPosition == textToDisplay.length() - 1);
+    protected final void updateImpl(long time) {
+        int newSize = this.container.getHeight() + (int) time;
+        if (newSize > originalSize) {
+            newSize = originalSize;
         }
+        this.container.setHeight(newSize);
+        this.setCompleted(newSize == originalSize);
     }
 
     @Override
-    protected void startImpl() {
-        this.textToDisplay = this.text.getContent();
-        this.text.setText("");
+    protected final void startImpl() {
+        this.originalSize = this.container.getHeight();
+        this.container.setHeight(0);
     }
 }

@@ -40,7 +40,7 @@ import be.yildizgames.module.graphic.gui.textline.TextLine;
  *
  * @author Grégory Van den Borre
  */
-public final class SimpleTextLine extends BaseContainerChild implements TextLine {
+final class SimpleTextLine extends BaseContainerChild implements TextLine {
 
     /**
      * Text element to use.
@@ -62,7 +62,7 @@ public final class SimpleTextLine extends BaseContainerChild implements TextLine
      * @param textElement TextElement to use to print the text.
      * @param container   Container holding the text line.
      */
-    public SimpleTextLine(final String name, final AbstractTextElement textElement, final SimpleContainer container) {
+    SimpleTextLine(final String name, final AbstractTextElement textElement, final SimpleContainer container) {
         super(name, new Coordinates(textElement.getTextWidth(), textElement.getTextHeight(), textElement.getLeft(), textElement.getTop()), container);
         this.text = textElement;
         this.textPosition = TextPosition.LEFT;

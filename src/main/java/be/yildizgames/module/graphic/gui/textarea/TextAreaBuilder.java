@@ -24,122 +24,23 @@
 
 package be.yildizgames.module.graphic.gui.textarea;
 
-import be.yildizgames.module.coordinate.Coordinates;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Grégory Van den Borre
  */
-public class TextAreaBuilder implements WidgetBuilder<TextAreaBuilder> {
+public interface TextAreaBuilder extends WidgetBuilder<TextAreaBuilder> {
 
-    private final BaseWidgetBuilder base = new BaseWidgetBuilder();
+    TextAreaBuilder withFont(Font font);
 
-    private final SimpleGuiFactory builder;
+    TextAreaBuilder withBackground(Material background);
 
-    private int padding = 0;
+    TextAreaBuilder withPadding(int padding);
 
-    private final List<TextAreaAnimation> animations = new ArrayList<>();
+    TextArea build(Container container);
 
-    public TextAreaBuilder(SimpleGuiFactory builder) {
-        super();
-        this.builder = builder;
-    }
-
-    @Override
-    public TextAreaBuilder withName(final String name) {
-        this.base.withName(name);
-        return this;
-    }
-
-    public TextAreaBuilder withFont(final Font font) {
-        this.base.withFont(font);
-        return this;
-    }
-
-    public TextAreaBuilder withBackground(final Material background) {
-        this.base.withBackground(background);
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder atPosition(final Position position) {
-        this.base.atPosition(position);
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder atPosition(final int x, final int y) {
-        this.base.atPosition(x, y);
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder withSize(final int width, final int length) {
-        this.base.withSize(width, length);
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder withSize(Size size) {
-        this.base.withSize(size);
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder withRelativeWidth(Relative r) {
-        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder withRelativeHeight(Relative r) {
-        this.base.withSize(this.base.getCoordinates().width, (int) (this.builder.getScreenSize().height * r.value));
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder atRelativeLeft(Relative r) {
-        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder atRelativeTop(Relative r) {
-        this.base.atPosition(this.base.getCoordinates().left, (int) (this.builder.getScreenSize().height * r.value));
-        return this;
-    }
-
-    @Override
-    public TextAreaBuilder withCoordinates(Coordinates coordinates) {
-        this.base.withCoordinates(coordinates);
-        return this;
-    }
-
-    public TextAreaBuilder withPadding(final int padding) {
-        this.padding = padding;
-        return this;
-    }
-
-    public TextArea build(final Container container) {
-        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
-        return this.builder.buildTextArea(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), this.base.getBackground(), this.padding, c);
-    }
-
-    public TextAreaBuilder animate(TextAreaAnimation animation) {
-        this.builder.getAnimationManager().addAnimation(animation);
-        this.animations.add(animation);
-        return this;
-    }
+    TextAreaBuilder animate(TextAreaAnimation animation);
 }

@@ -34,7 +34,6 @@ import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
-import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.image.Image;
@@ -142,8 +141,8 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
             final ButtonMaterial material,
             final AbstractIconElement cursor,
             final AbstractTextElement defaultMessage,
-            final Container container) {
-        super(name, coordinates, SimpleContainer.class.cast(container));
+            final SimpleContainer container) {
+        super(name, coordinates, container);
         this.text = textElement;
         this.captionText = caption;
         this.defaultMessage = defaultMessage;

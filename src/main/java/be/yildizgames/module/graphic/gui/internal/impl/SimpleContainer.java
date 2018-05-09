@@ -48,7 +48,7 @@ import java.util.stream.Collectors;
  * @author Grégory Van Den Borre
  */
 public abstract class SimpleContainer extends BaseWidget implements Container {
-
+//FIXME should not be exposed
     /**
      * List of all Widget contained in this container.
      */

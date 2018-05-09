@@ -25,6 +25,7 @@
 package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
@@ -34,12 +35,12 @@ import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
  */
 public final class WidgetMock extends BaseContainerChild {
 
-    public WidgetMock(final Coordinates coordinates, final SimpleContainer parent) {
+    public WidgetMock(final Coordinates coordinates, final Container parent) {
         this("random_" + System.nanoTime(), coordinates, parent);
     }
 
-    WidgetMock(final String name, final Coordinates coordinates, final SimpleContainer parent) {
-        super("mock " + name, coordinates, parent);
+    public WidgetMock(final String name, final Coordinates coordinates, final Container parent) {
+        super("mock " + name, coordinates, (SimpleContainer)parent);
         this.show();
     }
 

@@ -29,8 +29,7 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.gui.DummyGuiFactory;
 import be.yildizgames.module.graphic.gui.WidgetMock;
-import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.window.input.MouseLeftClickListener;
 import be.yildizgames.module.window.input.MousePosition;
@@ -39,7 +38,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Grégory Van den Borre
@@ -48,7 +49,11 @@ class WidgetTest {
 
     private BaseWidget givenAWidget() {
         SimpleGuiFactory builder = new DummyGuiFactory();
-        SimpleContainer c = (SimpleContainer)new ContainerBuilder(builder).withSize(new Size(50)).atPosition(new Position(30)).build();
+        Container c = builder
+                .container()
+                .withSize(new Size(50))
+                .atPosition(new Position(30))
+                .build();
         return new WidgetMock(new Coordinates(new Size(10), new Position(10)), c);
     }
 
@@ -56,7 +61,12 @@ class WidgetTest {
     @Test
     void testWidget() {
         SimpleGuiFactory builder = new DummyGuiFactory();
-        SimpleContainer c = (SimpleContainer)new ContainerBuilder(builder).withSize(new Size(50)).atPosition(new Position(30)).build();
+        Container c = builder
+                .container()
+                .withSize(10,10)
+                .atPosition(10,10)
+                .build();
+
         BaseWidget w = new WidgetMock(new Coordinates(new Size(10), new Position(10)), c);
         assertEquals(c, w.findParent().get());
     }

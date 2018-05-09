@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.internal;
 
-import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
@@ -37,7 +37,7 @@ public interface WidgetBuilder<T> {
 
     T withName(String name);
 
-    T withCoordinates(Coordinates coordinates);
+    T withCoordinates(BaseCoordinate coordinates);
 
     T atPosition(Position position);
 

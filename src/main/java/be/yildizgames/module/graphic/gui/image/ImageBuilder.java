@@ -24,7 +24,7 @@
 
 package be.yildizgames.module.graphic.gui.image;
 
-import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
@@ -62,7 +62,7 @@ public class ImageBuilder implements WidgetBuilder<ImageBuilder> {
     }
 
     @Override
-    public ImageBuilder withCoordinates(Coordinates coordinates) {
+    public ImageBuilder withCoordinates(BaseCoordinate coordinates) {
         this.base.withCoordinates(coordinates);
         return this;
     }

@@ -35,7 +35,7 @@ import be.yildizgames.module.graphic.material.Material;
  *
  * @author Grégory Van den Borre
  */
-public final class ComplexProgressBar extends BaseProgressBar {
+final class ComplexProgressBar extends BaseProgressBar {
 
     /**
      * Left part.

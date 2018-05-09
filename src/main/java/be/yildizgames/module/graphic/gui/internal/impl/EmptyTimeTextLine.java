@@ -30,7 +30,7 @@ import be.yildizgames.module.graphic.gui.textline.TimeTextLine;
 /**
  * @author Grégory Van den Borre
  */
-public class EmptyTimeTextLine implements TimeTextLine {
+class EmptyTimeTextLine implements TimeTextLine {
 
 
     @Override

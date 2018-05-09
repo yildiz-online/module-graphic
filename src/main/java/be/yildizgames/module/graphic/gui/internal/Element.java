@@ -28,7 +28,6 @@ package be.yildizgames.module.graphic.gui.internal;
 import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.util.Registerable;
 import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
@@ -143,7 +142,7 @@ public interface Element extends Registerable {
 
     BaseCoordinate getCoordinates();
 
-    void setCoordinates(Coordinates coordinates);
+    void setCoordinates(BaseCoordinate coordinates);
 
     boolean isVisible();
 

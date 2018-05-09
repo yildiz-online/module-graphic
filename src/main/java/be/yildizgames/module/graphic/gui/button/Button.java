@@ -153,4 +153,8 @@ public interface Button extends Widget, ContainerChild {
     int getCaptionVerticalPadding();
 
     void setPushedMaterial(Material pushed);
+
+    void setUnpushed();
+
+    void setPushed();
 }

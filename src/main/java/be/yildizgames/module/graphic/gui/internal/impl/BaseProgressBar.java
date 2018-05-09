@@ -34,7 +34,7 @@ import be.yildizgames.module.graphic.gui.progressbar.ProgressBar;
  *
  * @author Grégory Van den Borre
  */
-public abstract class BaseProgressBar extends BaseContainerChild implements ProgressBar{
+abstract class BaseProgressBar extends BaseContainerChild implements ProgressBar{
 
     /**
      * Current progress value.

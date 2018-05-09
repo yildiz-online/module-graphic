@@ -24,116 +24,18 @@
 
 package be.yildizgames.module.graphic.gui.textline;
 
-import be.yildizgames.module.coordinate.Coordinates;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleTextLine;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Grégory Van den Borre
  */
-public class TextLineBuilder implements WidgetBuilder<TextLineBuilder> {
+public interface TextLineBuilder extends WidgetBuilder<TextLineBuilder> {
 
-    private final BaseWidgetBuilder base = new BaseWidgetBuilder();
+    TextLineBuilder withFont(Font font);
 
-    private final SimpleGuiFactory builder;
+    TextLine build(Container container);
 
-    private final List<TextAnimation> animations = new ArrayList<>();
-
-
-    public TextLineBuilder(SimpleGuiFactory builder) {
-        super();
-        this.builder = builder;
-    }
-
-    @Override
-    public TextLineBuilder withName(final String name) {
-        this.base.withName(name);
-        return this;
-    }
-
-    public TextLineBuilder withFont(final Font font) {
-        this.base.withFont(font);
-        return this;
-    }
-
-    @Override
-    public TextLineBuilder atPosition(final Position position) {
-        this.base.atPosition(position);
-        return this;
-    }
-
-    @Override
-    public TextLineBuilder atPosition(final int x, final int y) {
-        this.base.atPosition(x, y);
-        return this;
-    }
-
-    @Override
-    public TextLineBuilder withSize(final int width, final int length) {
-        this.base.withSize(width, length);
-        return this;
-    }
-
-    @Override
-    public TextLineBuilder withSize(Size size) {
-        this.base.withSize(size);
-        return this;
-    }
-
-    @Override
-    public TextLineBuilder withRelativeWidth(Relative r) {
-        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
-        return this;
-    }
-
-    @Override
-    public TextLineBuilder withRelativeHeight(Relative r) {
-        this.base.withSize(this.base.getCoordinates().width, (int) (this.builder.getScreenSize().height * r.value));
-        return this;
-    }
-
-    @Override
-    public TextLineBuilder atRelativeLeft(Relative r) {
-        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
-        return this;
-    }
-
-    @Override
-    public TextLineBuilder atRelativeTop(Relative r) {
-        this.base.atPosition(this.base.getCoordinates().left, (int) (this.builder.getScreenSize().height * r.value));
-        return this;
-    }
-
-    @Override
-    public TextLineBuilder withCoordinates(Coordinates coordinates) {
-        this.base.withCoordinates(coordinates);
-        return this;
-    }
-
-    public TextLine build(final Container container) {
-        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
-        SimpleTextLine result = this.builder.buildTextLine(this.base.getName(), this.base.getCoordinates(), this.base.getFont(), c);
-        this.animations.forEach(a -> {
-            a.setElement(result);
-            result.registerAnimation(a);
-        });
-        return result;
-    }
-
-    public TextLineBuilder animate(TextAnimation animation) {
-        this.builder.getAnimationManager().addAnimation(animation);
-        this.animations.add(animation);
-        return this;
-    }
+    TextLineBuilder animate(TextAnimation animation);
 }

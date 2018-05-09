@@ -37,7 +37,7 @@ public abstract class TextAnimation extends BaseAnimationGui {
         super(name);
     }
 
-    void setElement(TextLine element) {
+    public void setElement(TextLine element) {
         this.text = element;
     }
 }

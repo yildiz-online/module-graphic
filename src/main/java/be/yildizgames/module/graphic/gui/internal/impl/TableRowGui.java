@@ -33,13 +33,13 @@ import java.util.List;
 /**
  * @author Grégory Van den Borre
  */
-public class TableRowGui {
+class TableRowGui {
 
     private final List<BaseWidget> cellComponents = new ArrayList<>();
 
     private final SimpleContainer container;
 
-    public TableRowGui(SimpleContainer container, List<BaseWidget> cellComponents) {
+    TableRowGui(SimpleContainer container, List<BaseWidget> cellComponents) {
         super();
         this.container = container;
         this.cellComponents.addAll(cellComponents);

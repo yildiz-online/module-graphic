@@ -22,10 +22,8 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
+package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.module.graphic.gui.internal.impl.BaseProgressBar;
-import be.yildizgames.module.graphic.gui.internal.impl.ProgressBarTimer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

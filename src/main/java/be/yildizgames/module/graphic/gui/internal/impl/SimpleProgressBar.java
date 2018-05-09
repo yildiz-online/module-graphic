@@ -26,8 +26,8 @@
 package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
+import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
 
 /**
@@ -36,7 +36,7 @@ import be.yildizgames.module.graphic.material.Material;
  *
  * @author Grégory Van den Borre
  */
-public final class SimpleProgressBar extends BaseProgressBar {
+final class SimpleProgressBar extends BaseProgressBar {
 
     /**
      * Empty image.
@@ -58,7 +58,7 @@ public final class SimpleProgressBar extends BaseProgressBar {
      * @param filled      Icon element for the progress bar filled part.
      * @param container   Container holding this widget.
      */
-    public SimpleProgressBar(final String name, final BaseCoordinate coordinates, final AbstractIconElement empty,
+    SimpleProgressBar(final String name, final BaseCoordinate coordinates, final AbstractIconElement empty,
                                 final AbstractIconElement filled, final SimpleContainer container) {
         super(name, coordinates, container);
         this.emptyIcon = empty;

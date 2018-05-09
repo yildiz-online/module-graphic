@@ -37,7 +37,7 @@ public abstract class ButtonAnimation extends BaseAnimationGui {
         super(name);
     }
 
-    void setElement(Button element) {
+    public void setElement(Button element) {
         this.button = element;
     }
 }

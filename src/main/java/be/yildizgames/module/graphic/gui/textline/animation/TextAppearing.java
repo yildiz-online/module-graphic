@@ -22,23 +22,38 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui.container;
+package be.yildizgames.module.graphic.gui.textline.animation;
 
-import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
-import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.common.time.ManualElapsedTimeComputer;
+import be.yildizgames.module.graphic.gui.textline.TextAnimation;
 
 /**
  * @author Grégory Van den Borre
  */
-public interface ContainerBuilder extends WidgetBuilder <ContainerBuilder> {
+public class TextAppearing extends TextAnimation {
 
-    ContainerBuilder fullScreen();
+    private String textToDisplay;
+    private final ManualElapsedTimeComputer timer;
 
-    ContainerBuilder withBackground(Material background);
+    private int currentPosition = 0;
 
-    Container build();
+    public TextAppearing(String name, long delay) {
+        super(name);
+        this.timer = new ManualElapsedTimeComputer(delay);
+    }
 
-    ContainerBuilder withParent(Container container);
+    @Override
+    protected void updateImpl(long time) {
+        if (this.timer.isTimeElapsed(time)) {
+            currentPosition++;
+            this.text.setText(this.textToDisplay.substring(0, currentPosition));
+            this.setCompleted(currentPosition == textToDisplay.length() - 1);
+        }
+    }
 
-    ContainerBuilder animate(ContainerAnimation animation);
+    @Override
+    protected void startImpl() {
+        this.textToDisplay = this.text.getContent();
+        this.text.setText("");
+    }
 }

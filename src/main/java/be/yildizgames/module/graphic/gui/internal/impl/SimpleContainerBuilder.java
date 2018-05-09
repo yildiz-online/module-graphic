@@ -28,158 +28,117 @@ import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
-import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
-import be.yildizgames.module.graphic.gui.checkbox.CheckBoxAnimation;
-import be.yildizgames.module.graphic.gui.checkbox.CheckBoxBuilder;
-import be.yildizgames.module.graphic.gui.checkbox.CheckboxTemplate;
 import be.yildizgames.module.graphic.gui.container.Container;
+import be.yildizgames.module.graphic.gui.container.ContainerAnimation;
+import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.material.Material;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Grégory Van den Borre
  */
-class SimpleCheckBoxBuilder implements CheckBoxBuilder {
+class SimpleContainerBuilder implements ContainerBuilder {
 
     private final SimpleGuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private Material hover = Material.empty();
+    private Optional<SimpleContainer> parent = Optional.empty();
 
-    private Material checked = Material.empty();
+    private boolean fullScreen;
 
-    private Material checkedHover = Material.empty();
+    private final List<ContainerAnimation> animations = new ArrayList<>();
 
-    private final List<CheckBoxAnimation> animations = new ArrayList<>();
-
-    SimpleCheckBoxBuilder(SimpleGuiFactory builder) {
-        super();
+    SimpleContainerBuilder(SimpleGuiFactory builder) {
         this.builder = builder;
     }
 
     @Override
-    public SimpleCheckBoxBuilder fromTemplate(CheckboxTemplate template) {
-        this.withSize(template.getSize());
-        this.withBackground(template.getBackgroundMaterial());
-        this.withChecked(template.getCheckedMaterial());
-        this.withHover(template.getHoverMaterial());
-        this.withCheckedHover(template.getCheckedHover());
-        this.withFont(template.getFont());
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withName(final String name) {
+    public SimpleContainerBuilder withName(final String name) {
         this.base.withName(name);
         return this;
     }
 
     @Override
-    public SimpleCheckBoxBuilder atPosition(final Position position) {
-        this.base.atPosition(position);
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder atPosition(final int x, final int y) {
-        this.base.atPosition(x, y);
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withSize(final int width, final int length) {
-        this.base.withSize(width, length);
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withRelativeWidth(Relative r) {
-        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withRelativeHeight(Relative r) {
-        this.base.withSize(this.base.getCoordinates().width, (int) (this.builder.getScreenSize().height * r.value));
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder atRelativeLeft(Relative r) {
-        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder atRelativeTop(Relative r) {
-        this.base.atPosition(this.base.getCoordinates().left, (int) (this.builder.getScreenSize().height * r.value));
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withBackground(final Material background) {
-        this.base.withBackground(background);
-        if(this.hover.equals(Material.empty())) {
-            this.hover = background;
-        }
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withHover(final Material hover) {
-        this.hover = hover;
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withCheckedHover(final Material hover) {
-        this.checkedHover = hover;
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withChecked(final Material checked) {
-        this.checked = checked;
-        if(this.checkedHover.equals(Material.empty())) {
-            this.checkedHover = checked;
-        }
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withFont(final Font font) {
-        this.base.withFont(font);
-        return this;
-    }
-
-    @Override
-    public SimpleCheckBoxBuilder withCoordinates(final BaseCoordinate coordinates) {
+    public SimpleContainerBuilder withCoordinates(BaseCoordinate coordinates) {
         this.base.withCoordinates(coordinates);
         return this;
     }
 
     @Override
-    public SimpleCheckBoxBuilder withSize(final Size size) {
+    public SimpleContainerBuilder atPosition(Position position) {
+        this.base.atPosition(position);
+        return this;
+    }
+
+    @Override
+    public SimpleContainerBuilder atPosition(int x, int y) {
+        this.base.atPosition(x, y);
+        return this;
+    }
+
+    @Override
+    public SimpleContainerBuilder withRelativeWidth(Relative r) {
+        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        return this;
+    }
+
+    @Override
+    public SimpleContainerBuilder withRelativeHeight(Relative r) {
+        this.base.withSize(this.base.getCoordinates().width, (int) (this.builder.getScreenSize().height * r.value));
+        return this;
+    }
+
+    @Override
+    public SimpleContainerBuilder atRelativeLeft(Relative r) {
+        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
+        return this;
+    }
+
+    @Override
+    public SimpleContainerBuilder atRelativeTop(Relative r) {
+        this.base.atPosition(this.base.getCoordinates().left, (int) (this.builder.getScreenSize().height * r.value));
+        return this;
+    }
+
+    @Override
+    public SimpleContainerBuilder withSize(Size size) {
         this.base.withSize(size);
         return this;
     }
 
     @Override
-    public CheckBox build(Container container) {
-        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
-        CheckBox result = this.builder.buildCheckBox(
-                this.base.getName(),
-                this.base.getCoordinates(),
-                this.base.getBackground(),
-                this.hover,
-                this.checked,
-                this.checkedHover,
-                this.base.getFont(), c);
+    public SimpleContainerBuilder withSize(int width, int length) {
+        this.base.withSize(width, length);
+        return this;
+    }
+
+    @Override
+    public SimpleContainerBuilder fullScreen() {
+        this.fullScreen = true;
+        return this;
+    }
+
+    @Override
+    public SimpleContainerBuilder withBackground(final Material background) {
+        this.base.withBackground(background);
+        return this;
+    }
+
+    @Override
+    public Container build() {
+        SimpleContainer result;
+        if (this.parent.isPresent()) {
+            result = this.builder.buildOverlayContainer(base.getName(), base.getBackground(), base.getCoordinates(), this.parent.get());
+        } else if (this.fullScreen) {
+            result = this.builder.buildFullScreenOverlayContainer(base.getName(), base.getBackground());
+        } else {
+            result = this.builder.buildOverlayContainer(base.getName(), base.getBackground(), base.getCoordinates());
+        }
         this.animations.forEach(a -> {
             a.setElement(result);
             result.registerAnimation(a);
@@ -188,7 +147,14 @@ class SimpleCheckBoxBuilder implements CheckBoxBuilder {
     }
 
     @Override
-    public SimpleCheckBoxBuilder animate(CheckBoxAnimation animation) {
+    public SimpleContainerBuilder withParent(Container container) {
+        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
+        this.parent = Optional.of(c);
+        return this;
+    }
+
+    @Override
+    public SimpleContainerBuilder animate(ContainerAnimation animation) {
         this.builder.getAnimationManager().addAnimation(animation);
         this.animations.add(animation);
         return this;

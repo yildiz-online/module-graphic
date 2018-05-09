@@ -31,13 +31,13 @@ import be.yildizgames.module.graphic.gui.textline.TimeTextLine;
 /**
  * @author Grégory Van den Borre
  */
-public class SimpleTimeTextLine implements TimeTextLine {
+class SimpleTimeTextLine implements TimeTextLine {
 
     private final SimpleTextLine line;
 
     private final TimeFormatter formatter;
 
-    public SimpleTimeTextLine(SimpleTextLine line, TimeFormatter formatter) {
+    SimpleTimeTextLine(SimpleTextLine line, TimeFormatter formatter) {
         super();
         this.line = line;
         this.formatter = formatter;

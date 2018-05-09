@@ -434,7 +434,7 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
      * @param coordinates Coordinates to set.
      */
     @Override
-    public final void setCoordinates(final Coordinates coordinates) {
+    public final void setCoordinates(final BaseCoordinate coordinates) {
         this.setSize(coordinates.width, coordinates.height);
         this.setPosition(coordinates.left, coordinates.top);
     }

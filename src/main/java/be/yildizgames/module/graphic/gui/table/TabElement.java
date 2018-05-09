@@ -26,8 +26,8 @@
 package be.yildizgames.module.graphic.gui.table;
 
 import be.yildizgames.module.graphic.gui.View;
+import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleButton;
 
 import java.util.Objects;
 
@@ -52,7 +52,7 @@ public final class TabElement {
     /**
      * GuiButton representing the tab.
      */
-    private final SimpleButton titleTab;
+    private final Button titleTab;
 
     /**
      * Full constructor.
@@ -62,7 +62,7 @@ public final class TabElement {
      * @param container View associated to this tab element, used to contain all
      *                  Widget.
      */
-    TabElement(final int position, final SimpleButton tab, final View container) {
+    TabElement(final int position, final Button tab, final View container) {
         super();
         this.position = position;
         this.titleTab = tab;
@@ -110,7 +110,8 @@ public final class TabElement {
      * delete the tab button and all widgets contained in this element.
      */
     void delete() {
-        this.titleTab.delete();
+        //FIXME delete properly
+        //this.titleTab.delete();
         this.view.delete();
     }
 
