@@ -122,26 +122,26 @@ final class SimpleTextArea extends BaseContainerChild implements TextArea {
                     final float space = this.text.getFont().getCharSize(' ');
                     final String[] words = line.split(" ");
                     final float lineMaxSize = this.getWidth();
-                    float currentLineSize = this.padding * 2;
-                    StringBuilder formattedline = new StringBuilder();
+                    int currentLineSize = this.padding * 2;
+                    StringBuilder formattedLine = new StringBuilder();
                     for (final String word : words) {
                         if (!word.isEmpty()) {
                             final float wordWidth = this.text.getFont().computeTextWidth(word);
                             if (currentLineSize + wordWidth < lineMaxSize + space) {
-                                formattedline.append(word);
-                                formattedline.append(' ');
+                                formattedLine.append(word);
+                                formattedLine.append(' ');
                             } else {
                                 currentLineSize = this.padding * 2;
-                                this.lines.add(formattedline.toString());
-                                formattedline.setLength(0);
-                                formattedline.append(word);
-                                formattedline.append(' ');
+                                this.lines.add(formattedLine.toString());
+                                formattedLine.setLength(0);
+                                formattedLine.append(word);
+                                formattedLine.append(' ');
                             }
                             currentLineSize += wordWidth + space;
                         }
                     }
                     // add the last line
-                    this.lines.add(formattedline.toString().replace(" ,", ","));
+                    this.lines.add(formattedLine.toString().replace(" ,", ","));
 
                 }
 

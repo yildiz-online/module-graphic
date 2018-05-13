@@ -102,7 +102,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
     /**
      * Max size allowed in a line.
      */
-    private float maxLineSize;
+    private int maxLineSize;
     /**
      * Cursor position.
      */
@@ -347,7 +347,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
     @Override
     protected void setSizeImpl(final int w, final int h) {
         this.innerContainer.setSize(w, h);
-        this.maxLineSize = w - 40.0f;
+        this.maxLineSize = w - 40;
     }
 
     /**
@@ -450,7 +450,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
         @Override
         public void clickAt(final MousePosition position) {
             highlightImpl(true);
-            float cursorPixelPosition = position.getX() - getAbsoluteLeft();
+            int cursorPixelPosition = position.getX() - getAbsoluteLeft();
             while (cursorPosition != displayedTextPosition) {
                 this.specialKeyPressed(Key.LEFT);
             }

@@ -143,7 +143,7 @@ public abstract class MaterialTechnique implements Comparable<MaterialTechnique>
         final int prime = 31;
         int result = 1;
         result = prime * result + this.index;
-        result = prime * result + ((this.materialPassList == null) ? 0 : this.materialPassList.hashCode());
+        result = prime * result + this.materialPassList.hashCode();
         return result;
     }
 
@@ -159,11 +159,7 @@ public abstract class MaterialTechnique implements Comparable<MaterialTechnique>
         if (this.index != other.index) {
             return false;
         }
-        if (this.materialPassList == null) {
-            if (other.materialPassList != null) {
-                return false;
-            }
-        } else if (!this.materialPassList.equals(other.materialPassList)) {
+        if (!this.materialPassList.equals(other.materialPassList)) {
             return false;
         }
         return true;
