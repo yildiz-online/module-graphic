@@ -60,7 +60,7 @@ final class ContainerElementDragListener implements MouseDragListener {
      * will be dragged only if the mouse is between the top of the container and
      * 20px lower.
      */
-    private float limit;
+    private int limit;
 
     /**
      * Full constructor. Upper limit where the container can be grabbed is set
