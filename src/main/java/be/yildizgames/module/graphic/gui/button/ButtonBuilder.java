@@ -29,6 +29,7 @@ import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
+import be.yildizgames.module.window.input.MouseLeftClickListener;
 
 /**
  * @author Grégory Van den Borre
@@ -50,4 +51,6 @@ public interface ButtonBuilder extends WidgetBuilder<ButtonBuilder> {
     ButtonBuilder withCaptionText(TranslationKey key);
 
     ButtonBuilder withCaptionText(String text);
+
+    ButtonBuilder onClick(MouseLeftClickListener l);
 }

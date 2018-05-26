@@ -39,6 +39,7 @@ import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.window.input.MouseLeftClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,8 @@ class SimpleButtonBuilder implements ButtonBuilder {
     private TranslationKey captionTextKey;
 
     private String captionText;
+
+    private MouseLeftClickListener clickListener;
 
     SimpleButtonBuilder(final SimpleGuiFactory builder) {
         super();
@@ -190,6 +193,7 @@ class SimpleButtonBuilder implements ButtonBuilder {
         result.setCaptionTextTopAlignment(this.captionTopAlignment, this.captionTopDistance);
         Optional.ofNullable(captionTextKey).ifPresent(result::setCaptionText);
         Optional.ofNullable(captionText).ifPresent(result::setCaptionText);
+        Optional.ofNullable(clickListener).ifPresent(result::addMouseLeftClickListener);
         this.animations.forEach(a -> {
             a.setElement(result);
             result.registerAnimation(a);
@@ -213,6 +217,12 @@ class SimpleButtonBuilder implements ButtonBuilder {
     @Override
     public ButtonBuilder withCaptionText(String text) {
         this.captionText = text;
+        return this;
+    }
+
+    @Override
+    public ButtonBuilder onClick(MouseLeftClickListener l) {
+        this.clickListener = l;
         return this;
     }
 
