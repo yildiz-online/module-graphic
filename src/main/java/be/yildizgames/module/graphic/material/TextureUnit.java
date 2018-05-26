@@ -142,6 +142,10 @@ public abstract class TextureUnit {
 
     public abstract void setCoordinateSet(int set);
 
+    public final void setColor(Color color) {
+        this.setColorOperationEx(TextureUnit.LayerBlendOperationEx.SOURCE1, TextureUnit.LayerBlendSource.MANUAL, TextureUnit.LayerBlendSource.CURRENT, color);
+    }
+
     /**
      * Possible color operations.
      *
