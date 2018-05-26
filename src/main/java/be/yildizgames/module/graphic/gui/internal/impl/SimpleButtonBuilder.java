@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
@@ -41,6 +42,7 @@ import be.yildizgames.module.graphic.material.Material;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Grégory Van den Borre
@@ -70,6 +72,10 @@ class SimpleButtonBuilder implements ButtonBuilder {
     private int captionLeftDistance = 0;
 
     private final List<ButtonAnimation> animations = new ArrayList<>();
+
+    private TranslationKey captionTextKey;
+
+    private String captionText;
 
     SimpleButtonBuilder(final SimpleGuiFactory builder) {
         super();
@@ -182,6 +188,8 @@ class SimpleButtonBuilder implements ButtonBuilder {
         Button result = this.builder.buildButton(this.base.getName(), this.base.getCoordinates(), bm, c);
         result.setCaptionTextLeftAlignment(this.captionLeftAlignment, this.captionLeftDistance);
         result.setCaptionTextTopAlignment(this.captionTopAlignment, this.captionTopDistance);
+        Optional.ofNullable(captionTextKey).ifPresent(result::setCaptionText);
+        Optional.ofNullable(captionText).ifPresent(result::setCaptionText);
         this.animations.forEach(a -> {
             a.setElement(result);
             result.registerAnimation(a);
@@ -193,6 +201,18 @@ class SimpleButtonBuilder implements ButtonBuilder {
     public SimpleButtonBuilder animate(ButtonAnimation animation) {
         this.builder.getAnimationManager().addAnimation(animation);
         this.animations.add(animation);
+        return this;
+    }
+
+    @Override
+    public ButtonBuilder withCaptionText(TranslationKey key) {
+        this.captionTextKey = key;
+        return this;
+    }
+
+    @Override
+    public ButtonBuilder withCaptionText(String text) {
+        this.captionText = text;
         return this;
     }
 

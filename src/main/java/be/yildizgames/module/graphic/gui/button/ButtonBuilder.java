@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic.gui.button;
 
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.container.Container;
@@ -45,4 +46,8 @@ public interface ButtonBuilder extends WidgetBuilder<ButtonBuilder> {
     Button build(Container container);
 
     ButtonBuilder animate(ButtonAnimation animation);
+
+    ButtonBuilder withCaptionText(TranslationKey key);
+
+    ButtonBuilder withCaptionText(String text);
 }
