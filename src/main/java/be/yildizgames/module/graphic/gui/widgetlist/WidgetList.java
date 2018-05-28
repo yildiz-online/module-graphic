@@ -22,43 +22,31 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui;
+package be.yildizgames.module.graphic.gui.widgetlist;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Grégory Van den Borre
  */
-public class Aligner {
+public class WidgetList {
 
-    private final int baseLeft;
-    private final int baseTop;
-    private final int left;
     private final int top;
 
-    private Aligner(final int baseLeft, final int baseTop, final int left, final int top) {
-        super();
-        this.baseLeft = baseLeft;
-        this.baseTop = baseTop;
-        this.left = left;
+    private final List<WidgetListCategory> categoryList = new ArrayList<>();
+
+    public WidgetList(int top) {
         this.top = top;
     }
 
-    public static Aligner leftAligner(final int baseLeft, final int baseTop, final int left) {
-        return new Aligner(baseLeft, baseTop, left, 0);
+    public WidgetList() {
+        this.top = 0;
     }
 
-    public static Aligner topAligner(final int baseLeft, final int baseTop, final int top) {
-        return new Aligner(baseLeft, baseTop, 0, top);
+    public void addCategory(WidgetListCategory c) {
+        int p = this.top + (this.categoryList.isEmpty() ?  0 : this.categoryList.get(this.categoryList.size() -1).getBottom());
+        this.categoryList.add(c);
+        c.setTop(p);
     }
-
-    public void align(final Widget... widgets) {
-        int leftValue = this.baseLeft;
-        int topValue = this.baseTop;
-        for (Widget w : widgets) {
-            w.setLeft(leftValue);
-            w.setTop(topValue);
-            leftValue += this.left;
-            topValue += this.top;
-        }
-    }
-
 }
