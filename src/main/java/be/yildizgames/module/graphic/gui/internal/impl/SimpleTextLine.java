@@ -30,8 +30,8 @@ import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
-import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.gui.textline.TextLine;
 
@@ -40,7 +40,7 @@ import be.yildizgames.module.graphic.gui.textline.TextLine;
  *
  * @author Grégory Van den Borre
  */
-final class SimpleTextLine extends BaseContainerChild implements TextLine {
+class SimpleTextLine extends BaseContainerChild implements TextLine {
 
     /**
      * Text element to use.
@@ -71,7 +71,7 @@ final class SimpleTextLine extends BaseContainerChild implements TextLine {
     }
 
     @Override
-    public SimpleTextLine setText(final String message) {
+    public final SimpleTextLine setText(final String message) {
         if (this.text.setText(message)) {
             this.setWidth(this.text.getWidth());
             this.setTextPosition(this.textPosition);
@@ -80,28 +80,28 @@ final class SimpleTextLine extends BaseContainerChild implements TextLine {
     }
 
     @Override
-    public SimpleTextLine setText(final TranslationKey key) {
+    public final SimpleTextLine setText(final TranslationKey key) {
         return this.setText(Translation.getInstance().translate(key));
     }
 
     @Override
-    public SimpleTextLine setText(final TranslationKey.MultiKey key) {
+    public final SimpleTextLine setText(final TranslationKey.MultiKey key) {
         return this.setText(Translation.getInstance().translate(key));
     }
 
     @Override
-    public SimpleTextLine setText(final int message) {
+    public final SimpleTextLine setText(final int message) {
         return this.setText(String.valueOf(message));
     }
 
     @Override
-    public void setFont(final Font font) {
+    public final void setFont(final Font font) {
         this.text.setFont(font);
         this.setText(this.getContent());
     }
 
     @Override
-    public void delete() {
+    public final void delete() {
         this.text.delete();
     }
 
@@ -111,38 +111,38 @@ final class SimpleTextLine extends BaseContainerChild implements TextLine {
      * @param over Unused.
      */
     @Override
-    protected void highlightImpl(final boolean over) {
+    protected final void highlightImpl(final boolean over) {
         //Does nothing.
     }
 
     @Override
-    protected void setSizeImpl(final int width, final int height) {
+    protected final void setSizeImpl(final int width, final int height) {
     }
 
     @Override
-    protected void showImpl() {
+    protected final void showImpl() {
         this.text.show();
     }
 
     @Override
-    protected void hideImpl() {
+    protected final void hideImpl() {
         this.text.hide();
     }
 
     @Override
-    protected Element setPositionImpl(final int left, final int top) {
+    protected final Element setPositionImpl(final int left, final int top) {
         this.text.setPosition(left, top);
         return this;
     }
 
     @Override
-    public SimpleTextLine setColor(final Color color) {
+    public final SimpleTextLine setColor(final Color color) {
         this.text.setColor(color);
         return this;
     }
 
     @Override
-    public SimpleTextLine setTextPosition(final TextPosition textPosition) {
+    public final SimpleTextLine setTextPosition(final TextPosition textPosition) {
         boolean updated = this.textPosition != textPosition;
         this.textPosition = textPosition;
         if (textPosition == TextPosition.CENTER) {
@@ -165,7 +165,7 @@ final class SimpleTextLine extends BaseContainerChild implements TextLine {
     }
 
     @Override
-    public String getContent() {
+    public final String getContent() {
         return this.text.getText();
     }
 }

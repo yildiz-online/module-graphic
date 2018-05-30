@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
+import be.yildizgames.module.graphic.gui.textline.TimeTextLine;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -41,15 +42,17 @@ class ProgressBarTimerTest {
     @Test
     void test() {
         BaseProgressBar b = Mockito.mock(BaseProgressBar.class);
-        new ProgressBarTimer(b, Duration.ofSeconds(10));
-        assertThrows(AssertionError.class, () -> new ProgressBarTimer(null, Duration.ofSeconds(10)));
-        assertThrows(AssertionError.class, () -> new ProgressBarTimer(b, null));
+        TimeTextLine line = Mockito.mock(TimeTextLine.class);
+        new SimpleProgressBarTimer(b, line, Duration.ofSeconds(10));
+        assertThrows(AssertionError.class, () -> new SimpleProgressBarTimer(null, line, Duration.ofSeconds(10)));
+        assertThrows(AssertionError.class, () -> new SimpleProgressBarTimer(b, line,null));
     }
 
     @Test
     void testNeverStop() {
         BaseProgressBar b = Mockito.mock(BaseProgressBar.class);
-        ProgressBarTimer t = new ProgressBarTimer(b, Duration.ofSeconds(0));
+        TimeTextLine line = Mockito.mock(TimeTextLine.class);
+        SimpleProgressBarTimer t = new SimpleProgressBarTimer(b, line, Duration.ofSeconds(0));
         assertFalse(t.frameEnded());
         t.neverStop();
         assertTrue(t.frameEnded());
@@ -58,7 +61,8 @@ class ProgressBarTimerTest {
     @Test
     void testSetValuesNegative() {
         BaseProgressBar b = Mockito.mock(BaseProgressBar.class);
-        ProgressBarTimer t = new ProgressBarTimer(b, Duration.ofSeconds(0));
+        TimeTextLine line = Mockito.mock(TimeTextLine.class);
+        SimpleProgressBarTimer t = new SimpleProgressBarTimer(b, line, Duration.ofSeconds(0));
         assertFalse(t.frameEnded());
         assertThrows(AssertionError.class, () -> t.setValues(-5, 10));
         assertThrows(AssertionError.class, () -> t.setValues(5, -10));

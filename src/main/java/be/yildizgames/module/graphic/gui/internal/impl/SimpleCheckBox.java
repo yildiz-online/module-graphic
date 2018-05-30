@@ -30,12 +30,12 @@ import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
-import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
 

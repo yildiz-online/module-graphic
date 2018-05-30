@@ -26,7 +26,6 @@ package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 

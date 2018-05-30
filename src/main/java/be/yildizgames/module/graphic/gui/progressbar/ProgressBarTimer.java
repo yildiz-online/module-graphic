@@ -22,13 +22,15 @@
  *
  */
 
-package be.yildizgames.module.graphic.gui.textline;
+package be.yildizgames.module.graphic.gui.progressbar;
 
 /**
  * @author Grégory Van den Borre
  */
-public interface TimeTextLine extends TextLine {
+public interface ProgressBarTimer extends ProgressBar {
+    void neverStop();
 
-    void display(long time);
+    ProgressBarTimer setElapsedTime(long time);
 
+    void setValues(long total, long timeLeft);
 }

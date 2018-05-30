@@ -26,30 +26,23 @@
 package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.common.time.TimeFormatter;
+import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.textline.TimeTextLine;
 
 /**
  * @author Grégory Van den Borre
  */
-class SimpleTimeTextLine implements TimeTextLine {
-
-    private final SimpleTextLine line;
+class SimpleTimeTextLine extends SimpleTextLine implements TimeTextLine {
 
     private final TimeFormatter formatter;
 
-    SimpleTimeTextLine(SimpleTextLine line, TimeFormatter formatter) {
-        super();
-        this.line = line;
+    SimpleTimeTextLine(String name, AbstractTextElement text, SimpleContainer parent, TimeFormatter formatter) {
+        super(name, text, parent);
         this.formatter = formatter;
     }
 
     @Override
     public void display(long time) {
-        this.line.setText(this.formatter.format(time));
-    }
-
-    @Override
-    public void setVisible(boolean visible) {
-        this.line.setVisible(visible);
+        this.setText(this.formatter.format(time));
     }
 }

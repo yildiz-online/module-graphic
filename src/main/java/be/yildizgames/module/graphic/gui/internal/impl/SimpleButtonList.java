@@ -27,10 +27,10 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.common.client.translation.Translation;
 import be.yildizgames.common.client.translation.TranslationKey;
+import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.OnMouseOverListener;
 import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonList;
-import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.window.input.MouseLeftClickListener;
 import be.yildizgames.module.window.input.MouseMoveListener;

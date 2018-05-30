@@ -26,7 +26,7 @@
 package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
+import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.progressbar.ProgressBar;
 
 /**

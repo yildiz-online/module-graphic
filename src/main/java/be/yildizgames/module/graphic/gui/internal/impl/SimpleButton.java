@@ -28,13 +28,13 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 import be.yildizgames.common.client.translation.Translation;
 import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonData;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
-import be.yildizgames.module.graphic.gui.internal.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
 
