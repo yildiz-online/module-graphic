@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
+import be.yildizgames.common.time.TimeFormatter;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.coordinate.BaseCoordinate;
@@ -47,11 +48,14 @@ import be.yildizgames.module.graphic.gui.inputbox.InputBox;
 import be.yildizgames.module.graphic.gui.inputbox.InputBoxTemplate;
 import be.yildizgames.module.graphic.gui.internal.GuiAnimationManager;
 import be.yildizgames.module.graphic.gui.progressbar.ProgressBar;
+import be.yildizgames.module.graphic.gui.progressbar.ProgressBarTimer;
 import be.yildizgames.module.graphic.gui.table.TabContainer;
 import be.yildizgames.module.graphic.gui.textarea.TextArea;
 import be.yildizgames.module.graphic.gui.textline.TextLine;
+import be.yildizgames.module.graphic.gui.textline.TimeTextLine;
 import be.yildizgames.module.graphic.material.Material;
 
+import java.time.Duration;
 import java.util.Optional;
 
 /**
@@ -445,6 +449,18 @@ public abstract class SimpleGuiFactory implements GuiFactory {
         final ProgressBar progressBar = new SimpleProgressBar(name, coordinates, emptyIcon, filledIcon, container);
         this.progressBarList.register(progressBar);
         return progressBar;
+    }
+
+    public final ProgressBarTimer buildProgressBar(final BaseCoordinate coordinates, final Material empty, final Material filled, Font font, Duration duration, TimeFormatter formatter, final SimpleContainer container) {
+        final String name = StringUtil.buildRandomString("progressbar");
+        final AbstractIconElement emptyIcon = this.buildIconElement(name + "empty", coordinates, empty, container);
+        final AbstractIconElement filledIcon = this.buildIconElement(name + "filled", coordinates, filled, container);
+        final AbstractTextElement text = this.buildTextElement(coordinates, font, container);
+        final ProgressBar progressBar = new SimpleProgressBar(name, coordinates, emptyIcon, filledIcon, container);
+        final TimeTextLine timeTextLine = new SimpleTimeTextLine(name + "_txt", text, container, formatter);
+        final SimpleProgressBarTimer timer = new SimpleProgressBarTimer(progressBar, timeTextLine, duration);
+        this.progressBarList.register(timer);
+        return timer;
     }
 
     /**

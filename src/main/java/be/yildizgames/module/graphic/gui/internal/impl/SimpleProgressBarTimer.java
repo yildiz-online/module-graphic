@@ -39,6 +39,7 @@ import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseAnimationGui;
 import be.yildizgames.module.graphic.gui.internal.Element;
+import be.yildizgames.module.graphic.gui.progressbar.ProgressBar;
 import be.yildizgames.module.graphic.gui.progressbar.ProgressBarTimer;
 import be.yildizgames.module.graphic.gui.textline.TimeTextLine;
 import be.yildizgames.module.graphic.material.Material;
@@ -63,7 +64,7 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
     /**
      * Progress bar to update.
      */
-    private final BaseProgressBar bar;
+    private final ProgressBar bar;
 
     /**
      * Text line to print the current progress.
@@ -88,7 +89,7 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
      * @param text Widget where result will be printed.
      * @param time Total time to complete the bar.
      */
-    SimpleProgressBarTimer(final BaseProgressBar bar, final TimeTextLine text, final Duration time) {
+    SimpleProgressBarTimer(final ProgressBar bar, final TimeTextLine text, final Duration time) {
         super();
         assert bar != null;
         assert text != null;
@@ -325,11 +326,12 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
     }
 
     @Override
-    public void setValues(final long total, final long timeLeft) {
+    public ProgressBarTimer setValues(final long total, final long timeLeft) {
         Checker.exceptionNotPositive(total);
         Checker.exceptionNotPositive(timeLeft);
         this.totalTime = total;
         this.elapsedTime = total - timeLeft;
+        return this;
     }
 
     @Override

@@ -24,9 +24,13 @@
 
 package be.yildizgames.module.graphic.gui.progressbar;
 
+import be.yildizgames.common.time.TimeFormatter;
+import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
 import be.yildizgames.module.graphic.material.Material;
+
+import java.time.Duration;
 
 /**
  * @author Grégory Van den Borre
@@ -34,6 +38,8 @@ import be.yildizgames.module.graphic.material.Material;
 public interface ProgressBarBuilder extends WidgetBuilder<ProgressBarBuilder> {
 
     ProgressBar build(Container parent, Material empty, Material filled);
+
+    ProgressBarTimer buildTimer(Container parent, Material empty, Material filled, Duration duration, TimeFormatter formatter, Font font);
 
     ProgressBar buildRectangle(Container parent, Material border, Material content);
 }

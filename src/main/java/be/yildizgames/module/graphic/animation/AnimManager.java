@@ -75,7 +75,7 @@ public final class AnimManager extends EndFrameListener {
     }
 
     @Override
-    protected boolean frameEnded(final long time) {
+    public boolean frameEnded(final long time) {
         for (String key : this.currentAnimation.keySet()) {
             List<Animation> al = this.animationList.get(key);
             List<Animation> ca = this.currentAnimation.get(key);

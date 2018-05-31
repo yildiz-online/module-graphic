@@ -24,17 +24,22 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
+import be.yildizgames.common.time.TimeFormatter;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.image.Image;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.progressbar.ProgressBar;
 import be.yildizgames.module.graphic.gui.progressbar.ProgressBarBuilder;
+import be.yildizgames.module.graphic.gui.progressbar.ProgressBarTimer;
 import be.yildizgames.module.graphic.material.Material;
+
+import java.time.Duration;
 
 /**
  * @author Grégory Van den Borre
@@ -113,6 +118,12 @@ class SimpleProgressBarBuilder implements ProgressBarBuilder {
     public ProgressBar build(Container parent, Material empty, Material filled) {
         SimpleContainer c = this.factory.getSimpleContainer(parent.getName());
         return this.factory.buildProgressBar(this.baseWidgetBuilder.getName(), this.baseWidgetBuilder.getCoordinates(), empty, filled, c);
+    }
+
+    @Override
+    public ProgressBarTimer buildTimer(Container parent, Material empty, Material filled, Duration duration, TimeFormatter formatter, Font font) {
+        SimpleContainer c = this.factory.getSimpleContainer(parent.getName());
+        return this.factory.buildProgressBar(this.baseWidgetBuilder.getCoordinates(), empty, filled, font, duration, formatter, c);
     }
 
     @Override

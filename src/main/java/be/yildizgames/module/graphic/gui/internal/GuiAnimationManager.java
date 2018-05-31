@@ -38,7 +38,7 @@ public class GuiAnimationManager extends EndFrameListener {
     private final List<BaseAnimationGui> animations = new ArrayList<>();
 
     @Override
-    protected boolean frameEnded(final long time) {
+    public boolean frameEnded(final long time) {
         animations.forEach(a -> a.update(time));
         return true;
     }

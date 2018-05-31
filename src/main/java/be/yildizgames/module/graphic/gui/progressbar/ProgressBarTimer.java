@@ -24,13 +24,15 @@
 
 package be.yildizgames.module.graphic.gui.progressbar;
 
+import be.yildizgames.common.frame.FrameListener;
+
 /**
  * @author Grégory Van den Borre
  */
-public interface ProgressBarTimer extends ProgressBar {
+public interface ProgressBarTimer extends ProgressBar, FrameListener {
     void neverStop();
 
     ProgressBarTimer setElapsedTime(long time);
 
-    void setValues(long total, long timeLeft);
+    ProgressBarTimer setValues(long total, long timeLeft);
 }
