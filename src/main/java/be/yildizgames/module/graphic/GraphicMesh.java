@@ -31,7 +31,7 @@ import be.yildizgames.module.graphic.material.Material;
  *
  * @author Grégory Van den Borre
  */
-public final class GraphicMesh {
+public class GraphicMesh {
 
     /**
      * Mesh file path.
@@ -48,19 +48,36 @@ public final class GraphicMesh {
      *
      * @param path     Path and name of the mesh to use(without extension, msh is expected as extension).
      * @param material Material to use with the mesh.
+     * @deprecated Use mesh instead, this one use hard coded extension
      */
+    @Deprecated
     public GraphicMesh(final String path, final Material material) {
         super();
-        //FIXME MEDIUM extension hardcoded
         this.file = path + ".msh";
         this.material = material;
     }
 
-    public String getFile() {
+    protected GraphicMesh(final String path, String extension, final Material material) {
+        super();
+        this.file = path + "." + extension;
+        this.material = material;
+    }
+
+    /**
+     * Create a new instance.
+     *
+     * @param path     Path and name of the mesh to use(without extension, msh is expected as extension).
+     * @param material Material to use with the mesh.
+     */
+    public static GraphicMesh mesh(String path, Material material) {
+        return new GraphicMesh(path, "msh", material);
+    }
+
+    public final String getFile() {
         return file;
     }
 
-    public Material getMaterial() {
+    public final Material getMaterial() {
         return material;
     }
 }

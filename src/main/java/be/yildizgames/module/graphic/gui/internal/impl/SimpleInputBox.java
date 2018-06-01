@@ -445,6 +445,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
 
         @Override
         public void click() {
+            //Nothing to do.
         }
 
         @Override
@@ -460,7 +461,6 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
                 }
                 this.specialKeyPressed(Key.RIGHT);
             }
-
         }
     }
 }

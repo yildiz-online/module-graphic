@@ -72,7 +72,8 @@ public abstract class Font extends Resource {
      */
     protected Font(final String fontName, final int fontSize, final Color color) {
         super(fontName);
-        //FIXME LOW no assert!
+        assert fontName != null;
+        assert color != null;
         assert fontSize >= 0 : "fontSize parameter is smaller than 0";
         this.size = fontSize;
         this.color = color;

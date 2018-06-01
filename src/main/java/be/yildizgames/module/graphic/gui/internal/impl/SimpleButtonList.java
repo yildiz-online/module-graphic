@@ -122,6 +122,7 @@ final class SimpleButtonList extends BaseContainerChild implements ButtonList, O
 
     @Override
     protected void highlightImpl(boolean highlightState) {
+        //Nothing to do.
     }
 
     @Override
@@ -152,6 +153,7 @@ final class SimpleButtonList extends BaseContainerChild implements ButtonList, O
 
     @Override
     protected void setSizeImpl(int newWidth, int newHeight) {
+        //Nothing to do.
     }
 
     @Override

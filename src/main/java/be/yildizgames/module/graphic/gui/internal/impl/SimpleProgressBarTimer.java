@@ -100,7 +100,7 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
     }
 
     @Override
-    public void neverStop() {
+    public final void neverStop() {
         this.neverStop = true;
     }
 
@@ -111,7 +111,7 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
      * @return <code>true</code> while the total time has not been reached.
      */
     @Override
-    public boolean frameEnded(final long frameTime) {
+    public final boolean frameEnded(final long frameTime) {
         this.elapsedTime += frameTime;
         if (this.bar.isVisible()) {
             this.bar.setProgress((float) this.elapsedTime / (float) this.totalTime * 100.0f);
@@ -127,21 +127,21 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
      * @return This object.
      */
     @Override
-    public SimpleProgressBarTimer setElapsedTime(final long time) {
+    public final SimpleProgressBarTimer setElapsedTime(final long time) {
         Checker.exceptionNotPositive(time);
         this.elapsedTime = time;
         return this;
     }
 
     @Override
-    public Element hide() {
+    public final Element hide() {
         this.text.hide();
         this.bar.hide();
         return this;
     }
 
     @Override
-    public Element setPosition(Element other) {
+    public final Element setPosition(Element other) {
         this.text.setPosition(other);
         this.bar.setPosition(other);
         return this;
@@ -401,7 +401,7 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
 
     @Override
     public void updateSizeAfterZoom(float zoomFactor) {
-
+        //Does nothing.
     }
 
     @Override

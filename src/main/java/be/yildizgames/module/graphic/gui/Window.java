@@ -243,6 +243,7 @@ public abstract class Window extends View {
          */
         @Override
         public void showContent() {
+            //Nothing to show.
         }
     }
 

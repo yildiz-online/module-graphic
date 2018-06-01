@@ -43,20 +43,20 @@ public class BlinkingImage extends ImageAnimation {
      * @param name Animation name.
      * @param time Time between show and hide states.
      */
-    public BlinkingImage(String name, long time) {
+    public BlinkingImage(final String name, final long time) {
         super(name);
         this.timer = new ManualElapsedTimeComputer(time);
     }
 
     @Override
-    protected void updateImpl(long time) {
+    protected final void updateImpl(final long time) {
         if(timer.isTimeElapsed(time)) {
             this.image.setVisible(!this.image.isVisible());
         }
     }
 
     @Override
-    protected void startImpl() {
-
+    protected final void startImpl() {
+        //Nothing to do.
     }
 }
