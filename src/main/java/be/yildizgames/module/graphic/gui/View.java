@@ -325,7 +325,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      */
     @Override
     public final String toString() {
-        return this.getClass().toString() + ":" + this.zOrder.getValue();
+        return this.getClass().toString() + ":" + this.getContainer() + ":"  + this.zOrder.getValue();
     }
 
     public void disableHighlight() {
