@@ -131,7 +131,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void mouseMove(MousePosition position) {
         for (View v : this.views) {
-            if (v.isVisible()) {
+            if (v.isVisible() && v.isActive()) {
                 Container viewContainer = v.getContainer();
                 Optional<Widget> foundWidget = viewContainer.getWidgetAt(position);
                 if (foundWidget.isPresent() && foundWidget.get() != this.widgetUnderMouse) {
@@ -148,7 +148,6 @@ public class EventBubblingDispatcher implements GuiEventManager {
                     this.widgetUnderMouse.mouseMove(position);
                     return;
                 }
-
             }
         }
         this.widgetUnderMouse.highlight(false);
