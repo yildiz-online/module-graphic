@@ -182,6 +182,10 @@ public abstract class MaterialManager {
         return this.loadSimpleTexture(path, Transparency.ALPHA).disableLight();
     }
 
+    public final Material createGuiMaterial(final String name, final String path) {
+        return this.loadSimpleTexture(name, path, Transparency.ALPHA).disableLight();
+    }
+
     /**
      * Create a new fragment (pixel) shader with 'main' as entry point and 'PS_1_1', 'ARBFP1' as profiles.
      *
