@@ -64,7 +64,10 @@ public final class Zorder implements Comparable<Zorder> {
      */
     public Zorder(final int z) {
         super();
-        if (z < MIN || z > MAX) {
+        if (z < MIN) {
+            LOGGER.error("Z should be between {} and {} value={} Assigned value min value ({}) instead", MIN, MAX, z, MIN);
+            this.value = MIN;
+        } else if (z > MAX){
             LOGGER.error("Z should be between {} and {} value={} Assigned value max value ({}) instead", MIN, MAX, z, MAX);
             this.value = MAX;
         } else {

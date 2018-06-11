@@ -47,14 +47,14 @@ final class ZOrderTest {
 
     @Test
     void testZorderMin() {
-        new Zorder(0);
-        assertThrows(IllegalArgumentException.class, () -> new Zorder(-1));
+        Zorder z = new Zorder(-1);
+        assertEquals(new Zorder(0), z);
     }
 
     @Test
     void testZorderMax() {
-        new Zorder(650);
-        assertThrows(IllegalArgumentException.class, () -> new Zorder(651));
+        Zorder z = new Zorder(651);
+        assertEquals(new Zorder(650), z);
     }
 
     @Test
@@ -66,7 +66,6 @@ final class ZOrderTest {
     @Test
     void testAdd() {
         assertEquals(new Zorder(10), new Zorder(3).add(7));
-        assertThrows(IllegalArgumentException.class, () -> new Zorder(10).add(650));
     }
 
     @Test
