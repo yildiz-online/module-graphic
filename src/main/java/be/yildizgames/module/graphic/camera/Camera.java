@@ -49,18 +49,13 @@ public abstract class Camera extends BaseRegisterable {
      * List of camera listeners.
      */
     private final List<CameraListener> listenerList = new ArrayList<>();
-    /**
-     * Current camera position.
-     */
-    private Point3D position = Point3D.ZERO;
-    /**
-     * Current camera direction.
-     */
-    private Point3D direction = Point3D.ZERO;
+
+    private final Node origin;
+
     /**
      * Tracked entity, if any.
      */
-    private Node tracked;
+    private final Node target;
 
     /**
      * relative position of the camera toward an object when reinitialized.
@@ -69,11 +64,14 @@ public abstract class Camera extends BaseRegisterable {
 
     /**
      * Simple constructor.
-     *
-     * @param name Camera unique name.
+     *  @param name Camera unique name.
+     * @param origin Node for origin.
+     * @param target Node for target.
      */
-    protected Camera(final String name) {
+    protected Camera(final String name, Node origin, Node target) {
         super(name);
+        this.origin = origin;
+        this.target = target;
     }
 
     /**
@@ -81,43 +79,24 @@ public abstract class Camera extends BaseRegisterable {
      *
      * @param p Position to set.
      */
-    public final void setRelativePosition(final Point3D p) {
-        this.lookAt(p.add(this.offset), p);
-    }
+   // final void setRelativePosition(final Point3D p) {
+   //     this.lookAt(p.add(this.offset), p);
+   // }
 
     /**
      * Add a listener to this camera.
      *
      * @param listener Listener to add.
      */
-    public final void addListener(final CameraListener listener) {
+    final void addListener(final CameraListener listener) {
         this.listenerList.add(listener);
     }
 
     /**
      * @return The camera current direction.
      */
-    public final Point3D getDirection() {
-        return this.direction;
-    }
-
-    /**
-     * Set the camera direction. The listeners are notified.
-     *
-     * @param newDirection New direction.
-     */
-    public final void setDirection(final Point3D newDirection) {
-        this.setDirection(newDirection.x, newDirection.y, newDirection.z);
-    }
-
-    /**
-     * Synchronize the camera direction with the camera implementation direction.
-     */
-    final void refreshDirection() {
-        this.direction = this.getDirectionImpl();
-        for (CameraListener l : this.listenerList) {
-            l.update(this.position, this.direction);
-        }
+    final Point3D getDirection() {
+        return this.target.getPosition().subtract(this.getPosition());
     }
 
     /**
@@ -125,20 +104,20 @@ public abstract class Camera extends BaseRegisterable {
      * @param far Maximum rendering distance.
      * @return This object for chaining.
      */
-    public abstract Camera setFarClip(int far);
+    abstract Camera setFarClip(int far);
 
     /**
      * An object closer than the provided value will not be rendered.
      * @param near Minimum rendering distance.
      * @return This object for chaining.
      */
-    public abstract Camera setNearClip(int near);
+    abstract Camera setNearClip(int near);
 
     /**
      * @return The camera current position.
      */
     public final Point3D getPosition() {
-        return this.position;
+        return this.origin.getPosition();
     }
 
     /**
@@ -147,11 +126,7 @@ public abstract class Camera extends BaseRegisterable {
      * @param newPosition Camera new position.
      */
     public final void setPosition(final Point3D newPosition) {
-        this.position = newPosition;
-        this.setPositionImpl(this.position.x, this.position.y, this.position.z);
-        for (CameraListener l : this.listenerList) {
-            l.update(this.position, this.direction);
-        }
+        this.origin.setPosition(newPosition);
     }
 
     /**
@@ -159,11 +134,8 @@ public abstract class Camera extends BaseRegisterable {
      *
      * @param target Camera target position value.
      */
-    public final void lookAt(final Point3D target) {
-        this.direction = this.lookAtImpl(target);
-        for (CameraListener l : this.listenerList) {
-            l.update(this.position, this.direction);
-        }
+    public final void setTargetPosition(final Point3D target) {
+        this.target.setPosition(target);
     }
 
     /**
@@ -173,103 +145,8 @@ public abstract class Camera extends BaseRegisterable {
      * @param posY Camera position y value.
      * @param posZ Camera position z value.
      */
-    public final void setPosition(final float posX, final float posY, final float posZ) {
+    final void setPosition(final float posX, final float posY, final float posZ) {
         this.setPosition(Point3D.valueOf(posX, posY, posZ));
-    }
-
-    /**
-     * Set the camera position without modifying Y value. The listeners are notified.
-     *
-     * @param newPosition Camera new position.
-     * @return The camera position.
-     */
-    public final Point3D setXZPosition(final Point3D newPosition) {
-        this.setPosition(newPosition.x, this.position.y, newPosition.z);
-        return this.position;
-    }
-
-    /**
-     * Set the position from 2D coordinates. The listeners are notified.
-     *
-     * @param newPosition 2D position.
-     * @param axis        Axis to use to retrieve 3D position.
-     */
-    public final void setPosition(final Point2D newPosition, final Axis axis) {
-        this.setPosition(newPosition.getX(), newPosition.getY(), axis);
-    }
-
-    /**
-     * Set the position from 2D coordinates. The listeners are notified.
-     *
-     * @param newPositionX 2D position X.
-     * @param newPositionY 2D position Y.
-     * @param axis         Axis to use to retrieve 3D position.
-     */
-    public final void setPosition(final int newPositionX, int newPositionY, final Axis axis) {
-        this.position = this.setPositionImpl(newPositionX, newPositionY, axis);
-        for (CameraListener l : this.listenerList) {
-            l.update(this.position, this.direction);
-        }
-    }
-
-    /**
-     * Move the camera following the camera implementation. The listeners are notified.
-     *
-     * @param moveVector Vector used to move the camera.
-     */
-    public final void move(final Point3D moveVector) {
-        this.move(moveVector.x, moveVector.y, moveVector.z);
-    }
-
-    /**
-     * Move the camera following the camera implementation. The listeners are notified.
-     *
-     * @param moveX X value to move the camera.
-     * @param moveY Y value to move the camera.
-     * @param moveZ Z value to move the camera.
-     */
-    public final void move(final float moveX, final float moveY, final float moveZ) {
-        this.position = this.moveImpl(moveX, moveY, moveZ);
-        for (CameraListener l : this.listenerList) {
-            l.update(this.position, this.direction);
-        }
-    }
-
-    /**
-     * Move the camera on 2 axis only, Y value is kept unchanged.
-     *
-     * @param x X value to move the camera.
-     * @param z Z value to move the camera.
-     */
-    public final void moveXZ(final float x, final float z) {
-        float y = this.position.y;
-        Point3D p = this.moveImpl(x, 0, z);
-        this.setPosition(p.x, y, p.z);
-    }
-
-    /**
-     * Set the camera direction. The listeners are notified.
-     *
-     * @param dirX Direction X value.
-     * @param dirY Direction Y value.
-     * @param dirZ Direction Z value.
-     */
-    public final void setDirection(final float dirX, final float dirY, final float dirZ) {
-        this.direction = this.setOrientationImpl(dirX, dirY, dirZ);
-        for (CameraListener l : this.listenerList) {
-            l.update(this.position, this.direction);
-        }
-    }
-
-    /**
-     * Set the camera position and target position.
-     *
-     * @param pos    Camera position.
-     * @param target Camera target position.
-     */
-    public final void lookAt(final Point3D pos, final Point3D target) {
-        this.setPosition(pos.x, pos.y, pos.z);
-        this.lookAt(target);
     }
 
     /**
@@ -277,7 +154,7 @@ public abstract class Camera extends BaseRegisterable {
      *
      * @param rotation Coordinates to use to rotate.
      */
-    public final void rotate(final Point2D rotation) {
+    final void rotate(final Point2D rotation) {
         this.rotate(rotation.getX(), rotation.getY());
     }
 
@@ -287,11 +164,8 @@ public abstract class Camera extends BaseRegisterable {
      * @param yaw   X rotation value.
      * @param pitch Y rotation value.
      */
-    public final void rotate(final float yaw, final float pitch) {
-        this.direction = this.rotateImpl(yaw, pitch);
-        for (CameraListener l : this.listenerList) {
-            l.update(this.position, this.direction);
-        }
+    final void rotate(final float yaw, final float pitch) {
+        this.origin.rotate(yaw, pitch);
     }
 
     /**
@@ -301,7 +175,7 @@ public abstract class Camera extends BaseRegisterable {
      * @param y Screen coordinates Y.
      * @return The point in 3D world.
      */
-    public abstract Point3D computeMoveDestination(int x, int y);
+    abstract Point3D computeMoveDestination(int x, int y);
 
     /**
      * Throw a rectangle and return all entity id contained in it.
@@ -309,7 +183,7 @@ public abstract class Camera extends BaseRegisterable {
      * @param rectangle Rectangle to throw.
      * @return All entity id contained in the rectangle.
      */
-    public abstract List<EntityId> throwPlaneRay(Rectangle rectangle);
+    abstract List<EntityId> throwPlaneRay(Rectangle rectangle);
 
     /**
      * Throw a ray to get the id of the first entity hit.
@@ -321,7 +195,7 @@ public abstract class Camera extends BaseRegisterable {
         return this.throwRay(coordinate.getX(), coordinate.getY());
     }
 
-    public abstract Optional<EntityId> throwRay(int x, int y);
+    abstract Optional<EntityId> throwRay(int x, int y);
 
     /**
      * Rotate the camera along its X axis.
@@ -338,34 +212,6 @@ public abstract class Camera extends BaseRegisterable {
      * @return The new camera direction.
      */
     protected abstract Point3D rotateImpl(final float yaw, final float pitch);
-
-    /**
-     * Set looking at in implementation.
-     *
-     * @param target Target position
-     * @return The new camera direction.
-     */
-    protected abstract Point3D lookAtImpl(Point3D target);
-
-    /**
-     * Call the move in implementation.
-     *
-     * @param moveX X value to move.
-     * @param moveY Y value to move.
-     * @param moveZ Z value to move.
-     * @return The new camera position.
-     */
-    protected abstract Point3D moveImpl(final float moveX, final float moveY, final float moveZ);
-
-    /**
-     * Call implementation to set the direction.
-     *
-     * @param x New direction X value.
-     * @param y New direction Y value.
-     * @param z New direction Z value.
-     * @return The new camera direction.
-     */
-    protected abstract Point3D setOrientationImpl(final float x, float y, float z);
 
     /**
      * Call implementation to set the position.
@@ -387,64 +233,11 @@ public abstract class Camera extends BaseRegisterable {
     protected abstract void setPositionImpl(final float posX, final float posY, final float posZ);
 
     /**
-     * @return The camera current direction in the implementation.
-     */
-    protected abstract Point3D getDirectionImpl();
-
-    /**
      * Remove a camera listener from this camera.
      *
      * @param listener Listener to remove.
      */
     public abstract void removeListener(LensFlare listener);
-
-    /**
-     * Stop auto tracking an entity or a position.
-     */
-    public final void stopAutoTrack() {
-        this.tracked = null;
-        this.stopAutoTrackImpl();
-    }
-
-    /**
-     * Implementation specific stop auto track.
-     */
-    protected abstract void stopAutoTrackImpl();
-
-    /**
-     * Auto track a given entity, camera will always target that entity.
-     *
-     * @param e Entity to track.
-     */
-    public final void autoTrack(final Node e) {
-        this.tracked = e;
-        this.autoTrackImpl(e);
-    }
-
-    /**
-     * Implementation specific auto track.
-     *
-     * @param node Node to track.
-     */
-    protected abstract void autoTrackImpl(Node node);
-
-    /**
-     * Auto track a given position, camera will always target that position.
-     *
-     * @param position Position to target.
-     */
-    public abstract void autoTrack(Point3D position);
-
-    /**
-     * Stop auto tracking an entity.
-     *
-     * @param node Node to stop to track.
-     */
-    public final void stopAutoTrack(final Node node) {
-        if (node.equals(this.tracked)) {
-            this.stopAutoTrack();
-        }
-    }
 
     /**
      * @return The camera offset.
@@ -462,24 +255,10 @@ public abstract class Camera extends BaseRegisterable {
         this.offset = offset;
     }
 
-    /**
-     * @return <code>true</code> if camera is tracking an entity.
-     */
-    public final boolean isAutoTrack() {
-        return this.tracked != null;
-    }
-
     public abstract void setAspectRatio(float ratio);
 
-    /**
-     * @return The position of the tracked entity or camera position if none.
-     */
-    public final Point3D getTrackPosition() {
-        if (this.isAutoTrack()) {
-            return this.tracked.getPosition();
-        } else {
-            return this.getPosition();
-        }
+    public final Point3D getTargetPosition() {
+        return this.target.getPosition();
     }
 
     /**
