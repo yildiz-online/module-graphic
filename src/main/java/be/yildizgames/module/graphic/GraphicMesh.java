@@ -68,6 +68,7 @@ public class GraphicMesh {
      *
      * @param path     Path and name of the mesh to use(without extension, msh is expected as extension).
      * @param material Material to use with the mesh.
+     * @return The created mesh object.
      */
     public static GraphicMesh mesh(String path, Material material) {
         return new GraphicMesh(path, "msh", material);

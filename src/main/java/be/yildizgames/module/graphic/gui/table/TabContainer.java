@@ -61,7 +61,9 @@ public final class TabContainer extends BaseContainerChild {
      *
      * @param name         Tab container name, must be unique.
      * @param coordinates  Tab container size and position.
+     * @param containers   List of containers to use.
      * @param tabSelectors List of buttons used as tabs.
+     * @param background   Background image.
      * @param container    Container holding this tab container.
      */
     public TabContainer(final String name, final BaseCoordinate coordinates, final View[] containers, final Button[] tabSelectors, final Image background, final SimpleContainer container) {

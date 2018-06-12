@@ -604,6 +604,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
      * @param background  Background material.
      * @param hover       Hover material.
      * @param check       Material when checked.
+     * @param checkHover  Material when checked and hovered.
      * @param font        Font to use for caption.
      * @param container   Container holding the check box widget.
      * @return The new check box widget.
