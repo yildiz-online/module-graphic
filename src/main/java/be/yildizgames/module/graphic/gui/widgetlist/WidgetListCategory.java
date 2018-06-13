@@ -54,11 +54,11 @@ public class WidgetListCategory {
     }
 
     public void expand() {
-
+        //FIXME implements
     }
 
     public void compress() {
-
+        //FIXME implements
     }
 
     public void addElement(WidgetListElement e) {

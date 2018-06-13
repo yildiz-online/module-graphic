@@ -25,8 +25,6 @@
 
 package be.yildizgames.module.graphic.gui.textarea;
 
-import be.yildizgames.module.graphic.gui.textarea.TextArea;
-
 import java.io.Writer;
 
 /**
@@ -59,11 +57,11 @@ public final class TextAreaWriter extends Writer {
 
     @Override
     public void flush() {
-
+        //Does nothing.
     }
 
     @Override
     public void close() {
-
+        //Does nothing.
     }
 }

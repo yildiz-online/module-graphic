@@ -95,6 +95,7 @@ public final class TabContainer extends BaseContainerChild {
 
     @Override
     protected void highlightImpl(final boolean highlightState) {
+        //Does nothing
     }
 
     @Override

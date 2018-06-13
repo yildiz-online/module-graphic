@@ -55,94 +55,99 @@ import be.yildizgames.module.graphic.light.SpotLight;
  * @author Grégory Van den Borre
  */
 public class DummyClientWorld implements GraphicWorld {
+
+    private final GraphicObject dummyObject = new DummyGraphicObject();
+
+    private final Camera dummyCamera = new DummyCamera();
+
     @Override
     public GraphicObject createMovableDoodad(Box box, Material material) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createMovableDoodad(Sphere sphere, Material material) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createMovableDoodad(Plane plane, Material material) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createMovableDoodad(GraphicMesh mesh) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createStaticDoodad(Box box, Material material, Point3D position, Point3D direction) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createStaticDoodad(Plane plane, Material material, Point3D position, Point3D direction) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createStaticDoodad(Sphere sphere, Material material, Point3D position, Point3D direction) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createStaticDoodad(Sphere sphere, Material material, Point3D position) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createStaticDoodad(GraphicMesh mesh, Point3D position, Point3D direction) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createStaticObject(EntityId id, Box box, Material material, Point3D position, Point3D direction) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createStaticObject(EntityId id, Sphere sphere, Material material, Point3D position, Point3D direction) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createStaticObject(EntityId id, Plane plane, Material material, Point3D position, Point3D direction) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createStaticObject(EntityId id, GraphicMesh shape, Point3D position) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createMovableObject(EntityId id, Box box, Material material, Point3D position) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createMovableObject(EntityId id, Plane plane, Material material, Point3D position) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createMovableObject(EntityId id, Sphere sphere, Material material, Point3D position) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public GraphicObject createMovableObject(EntityId id, GraphicMesh shape, Point3D position) {
-        return null;
+        return dummyObject;
     }
 
     @Override
     public Camera createCamera(String name) {
-        return null;
+        return dummyCamera;
     }
 
     @Override
@@ -192,7 +197,7 @@ public class DummyClientWorld implements GraphicWorld {
 
     @Override
     public Camera getDefaultCamera() {
-        return null;
+        return dummyCamera;
     }
 
     @Override
@@ -232,7 +237,7 @@ public class DummyClientWorld implements GraphicWorld {
 
     @Override
     public Camera getCamera(String name) {
-        return null;
+        return dummyCamera;
     }
 
     @Override
@@ -257,6 +262,6 @@ public class DummyClientWorld implements GraphicWorld {
 
     @Override
     public GraphicObject createStaticObject(EntityId id, GraphicMesh mesh, Point3D position, Point3D direction) {
-        return null;
+        return this.dummyObject;
     }
 }

@@ -117,6 +117,7 @@ class SimpleTextLine extends BaseContainerChild implements TextLine {
 
     @Override
     protected final void setSizeImpl(final int width, final int height) {
+        //Does nothing.
     }
 
     @Override
