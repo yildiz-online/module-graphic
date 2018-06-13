@@ -59,7 +59,17 @@ public class FixedCameraBehavior implements CameraBehavior {
     }
 
     public void move(Camera camera, Point3D target) {
-        //does nothing
+        //Does nothing.
+    }
+
+    @Override
+    public void yaw(float value) {
+        //Does nothing.
+    }
+
+    @Override
+    public void pitch(float value) {
+        //Does nothing.
     }
 
 }

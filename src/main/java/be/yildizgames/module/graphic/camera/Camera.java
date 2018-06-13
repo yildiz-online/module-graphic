@@ -138,6 +138,10 @@ public abstract class Camera extends BaseRegisterable {
         this.target.setPosition(target);
     }
 
+    public final void setTargetPosition(final float x, final float y, final float z) {
+        this.setTargetPosition(Point3D.valueOf(x, y, z));
+    }
+
     /**
      * Set the camera position. The listeners are notified.
      *

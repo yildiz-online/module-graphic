@@ -47,4 +47,14 @@ public class RtsCameraBehavior implements CameraBehavior {
         camera.setPosition(destination);
         camera.setTargetPosition(camera.getTargetPosition().add(delta));
     }
+
+    @Override
+    public void yaw(float value) {
+        //FIXME implement
+    }
+
+    @Override
+    public void pitch(float value) {
+        //FIXME implement
+    }
 }

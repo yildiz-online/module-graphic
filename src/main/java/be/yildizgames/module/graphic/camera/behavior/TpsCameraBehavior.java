@@ -33,16 +33,26 @@ public class TpsCameraBehavior implements CameraBehavior {
 
     @Override
     public void lookAt(Camera camera, Point3D target) {
-
+        //FIXME implement
     }
 
     @Override
     public void setPosition(Camera camera, Point3D newPosition) {
-
+        //FIXME implement
     }
 
     @Override
     public void move(Camera camera, Point3D destination) {
+        //FIXME implement
+    }
 
+    @Override
+    public void yaw(float value) {
+        //FIXME implement
+    }
+
+    @Override
+    public void pitch(float value) {
+        //FIXME implement
     }
 }

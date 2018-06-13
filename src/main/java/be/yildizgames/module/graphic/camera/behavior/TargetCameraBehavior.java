@@ -33,16 +33,26 @@ public class TargetCameraBehavior implements CameraBehavior {
 
     @Override
     public void lookAt(Camera camera, Point3D target) {
-
+        camera.setTargetPosition(target);
     }
 
     @Override
     public void setPosition(Camera camera, Point3D newPosition) {
-
+        camera.setPosition(newPosition);
     }
 
     @Override
     public void move(Camera camera, Point3D destination) {
+        camera.setPosition(destination);
+    }
 
+    @Override
+    public void yaw(float value) {
+        //FIXME implement
+    }
+
+    @Override
+    public void pitch(float value) {
+        //FIXME implement
     }
 }
