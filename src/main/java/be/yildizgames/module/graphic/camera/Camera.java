@@ -104,14 +104,14 @@ public abstract class Camera extends BaseRegisterable {
      * @param far Maximum rendering distance.
      * @return This object for chaining.
      */
-    abstract Camera setFarClip(int far);
+    public abstract Camera setFarClip(int far);
 
     /**
      * An object closer than the provided value will not be rendered.
      * @param near Minimum rendering distance.
      * @return This object for chaining.
      */
-    abstract Camera setNearClip(int near);
+    public abstract Camera setNearClip(int near);
 
     /**
      * @return The camera current position.
@@ -175,7 +175,7 @@ public abstract class Camera extends BaseRegisterable {
      * @param y Screen coordinates Y.
      * @return The point in 3D world.
      */
-    abstract Point3D computeMoveDestination(int x, int y);
+    public abstract Point3D computeMoveDestination(int x, int y);
 
     /**
      * Throw a rectangle and return all entity id contained in it.
@@ -183,7 +183,7 @@ public abstract class Camera extends BaseRegisterable {
      * @param rectangle Rectangle to throw.
      * @return All entity id contained in the rectangle.
      */
-    abstract List<EntityId> throwPlaneRay(Rectangle rectangle);
+    public abstract List<EntityId> throwPlaneRay(Rectangle rectangle);
 
     /**
      * Throw a ray to get the id of the first entity hit.
@@ -195,7 +195,7 @@ public abstract class Camera extends BaseRegisterable {
         return this.throwRay(coordinate.getX(), coordinate.getY());
     }
 
-    abstract Optional<EntityId> throwRay(int x, int y);
+    public abstract Optional<EntityId> throwRay(int x, int y);
 
     /**
      * Rotate the camera along its X axis.
