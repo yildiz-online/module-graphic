@@ -45,10 +45,17 @@ import java.util.Optional;
  */
 public abstract class Camera extends BaseRegisterable {
 
+    private Point3D relativePosition = Point3D.ZERO;
+
     /**
      * List of camera listeners.
      */
     private final List<CameraListener> listenerList = new ArrayList<>();
+
+    /**
+     * This node is the leading one, and is attached to root, no matter if origin or target is leading the camera move.
+     */
+    private final Node master;
 
     private final Node origin;
 
@@ -68,10 +75,11 @@ public abstract class Camera extends BaseRegisterable {
      * @param origin Node for origin.
      * @param target Node for target.
      */
-    protected Camera(final String name, Node origin, Node target) {
+    protected Camera(final String name, Node master, Node origin, Node target) {
         super(name);
         this.origin = origin;
         this.target = target;
+        this.master = master;
     }
 
     /**
@@ -143,32 +151,12 @@ public abstract class Camera extends BaseRegisterable {
     }
 
     /**
-     * Set the camera position. The listeners are notified.
-     *
-     * @param posX Camera position x value.
-     * @param posY Camera position y value.
-     * @param posZ Camera position z value.
-     */
-    final void setPosition(final float posX, final float posY, final float posZ) {
-        this.setPosition(Point3D.valueOf(posX, posY, posZ));
-    }
-
-    /**
-     * Rotate the camera following a point coordinates. The listeners are notified.
-     *
-     * @param rotation Coordinates to use to rotate.
-     */
-    final void rotate(final Point2D rotation) {
-        this.rotate(rotation.getX(), rotation.getY());
-    }
-
-    /**
      * Rotate the camera following X and Y coordinates. The listeners are notified.
      *
      * @param yaw   X rotation value.
      * @param pitch Y rotation value.
      */
-    final void rotate(final float yaw, final float pitch) {
+    public final void rotate(final float yaw, final float pitch) {
         this.origin.rotate(yaw, pitch);
     }
 
@@ -200,22 +188,6 @@ public abstract class Camera extends BaseRegisterable {
     }
 
     public abstract Optional<EntityId> throwRay(int x, int y);
-
-    /**
-     * Rotate the camera along its X axis.
-     *
-     * @param angle Angle to rotate, in radian.
-     */
-    protected abstract void yaw(final float angle);
-
-    /**
-     * Call the rotation in implementation.
-     *
-     * @param yaw   Rotation X coordinates.
-     * @param pitch Rotation Y coordinates.
-     * @return The new camera direction.
-     */
-    protected abstract Point3D rotateImpl(final float yaw, final float pitch);
 
     /**
      * Call implementation to set the position.
@@ -263,6 +235,34 @@ public abstract class Camera extends BaseRegisterable {
 
     public final Point3D getTargetPosition() {
         return this.target.getPosition();
+    }
+
+    public void setRelativePosition(Point3D position) {
+        this.relativePosition = position;
+    }
+
+    public Point3D getRelativePosition() {
+        return relativePosition;
+    }
+
+    /**
+     * The target will move around the camera.
+     */
+    public final void initOrigin() {
+        this.origin.detachFromParent();
+        this.target.detachFromParent();
+        this.origin.attachTo(this.master);
+        this.target.attachTo(this.origin);
+    }
+
+    /**
+     * The camera will follow the target.
+     */
+    public final void initTarget() {
+        this.origin.detachFromParent();
+        this.target.detachFromParent();
+        this.target.attachTo(this.master);
+        this.origin.attachTo(this.target);
     }
 
     /**

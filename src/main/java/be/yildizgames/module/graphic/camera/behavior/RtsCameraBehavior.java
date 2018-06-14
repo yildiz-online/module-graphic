@@ -38,28 +38,28 @@ public class RtsCameraBehavior implements CameraBehavior {
 
     @Override
     public void setPosition(Camera camera, Point3D newPosition) {
-        camera.setPosition(newPosition);
+        camera.setPosition(newPosition.add(camera.getRelativePosition()));
     }
 
     @Override
     public void move(Camera camera, Point3D destination) {
         Point3D delta = destination.subtract(camera.getPosition());
-        camera.setPosition(destination);
+        camera.setPosition(destination.add(camera.getRelativePosition()));
         camera.setTargetPosition(camera.getTargetPosition().add(delta));
     }
 
     @Override
-    public void yaw(float value) {
-        //FIXME implement
+    public void rotate(Camera camera, float yaw, float pitch) {
+        camera.rotate(yaw, pitch);
     }
 
     @Override
-    public void pitch(float value) {
-        //FIXME implement
+    public void setRelativePosition(Camera camera, Point3D position) {
+        camera.setRelativePosition(position);
     }
 
     @Override
-    public void setRelativePosition(Point3D position) {
-        //FIXME implement
+    public void initialise(Camera camera) {
+        camera.initOrigin();
     }
 }

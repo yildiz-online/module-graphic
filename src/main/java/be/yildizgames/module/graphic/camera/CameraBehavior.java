@@ -26,7 +26,6 @@
 package be.yildizgames.module.graphic.camera;
 
 import be.yildizgames.common.geometry.Point3D;
-import be.yildizgames.module.graphic.camera.Camera;
 
 public interface CameraBehavior {
 
@@ -36,9 +35,15 @@ public interface CameraBehavior {
 
     void move(Camera camera, Point3D destination);
 
-    void yaw(float value);
+    /**
+     * Rotate on the Y axis (vertical one).
+     * @param camera Camera to rotate.
+     * @param yaw Angle to rotate on Y axis(vertical), in radians.
+     * @param pitch Angle to rotate on X axis (vertical), in radians
+     */
+    void rotate(Camera camera, float yaw, float pitch);
 
-    void pitch(float value);
+    void setRelativePosition(Camera camera, Point3D position);
 
-    void setRelativePosition(Point3D position);
+    void initialise(Camera camera);
 }

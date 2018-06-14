@@ -36,11 +36,12 @@ public class BehavioredCamera {
 
     private final Camera camera;
 
-    private CameraBehavior behavior = CameraBehaviors.FREEFLY.getBehavior();
+    private CameraBehavior behavior;
 
     public BehavioredCamera(Camera camera) {
         super();
         this.camera = camera;
+        this.changeBehavior(CameraBehaviors.FREEFLY);
     }
 
     public final void changeBehavior(CameraBehaviors behavior) {
@@ -49,6 +50,7 @@ public class BehavioredCamera {
 
     public final void changeBehavior(CameraBehavior behavior) {
         this.behavior = behavior;
+        this.behavior.initialise(camera);
     }
 
     /**
@@ -71,7 +73,11 @@ public class BehavioredCamera {
         return this.camera.getPosition();
     }
 
+    public final void rotate(float yaw, float pitch) {
+        this.behavior.rotate(this.camera, yaw, pitch);
+    }
+
     public final void setRelativePosition(Point3D position) {
-        this.behavior.setRelativePosition(position);
+        this.behavior.setRelativePosition(this.camera, position);
     }
 }

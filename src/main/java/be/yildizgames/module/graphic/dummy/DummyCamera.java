@@ -41,7 +41,7 @@ public class DummyCamera extends Camera {
      * Simple constructor.
      */
     public DummyCamera() {
-        super(StringUtil.buildRandomString("dummycamera"), new DummyNode(), new DummyNode());
+        super(StringUtil.buildRandomString("dummycamera"), new DummyNode(), new DummyNode(), new DummyNode());
     }
 
     @Override
@@ -67,16 +67,6 @@ public class DummyCamera extends Camera {
     @Override
     public Optional<EntityId> throwRay(int x, int y) {
         return Optional.empty();
-    }
-
-    @Override
-    protected void yaw(float angle) {
-
-    }
-
-    @Override
-    protected Point3D rotateImpl(float yaw, float pitch) {
-        return Point3D.BASE_DIRECTION;
     }
 
     @Override

@@ -26,7 +26,9 @@
 package be.yildizgames.module.graphic.camera.behavior;
 
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.module.graphic.camera.BehavioredCamera;
 import be.yildizgames.module.graphic.camera.Camera;
+import be.yildizgames.module.graphic.camera.CameraBehaviors;
 import be.yildizgames.module.graphic.dummy.DummyCamera;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -37,9 +39,34 @@ class RtsCameraBehaviorTest {
     void move() {
         Camera camera = new DummyCamera();
         camera.setTargetPosition(10,10,10);
-        RtsCameraBehavior bhv = new RtsCameraBehavior();
-        bhv.move(camera, Point3D.valueOf(10,15,20));
+        BehavioredCamera cam = new BehavioredCamera(camera);
+        cam.changeBehavior(CameraBehaviors.RTS);
+        cam.move(Point3D.valueOf(10,15,20));
         Assertions.assertEquals(Point3D.valueOf(10,15,20), camera.getPosition());
         Assertions.assertEquals(Point3D.valueOf(20,25,30), camera.getTargetPosition());
+    }
+
+    @Test
+    void moveWithRelativePosition() {
+        Camera camera = new DummyCamera();
+        camera.setTargetPosition(10,10,10);
+        BehavioredCamera cam = new BehavioredCamera(camera);
+        cam.changeBehavior(CameraBehaviors.RTS);
+        cam.setRelativePosition(Point3D.valueOf(1,2,3));
+        cam.move(Point3D.valueOf(10,15,20));
+        Assertions.assertEquals(Point3D.valueOf(11,17,23), camera.getPosition());
+        Assertions.assertEquals(Point3D.valueOf(20,25,30), camera.getTargetPosition());
+    }
+
+    @Test
+    void rotate() {
+        Camera camera = new DummyCamera();
+        camera.setPosition(Point3D.valueOf(5,5,5));
+        camera.setTargetPosition(10,10,10);
+        BehavioredCamera cam = new BehavioredCamera(camera);
+        cam.changeBehavior(CameraBehaviors.RTS);
+        cam.rotate(10,0);
+        Assertions.assertEquals(Point3D.valueOf(5,5,5), camera.getPosition());
+        Assertions.assertEquals(Point3D.valueOf(10,10,10), camera.getTargetPosition());
     }
 }

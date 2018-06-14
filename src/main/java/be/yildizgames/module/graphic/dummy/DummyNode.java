@@ -35,23 +35,25 @@ public class DummyNode extends Node {
 
     private Point3D position = Point3D.ZERO;
 
+    private Movable parent = new DummyNode();
+
     protected DummyNode() {
         super(EntityId.WORLD, null);
     }
 
     @Override
     public void attachTo(Movable movable) {
-
+        this.parent = movable;
     }
 
     @Override
     public void attachToOptional(Movable movable) {
-
+        this.parent = movable;
     }
 
     @Override
     public void detachFromParent() {
-
+        this.parent = new DummyNode();
     }
 
     @Override

@@ -43,7 +43,7 @@ public class FixedCameraBehavior implements CameraBehavior {
     }
 
     @Override
-    public void lookAt(Camera camera, Point3D target) {
+    public final void lookAt(final Camera camera, final Point3D target) {
         if(!targetLocked) {
             camera.setTargetPosition(target);
             targetLocked = true;
@@ -51,30 +51,30 @@ public class FixedCameraBehavior implements CameraBehavior {
     }
 
     @Override
-    public void setPosition(Camera camera, Point3D newPosition) {
+    public final void setPosition(final Camera camera, final Point3D newPosition) {
         if(!positionLocked) {
             camera.setPosition(newPosition);
             positionLocked = true;
         }
     }
 
-    public void move(Camera camera, Point3D target) {
+    public final void move(final Camera camera, final Point3D target) {
         //Does nothing.
     }
 
     @Override
-    public void yaw(float value) {
+    public void rotate(Camera camera, float yaw, float pitch) {
         //Does nothing.
     }
 
     @Override
-    public void pitch(float value) {
+    public final void setRelativePosition(final Camera camera, final Point3D position) {
         //Does nothing.
     }
 
     @Override
-    public void setRelativePosition(Point3D position) {
-        //Does nothing.
+    public void initialise(Camera camera) {
+        camera.initOrigin();
     }
 
 }
