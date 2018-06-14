@@ -57,4 +57,9 @@ public class RtsCameraBehavior implements CameraBehavior {
     public void pitch(float value) {
         //FIXME implement
     }
+
+    @Override
+    public void setRelativePosition(Point3D position) {
+        //FIXME implement
+    }
 }

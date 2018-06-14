@@ -39,4 +39,6 @@ public interface CameraBehavior {
     void yaw(float value);
 
     void pitch(float value);
+
+    void setRelativePosition(Point3D position);
 }

@@ -72,4 +72,9 @@ public class FixedCameraBehavior implements CameraBehavior {
         //Does nothing.
     }
 
+    @Override
+    public void setRelativePosition(Point3D position) {
+        //Does nothing.
+    }
+
 }

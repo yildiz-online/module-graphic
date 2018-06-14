@@ -70,4 +70,8 @@ public class BehavioredCamera {
     public final Point3D getPosition() {
         return this.camera.getPosition();
     }
+
+    public final void setRelativePosition(Point3D position) {
+        this.behavior.setRelativePosition(position);
+    }
 }
