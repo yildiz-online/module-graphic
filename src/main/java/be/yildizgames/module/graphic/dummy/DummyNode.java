@@ -35,7 +35,7 @@ public class DummyNode extends Node {
 
     private Point3D position = Point3D.ZERO;
 
-    private Movable parent = new DummyNode();
+    private Movable parent;
 
     protected DummyNode() {
         super(EntityId.WORLD, null);
@@ -53,7 +53,7 @@ public class DummyNode extends Node {
 
     @Override
     public void detachFromParent() {
-        this.parent = new DummyNode();
+        this.parent = null;
     }
 
     @Override
