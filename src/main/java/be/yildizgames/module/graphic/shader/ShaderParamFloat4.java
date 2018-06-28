@@ -67,7 +67,7 @@ public final class ShaderParamFloat4 {
      * @param v3   Third value.
      * @param v4   Fourth value.
      */
-    public ShaderParamFloat4(final String name, final float v1, final float v2, final float v3, final float v4) {
+    ShaderParamFloat4(final String name, final float v1, final float v2, final float v3, final float v4) {
         super();
         this.name = name;
         this.value1 = v1;

@@ -55,7 +55,7 @@ public final class ShaderParamFloat2 {
      * @param v1   First value.
      * @param v2   Second value.
      */
-    public ShaderParamFloat2(final String name, final float v1, final float v2) {
+    ShaderParamFloat2(final String name, final float v1, final float v2) {
         super();
         this.name = name;
         this.value1 = v1;

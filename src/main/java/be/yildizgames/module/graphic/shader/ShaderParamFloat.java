@@ -42,7 +42,7 @@ public final class ShaderParamFloat {
      */
     public final float value;
 
-    public ShaderParamFloat(String name, float value) {
+    ShaderParamFloat(String name, float value) {
         this.name = name;
         this.value = value;
     }

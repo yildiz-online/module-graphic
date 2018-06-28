@@ -25,47 +25,31 @@
 
 package be.yildizgames.module.graphic.shader;
 
+import be.yildizgames.module.color.Color;
+
 /**
- * A parameter for a shader with 3 float values.
- * Immutable class.
  *
  * @author Grégory Van den Borre
  */
-public final class ShaderParamFloat3 {
+public class ShaderParam {
 
-    /**
-     * Parameter name.
-     */
-    public final String name;
+    public static ShaderParamColor color(String name, Color color) {
+        return new ShaderParamColor(name, color);
+    }
 
-    /**
-     * Parameter value 1.
-     */
-    public final float value1;
+    public static ShaderParamFloat float1(String name, float value) {
+        return new ShaderParamFloat(name, value);
+    }
 
-    /**
-     * Parameter value 2.
-     */
-    public final float value2;
+    public static ShaderParamFloat2 float2(String name, float value1, float value2) {
+        return new ShaderParamFloat2(name, value1, value2);
+    }
 
-    /**
-     * Parameter value 3.
-     */
-    public final float value3;
+    public static ShaderParamFloat3 float3(String name, float value1, float value2, float value3) {
+        return new ShaderParamFloat3(name, value1, value2, value3);
+    }
 
-    /**
-     * Full constructor.
-     *
-     * @param name Shader name.
-     * @param v1   First value.
-     * @param v2   Second value.
-     * @param v3   Third value.
-     */
-    ShaderParamFloat3(final String name, final float v1, final float v2, final float v3) {
-        super();
-        this.name = name;
-        this.value1 = v1;
-        this.value2 = v2;
-        this.value3 = v3;
+    public static ShaderParamFloat4 float4(String name, float value1, float value2, float value3, float value4) {
+        return new ShaderParamFloat4(name, value1, value2, value3, value4);
     }
 }

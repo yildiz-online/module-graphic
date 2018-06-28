@@ -43,7 +43,7 @@ public final class ShaderParamColor {
      */
     public final Color color;
 
-    public ShaderParamColor(String name, Color color) {
+    ShaderParamColor(String name, Color color) {
         super();
         this.name = name;
         this.color = color;
