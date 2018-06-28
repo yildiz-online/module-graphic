@@ -33,27 +33,27 @@ public class FpsCameraBehavior implements CameraBehavior {
 
     @Override
     public void lookAt(Camera camera, Point3D target) {
-        //FIXME implement
+        camera.setTargetPosition(target);
     }
 
     @Override
     public void setPosition(Camera camera, Point3D newPosition) {
-        //FIXME implement
+        camera.setPosition(newPosition);
     }
 
     @Override
     public void move(Camera camera, Point3D destination) {
-        //FIXME implement
+        camera.setPosition(destination);
     }
 
     @Override
     public void rotate(Camera camera, float yaw, float pitch) {
-        //FIXME implement
+        camera.rotate(yaw, pitch);
     }
 
     @Override
     public void setRelativePosition(Camera camera, Point3D position) {
-        //FIXME implement
+        camera.setRelativePosition(position);
     }
 
     @Override

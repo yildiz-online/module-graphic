@@ -48,13 +48,13 @@ public class TargetCameraBehavior implements CameraBehavior {
 
     @Override
     public void rotate(Camera camera, float yaw, float pitch) {
-        //FIXME implement
+        camera.rotateTarget(yaw, pitch);
     }
 
 
     @Override
     public void setRelativePosition(Camera camera, Point3D position) {
-        //FIXME implement
+        camera.setRelativePosition(position);
     }
 
     @Override

@@ -160,6 +160,10 @@ public abstract class Camera extends BaseRegisterable {
         this.origin.rotate(yaw, pitch);
     }
 
+    public final void rotateTarget(final float yaw, final float pitch) {
+        this.target.rotate(yaw, pitch);
+    }
+
     /**
      * Compute a point from a click on the screen.
      *
