@@ -229,7 +229,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
         this.childrenList.add(child);
     }
 
-    public void ignore(final BaseWidget widget) {
+    public void ignore(final ContainerChild widget) {
         this.dynamicChildrenList.remove(widget);
     }
 
@@ -265,7 +265,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      *
      * @param widget Child to focus.
      */
-    public final void setCurrentFocus(final BaseWidget widget) {
+    public final void setCurrentFocus(final ContainerChild widget) {
         for (final Widget w : this.dynamicChildrenList) {
             w.focus(false);
         }
