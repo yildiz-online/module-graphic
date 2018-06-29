@@ -234,16 +234,6 @@ public abstract class BaseWidget extends BaseElement implements Widget {
      */
     protected abstract void highlightImpl(final boolean highlightState);
 
-    /**
-     * Optimization to avoid to check this element when receiving events.
-     *
-     * @return this.
-     */
-    public BaseWidget setStatic() {
-        Optional.ofNullable(this.parent).ifPresent(p -> p.ignore(this));
-        return this;
-    }
-
     @Override
     public final boolean contains(final MousePosition position) {
         return this.contains(position.getX(), position.getY());

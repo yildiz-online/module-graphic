@@ -104,6 +104,16 @@ public abstract class BaseContainerChild extends BaseWidget implements Container
         return this.affectedByZoom;
     }
 
+    /**
+     * Optimization to avoid to check this element when receiving events.
+     *
+     * @return this.
+     */
+    public final ContainerChild setStatic() {
+        Optional.ofNullable(this.parent).ifPresent(p -> p.ignore(this));
+        return this;
+    }
+
     @Override
     public final ContainerChild setLeftFromParent(final PositionRelativeLeft relative) {
         Optional.ofNullable(this.parent).ifPresent(p -> this.setLeft(p, relative, -p.getLeft()));
