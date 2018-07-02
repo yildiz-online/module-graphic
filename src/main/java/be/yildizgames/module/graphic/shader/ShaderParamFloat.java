@@ -42,7 +42,14 @@ public final class ShaderParamFloat {
      */
     public final float value;
 
-    ShaderParamFloat(String name, float value) {
+    /**
+     * A parameter with a float value.
+     * @param name Parameter name.
+     * @param value Float value.
+     * @deprecated method will be package private, use ShaderParam factory
+     */
+    @Deprecated
+    public ShaderParamFloat(String name, float value) {
         this.name = name;
         this.value = value;
     }

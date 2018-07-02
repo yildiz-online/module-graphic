@@ -27,6 +27,7 @@ package be.yildizgames.module.graphic.material;
 
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.shader.FragmentShader;
+import be.yildizgames.module.graphic.shader.ShaderParam;
 import be.yildizgames.module.graphic.shader.VertexShader;
 import be.yildizgames.module.graphic.shader.ShaderConstantType;
 import be.yildizgames.module.graphic.shader.ShaderParamColor;
@@ -307,6 +308,38 @@ public abstract class MaterialPass {
      */
     public final MaterialPass setVertexShader(final VertexShader shader) {
         this.setVertexShader(shader.getName());
+        return this;
+    }
+
+    public final MaterialPass setFragmentShaderParameter(String name, float... f) {
+        if(f != null && f.length > 0) {
+            switch (f.length) {
+                case 1: this.setFragmentShaderParameter(ShaderParam.float1(name, f[0]));
+                    break;
+                case 2: this.setFragmentShaderParameter(ShaderParam.float2(name, f[0], f[1]));
+                    break;
+                case 3: this.setFragmentShaderParameter(ShaderParam.float3(name, f[0], f[1], f[2]));
+                    break;
+                case 4: this.setFragmentShaderParameter(ShaderParam.float4(name, f[0], f[1], f[2], f[3]));
+                    break;
+            }
+        }
+        return this;
+    }
+
+    public final MaterialPass setVertexShaderParameter(String name, float... f) {
+        if(f != null && f.length > 0) {
+            switch (f.length) {
+                case 1: this.setVertexShaderParameter(ShaderParam.float1(name, f[0]));
+                    break;
+                case 2: this.setVertexShaderParameter(ShaderParam.float2(name, f[0], f[1]));
+                    break;
+                case 3: this.setVertexShaderParameter(ShaderParam.float3(name, f[0], f[1], f[2]));
+                    break;
+                case 4: this.setVertexShaderParameter(ShaderParam.float4(name, f[0], f[1], f[2], f[3]));
+                    break;
+            }
+        }
         return this;
     }
 

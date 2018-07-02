@@ -49,13 +49,14 @@ public final class ShaderParamFloat2 {
     public final float value2;
 
     /**
-     * Full constructor.
-     *
-     * @param name Shader name.
-     * @param v1   First value.
-     * @param v2   Second value.
+     * A parameter with 2 float values.
+     * @param name Parameter name.
+     * @param v1 Float value.
+     * @param v2 Float value.
+     * @deprecated method will be package private, use ShaderParam factory
      */
-    ShaderParamFloat2(final String name, final float v1, final float v2) {
+    @Deprecated
+    public ShaderParamFloat2(final String name, final float v1, final float v2) {
         super();
         this.name = name;
         this.value1 = v1;

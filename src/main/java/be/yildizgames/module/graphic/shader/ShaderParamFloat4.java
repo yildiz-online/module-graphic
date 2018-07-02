@@ -61,13 +61,15 @@ public final class ShaderParamFloat4 {
     /**
      * Full constructor.
      *
-     * @param name Shader name.
+     * @param name Parameter name.
      * @param v1   First value.
      * @param v2   Second value.
      * @param v3   Third value.
      * @param v4   Fourth value.
+     * @deprecated method will be package private, use ShaderParam factory
      */
-    ShaderParamFloat4(final String name, final float v1, final float v2, final float v3, final float v4) {
+    @Deprecated
+    public ShaderParamFloat4(final String name, final float v1, final float v2, final float v3, final float v4) {
         super();
         this.name = name;
         this.value1 = v1;

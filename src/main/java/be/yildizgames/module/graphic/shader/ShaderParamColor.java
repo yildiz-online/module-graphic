@@ -43,7 +43,14 @@ public final class ShaderParamColor {
      */
     public final Color color;
 
-    ShaderParamColor(String name, Color color) {
+    /**
+     * A parameter with RGBA values.
+     * @param name Parameter name.
+     * @param color Color values.
+     * @deprecated method will be package private, use ShaderParam factory
+     */
+    @Deprecated
+    public ShaderParamColor(String name, Color color) {
         super();
         this.name = name;
         this.color = color;

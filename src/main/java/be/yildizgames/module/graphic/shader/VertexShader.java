@@ -25,8 +25,6 @@
 
 package be.yildizgames.module.graphic.shader;
 
-import be.yildizgames.module.graphic.shader.Shader;
-
 /**
  * Wrap a vertex shader.
  *
