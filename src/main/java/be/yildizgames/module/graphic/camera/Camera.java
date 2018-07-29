@@ -25,6 +25,7 @@
 
 package be.yildizgames.module.graphic.camera;
 
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Axis;
 import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Point3D;
@@ -43,7 +44,7 @@ import java.util.Optional;
  *
  * @author Grégory Van den Borre
  */
-public abstract class Camera extends BaseRegisterable {
+public abstract class Camera extends BaseRegisterable implements Movable {
 
     private Point3D relativePosition = Point3D.ZERO;
 
@@ -53,16 +54,16 @@ public abstract class Camera extends BaseRegisterable {
     private final List<CameraListener> listenerList = new ArrayList<>();
 
     /**
-     * This node is the leading one, and is attached to root, no matter if origin or target is leading the camera move.
+     * This node is the leading one, and is attached to root, no matter if cameraNode or targetNode is leading the camera move.
      */
-    private final Node master;
+    private final Node masterNode;
 
-    private final Node origin;
+    private final Node cameraNode;
 
     /**
      * Tracked entity, if any.
      */
-    private final Node target;
+    private final Node targetNode;
 
     /**
      * relative position of the camera toward an object when reinitialized.
@@ -72,14 +73,15 @@ public abstract class Camera extends BaseRegisterable {
     /**
      * Simple constructor.
      *  @param name Camera unique name.
-     * @param origin Node for origin.
-     * @param target Node for target.
+     * @param cameraNode Node for cameraNode.
+     * @param targetNode Node for targetNode.
      */
-    protected Camera(final String name, Node master, Node origin, Node target) {
+    protected Camera(final String name, Node masterNode, Node cameraNode, Node targetNode) {
         super(name);
-        this.origin = origin;
-        this.target = target;
-        this.master = master;
+        this.cameraNode = cameraNode;
+        this.targetNode = targetNode;
+        this.masterNode = masterNode;
+        this.cameraNode.addChild(this);
     }
 
     /**
@@ -103,8 +105,9 @@ public abstract class Camera extends BaseRegisterable {
     /**
      * @return The camera current direction.
      */
-    final Point3D getDirection() {
-        return this.target.getPosition().subtract(this.getPosition());
+    @Override
+    public final Point3D getDirection() {
+        return Point3D.normalize(this.targetNode.getPosition().subtract(this.getPosition()));
     }
 
     /**
@@ -125,7 +128,62 @@ public abstract class Camera extends BaseRegisterable {
      * @return The camera current position.
      */
     public final Point3D getPosition() {
-        return this.origin.getPosition();
+        return this.cameraNode.getPosition();
+    }
+
+    @Override
+    public final Point3D getAbsolutePosition() {
+        return this.cameraNode.getAbsolutePosition();
+    }
+
+    @Override
+    public final Point3D getAbsoluteDirection() {
+        return this.cameraNode.getAbsoluteDirection();
+    }
+
+    @Override
+    public final void setPosition(float v, float v1, float v2) {
+        this.cameraNode.setPosition(v, v1, v2);
+    }
+
+    @Override
+    public final Movable getInternal() {
+        return this;
+    }
+
+    @Override
+    public final void attachTo(Movable movable) {
+        this.cameraNode.attachTo(movable);
+    }
+
+    @Override
+    public void attachToOptional(Movable movable) {
+        this.cameraNode.attachToOptional(movable);
+    }
+
+    @Override
+    public void setDirection(Point3D point3D) {
+        //FIXME implements
+    }
+
+    @Override
+    public void setDirection(float v, float v1, float v2) {
+        //FIXME implements
+    }
+
+    @Override
+    public void addOptionalChild(Movable movable) {
+        this.masterNode.addOptionalChild(movable);
+    }
+
+    @Override
+    public void addChild(Movable movable) {
+        this.masterNode.addChild(movable);
+    }
+
+    @Override
+    public void removeChild(Movable movable) {
+        this.masterNode.removeChild(movable);
     }
 
     /**
@@ -134,16 +192,16 @@ public abstract class Camera extends BaseRegisterable {
      * @param newPosition Camera new position.
      */
     public final void setPosition(final Point3D newPosition) {
-        this.origin.setPosition(newPosition);
+        this.cameraNode.setPosition(newPosition);
     }
 
     /**
-     * Set the camera target position.
+     * Set the camera targetNode position.
      *
-     * @param target Camera target position value.
+     * @param target Camera targetNode position value.
      */
     public final void setTargetPosition(final Point3D target) {
-        this.target.setPosition(target);
+        this.targetNode.setPosition(target);
     }
 
     public final void setTargetPosition(final float x, final float y, final float z) {
@@ -157,11 +215,11 @@ public abstract class Camera extends BaseRegisterable {
      * @param pitch Y rotation value.
      */
     public final void rotate(final float yaw, final float pitch) {
-        this.origin.rotate(yaw, pitch);
+        this.cameraNode.rotate(yaw, pitch);
     }
 
     public final void rotateTarget(final float yaw, final float pitch) {
-        this.target.rotate(yaw, pitch);
+        this.targetNode.rotate(yaw, pitch);
     }
 
     /**
@@ -238,7 +296,7 @@ public abstract class Camera extends BaseRegisterable {
     public abstract void setAspectRatio(float ratio);
 
     public final Point3D getTargetPosition() {
-        return this.target.getPosition();
+        return this.targetNode.getPosition();
     }
 
     public void setRelativePosition(Point3D position) {
@@ -250,23 +308,23 @@ public abstract class Camera extends BaseRegisterable {
     }
 
     /**
-     * The target will move around the camera.
+     * The targetNode will move around the camera.
      */
     public final void initOrigin() {
-        this.origin.detachFromParent();
-        this.target.detachFromParent();
-        this.origin.attachTo(this.master);
-        this.target.attachTo(this.origin);
+        this.cameraNode.detachFromParent();
+        this.targetNode.detachFromParent();
+        this.cameraNode.attachTo(this.masterNode);
+        this.targetNode.attachTo(this.cameraNode);
     }
 
     /**
-     * The camera will follow the target.
+     * The camera will follow the targetNode.
      */
     public final void initTarget() {
-        this.origin.detachFromParent();
-        this.target.detachFromParent();
-        this.target.attachTo(this.master);
-        this.origin.attachTo(this.target);
+        this.cameraNode.detachFromParent();
+        this.targetNode.detachFromParent();
+        this.targetNode.attachTo(this.masterNode);
+        this.cameraNode.attachTo(this.targetNode);
     }
 
     /**

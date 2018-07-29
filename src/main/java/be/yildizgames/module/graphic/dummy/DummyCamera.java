@@ -88,4 +88,14 @@ public class DummyCamera extends Camera {
     public void setAspectRatio(float ratio) {
 
     }
+
+    @Override
+    public void detachFromParent() {
+
+    }
+
+    @Override
+    public void delete() {
+
+    }
 }

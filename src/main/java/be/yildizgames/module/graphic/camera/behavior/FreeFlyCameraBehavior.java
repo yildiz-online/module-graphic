@@ -48,7 +48,7 @@ public class FreeFlyCameraBehavior implements CameraBehavior {
 
     @Override
     public void rotate(Camera camera, float yaw, float pitch) {
-        //FIXME implement
+        camera.rotate(yaw, pitch);
     }
 
     @Override
