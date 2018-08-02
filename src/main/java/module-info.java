@@ -44,7 +44,6 @@ module be.yildizgames.module.graphic {
     exports be.yildizgames.module.graphic.light;
     exports be.yildizgames.module.graphic.material;
     exports be.yildizgames.module.graphic.misc;
-    exports be.yildizgames.module.graphic.movable;
     exports be.yildizgames.module.graphic.particle;
     exports be.yildizgames.module.graphic.shader;
     exports be.yildizgames.module.graphic.gui;
