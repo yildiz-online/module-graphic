@@ -26,8 +26,7 @@
 package be.yildizgames.module.graphic.billboard;
 
 
-import be.yildizgames.module.graphic.movable.BaseMovable;
-import be.yildizgames.module.graphic.movable.Node;
+import be.yildizgames.common.gameobject.Movable;
 
 /**
  * A billboard set create and handle billboards with common attributes. Changing
@@ -35,15 +34,13 @@ import be.yildizgames.module.graphic.movable.Node;
  *
  * @author Grégory Van den Borre
  */
-public abstract class BillboardSet extends BaseMovable {
+public abstract class BillboardSet implements Movable {
 
     /**
      * Full constructor.
-     *
-     * @param node Associated node.
      */
-    protected BillboardSet(final Node node) {
-        super(node);
+    protected BillboardSet() {
+        super();
     }
 
     /**

@@ -25,25 +25,22 @@
 
 package be.yildizgames.module.graphic.misc;
 
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.movable.BaseMovable;
-import be.yildizgames.module.graphic.movable.Node;
 
 /**
  * Text to position in 3D world.
  *
  * @author Grégory Van den Borre
  */
-public abstract class MovableText extends BaseMovable {
+public abstract class MovableText implements Movable {
 
     /**
      * Full constructor.
-     *
-     * @param node Associated node.
      */
-    protected MovableText(final Node node) {
-        super(node);
+    protected MovableText() {
+        super();
     }
 
     /**

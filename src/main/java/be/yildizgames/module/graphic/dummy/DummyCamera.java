@@ -24,13 +24,14 @@
 
 package be.yildizgames.module.graphic.dummy;
 
-import be.yildizgames.common.geometry.Axis;
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.light.LensFlare;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +42,7 @@ public class DummyCamera extends Camera {
      * Simple constructor.
      */
     public DummyCamera() {
-        super(StringUtil.buildRandomString("dummycamera"), new DummyNode(), new DummyNode(), new DummyNode());
+        super(StringUtil.buildRandomString("dummycamera"));
     }
 
     @Override
@@ -52,6 +53,16 @@ public class DummyCamera extends Camera {
     @Override
     public Camera setNearClip(int near) {
         return this;
+    }
+
+    @Override
+    public void setTargetPosition(Point3D target) {
+
+    }
+
+    @Override
+    public void rotateTarget(float yaw, float pitch) {
+
     }
 
     @Override
@@ -70,16 +81,6 @@ public class DummyCamera extends Camera {
     }
 
     @Override
-    protected Point3D setPositionImpl(int x, int y, Axis axis) {
-        return Point3D.ZERO;
-    }
-
-    @Override
-    protected void setPositionImpl(float posX, float posY, float posZ) {
-
-    }
-
-    @Override
     public void removeListener(LensFlare listener) {
 
     }
@@ -90,7 +91,92 @@ public class DummyCamera extends Camera {
     }
 
     @Override
+    public Point3D getTargetPosition() {
+        return null;
+    }
+
+    @Override
+    public void initOrigin() {
+
+    }
+
+    @Override
+    public void initTarget() {
+
+    }
+
+    @Override
+    public void rotate(float yaw, float pitch) {
+
+    }
+
+    @Override
+    public void attachTo(Movable movable) {
+
+    }
+
+    @Override
+    public void attachToOptional(Movable movable) {
+
+    }
+
+    @Override
     public void detachFromParent() {
+
+    }
+
+    @Override
+    public Point3D getPosition() {
+        return null;
+    }
+
+    @Override
+    public void setPosition(Point3D point3D) {
+
+    }
+
+    @Override
+    public Point3D getAbsolutePosition() {
+        return null;
+    }
+
+    @Override
+    public Point3D getDirection() {
+        return null;
+    }
+
+    @Override
+    public void setDirection(Point3D point3D) {
+
+    }
+
+    @Override
+    public Point3D getAbsoluteDirection() {
+        return null;
+    }
+
+    @Override
+    public void setPosition(float v, float v1, float v2) {
+
+    }
+
+    @Override
+    public void setDirection(float v, float v1, float v2) {
+
+    }
+
+    @Override
+    public void addOptionalChild(Movable movable) {
+
+    }
+
+    @Override
+    public void addChild(Movable movable) {
+
+    }
+
+    @Override
+    public void removeChild(Movable movable) {
 
     }
 

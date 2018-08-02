@@ -25,10 +25,9 @@
 
 package be.yildizgames.module.graphic.particle;
 
-import be.yildizgames.module.graphic.movable.BaseMovable;
-import be.yildizgames.module.graphic.movable.Node;
-import be.yildizgames.module.graphic.particle.ParticleEmitter.EmitterType;
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.graphic.particle.ParticleEmitter.EmitterType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +37,7 @@ import java.util.List;
  *
  * @author Grégory Van den Borre
  */
-public abstract class ParticleSystem extends BaseMovable {
+public abstract class ParticleSystem implements Movable {
 
     /**
      * List of particle emitter.
@@ -52,14 +51,7 @@ public abstract class ParticleSystem extends BaseMovable {
      * Maximum number of particle at one time.
      */
     private int quota;
-    /**
-     * Particle billboard width.
-     */
-    private float width;
-    /**
-     * Particle billboard height.
-     */
-    private float height;
+
     /**
      * Current orientation, facing camera is default.
      */
@@ -72,11 +64,9 @@ public abstract class ParticleSystem extends BaseMovable {
 
     /**
      * Protected constructor, only called from children.
-     *
-     * @param node Associated node.
      */
-    protected ParticleSystem(final Node node) {
-        super(node);
+    protected ParticleSystem() {
+        super();
     }
 
     /**
@@ -228,9 +218,7 @@ public abstract class ParticleSystem extends BaseMovable {
      * @return This.
      */
     public final ParticleSystem setSize(final float newWidth, final float newHeight) {
-        this.width = newWidth;
-        this.height = newHeight;
-        this.setSizeImpl(this.width, this.height);
+        this.setSizeImpl(newWidth, newHeight);
         return this;
     }
 

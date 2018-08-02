@@ -26,14 +26,12 @@
 package be.yildizgames.module.graphic.camera;
 
 import be.yildizgames.common.gameobject.Movable;
-import be.yildizgames.common.geometry.Axis;
 import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.util.BaseRegisterable;
 import be.yildizgames.module.graphic.light.LensFlare;
-import be.yildizgames.module.graphic.movable.Node;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,18 +52,6 @@ public abstract class Camera extends BaseRegisterable implements Movable {
     private final List<CameraListener> listenerList = new ArrayList<>();
 
     /**
-     * This node is the leading one, and is attached to root, no matter if cameraNode or targetNode is leading the camera move.
-     */
-    private final Node masterNode;
-
-    private final Node cameraNode;
-
-    /**
-     * Tracked entity, if any.
-     */
-    private final Node targetNode;
-
-    /**
      * relative position of the camera toward an object when reinitialized.
      */
     private Point3D offset = Point3D.ZERO;
@@ -73,15 +59,9 @@ public abstract class Camera extends BaseRegisterable implements Movable {
     /**
      * Simple constructor.
      *  @param name Camera unique name.
-     * @param cameraNode Node for cameraNode.
-     * @param targetNode Node for targetNode.
      */
-    protected Camera(final String name, Node masterNode, Node cameraNode, Node targetNode) {
+    protected Camera(final String name) {
         super(name);
-        this.cameraNode = cameraNode;
-        this.targetNode = targetNode;
-        this.masterNode = masterNode;
-        this.cameraNode.addChild(this);
     }
 
     /**
@@ -103,14 +83,6 @@ public abstract class Camera extends BaseRegisterable implements Movable {
     }
 
     /**
-     * @return The camera current direction.
-     */
-    @Override
-    public final Point3D getDirection() {
-        return Point3D.normalize(this.targetNode.getPosition().subtract(this.getPosition()));
-    }
-
-    /**
      * An object further than the provided value will not be rendered.
      * @param far Maximum rendering distance.
      * @return This object for chaining.
@@ -124,75 +96,9 @@ public abstract class Camera extends BaseRegisterable implements Movable {
      */
     public abstract Camera setNearClip(int near);
 
-    /**
-     * @return The camera current position.
-     */
-    public final Point3D getPosition() {
-        return this.cameraNode.getPosition();
-    }
-
-    @Override
-    public final Point3D getAbsolutePosition() {
-        return this.cameraNode.getAbsolutePosition();
-    }
-
-    @Override
-    public final Point3D getAbsoluteDirection() {
-        return this.cameraNode.getAbsoluteDirection();
-    }
-
-    @Override
-    public final void setPosition(float v, float v1, float v2) {
-        this.cameraNode.setPosition(v, v1, v2);
-    }
-
     @Override
     public final Movable getInternal() {
         return this;
-    }
-
-    @Override
-    public final void attachTo(Movable movable) {
-        this.cameraNode.attachTo(movable);
-    }
-
-    @Override
-    public void attachToOptional(Movable movable) {
-        this.cameraNode.attachToOptional(movable);
-    }
-
-    @Override
-    public void setDirection(Point3D point3D) {
-        //FIXME implements
-    }
-
-    @Override
-    public void setDirection(float v, float v1, float v2) {
-        //FIXME implements
-    }
-
-    @Override
-    public void addOptionalChild(Movable movable) {
-        this.masterNode.addOptionalChild(movable);
-    }
-
-    @Override
-    public void addChild(Movable movable) {
-        this.masterNode.addChild(movable);
-    }
-
-    @Override
-    public void removeChild(Movable movable) {
-        this.masterNode.removeChild(movable);
-    }
-
-    /**
-     * Set the camera position. The listeners are notified.
-     *
-     * @param newPosition Camera new position.
-     */
-    public final void setPosition(final Point3D newPosition) {
-        this.cameraNode.setPosition(newPosition);
     }
 
     /**
@@ -200,27 +106,13 @@ public abstract class Camera extends BaseRegisterable implements Movable {
      *
      * @param target Camera targetNode position value.
      */
-    public final void setTargetPosition(final Point3D target) {
-        this.targetNode.setPosition(target);
-    }
+    public abstract void setTargetPosition(final Point3D target);
 
     public final void setTargetPosition(final float x, final float y, final float z) {
         this.setTargetPosition(Point3D.valueOf(x, y, z));
     }
 
-    /**
-     * Rotate the camera following X and Y coordinates. The listeners are notified.
-     *
-     * @param yaw   X rotation value.
-     * @param pitch Y rotation value.
-     */
-    public final void rotate(final float yaw, final float pitch) {
-        this.cameraNode.rotate(yaw, pitch);
-    }
-
-    public final void rotateTarget(final float yaw, final float pitch) {
-        this.targetNode.rotate(yaw, pitch);
-    }
+    public abstract void rotateTarget(final float yaw, final float pitch);
 
     /**
      * Compute a point from a click on the screen.
@@ -252,25 +144,6 @@ public abstract class Camera extends BaseRegisterable implements Movable {
     public abstract Optional<EntityId> throwRay(int x, int y);
 
     /**
-     * Call implementation to set the position.
-     *
-     * @param x    2D position X.
-     * @param y    2D position Y.
-     * @param axis Axis to retrieve 3D position.
-     * @return The new camera position.
-     */
-    protected abstract Point3D setPositionImpl(final int x, final int y, final Axis axis);
-
-    /**
-     * Call implementation to set the position.
-     *
-     * @param posX New x position for the camera.
-     * @param posY New y position for the camera.
-     * @param posZ New z position for the camera.
-     */
-    protected abstract void setPositionImpl(final float posX, final float posY, final float posZ);
-
-    /**
      * Remove a camera listener from this camera.
      *
      * @param listener Listener to remove.
@@ -295,9 +168,7 @@ public abstract class Camera extends BaseRegisterable implements Movable {
 
     public abstract void setAspectRatio(float ratio);
 
-    public final Point3D getTargetPosition() {
-        return this.targetNode.getPosition();
-    }
+    public abstract Point3D getTargetPosition();
 
     public void setRelativePosition(Point3D position) {
         this.relativePosition = position;
@@ -310,22 +181,14 @@ public abstract class Camera extends BaseRegisterable implements Movable {
     /**
      * The targetNode will move around the camera.
      */
-    public final void initOrigin() {
-        this.cameraNode.detachFromParent();
-        this.targetNode.detachFromParent();
-        this.cameraNode.attachTo(this.masterNode);
-        this.targetNode.attachTo(this.cameraNode);
-    }
+    public abstract void initOrigin();
 
     /**
      * The camera will follow the targetNode.
      */
-    public final void initTarget() {
-        this.cameraNode.detachFromParent();
-        this.targetNode.detachFromParent();
-        this.targetNode.attachTo(this.masterNode);
-        this.cameraNode.attachTo(this.targetNode);
-    }
+    public abstract void initTarget();
+
+    public abstract void rotate(float yaw, float pitch);
 
     /**
      * Possible compositor.
