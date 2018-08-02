@@ -146,11 +146,6 @@ public class DummyCamera extends Camera {
     }
 
     @Override
-    public void setDirection(Point3D point3D) {
-
-    }
-
-    @Override
     public Point3D getAbsoluteDirection() {
         return null;
     }

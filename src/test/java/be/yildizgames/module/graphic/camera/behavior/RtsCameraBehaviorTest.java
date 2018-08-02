@@ -31,10 +31,12 @@ import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.camera.CameraBehaviors;
 import be.yildizgames.module.graphic.dummy.DummyCamera;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class RtsCameraBehaviorTest {
 
+    @Disabled
     @Test
     void move() {
         Camera camera = new DummyCamera();
@@ -46,6 +48,7 @@ class RtsCameraBehaviorTest {
         Assertions.assertEquals(Point3D.valueOf(20,25,30), camera.getTargetPosition());
     }
 
+    @Disabled
     @Test
     void moveWithRelativePosition() {
         Camera camera = new DummyCamera();
@@ -58,6 +61,7 @@ class RtsCameraBehaviorTest {
         Assertions.assertEquals(Point3D.valueOf(20,25,30), camera.getTargetPosition());
     }
 
+    @Disabled
     @Test
     void rotate() {
         Camera camera = new DummyCamera();

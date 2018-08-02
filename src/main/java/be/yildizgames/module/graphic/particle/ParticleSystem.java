@@ -280,6 +280,10 @@ public abstract class ParticleSystem implements Movable {
      */
     protected abstract void setOriginImpl(Origin origin);
 
+    public abstract void hide();
+
+    public abstract void show();
+
     /**
      * Particle orientation possibilities.
      *

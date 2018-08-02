@@ -97,6 +97,11 @@ public abstract class Camera extends BaseRegisterable implements Movable {
     public abstract Camera setNearClip(int near);
 
     @Override
+    public final void setDirection(final Point3D direction) {
+        this.setDirection(direction.x, direction.y, direction.z);
+    }
+
+    @Override
     public final Movable getInternal() {
         return this;
     }

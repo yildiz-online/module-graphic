@@ -65,6 +65,10 @@ public abstract class MovableText implements Movable {
      */
     public abstract void setTextOffset(Point3D offset);
 
+    public abstract void show();
+
+    public abstract void hide();
+
     /**
      * Horizontal alignment.
      *
