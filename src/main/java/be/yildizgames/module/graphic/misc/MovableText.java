@@ -34,21 +34,14 @@ import be.yildizgames.module.color.Color;
  *
  * @author Grégory Van den Borre
  */
-public abstract class MovableText implements Movable {
-
-    /**
-     * Full constructor.
-     */
-    protected MovableText() {
-        super();
-    }
+public interface MovableText extends Movable {
 
     /**
      * Set the text color.
      *
      * @param color Color to use.
      */
-    public abstract void setTextColor(Color color);
+    void setTextColor(Color color);
 
     /**
      * Set the text alignment.
@@ -56,25 +49,25 @@ public abstract class MovableText implements Movable {
      * @param h Horizontal alignment.
      * @param v Vertical alignment.
      */
-    public abstract void setTextAlignement(Horizontal h, Vertical v);
+    void setTextAlignement(Horizontal h, Vertical v);
 
     /**
      * Set offset position.
      *
      * @param offset Offset value.
      */
-    public abstract void setTextOffset(Point3D offset);
+    void setTextOffset(Point3D offset);
 
-    public abstract void show();
+    void show();
 
-    public abstract void hide();
+    void hide();
 
     /**
      * Horizontal alignment.
      *
      * @author Van den Borre Grégory
      */
-    public enum Horizontal {
+     enum Horizontal {
 
         /**
          * Text is left aligned.
@@ -92,7 +85,7 @@ public abstract class MovableText implements Movable {
      *
      * @author Van den Borre Grégory
      */
-    public enum Vertical {
+    enum Vertical {
 
         /**
          * Text is at the bottom.

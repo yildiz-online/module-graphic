@@ -34,28 +34,21 @@ import be.yildizgames.common.gameobject.Movable;
  *
  * @author Grégory Van den Borre
  */
-public abstract class BillboardSet implements Movable {
-
-    /**
-     * Full constructor.
-     */
-    protected BillboardSet() {
-        super();
-    }
+public interface BillboardSet extends Movable {
 
     /**
      * Create a new billboard object.
      *
      * @return The create billboard.
      */
-    public abstract Billboard createBillboard();
+    Billboard createBillboard();
 
     /**
      * Remove a billboard and set it back in the pool.
      *
      * @param b Billboard to remove.
      */
-    public abstract void removeBillboard(Billboard b);
+    void removeBillboard(Billboard b);
 
     /**
      * Set the default size for all created billboards.
@@ -63,6 +56,6 @@ public abstract class BillboardSet implements Movable {
      * @param width  Width size in pixels.
      * @param height Height size in pixels.
      */
-    public abstract void setSize(float width, float height);
+    void setSize(float width, float height);
 
 }
