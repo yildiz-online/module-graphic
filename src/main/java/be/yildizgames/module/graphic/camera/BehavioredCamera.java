@@ -96,4 +96,8 @@ public class BehavioredCamera {
     public final Point3D getDirection() {
         return this.camera.getDirection();
     }
+
+    public Point3D computeCoordinates(int x, int y) {
+        return this.camera.computeMoveDestination(x, y);
+    }
 }
