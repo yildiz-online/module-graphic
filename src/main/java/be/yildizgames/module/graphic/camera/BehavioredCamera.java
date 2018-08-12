@@ -25,7 +25,11 @@
 
 package be.yildizgames.module.graphic.camera;
 
+import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.model.EntityId;
+
+import java.util.Optional;
 
 /**
  * Combine a behavior and a camera, when using this class, the camera will use the provided behavior.
@@ -42,6 +46,14 @@ public class BehavioredCamera {
         super();
         this.camera = camera;
         this.changeBehavior(CameraBehaviors.FREEFLY);
+    }
+
+    public final Optional<EntityId> throwRay(Point2D coordinate) {
+        return this.camera.throwRay(coordinate);
+    }
+
+    public final Optional<EntityId> throwRay(int x, int y) {
+        return this.camera.throwRay(x, y);
     }
 
     public final void changeBehavior(CameraBehaviors behavior) {
@@ -66,7 +78,7 @@ public class BehavioredCamera {
     }
 
     public final void setPosition(final Point3D newPosition) {
-        this.behavior.setPosition(this.camera, newPosition);
+        //this.behavior.setPosition(this.camera, newPosition);
     }
 
     public final Point3D getPosition() {
