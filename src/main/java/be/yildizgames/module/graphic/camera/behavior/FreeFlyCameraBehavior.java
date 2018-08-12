@@ -38,7 +38,7 @@ public class FreeFlyCameraBehavior implements CameraBehavior {
 
     @Override
     public void setPosition(Camera camera, Point3D newPosition) {
-        //FIXME implement
+        camera.setPosition(newPosition);
     }
 
     @Override
