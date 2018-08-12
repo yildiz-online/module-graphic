@@ -50,6 +50,7 @@ import be.yildizgames.module.window.input.MouseLeftClickListener;
 import be.yildizgames.module.window.input.MouseMoveListener;
 import be.yildizgames.module.window.input.MousePosition;
 import be.yildizgames.module.window.input.MouseReleaseListener;
+import be.yildizgames.module.window.input.MouseRightClickListener;
 import be.yildizgames.module.window.input.MouseWheelListener;
 
 import java.time.Duration;
@@ -407,6 +408,11 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
     @Override
     public void addMouseLeftClickListener(MouseLeftClickListener listener) {
         this.bar.addMouseLeftClickListener(listener);
+    }
+
+    @Override
+    public void addMouseRightClickListener(MouseRightClickListener listener) {
+        this.bar.addMouseRightClickListener(listener);
     }
 
     @Override

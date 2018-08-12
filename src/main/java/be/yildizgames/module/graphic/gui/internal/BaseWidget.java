@@ -169,6 +169,11 @@ public abstract class BaseWidget extends BaseElement implements Widget {
     }
 
     @Override
+    public final void addMouseRightClickListener(final MouseRightClickListener listener) {
+        this.rightClickListener.add(listener);
+    }
+
+    @Override
     public final void addMouseDoubleLeftClickListener(final MouseDoubleLeftClickListener listener) {
         this.doubleLeftClickListener.add(listener);
     }

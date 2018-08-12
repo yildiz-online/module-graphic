@@ -34,6 +34,7 @@ import be.yildizgames.module.window.input.MouseLeftClickListener;
 import be.yildizgames.module.window.input.MouseMoveListener;
 import be.yildizgames.module.window.input.MousePosition;
 import be.yildizgames.module.window.input.MouseReleaseListener;
+import be.yildizgames.module.window.input.MouseRightClickListener;
 import be.yildizgames.module.window.input.MouseWheelListener;
 
 /**
@@ -47,6 +48,8 @@ public interface Widget extends Element {
      * @param listener Listener to add.
      */
     void addMouseLeftClickListener(MouseLeftClickListener listener);
+
+    void addMouseRightClickListener(MouseRightClickListener listener);
 
     /**
      * Add a new MouseDoubleClickListener on this widget.

@@ -36,6 +36,7 @@ import be.yildizgames.module.window.input.MouseLeftClickListener;
 import be.yildizgames.module.window.input.MouseMoveListener;
 import be.yildizgames.module.window.input.MousePosition;
 import be.yildizgames.module.window.input.MouseReleaseListener;
+import be.yildizgames.module.window.input.MouseRightClickListener;
 import be.yildizgames.module.window.input.MouseWheelListener;
 
 import java.util.Optional;
@@ -164,6 +165,10 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      */
     public final void addMouseLeftClickListener(final MouseLeftClickListener listener) {
         this.container.addMouseLeftClickListener(listener);
+    }
+
+    public final void addMouseRightClickListener(final MouseRightClickListener listener) {
+        this.container.addMouseRightClickListener(listener);
     }
 
     /**
