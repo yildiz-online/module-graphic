@@ -27,8 +27,10 @@ package be.yildizgames.module.graphic.camera;
 
 import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.model.EntityId;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -99,5 +101,9 @@ public class BehavioredCamera {
 
     public Point3D computeCoordinates(int x, int y) {
         return this.camera.computeMoveDestination(x, y);
+    }
+
+    public List<EntityId> throwPlaneRay(Rectangle rectangle) {
+        return this.camera.throwPlaneRay(rectangle);
     }
 }
