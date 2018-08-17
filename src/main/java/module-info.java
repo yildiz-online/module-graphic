@@ -37,6 +37,7 @@ module be.yildizgames.module.graphic {
     requires slf4j.api;
 
     exports be.yildizgames.module.graphic;
+    exports be.yildizgames.module.graphic.query;
     exports be.yildizgames.module.graphic.animation;
     exports be.yildizgames.module.graphic.billboard;
     exports be.yildizgames.module.graphic.camera;
