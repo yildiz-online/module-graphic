@@ -22,7 +22,7 @@
  *
  */
 
-package be.yildizgames.module.graphic;
+package be.yildizgames.module.graphic.query;
 
 import be.yildizgames.common.geometry.Point3D;
 

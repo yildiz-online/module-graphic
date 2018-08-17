@@ -30,6 +30,8 @@ import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.query.GroundQuery;
+import be.yildizgames.module.graphic.query.Query;
 import be.yildizgames.module.graphic.light.Light;
 import be.yildizgames.module.graphic.particle.ParticleSystem;
 import be.yildizgames.module.graphic.billboard.BillboardSet;
@@ -51,8 +53,6 @@ import be.yildizgames.module.graphic.misc.Sky;
 import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.graphic.light.SpotLight;
 import be.yildizgames.module.graphic.RayProvider;
-import be.yildizgames.module.graphic.query.Query;
-import be.yildizgames.module.graphic.query.GroundQuery;
 
 /**
  * @author Grégory Van den Borre
