@@ -32,6 +32,7 @@ import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.util.BaseRegisterable;
 import be.yildizgames.module.graphic.light.LensFlare;
+import be.yildizgames.module.graphic.RayProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ import java.util.Optional;
  *
  * @author Grégory Van den Borre
  */
-public abstract class Camera extends BaseRegisterable implements Movable {
+public abstract class Camera extends BaseRegisterable implements Movable, RayProvider {
 
     private Point3D relativePosition = Point3D.ZERO;
 

@@ -50,6 +50,9 @@ import be.yildizgames.module.graphic.light.PointLight;
 import be.yildizgames.module.graphic.misc.Sky;
 import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.graphic.light.SpotLight;
+import be.yildizgames.module.graphic.RayProvider;
+import be.yildizgames.module.graphic.query.Query;
+import be.yildizgames.module.graphic.query.GroundQuery;
 
 /**
  * @author Grégory Van den Borre
@@ -59,6 +62,12 @@ public class DummyClientWorld implements GraphicWorld {
     private final GraphicObject dummyObject = new DummyGraphicObject();
 
     private final Camera dummyCamera = new DummyCamera();
+
+    @Override
+    public Query createQuery(RayProvider provider){ return null; }
+
+    @Override
+    public GroundQuery createGroundQuery(RayProvider provider) { return null; }
 
     @Override
     public GraphicObject createMovableDoodad(Box box, Material material) {
