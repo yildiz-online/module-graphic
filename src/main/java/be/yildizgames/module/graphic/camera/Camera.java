@@ -26,17 +26,13 @@
 package be.yildizgames.module.graphic.camera;
 
 import be.yildizgames.common.gameobject.Movable;
-import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Point3D;
-import be.yildizgames.common.geometry.Rectangle;
-import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.util.BaseRegisterable;
-import be.yildizgames.module.graphic.light.LensFlare;
 import be.yildizgames.module.graphic.RayProvider;
+import be.yildizgames.module.graphic.light.LensFlare;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Physical camera representation, contains basic operations to set the position, direction,... to use more precise behavior, see camera behaviors.
@@ -119,35 +115,6 @@ public abstract class Camera extends BaseRegisterable implements Movable, RayPro
     }
 
     public abstract void rotateTarget(final float yaw, final float pitch);
-
-    /**
-     * Compute a point from a click on the screen.
-     *
-     * @param x Screen coordinates X.
-     * @param y Screen coordinates Y.
-     * @return The point in 3D world.
-     */
-    public abstract Point3D computeMoveDestination(int x, int y);
-
-    /**
-     * Throw a rectangle and return all entity id contained in it.
-     *
-     * @param rectangle Rectangle to throw.
-     * @return All entity id contained in the rectangle.
-     */
-    public abstract List<EntityId> throwPlaneRay(Rectangle rectangle);
-
-    /**
-     * Throw a ray to get the id of the first entity hit.
-     *
-     * @param coordinate Coordinates to send the ray.
-     * @return The entity found.
-     */
-    public final Optional<EntityId> throwRay(Point2D coordinate) {
-        return this.throwRay(coordinate.getX(), coordinate.getY());
-    }
-
-    public abstract Optional<EntityId> throwRay(int x, int y);
 
     /**
      * Remove a camera listener from this camera.

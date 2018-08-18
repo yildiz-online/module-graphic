@@ -26,15 +26,9 @@ package be.yildizgames.module.graphic.dummy;
 
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
-import be.yildizgames.common.geometry.Rectangle;
-import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.light.LensFlare;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class DummyCamera extends Camera {
 
@@ -63,21 +57,6 @@ public class DummyCamera extends Camera {
     @Override
     public void rotateTarget(float yaw, float pitch) {
 
-    }
-
-    @Override
-    public Point3D computeMoveDestination(int x, int y) {
-        return Point3D.ZERO;
-    }
-
-    @Override
-    public List<EntityId> throwPlaneRay(Rectangle rectangle) {
-        return new ArrayList<>();
-    }
-
-    @Override
-    public Optional<EntityId> throwRay(int x, int y) {
-        return Optional.empty();
     }
 
     @Override

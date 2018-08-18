@@ -27,6 +27,7 @@ package be.yildizgames.module.graphic.query;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.model.EntityId;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -35,7 +36,7 @@ import java.util.List;
  */
 public interface Query {
 
-    EntityId getEntity(float x, float y);
+    Optional<EntityId> getEntity(float x, float y);
 
     List<EntityId> getEntities(Rectangle r);
     
