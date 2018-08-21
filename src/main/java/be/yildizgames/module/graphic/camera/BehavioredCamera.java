@@ -67,7 +67,7 @@ public class BehavioredCamera {
     }
 
     public final void setPosition(final Point3D newPosition) {
-        //this.behavior.setPosition(this.camera, newPosition);
+        this.behavior.setPosition(this.camera, newPosition);
     }
 
     public final Point3D getPosition() {
