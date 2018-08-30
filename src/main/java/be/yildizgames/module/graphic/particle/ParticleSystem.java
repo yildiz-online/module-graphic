@@ -284,6 +284,8 @@ public abstract class ParticleSystem implements Movable {
 
     public abstract void show();
 
+    public abstract void rotate(float yaw, float pitch);
+
     /**
      * Particle orientation possibilities.
      *

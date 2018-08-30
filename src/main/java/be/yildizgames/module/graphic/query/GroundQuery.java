@@ -25,6 +25,7 @@
 package be.yildizgames.module.graphic.query;
 
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.module.window.input.MousePosition;
 
 
 /**
@@ -34,5 +35,9 @@ import be.yildizgames.common.geometry.Point3D;
 public interface GroundQuery {
 
     Point3D getPoint(final float x, final float y);
+
+    default Point3D getPoint(MousePosition position) {
+        return getPoint(position.getX(), position.getY());
+    }
     
 }
