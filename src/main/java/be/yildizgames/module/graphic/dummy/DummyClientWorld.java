@@ -273,4 +273,11 @@ public class DummyClientWorld implements GraphicWorld {
     public GraphicObject createStaticObject(EntityId id, GraphicMesh mesh, Point3D position, Point3D direction) {
         return this.dummyObject;
     }
+
+    @Override
+    public String getName() {
+        return "graphicWorld";
+    }
+
+
 }
