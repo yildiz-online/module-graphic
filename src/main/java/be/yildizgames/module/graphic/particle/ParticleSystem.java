@@ -26,6 +26,7 @@
 package be.yildizgames.module.graphic.particle;
 
 import be.yildizgames.common.gameobject.Movable;
+import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.particle.ParticleEmitter.EmitterType;
 
@@ -219,6 +220,11 @@ public abstract class ParticleSystem implements Movable {
      */
     public final ParticleSystem setSize(final float newWidth, final float newHeight) {
         this.setSizeImpl(newWidth, newHeight);
+        return this;
+    }
+
+    public final ParticleSystem setSize(final Size size) {
+        this.setSizeImpl(size.width, size.height);
         return this;
     }
 
