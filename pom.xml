@@ -54,6 +54,11 @@
     </dependency>
     <dependency>
       <groupId>be.yildiz-games</groupId>
+      <artifactId>common-geometry</artifactId>
+      <version>1.0.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>be.yildiz-games</groupId>
       <artifactId>module-window</artifactId>
       <version>2.0.4-SNAPSHOT</version>
     </dependency>
