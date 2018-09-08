@@ -25,7 +25,6 @@
 
 package be.yildizgames.module.graphic.gui.internal;
 
-import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.util.Registerable;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Relative;
@@ -153,8 +152,6 @@ public interface Element extends Registerable {
      * @return This object for chaining.
      */
     Element setVisible(boolean visible);
-
-    Element setPosition(Point2D position);
 
     void setSize(int newWidth, int newHeight);
 

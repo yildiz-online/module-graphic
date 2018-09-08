@@ -39,22 +39,22 @@ public enum ScreenPart {
     /**
      * From left part of screen to left part + border size.
      */
-    LEFT(Point3D.INVERT_X),
+    LEFT(Point3D.X_NEGATIVE),
 
     /**
      * From right part of screen to right part - border size.
      */
-    RIGHT(Point3D.X),
+    RIGHT(Point3D.X_POSITIVE),
 
     /**
      * From top part to top part + border size.
      */
-    UP(Point3D.INVERT_Z),
+    UP(Point3D.Z_NEGATIVE),
 
     /**
      * From bottom part to bottom part - border size.
      */
-    BOTTOM(Point3D.Z),
+    BOTTOM(Point3D.Z_POSITIVE),
 
     /**
      * From top and left part.

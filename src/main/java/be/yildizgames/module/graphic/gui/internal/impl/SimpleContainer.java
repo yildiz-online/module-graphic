@@ -25,7 +25,6 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
@@ -153,7 +152,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @param position Element position.
      * @return The element at the given position.
      */
-    public final String getElementName(final Point2D position) {
+    public final String getElementName(final MousePosition position) {
         return this.getElementName(position.getX(), position.getY());
     }
 
@@ -423,11 +422,6 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
             w.highlight(false);
         }
         this.childrenContainerList.forEach(SimpleContainer::disableHighlight);
-    }
-
-    @Override
-    public final Optional<Widget> getWidgetAt(Point2D position) {
-        return this.getWidgetAt(position.getX(), position.getY());
     }
 
     @Override

@@ -57,8 +57,6 @@ public interface Container extends Widget {
 
     void hideContent();
 
-    Optional<Widget> getWidgetAt(Point2D position);
-
     Optional<Widget> getWidgetAt(MousePosition position);
 
     Optional<Widget> getWidgetAt(int x, int y);

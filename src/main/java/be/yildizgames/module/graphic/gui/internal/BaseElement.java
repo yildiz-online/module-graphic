@@ -25,7 +25,6 @@
 
 package be.yildizgames.module.graphic.gui.internal;
 
-import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.util.BaseRegisterable;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.coordinate.Coordinates;
@@ -357,16 +356,6 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
         this.left = leftPosition;
         this.top = topPosition;
         return this.setPositionImpl(this.left, this.top);
-    }
-
-    /**
-     * Set the element position.
-     *
-     * @param position New position.
-     */
-    @Override
-    public final Element setPosition(final Point2D position) {
-        return this.setPosition(position.getX(), position.getY());
     }
 
     @Override

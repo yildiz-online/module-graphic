@@ -26,7 +26,6 @@
 package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.common.frame.EndFrameListener;
-import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.util.Checker;
 import be.yildizgames.module.coordinate.BaseCoordinate;
@@ -296,13 +295,6 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
     public Element setVisible(final boolean visible) {
         this.bar.setVisible(visible);
         this.text.setVisible(visible);
-        return this;
-    }
-
-    @Override
-    public Element setPosition(Point2D position) {
-        this.text.setPosition(position);
-        this.bar.setPosition(position);
         return this;
     }
 

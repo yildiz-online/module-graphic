@@ -257,7 +257,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
             }
         }
         Point2D p = this.getAbsolutePosition();
-        return Checker.inRange(x, p.getX(), p.getX() + this.getWidth()) && Checker.inRange(y, p.getY(), p.getY() + this.virtualHeight);
+        return Checker.inRange(x, p.x, p.y + this.getWidth()) && Checker.inRange(y, p.x, p.y + this.virtualHeight);
     }
 
     @Override
@@ -284,8 +284,8 @@ public abstract class BaseWidget extends BaseElement implements Widget {
     }
 
     protected final Point2D getAbsolutePosition() {
-        Point2D p = new Point2D(this.getLeft(), this.getTop());
-        p.add(this.parent == null ? Point2D.ZERO : this.parent.getAbsolutePosition());
+        Point2D p = Point2D.valueOf(this.getLeft(), this.getTop());
+        p = p.add(this.parent == null ? Point2D.ZERO : this.parent.getAbsolutePosition());
         return p;
     }
 
