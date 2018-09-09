@@ -33,22 +33,22 @@ public class DummyGraphicObject extends GraphicObject {
 
     @Override
     protected void setMaterialImpl(Material newMaterial) {
-
+        //Expected empty implementation.
     }
 
     @Override
     protected void castShadowImpl(boolean cast) {
-
+        //Expected empty implementation.
     }
 
     @Override
     protected void showImpl() {
-
+        //Expected empty implementation.
     }
 
     @Override
     protected void hideImpl() {
-
+        //Expected empty implementation.
     }
 
     @Override
@@ -73,7 +73,7 @@ public class DummyGraphicObject extends GraphicObject {
 
     @Override
     public void delete() {
-
+        //Expected empty implementation.
     }
 
     @Override
@@ -88,32 +88,32 @@ public class DummyGraphicObject extends GraphicObject {
 
     @Override
     public void rotate(float yaw, float pitch) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void lookAt(Point3D target) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void rotate(float x, float y, float z, float w) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void attachTo(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void attachToOptional(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void detachFromParent() {
-
+        //Expected empty implementation.
     }
 
     @Override
@@ -123,7 +123,7 @@ public class DummyGraphicObject extends GraphicObject {
 
     @Override
     public void setPosition(Point3D point3D) {
-
+        //Expected empty implementation.
     }
 
     @Override
@@ -138,7 +138,7 @@ public class DummyGraphicObject extends GraphicObject {
 
     @Override
     public void setDirection(Point3D point3D) {
-
+        //Expected empty implementation.
     }
 
     @Override
@@ -148,27 +148,27 @@ public class DummyGraphicObject extends GraphicObject {
 
     @Override
     public void setPosition(float v, float v1, float v2) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void setDirection(float v, float v1, float v2) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void addOptionalChild(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void addChild(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void removeChild(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override

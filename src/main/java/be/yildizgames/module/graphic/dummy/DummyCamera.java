@@ -51,47 +51,47 @@ public class DummyCamera extends Camera {
 
     @Override
     public void setTargetPosition(Point3D target) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void rotateTarget(float yaw, float pitch) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void removeListener(LensFlare listener) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void setAspectRatio(float ratio) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public Point3D getTargetPosition() {
-        return null;
+        return Point3D.ZERO;
     }
 
     @Override
     public void initOrigin() {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void initTarget() {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void rotate(float yaw, float pitch) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void attachTo(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override
@@ -101,61 +101,61 @@ public class DummyCamera extends Camera {
 
     @Override
     public void detachFromParent() {
-
+        //Expected empty implementation.
     }
 
     @Override
     public Point3D getPosition() {
-        return null;
+        return Point3D.ZERO;
     }
 
     @Override
     public void setPosition(Point3D point3D) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public Point3D getAbsolutePosition() {
-        return null;
+        return Point3D.ZERO;
     }
 
     @Override
     public Point3D getDirection() {
-        return null;
+        return Point3D.BASE_DIRECTION;
     }
 
     @Override
     public Point3D getAbsoluteDirection() {
-        return null;
+        return Point3D.BASE_DIRECTION;
     }
 
     @Override
     public void setPosition(float v, float v1, float v2) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void setDirection(float v, float v1, float v2) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void addOptionalChild(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void addChild(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void removeChild(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override
     public void delete() {
-
+        //Expected empty implementation.
     }
 }
