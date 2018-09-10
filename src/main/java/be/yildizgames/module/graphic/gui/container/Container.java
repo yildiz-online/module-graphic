@@ -25,7 +25,6 @@
 
 package be.yildizgames.module.graphic.gui.container;
 
-import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.Zorder;

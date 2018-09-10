@@ -133,8 +133,6 @@ public abstract class GraphicObject implements Movable {
 
     public abstract GraphicObject scale(float x, float y, float z);
 
-    public abstract void delete();
-
     public abstract GraphicObject setParameter(int index, float v1, float v2, float v3, float v4);
 
     public abstract GraphicObject setUnpickable();

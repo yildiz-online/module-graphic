@@ -96,7 +96,7 @@ public class DummyCamera extends Camera {
 
     @Override
     public void attachToOptional(Movable movable) {
-
+        //Expected empty implementation.
     }
 
     @Override
