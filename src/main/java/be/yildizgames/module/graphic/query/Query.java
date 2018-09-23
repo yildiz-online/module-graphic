@@ -26,6 +26,8 @@ package be.yildizgames.module.graphic.query;
 
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.model.EntityId;
+import be.yildizgames.module.window.input.MousePosition;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +37,10 @@ import java.util.Optional;
  * @author Grégory Van den Borre
  */
 public interface Query {
+
+    default Optional<EntityId> getEntity(MousePosition p) {
+        return getEntity(p.getX(), p.getY());
+    }
 
     Optional<EntityId> getEntity(float x, float y);
 
