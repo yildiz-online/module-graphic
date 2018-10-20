@@ -116,4 +116,9 @@ public final class DummyGuiContainer extends SimpleContainer {
     public void setCurrentFocus(Widget focus) {
 
     }
+
+    @Override
+    public void ignore(BaseContainerChild child) {
+
+    }
 }

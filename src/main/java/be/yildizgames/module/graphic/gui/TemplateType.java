@@ -22,33 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE  SOFTWARE.
  */
+package be.yildizgames.module.graphic.gui;
 
-package be.yildizgames.module.graphic.gui.button;
+import java.util.Objects;
 
+public class TemplateType {
 
-import be.yildizgames.module.window.input.MouseLeftClickListener;
+    private final String type;
 
-/**
- * Contains data to build a button: materials and listener. This class is
- * immutable.
- *
- * @author Grégory Van den Borre
- */
-public final class ButtonData {
+    public TemplateType(String type) {
+        this.type = type;
+    }
 
-    /**
-     * Background material.
-     */
-    public final ButtonMaterial material;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TemplateType that = (TemplateType) o;
+        return Objects.equals(type, that.type);
+    }
 
-    /**
-     * Mouse left click listener.
-     */
-    public final MouseLeftClickListener listener;
-
-    public ButtonData(ButtonMaterial material, MouseLeftClickListener listener) {
-        super();
-        this.material = material;
-        this.listener = listener;
+    @Override
+    public int hashCode() {
+        return Objects.hash(type);
     }
 }

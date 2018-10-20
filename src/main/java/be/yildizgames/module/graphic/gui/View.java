@@ -30,6 +30,7 @@ import be.yildizgames.module.graphic.Visible;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidget;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.input.KeyboardListener;
 import be.yildizgames.module.window.input.MouseDragListener;
 import be.yildizgames.module.window.input.MouseLeftClickListener;
@@ -76,6 +77,8 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      */
     private Widget focus;
 
+    private final ScreenSize screenSize;
+
     /**
      * Full constructor, initialize the visibility to true, add the view to the event dispatcher.
      *
@@ -83,7 +86,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      * @param z                Z order.
      * @param eventManager     Event manager to notify.
      */
-    public View(final Container wrappedContainer, final Zorder z, GuiEventManager eventManager) {
+    public View(final Container wrappedContainer, final Zorder z, GuiEventManager eventManager, ScreenSize size) {
         super(wrappedContainer.getName());
         this.container = wrappedContainer;
         this.container.setZ(z);
@@ -93,10 +96,11 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
         this.eventManager = eventManager;
         Optional.ofNullable(this.eventManager)
                 .ifPresent(m -> m.addView(this));
+        this.screenSize = size;
     }
 
-    public View(final Container wrappedContainer, final Zorder z) {
-        this(wrappedContainer, z, null);
+    public View(final Container wrappedContainer, final Zorder z, ScreenSize screenSize) {
+        this(wrappedContainer, z, null, screenSize);
     }
 
     /**
@@ -351,5 +355,16 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
 
     protected void setFocus(BaseWidget focus) {
         this.focus = focus;
+    }
+
+    protected void setPosition(PositionRelative position) {
+        switch (position) {
+            case CENTER:
+                this.setPosition(
+                        (this.screenSize.width >> 1) - (this.getContainer().getCoordinates().width >> 1),
+                        (this.screenSize.height >> 1) - (this.getContainer().getCoordinates().height >> 1));
+                break;
+        }
+
     }
 }

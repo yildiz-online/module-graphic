@@ -26,7 +26,6 @@ package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
@@ -37,6 +36,7 @@ import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialEffect;
 import be.yildizgames.module.graphic.material.MaterialEffect.EffectType;
 import be.yildizgames.module.graphic.material.MaterialTechnique;
+import be.yildizgames.module.window.ScreenSize;
 
 import java.util.Arrays;
 
@@ -59,13 +59,13 @@ public class DummyGuiFactory extends SimpleGuiFactory {
 
         @Override
         protected void loadImpl() {
-            // TODO Auto-generated method stub
+            //Empty method.
 
         }
 
         @Override
         protected void receiveShadowImpl(boolean receive) {
-            // TODO Auto-generated method stub
+            //Empty method.
 
         }
 
@@ -89,7 +89,7 @@ public class DummyGuiFactory extends SimpleGuiFactory {
     };
 
     public DummyGuiFactory() {
-        super(new Size(1024, 768));
+        super(new ScreenSize(1024, 768));
         defaultFont.load();
     }
 

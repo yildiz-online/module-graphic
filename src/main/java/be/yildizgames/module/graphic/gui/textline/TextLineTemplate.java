@@ -25,14 +25,18 @@
 
 package be.yildizgames.module.graphic.gui.textline;
 
+import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.gui.TemplateType;
 
 /**
  * @author Grégory Van den Borre
  */
-@FunctionalInterface
 public interface TextLineTemplate {
 
     Font getFont();
 
+    TemplateType getType();
+
+    BaseCoordinate getCoordinates();
 }

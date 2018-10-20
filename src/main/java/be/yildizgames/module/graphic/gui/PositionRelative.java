@@ -23,32 +23,16 @@
  * THE  SOFTWARE.
  */
 
-package be.yildizgames.module.graphic.gui.button;
-
-
-import be.yildizgames.module.window.input.MouseLeftClickListener;
+package be.yildizgames.module.graphic.gui;
 
 /**
- * Contains data to build a button: materials and listener. This class is
- * immutable.
- *
+ * Element relative position from another element.
  * @author Grégory Van den Borre
  */
-public final class ButtonData {
+public enum PositionRelative {
 
     /**
-     * Background material.
+     * Element position is relative from the center of the element.
      */
-    public final ButtonMaterial material;
-
-    /**
-     * Mouse left click listener.
-     */
-    public final MouseLeftClickListener listener;
-
-    public ButtonData(ButtonMaterial material, MouseLeftClickListener listener) {
-        super();
-        this.material = material;
-        this.listener = listener;
-    }
+    CENTER
 }

@@ -26,6 +26,7 @@ package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidget;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 
@@ -43,7 +44,7 @@ public abstract class BaseContainerChild extends BaseWidget implements Container
      */
     private boolean affectedByZoom;
 
-    private final SimpleContainer parent;
+    private final Container parent;
 
     /**
      * Full constructor.
@@ -52,7 +53,7 @@ public abstract class BaseContainerChild extends BaseWidget implements Container
      * @param coordinates Widget size and position.
      * @param container   Container holding the widget.
      */
-    protected BaseContainerChild(final String name, final BaseCoordinate coordinates, final SimpleContainer container) {
+    protected BaseContainerChild(final String name, final BaseCoordinate coordinates, final Container container) {
         super(name, coordinates, container);
         this.affectedByZoom = true;
         container.addWidget(this);
@@ -60,7 +61,7 @@ public abstract class BaseContainerChild extends BaseWidget implements Container
     }
 
     @Override
-    public final SimpleContainer getParent() {
+    public final Container getParent() {
         return this.parent;
     }
 

@@ -24,16 +24,26 @@
 
 package be.yildizgames.module.graphic.gui;
 
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.frame.FrameListener;
 import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonBuilder;
+import be.yildizgames.module.graphic.gui.button.ButtonTemplate;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBoxBuilder;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
 import be.yildizgames.module.graphic.gui.image.ImageBuilder;
 import be.yildizgames.module.graphic.gui.inputbox.InputBoxBuilder;
 import be.yildizgames.module.graphic.gui.progressbar.ProgressBarBuilder;
 import be.yildizgames.module.graphic.gui.textarea.TextAreaBuilder;
+import be.yildizgames.module.graphic.gui.textline.TextLine;
 import be.yildizgames.module.graphic.gui.textline.TextLineBuilder;
+import be.yildizgames.module.graphic.gui.textline.TextLineTemplate;
+import be.yildizgames.module.window.ScreenSize;
+import be.yildizgames.module.window.input.MouseLeftClickListener;
+
+import java.util.function.Function;
 
 /**
  * @author Grégory Van den Borre
@@ -44,7 +54,13 @@ public interface GuiFactory {
 
     ButtonBuilder button();
 
+    Button button(Container container, ButtonTemplate buttonTemplate, MouseLeftClickListener l);
+
     TextLineBuilder textLine();
+
+    TextLine textLine(Container parent, TextLineTemplate template);
+
+    TextLine textLine(Container parent, TextLineTemplate template, TranslationKey text);
 
     TextAreaBuilder textArea();
 
@@ -58,5 +74,5 @@ public interface GuiFactory {
 
     ProgressBarBuilder progressBar();
 
-    Size getScreenSize();
+    ScreenSize getScreenSize();
 }

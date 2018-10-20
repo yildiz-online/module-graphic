@@ -25,6 +25,8 @@
 
 package be.yildizgames.module.graphic.gui.container;
 
+import be.yildizgames.common.geometry.Point2D;
+import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.Zorder;
@@ -61,4 +63,15 @@ public interface Container extends Widget {
     Optional<Widget> getWidgetAt(int x, int y);
 
     Zorder getZ();
+
+    void ignore(BaseContainerChild child);
+
+    Point2D getAbsolutePosition();
+
+    void keyPressed(char key);
+
+    void disableEmptyZone();
+
+    void enableEmptyZone();
+
 }

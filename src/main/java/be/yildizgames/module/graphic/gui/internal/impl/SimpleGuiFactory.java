@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
+import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.time.TimeFormatter;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.common.util.StringUtil;
@@ -37,6 +38,7 @@ import be.yildizgames.module.graphic.gui.SimpleView;
 import be.yildizgames.module.graphic.gui.View;
 import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
+import be.yildizgames.module.graphic.gui.button.ButtonTemplate;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
@@ -52,8 +54,11 @@ import be.yildizgames.module.graphic.gui.progressbar.ProgressBarTimer;
 import be.yildizgames.module.graphic.gui.table.TabContainer;
 import be.yildizgames.module.graphic.gui.textarea.TextArea;
 import be.yildizgames.module.graphic.gui.textline.TextLine;
+import be.yildizgames.module.graphic.gui.textline.TextLineTemplate;
 import be.yildizgames.module.graphic.gui.textline.TimeTextLine;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.window.ScreenSize;
+import be.yildizgames.module.window.input.MouseLeftClickListener;
 
 import java.time.Duration;
 import java.util.Optional;
@@ -68,7 +73,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
     /**
      * Contains the screen size data.
      */
-    protected final Size screenSize;
+    protected final ScreenSize screenSize;
 
     /**
      * List of all registered buttons, key is their name.
@@ -112,7 +117,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
 
     private final GuiAnimationManager animationManager = new GuiAnimationManager();
 
-    protected SimpleGuiFactory(Size screenSize) {
+    protected SimpleGuiFactory(ScreenSize screenSize) {
         this.screenSize = screenSize;
     }
 
@@ -129,6 +134,21 @@ public abstract class SimpleGuiFactory implements GuiFactory {
     @Override
     public final SimpleTextLineBuilder textLine() {
         return new SimpleTextLineBuilder(this);
+    }
+
+    @Override
+    public final TextLine textLine(Container parent, TextLineTemplate template) {
+        return this.textLine()
+                .withCoordinates(template.getCoordinates())
+                .withFont(template.getFont())
+                .build(parent);
+    }
+
+    @Override
+    public final TextLine textLine(Container parent, TextLineTemplate template, TranslationKey key) {
+        TextLine line = this.textLine(parent, template);
+        line.setText(key);
+        return line;
     }
 
     @Override
@@ -172,6 +192,15 @@ public abstract class SimpleGuiFactory implements GuiFactory {
         final SimpleButton button = new SimpleButton(name, text, c, material, container);
         this.buttonList.register(button);
         return button;
+    }
+
+    @Override
+    public Button button(Container container, ButtonTemplate template, MouseLeftClickListener l) {
+        return this.button()
+                .withCoordinates(template.getCoordinates())
+                .onClick(l)
+                .withButtonMaterial(template.getButtonMaterial())
+                .build(container);
     }
 
     /**
@@ -765,8 +794,8 @@ public abstract class SimpleGuiFactory implements GuiFactory {
         return new TabContainer(name, coordinates, children, buttons, bg, container);
     }
 
-    public Size getScreenSize() {
-        return screenSize;
+    public ScreenSize getScreenSize() {
+        return this.screenSize;
     }
 
     public GuiAnimationManager getAnimationManager() {

@@ -21,42 +21,15 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  *
  */
+package be.yildizgames.module.graphic.gui.image;
 
-package be.yildizgames.module.graphic.gui;
+import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
+import be.yildizgames.module.graphic.material.Material;
 
-import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.window.ScreenSize;
+public interface ImageTemplate {
 
-/**
- * Basic implementation of a View.
- *
- * @author Grégory Van den Borre
- */
-public class SimpleView extends View {
+    Material betBackground();
 
-    /**
-     * Full constructor.
-     *
-     * @param container    Wrapped container.
-     * @param z            Z value.
-     * @param eventManager Associated event manager.
-     */
-    public SimpleView(final Container container, final Zorder z, GuiEventManager eventManager, ScreenSize size) {
-        super(container, z, eventManager, size);
-    }
-
-    public SimpleView(final Container container, final Zorder z, ScreenSize size) {
-        super(container, z, size);
-    }
-
-    @Override
-    protected final void setVisibleImpl(final boolean show) {
-        //Does nothing
-    }
-
-    @Override
-    protected final void setActiveImpl(final boolean active) {
-        //Does nothing
-    }
-
+    BaseCoordinate getCoordinates();
 }

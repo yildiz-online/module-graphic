@@ -33,7 +33,6 @@ import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.gui.OnMouseOverListener;
 import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.window.input.Key;
 import be.yildizgames.module.window.input.KeyboardListener;
 import be.yildizgames.module.window.input.MouseDoubleLeftClickListener;
@@ -67,7 +66,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
     /**
      * Parent of the widget.
      */
-    private final SimpleContainer parent;
+    private final Container parent;
     /**
      * List of zones to ignore to check if a point is inside the container.
      */
@@ -158,7 +157,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
      * @param coordinates Widget initial size and position.
      * @param parent      Optional parent container.
      */
-    protected BaseWidget(final String name, final BaseCoordinate coordinates, final SimpleContainer parent) {
+    protected BaseWidget(final String name, final BaseCoordinate coordinates, final Container parent) {
         super(name, coordinates);
         this.parent = parent;
     }
@@ -283,7 +282,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
         }
     }
 
-    protected final Point2D getAbsolutePosition() {
+    public final Point2D getAbsolutePosition() {
         Point2D p = Point2D.valueOf(this.getLeft(), this.getTop());
         p = p.add(this.parent == null ? Point2D.ZERO : this.parent.getAbsolutePosition());
         return p;

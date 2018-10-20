@@ -103,7 +103,7 @@ public abstract class Window extends View {
      * @param params       Parameter to build the window.
      */
     public Window(final Container container, final GuiFactory builder, Font font, final Zorder z, GuiEventManager eventManager, final Parameter... params) {
-        super(container, z, eventManager);
+        super(container, z, eventManager, builder.getScreenSize());
         this.container = container;
         final List<Parameter> paramList = Arrays.asList(params);
         if (!paramList.contains(Parameter.NOT_MOVABLE)) {
