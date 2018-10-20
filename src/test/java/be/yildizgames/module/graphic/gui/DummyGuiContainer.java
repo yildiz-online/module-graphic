@@ -101,24 +101,4 @@ public final class DummyGuiContainer extends SimpleContainer {
     @Override
     protected void setZImpl(final Zorder z) {
     }
-
-    @Override
-    public void addWidget(ContainerChild child) {
-
-    }
-
-    @Override
-    public void remove(ContainerChild child) {
-
-    }
-
-    @Override
-    public void setCurrentFocus(Widget focus) {
-
-    }
-
-    @Override
-    public void ignore(BaseContainerChild child) {
-
-    }
 }

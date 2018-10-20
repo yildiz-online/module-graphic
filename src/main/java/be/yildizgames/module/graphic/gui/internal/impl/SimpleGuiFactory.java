@@ -243,7 +243,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
      * @param container   Container holding the image.
      * @return The new image widget.
      */
-    public final Image buildImage(final String name, final BaseCoordinate coordinates, final Material background, final SimpleContainer container) {
+    public final Image buildImage(final String name, final BaseCoordinate coordinates, final Material background, final Container container) {
         final AbstractIconElement icon = this.buildIconElement(name, coordinates, background, container);
         final SimpleImage image = new SimpleImage(name, coordinates, icon, container);
         image.setStatic();

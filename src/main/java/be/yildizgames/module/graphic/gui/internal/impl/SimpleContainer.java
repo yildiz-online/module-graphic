@@ -47,7 +47,6 @@ import java.util.stream.Collectors;
  * @author Grégory Van Den Borre
  */
 public abstract class SimpleContainer extends BaseWidget implements Container {
-//FIXME should not be exposed
     /**
      * List of all Widget contained in this container.
      */
@@ -218,17 +217,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      */
     protected abstract void addChildrenPositionImpl(int left, int top);
 
-    /**
-     * Add a new Widget in the container.
-     *
-     * @param child Element to add.
-     */
-    public final void addWidget(final BaseContainerChild child) {
-        this.dynamicChildrenList.add(child);
-        this.childrenList.add(child);
-    }
-
-    public void ignore(final ContainerChild widget) {
+    public final void ignore(final ContainerChild widget) {
         this.dynamicChildrenList.remove(widget);
     }
 
@@ -448,7 +437,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
         return Optional.empty();
     }
 
-    public Material getMaterial() {
+    public final Material getMaterial() {
         return material;
     }
 
@@ -458,17 +447,18 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
     }
 
     @Override
-    public void addWidget(ContainerChild child) {
+    public final void addWidget(ContainerChild child) {
+        this.dynamicChildrenList.add(child);
         this.childrenList.add(child);
     }
 
     @Override
-    public void remove(ContainerChild child) {
+    public final void remove(ContainerChild child) {
         this.childrenList.remove(child);
     }
 
     @Override
-    public void setCurrentFocus(Widget focus) {
+    public final void setCurrentFocus(Widget focus) {
         //FIXME implements
     }
 }

@@ -29,6 +29,7 @@ import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.gui.DummyGuiFactory;
 import be.yildizgames.module.graphic.gui.WidgetMock;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidget;
 import be.yildizgames.module.graphic.gui.internal.MouseMoveMockFactory;
 import be.yildizgames.module.graphic.material.Material;
@@ -123,7 +124,7 @@ final class SimpleContainerTest {
     @Test
     void testGetNextFocusableElement() {
         SimpleGuiFactory builder = new DummyGuiFactory();
-        SimpleContainer c = (SimpleContainer)new SimpleContainerBuilder(builder).withCoordinates(new Coordinates(50, 60, 10, 20)).build();
+        Container c = new SimpleContainerBuilder(builder).withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         assertNull(c.getNextFocusableElement());
         BaseWidget w1 = new WidgetMock("w1", CR, c);
         assertNull(c.getNextFocusableElement());

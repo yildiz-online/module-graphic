@@ -27,7 +27,6 @@ package be.yildizgames.module.graphic.gui;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.Element;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 
 /**
  * @author Grégory Van den Borre
@@ -39,7 +38,7 @@ public final class WidgetMock extends BaseContainerChild {
     }
 
     public WidgetMock(final String name, final Coordinates coordinates, final Container parent) {
-        super("mock " + name, coordinates, (SimpleContainer)parent);
+        super("mock " + name, coordinates, parent);
         this.show();
     }
 
