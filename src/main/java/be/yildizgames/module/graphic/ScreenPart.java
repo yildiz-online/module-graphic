@@ -26,7 +26,7 @@ package be.yildizgames.module.graphic;
 
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.util.Checker;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.input.MousePosition;
 
 /**
@@ -107,7 +107,7 @@ public enum ScreenPart {
      * @param position Position to check.
      * @return The screen part where the given position is.
      */
-    public static ScreenPart getFromPosition(Size res, final MousePosition position) {
+    public static ScreenPart getFromPosition(ScreenSize res, final MousePosition position) {
         final int x = position.getX();
         final int y = position.getY();
         final boolean centerX = Checker.inRange(x, ScreenPart.BORDER_SIZE, res.width - ScreenPart.BORDER_SIZE);

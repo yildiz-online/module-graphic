@@ -26,7 +26,6 @@ package be.yildizgames.module.graphic.dummy;
 
 import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicEngine;
 import be.yildizgames.module.graphic.GraphicWorld;
@@ -36,6 +35,7 @@ import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialManager;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.WindowEngine;
 
 /**
@@ -113,8 +113,8 @@ public final class DummyGraphicEngine extends GraphicEngine {
     }
 
     @Override
-    public Size getScreenSize() {
-        return new Size(0);
+    public ScreenSize getScreenSize() {
+        return new ScreenSize(0,0);
     }
 
     @Override

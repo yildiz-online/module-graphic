@@ -26,7 +26,6 @@ package be.yildizgames.module.graphic;
 
 import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.dummy.DummyGraphicEngineProvider;
 import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.GuiFactory;
@@ -35,6 +34,7 @@ import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialManager;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.WindowEngine;
 
 import java.util.ServiceLoader;
@@ -147,7 +147,7 @@ public abstract class GraphicEngine implements FpsProvider {
 
     public abstract GraphicWorld createWorld();
 
-    public abstract Size getScreenSize();
+    public abstract ScreenSize getScreenSize();
 
     public abstract WindowEngine getWindowEngine();
 
