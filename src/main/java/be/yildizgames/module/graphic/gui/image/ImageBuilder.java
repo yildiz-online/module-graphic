@@ -31,7 +31,6 @@ import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 
@@ -121,7 +120,7 @@ public class ImageBuilder implements WidgetBuilder<ImageBuilder> {
     }
 
     public Image build(final Container container) {
-        SimpleContainer c = this.builder.getSimpleContainer(container.getName());
+        Container c = this.builder.getSimpleContainer(container.getName());
         Image result = this.builder.buildImage(this.base.getName(), this.base.getCoordinates(), this.base.getBackground(), c);
         this.animations.forEach(a -> {
             a.setElement(result);
