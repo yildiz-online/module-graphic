@@ -26,7 +26,6 @@ package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.frame.FrameListener;
-import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonBuilder;
 import be.yildizgames.module.graphic.gui.button.ButtonTemplate;
@@ -42,8 +41,6 @@ import be.yildizgames.module.graphic.gui.textline.TextLineBuilder;
 import be.yildizgames.module.graphic.gui.textline.TextLineTemplate;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.input.MouseLeftClickListener;
-
-import java.util.function.Function;
 
 /**
  * @author Grégory Van den Borre

@@ -310,9 +310,6 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @param posList Position of the widget in the children list.
      */
     private void updateFocus(final int posList) {
-        // FIXME only updated after a TAB, not after a mouse click, todo the
-        // widget must be passed to the contained, check its position in the
-        // list.
         if (this.currentFocusable != -1) {
             this.dynamicChildrenList.get(this.currentFocusable).focus(false);
         }
@@ -459,6 +456,15 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
 
     @Override
     public final void setCurrentFocus(Widget focus) {
-        //FIXME implements
+        if (this.currentFocusable != -1) {
+            this.dynamicChildrenList.get(this.currentFocusable).focus(false);
+        }
+        for(int i = 0; i < this.dynamicChildrenList.size(); i++) {
+            if(this.dynamicChildrenList.get(i).equals(focus)) {
+                this.currentFocusable = i;
+                this.dynamicChildrenList.get(this.currentFocusable).focus(true);
+                this.resetFocus();
+            }
+        }
     }
 }

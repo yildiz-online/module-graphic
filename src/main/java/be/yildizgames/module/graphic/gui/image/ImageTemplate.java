@@ -24,7 +24,6 @@
 package be.yildizgames.module.graphic.gui.image;
 
 import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.material.Material;
 
 public interface ImageTemplate {

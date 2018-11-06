@@ -28,7 +28,6 @@ import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidget;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 
 import java.util.Optional;
 
