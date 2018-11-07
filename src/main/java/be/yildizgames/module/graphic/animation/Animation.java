@@ -25,6 +25,7 @@
 
 package be.yildizgames.module.graphic.animation;
 
+import be.yildizgames.common.frame.FrameListener;
 import be.yildizgames.common.geometry.Point3D;
 
 /**
@@ -32,7 +33,8 @@ import be.yildizgames.common.geometry.Point3D;
  *
  * @author Grégory Van den Borre
  */
-public interface Animation {
+public interface Animation extends FrameListener {
+
 
     /**
      * Start playing the animation.
@@ -46,11 +48,23 @@ public interface Animation {
      */
     void setPosition(Point3D position);
 
+    default Animation startAtPosition(Point3D position) {
+        this.start();
+        this.setPosition(position);
+        return this;
+    }
+
     /**
      * @param time Time since last frame in milliseconds.
      * @return <code>true</code> if the animation is running, <code>false</code>
      * if completed.
      */
-    boolean runOneFrame(long time);
+    boolean frameEnded(long time);
+
+    boolean isPlaying();
+
+    default boolean isNotPlaying() {
+        return !isPlaying();
+    }
 
 }

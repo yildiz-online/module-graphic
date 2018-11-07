@@ -25,10 +25,10 @@
 
 package be.yildizgames.module.graphic.animation;
 
-import be.yildizgames.common.frame.EndFrameListener;
+import be.yildizgames.common.frame.FrameManager;
 import be.yildizgames.common.geometry.Point3D;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,17 +38,20 @@ import java.util.Map;
  *
  * @author Grégory Van den Borre
  */
-public final class AnimManager extends EndFrameListener {
+public final class AnimManager {
 
     /**
      * List of all animations.
      */
     private final Map<String, List<Animation>> animationList = new HashMap<>();
 
-    /**
-     * List of running animations.
-     */
-    private final Map<String, List<Animation>> currentAnimation = new HashMap<>();
+    private final FrameManager frameManager;
+
+    public AnimManager(FrameManager frameManager) {
+        super();
+        this.frameManager = frameManager;
+    }
+
 
     /**
      * Register an animation.
@@ -58,7 +61,6 @@ public final class AnimManager extends EndFrameListener {
      */
     public void addAnimation(final String type, final List<Animation> animPool) {
         this.animationList.put(type, animPool);
-        this.currentAnimation.put(type, new ArrayList<>());
     }
 
     /**
@@ -68,25 +70,11 @@ public final class AnimManager extends EndFrameListener {
      * @param position Animation position.
      */
     public void play(final String type, final Point3D position) {
-        Animation aa = this.animationList.get(type).remove(0);
-        this.currentAnimation.get(type).add(aa);
-        aa.start();
-        aa.setPosition(position);
+        this.animationList.getOrDefault(type, Collections.emptyList())
+                .stream()
+                .filter(Animation::isNotPlaying)
+                .findFirst()
+                .ifPresent(a -> this.frameManager.addFrameListener(a.startAtPosition(position)));
     }
 
-    @Override
-    public boolean frameEnded(final long time) {
-        for (String key : this.currentAnimation.keySet()) {
-            List<Animation> al = this.animationList.get(key);
-            List<Animation> ca = this.currentAnimation.get(key);
-            for (int i = 0; i < ca.size(); i++) {
-                if (!ca.get(i).runOneFrame(time)) {
-                    Animation aa = ca.remove(i);
-                    al.add(aa);
-                    i--;
-                }
-            }
-        }
-        return true;
-    }
 }

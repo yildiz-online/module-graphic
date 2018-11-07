@@ -25,6 +25,7 @@
 
 package be.yildizgames.module.graphic.misc;
 
+import be.yildizgames.common.frame.EndFrameListener;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.graphic.animation.Animation;
 import be.yildizgames.module.graphic.billboard.Billboard;
@@ -37,7 +38,7 @@ import java.util.Optional;
  *
  * @author Grégory Van den Borre
  */
-public final class TeleportAnimation implements Animation {
+public final class TeleportAnimation extends EndFrameListener implements Animation {
 
     /**
      * Time to execute the animation.
@@ -62,6 +63,7 @@ public final class TeleportAnimation implements Animation {
     private Billboard current = null;
 
     private Point3D positionToSet = Point3D.ZERO;
+    private boolean playing;
 
     /**
      * Full constructor.
@@ -75,24 +77,31 @@ public final class TeleportAnimation implements Animation {
 
     @Override
     public void start() {
+        this.playing = true;
         Optional.ofNullable(this.current).ifPresent(this.set::removeBillboard);
         this.current = this.set.createBillboard();
         this.current.setPosition(this.positionToSet);
     }
 
     @Override
-    public boolean runOneFrame(final long time) {
+    public boolean frameEnded(final long time) {
         this.runningTime += time;
         if (this.runningTime > TIME) {
             this.runningTime = 0;
             this.set.removeBillboard(this.current);
             this.current = null;
+            this.playing = false;
             return false;
         } else {
             float v = ((float) this.runningTime / (float) (TIME)) * MAX_SIZE;
             this.current.setSize(v, v);
         }
         return true;
+    }
+
+    @Override
+    public boolean isPlaying() {
+        return this.playing;
     }
 
     @Override

@@ -25,23 +25,24 @@
 
 package be.yildizgames.module.graphic.misc;
 
+import be.yildizgames.common.frame.EndFrameListener;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.animation.Animation;
-import be.yildizgames.module.graphic.particle.ParticleSystem;
-import be.yildizgames.module.graphic.particle.ParticleSystem.Orientation;
+import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.particle.ParticleColorAffector;
 import be.yildizgames.module.graphic.particle.ParticleEmitter;
 import be.yildizgames.module.graphic.particle.ParticleEmitter.EmitterType;
-import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.particle.ParticleScaleAffector;
+import be.yildizgames.module.graphic.particle.ParticleSystem;
+import be.yildizgames.module.graphic.particle.ParticleSystem.Orientation;
 
 /**
  * Explosion animation.
  *
  * @author Grégory Van den Borre
  */
-public final class Explosion implements Animation {
+public final class Explosion extends EndFrameListener implements Animation {
 
     /**
      * Time elapsed since the start.
@@ -67,6 +68,8 @@ public final class Explosion implements Animation {
      * Sparks effect.
      */
     private ParticleSystem spark;
+
+    private boolean playing = false;
 
     /**
      * Full constructor.
@@ -99,6 +102,7 @@ public final class Explosion implements Animation {
 
     @Override
     public void start() {
+        this.playing = true;
         this.buildSmoke1();
         this.buildSmoke2();
         this.buildFlash();
@@ -186,12 +190,18 @@ public final class Explosion implements Animation {
     }
 
     @Override
-    public boolean runOneFrame(final long time) {
+    public boolean frameEnded(final long time) {
         this.runningTime += time;
         if (this.runningTime > 3000) {
             this.runningTime = 0;
+            this.playing = false;
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean isPlaying() {
+        return this.playing;
     }
 }
