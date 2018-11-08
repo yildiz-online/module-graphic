@@ -25,7 +25,9 @@
 package be.yildizgames.module.graphic;
 
 import be.yildizgames.common.file.ResourcePath;
+import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.graphic.dummy.DummyGraphicEngineProvider;
 import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.GuiFactory;
@@ -134,6 +136,55 @@ public abstract class GraphicEngine implements FpsProvider {
      */
     public final Font createFont(final String name, final String path, final int size) {
         return this.createFont(name, path, size, Color.WHITE);
+    }
+
+    /**
+     * Create a new font with a given color.
+     *
+     * @param name  Font name, must be unique.
+     * @param path  Path to the font file.
+     * @param size  Size of the font.
+     * @param color Font color.
+     * @return The newly created font.
+     */
+    public final Font createFont(final String name, final String path, final Relative size, final Color color) {
+        return this.createFont(name, path, (int)(size.of(this.getScreenSize().height)), color);
+    }
+
+    /**
+     * Create a new font with a given color and a random name.
+     *
+     * @param path  Path to the font file.
+     * @param size  Size of the font.
+     * @param color Font color.
+     * @return The newly created font.
+     */
+    public final Font createFont(final String path, final int size, final Color color) {
+        return this.createFont(StringUtil.buildRandomString("font"), path, size, color);
+    }
+
+    /**
+     * Create a new font with a given color and a random name.
+     *
+     * @param path  Path to the font file.
+     * @param size  Size of the font.
+     * @param color Font color.
+     * @return The newly created font.
+     */
+    public final Font createFont(final String path, final Relative size, final Color color) {
+        return this.createFont(StringUtil.buildRandomString("font"), path, (int)(size.of(this.getScreenSize().height)), color);
+    }
+
+    /**
+     * Create a new font.
+     *
+     * @param name Font name, must be unique.
+     * @param path Path to the font file.
+     * @param size Size of the font.
+     * @return The newly created font.
+     */
+    public final Font createFont(final String name, final String path, final Relative size) {
+        return this.createFont(name, path, (int)(size.of(this.getScreenSize().height)));
     }
 
     /**

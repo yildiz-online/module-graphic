@@ -74,7 +74,7 @@ public final class DummyGraphicEngine extends GraphicEngine {
 
     @Override
     public GuiFactory getGuiBuilder() {
-        return null;
+        return new DummyGuiFactory();
     }
 
     @Override
