@@ -25,7 +25,6 @@
 
 package be.yildizgames.module.graphic;
 
-import be.yildizgames.module.graphic.GraphicEngine.ShadowType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

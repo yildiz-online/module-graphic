@@ -21,88 +21,37 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  *
  */
-
 package be.yildizgames.module.graphic;
 
-import be.yildizgames.common.file.ResourcePath;
-import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.graphic.dummy.DummyGraphicEngineProvider;
 import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.GuiFactory;
-import be.yildizgames.module.graphic.gui.internal.EventBubblingDispatcher;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialManager;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.window.ScreenSize;
-import be.yildizgames.module.window.WindowEngine;
 
-import java.util.ServiceLoader;
-
-/**
- * Behavior for a graphic engine. Specification: The engine must be able to load resources, show a sky box, show the GUI, move and rotate 3d meshes.
- *
- * @author Grégory Van den Borre
- */
-public abstract class GraphicEngine implements FpsProvider {
-
-    private final GuiEventManager eventManager = new EventBubblingDispatcher();
-
-    public static GraphicEngine getEngine(WindowEngine windowEngine) {
-        ServiceLoader<GraphicEngineProvider> provider = ServiceLoader.load(GraphicEngineProvider.class);
-        return provider.findFirst().orElseGet(DummyGraphicEngineProvider::new).getEngine(windowEngine);
-    }
-
-    public static GraphicEngine getEngine() {
-        ServiceLoader<GraphicEngineProvider> provider = ServiceLoader.load(GraphicEngineProvider.class);
-        return provider.findFirst().orElseGet(DummyGraphicEngineProvider::new).getEngine(WindowEngine.getEngine());
-    }
-
-    public final GuiEventManager getEventManager() {
-        return this.eventManager;
-    }
-
-    /**
-     * Free resources used by the engine.
-     */
-    public abstract void close();
-
-    /**
-     * Render one frame.
-     */
-    public abstract void update();
+public interface GraphicEngine {
 
     /**
      * Print the current rendering frame and save it in a file.
      */
-    public abstract void printScreen();
+    void printScreen();
 
-    /**
-     * Add a folder to use to load resources.
-     *
-     * @param resource Data for the resources.
-     */
-    public abstract void addResourcePath(ResourcePath resource);
+    GuiEventManager getEventManager();
 
     /**
      * Provide the module responsible to build GUI elements.
      *
      * @return The GuiBuilder.
      */
-    public abstract GuiFactory getGuiBuilder();
+    GuiFactory getGuiFactory();
 
-    public abstract MaterialManager getMaterialManager();
+    ScreenSize getScreenSize();
 
-    /**
-     * Create a sky box.
-     *
-     * @param name Sky box unique name.
-     * @param path Path to images to use.
-     * @return The created object.
-     */
-    public abstract Skybox createSkybox(String name, String path);
+    MaterialManager getMaterialManager();
 
     /**
      * Create a new Selection Rectangle, only one can be used at a time, if more
@@ -112,7 +61,47 @@ public abstract class GraphicEngine implements FpsProvider {
      * @param inner  Inner material.
      * @return The created object.
      */
-    public abstract SelectionRectangle createSelectionRectangle(Material border, Material inner);
+    SelectionRectangle createSelectionRectangle(Material border, Material inner);
+
+    /**
+     * Create a sky box.
+     *
+     * @param name Sky box unique name.
+     * @param path Path to images to use.
+     * @return The created object.
+     */
+    Skybox createSkybox(String name, String path);
+
+    /**
+     * Create a new font with a given color and a random name.
+     *
+     * @param path  Path to the font file.
+     * @param size  Size of the font.
+     * @param color Font color.
+     * @return The newly created font.
+     */
+    Font createFont(final String path, final Relative size, final Color color);
+
+    /**
+     * Create a new font.
+     *
+     * @param name Font name, must be unique.
+     * @param path Path to the font file.
+     * @param size Size of the font.
+     * @return The newly created font.
+     */
+    Font createFont(final String name, final String path, final Relative size);
+
+    /**
+     * Create a new font with a given color.
+     *
+     * @param name  Font name, must be unique.
+     * @param path  Path to the font file.
+     * @param size  Size of the font.
+     * @param color Font color.
+     * @return The newly created font.
+     */
+    Font createFont(final String name, final String path, final Relative size, final Color color);
 
     /**
      * Create a new font to use to print text.
@@ -124,7 +113,7 @@ public abstract class GraphicEngine implements FpsProvider {
      * @param color Font color.
      * @return The newly built font.
      */
-    public abstract Font createFont(String name, String path, int size, Color color);
+    Font createFont(String name, String path, int size, Color color);
 
     /**
      * Create a new font to use to print text.
@@ -134,22 +123,7 @@ public abstract class GraphicEngine implements FpsProvider {
      * @param size Size of the font.
      * @return The newly built font.
      */
-    public final Font createFont(final String name, final String path, final int size) {
-        return this.createFont(name, path, size, Color.WHITE);
-    }
-
-    /**
-     * Create a new font with a given color.
-     *
-     * @param name  Font name, must be unique.
-     * @param path  Path to the font file.
-     * @param size  Size of the font.
-     * @param color Font color.
-     * @return The newly created font.
-     */
-    public final Font createFont(final String name, final String path, final Relative size, final Color color) {
-        return this.createFont(name, path, (int)(size.of(this.getScreenSize().height)), color);
-    }
+    Font createFont(String name, String path, int size);
 
     /**
      * Create a new font with a given color and a random name.
@@ -159,92 +133,5 @@ public abstract class GraphicEngine implements FpsProvider {
      * @param color Font color.
      * @return The newly created font.
      */
-    public final Font createFont(final String path, final int size, final Color color) {
-        return this.createFont(StringUtil.buildRandomString("font"), path, size, color);
-    }
-
-    /**
-     * Create a new font with a given color and a random name.
-     *
-     * @param path  Path to the font file.
-     * @param size  Size of the font.
-     * @param color Font color.
-     * @return The newly created font.
-     */
-    public final Font createFont(final String path, final Relative size, final Color color) {
-        return this.createFont(StringUtil.buildRandomString("font"), path, (int)(size.of(this.getScreenSize().height)), color);
-    }
-
-    /**
-     * Create a new font.
-     *
-     * @param name Font name, must be unique.
-     * @param path Path to the font file.
-     * @param size Size of the font.
-     * @return The newly created font.
-     */
-    public final Font createFont(final String name, final String path, final Relative size) {
-        return this.createFont(name, path, (int)(size.of(this.getScreenSize().height)));
-    }
-
-    /**
-     * Create a new graphic world.
-     *
-     * @param worldName  Unique name to give to the world.
-     * @param shadowType Type of the shadow to use.
-     * @return The created GraphicWorld.
-     */
-    public abstract SceneManager createGraphicWorld(String worldName, ShadowType shadowType);
-
-    public abstract GraphicWorld createWorld();
-
-    public abstract ScreenSize getScreenSize();
-
-    public abstract WindowEngine getWindowEngine();
-
-    /**
-     * Possible type of shadows.
-     *
-     * @author Van Den Borre Grégory
-     */
-    public enum ShadowType {
-        /**
-         * No shadows.
-         */
-        NONE(0),
-
-        /**
-         * Texture additive shadows.
-         */
-        TEXTURE_ADDITIVE(1),
-
-        /**
-         * Texture modulative shadows.
-         */
-        TEXTURE_MODULATIVE(2),
-
-        /**
-         * Stencil additive shadows.
-         */
-        STENCIL_ADDITIVE(3),
-
-        /**
-         * Stencil modulative shadows.
-         */
-        STENCIL_MODULATIVE(4);
-
-        /**
-         * Associated value to avoid to depend on the natural order.
-         */
-        public final int value;
-
-        /**
-         * Constructor set the value.
-         *
-         * @param value Associated value.
-         */
-        ShadowType(final int value) {
-            this.value = value;
-        }
-    }
+    Font createFont(String path, int size, Color color);
 }

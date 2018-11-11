@@ -26,24 +26,25 @@ package be.yildizgames.module.graphic.dummy;
 
 import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.BaseGraphicEngine;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.GraphicEngine;
 import be.yildizgames.module.graphic.GraphicWorld;
 import be.yildizgames.module.graphic.SceneManager;
+import be.yildizgames.module.graphic.ShadowType;
 import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialManager;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.window.BaseWindowEngine;
 import be.yildizgames.module.window.ScreenSize;
-import be.yildizgames.module.window.WindowEngine;
 
 /**
  * dummy implementation for graphic engine.
  *
  * @author Grégory Van den Borre
  */
-public final class DummyGraphicEngine extends GraphicEngine {
+public final class DummyGraphicEngine extends BaseGraphicEngine {
 
     /**
      * Simple constructor.
@@ -73,7 +74,7 @@ public final class DummyGraphicEngine extends GraphicEngine {
     }
 
     @Override
-    public GuiFactory getGuiBuilder() {
+    public GuiFactory getGuiFactory() {
         return new DummyGuiFactory();
     }
 
@@ -118,7 +119,7 @@ public final class DummyGraphicEngine extends GraphicEngine {
     }
 
     @Override
-    public WindowEngine getWindowEngine() {
-        return WindowEngine.getEngine();
+    public BaseWindowEngine getWindowEngine() {
+        return BaseWindowEngine.getEngine();
     }
 }

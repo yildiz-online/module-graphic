@@ -25,9 +25,9 @@
 
 package be.yildizgames.module.graphic.dummy;
 
-import be.yildizgames.module.graphic.GraphicEngine;
+import be.yildizgames.module.graphic.BaseGraphicEngine;
 import be.yildizgames.module.graphic.GraphicEngineProvider;
-import be.yildizgames.module.window.WindowEngine;
+import be.yildizgames.module.window.BaseWindowEngine;
 
 /**
  * @author Grégory Van den Borre
@@ -35,7 +35,7 @@ import be.yildizgames.module.window.WindowEngine;
 public class DummyGraphicEngineProvider implements GraphicEngineProvider {
 
     @Override
-    public GraphicEngine getEngine(WindowEngine engine) {
+    public BaseGraphicEngine getEngine(BaseWindowEngine engine) {
         return new DummyGraphicEngine();
     }
 }
