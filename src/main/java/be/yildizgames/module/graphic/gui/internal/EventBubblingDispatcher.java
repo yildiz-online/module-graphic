@@ -26,6 +26,7 @@
 package be.yildizgames.module.graphic.gui.internal;
 
 import be.yildizgames.common.client.debug.DebugListener;
+import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.View;
 import be.yildizgames.module.graphic.gui.Widget;
@@ -33,7 +34,6 @@ import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.window.input.Key;
 import be.yildizgames.module.window.input.MousePosition;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 import java.util.Set;
@@ -44,7 +44,7 @@ import java.util.TreeSet;
  */
 public class EventBubblingDispatcher implements GuiEventManager {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventBubblingDispatcher.class);
+    private static final Logger LOGGER = LogFactory.getInstance().getLogger(EventBubblingDispatcher.class);
 
     private final Set<View> views = new TreeSet<>();
 
