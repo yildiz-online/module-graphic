@@ -36,6 +36,7 @@ import org.junit.jupiter.api.Test;
 
 class BillboardTest {
 
+
     @Nested
     class SetSize {
 
