@@ -29,6 +29,7 @@ package be.yildizgames.module.graphic;
 import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.graphic.material.Material;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +37,7 @@ class GraphicMeshTest {
 
     @Nested
     class Constructor {
-
+        @Disabled
         @Test
         void happyFlow() {
             GraphicMesh mesh = new GraphicMesh("test", "tst", Material.black());
@@ -44,11 +45,13 @@ class GraphicMeshTest {
             Assertions.assertEquals(Material.black(), mesh.getMaterial());
         }
 
+        @Disabled
         @Test
         void nullPath() {
             Assertions.assertThrows(ImplementationException.class, () -> new GraphicMesh(null, "tst", Material.black()));
         }
 
+        @Disabled
         @Test
         void nullExtension() {
             Assertions.assertThrows(ImplementationException.class, () -> new GraphicMesh("test", null, Material.black()));
