@@ -31,10 +31,6 @@ public class DummyGuiFactory implements GuiFactory {
         return null;
     }
 
-    @Override
-    public Button button(Container container, ButtonTemplate buttonTemplate, MouseLeftClickListener l) {
-        return null;
-    }
 
     @Override
     public TextLineBuilder textLine() {
