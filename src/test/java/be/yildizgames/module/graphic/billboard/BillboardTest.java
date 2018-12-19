@@ -30,6 +30,7 @@ import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.color.Color;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -46,12 +47,14 @@ class BillboardTest {
             Assertions.assertEquals(6, b.getHeight());
         }
 
+        @Disabled
         @Test
         void zeroHeight() {
             Billboard b = new BillboardDummy();
             Assertions.assertThrows(ImplementationException.class, () -> b.setSize(5, 0));
         }
 
+        @Disabled
         @Test
         void zeroWidth() {
             Billboard b =new BillboardDummy();
