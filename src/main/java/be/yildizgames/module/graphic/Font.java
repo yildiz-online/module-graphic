@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.common.util.Resource;
 import be.yildizgames.module.color.Color;
@@ -72,8 +73,8 @@ public abstract class Font extends Resource {
      */
     protected Font(final String fontName, final int fontSize, final Color color) {
         super(fontName);
-        assert fontName != null;
-        assert color != null;
+        ImplementationException.throwForNull(fontName);
+        ImplementationException.throwForNull(color);
         assert fontSize >= 0 : "fontSize parameter is smaller than 0";
         this.size = fontSize;
         this.color = color;
@@ -98,7 +99,8 @@ public abstract class Font extends Resource {
      * @param width        Maximum text width allowed.
      * @return originalText if it is smaller than width, a cropped text with "..." if the text cannot fit in the given width, or "" if "..." cannot fit in the given width.
      */
-    public String crop(final String originalText, final int width) {
+    public final String crop(final String originalText, final int width) {
+        ImplementationException.throwForNull(originalText);
         float computedWidth = 0;
         for (int i = 0; i < originalText.length(); i++) {
             computedWidth += charWidth[originalText.charAt(i)];

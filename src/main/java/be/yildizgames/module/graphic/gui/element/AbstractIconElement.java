@@ -25,6 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.element;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.gui.internal.BaseElement;
@@ -58,6 +59,7 @@ public abstract class AbstractIconElement extends BaseElement {
      */
     protected AbstractIconElement(final String name, final BaseCoordinate coordinates, final Material iconMaterial) {
         super(name, coordinates);
+        ImplementationException.throwForNull(iconMaterial);
         this.material = iconMaterial;
         AbstractIconElement.REGISTERER.register(this);
     }
@@ -100,6 +102,7 @@ public abstract class AbstractIconElement extends BaseElement {
      * @param newMaterial New material to set.
      */
     public final void setMaterial(final Material newMaterial) {
+        ImplementationException.throwForNull(newMaterial);
         if (!this.material.equals(newMaterial)) {
             this.material = newMaterial;
             this.setMaterialImpl(newMaterial);

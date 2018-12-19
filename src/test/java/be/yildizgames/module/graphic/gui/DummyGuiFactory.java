@@ -31,7 +31,7 @@ import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
+import be.yildizgames.module.graphic.gui.internal.impl.StandardGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialEffect;
 import be.yildizgames.module.graphic.material.MaterialEffect.EffectType;
@@ -43,7 +43,7 @@ import java.util.Arrays;
 /**
  * @author Grégory Van den Borre
  */
-public class DummyGuiFactory extends SimpleGuiFactory {
+public class DummyGuiFactory extends StandardGuiFactory {
 
     public static final Font defaultFont = new Font("default", 0, Color.BLACK) {
 

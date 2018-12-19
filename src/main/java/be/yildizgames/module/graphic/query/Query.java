@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic.query;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.window.input.MousePosition;
@@ -31,19 +32,34 @@ import be.yildizgames.module.window.input.MousePosition;
 import java.util.List;
 import java.util.Optional;
 
-
 /**
- *
+ * Result of a ray trace, try to retrieve an entity.
  * @author Grégory Van den Borre
  */
 public interface Query {
 
+    /**
+     * Find an entity under the mouse position.
+     * @param p Mouse position.
+     * @return An optional entity.
+     */
     default Optional<EntityId> getEntity(MousePosition p) {
         return getEntity(p.getX(), p.getY());
     }
 
+    /**
+     * Find an entity under a screen position.
+     * @param x Screen x position.
+     * @param y Screen y position.
+     * @return An optional entity.
+     */
     Optional<EntityId> getEntity(float x, float y);
 
+    /**
+     * Find all the entities contained in a rectangle facing the camera.
+     * @param r Recrangle to use.
+     * @return All the entities in the rectangle.
+     */
     List<EntityId> getEntities(Rectangle r);
     
 }

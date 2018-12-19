@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic.gui;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.graphic.Font;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -71,7 +72,7 @@ class FontTest {
         void withNullParameter() {
             Font f = DummyGuiFactory.defaultFont;
             f.load();
-            assertThrows(NullPointerException.class, () -> f.crop(null, 3));
+            assertThrows(ImplementationException.class, () -> f.crop(null, 3));
         }
     }
 

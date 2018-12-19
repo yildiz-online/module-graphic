@@ -46,13 +46,13 @@ class SimpleTextAreaBuilder implements TextAreaBuilder {
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private final SimpleGuiFactory builder;
+    private final StandardGuiFactory builder;
 
     private int padding = 0;
 
     private final List<TextAreaAnimation> animations = new ArrayList<>();
 
-    SimpleTextAreaBuilder(SimpleGuiFactory builder) {
+    SimpleTextAreaBuilder(StandardGuiFactory builder) {
         super();
         this.builder = builder;
     }

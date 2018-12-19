@@ -38,7 +38,6 @@ import be.yildizgames.module.graphic.gui.SimpleView;
 import be.yildizgames.module.graphic.gui.View;
 import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
-import be.yildizgames.module.graphic.gui.button.ButtonTemplate;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
@@ -58,7 +57,6 @@ import be.yildizgames.module.graphic.gui.textline.TextLineTemplate;
 import be.yildizgames.module.graphic.gui.textline.TimeTextLine;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.window.ScreenSize;
-import be.yildizgames.module.window.input.MouseLeftClickListener;
 
 import java.time.Duration;
 import java.util.Optional;
@@ -68,7 +66,7 @@ import java.util.Optional;
  *
  * @author Grégory Van den Borre
  */
-public abstract class SimpleGuiFactory implements GuiFactory {
+public abstract class StandardGuiFactory implements GuiFactory {
 
     /**
      * Contains the screen size data.
@@ -117,7 +115,7 @@ public abstract class SimpleGuiFactory implements GuiFactory {
 
     private final GuiAnimationManager animationManager = new GuiAnimationManager();
 
-    protected SimpleGuiFactory(ScreenSize screenSize) {
+    protected StandardGuiFactory(ScreenSize screenSize) {
         this.screenSize = screenSize;
     }
 
@@ -192,15 +190,6 @@ public abstract class SimpleGuiFactory implements GuiFactory {
         final SimpleButton button = new SimpleButton(name, text, c, material, container);
         this.buttonList.register(button);
         return button;
-    }
-
-    @Override
-    public Button button(Container container, ButtonTemplate template, MouseLeftClickListener l) {
-        return this.button()
-                .withCoordinates(template.getCoordinates())
-                .onClick(l)
-                .withButtonMaterial(template.getButtonMaterial())
-                .build(container);
     }
 
     /**
@@ -639,13 +628,13 @@ public abstract class SimpleGuiFactory implements GuiFactory {
      * @return The new check box widget.
      */
     public final SimpleCheckBox buildCheckBox(final String name,
-                                           final BaseCoordinate coordinates,
-                                           final Material background,
-                                           final Material hover,
-                                           final Material check,
+                                              final BaseCoordinate coordinates,
+                                              final Material background,
+                                              final Material hover,
+                                              final Material check,
                                               final Material checkHover,
-                                           final Font font,
-                                           final SimpleContainer container) {
+                                              final Font font,
+                                              final SimpleContainer container) {
         assert name != null;
         assert coordinates != null;
         assert background != null;

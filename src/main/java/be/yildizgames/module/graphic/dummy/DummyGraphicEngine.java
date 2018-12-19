@@ -100,7 +100,7 @@ public final class DummyGraphicEngine extends BaseGraphicEngine {
 
     @Override
     public SceneManager createGraphicWorld(final String worldName, final ShadowType shadowType) {
-        return null;
+        return new SceneManager() {};
     }
 
     @Override

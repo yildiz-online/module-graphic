@@ -45,12 +45,12 @@ class SimpleTextLineBuilder implements TextLineBuilder {
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
-    private final SimpleGuiFactory builder;
+    private final StandardGuiFactory builder;
 
     private final List<TextAnimation> animations = new ArrayList<>();
 
 
-    SimpleTextLineBuilder(SimpleGuiFactory builder) {
+    SimpleTextLineBuilder(StandardGuiFactory builder) {
         super();
         this.builder = builder;
     }

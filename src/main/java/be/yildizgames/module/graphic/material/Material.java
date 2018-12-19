@@ -25,20 +25,21 @@
 
 package be.yildizgames.module.graphic.material;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.common.util.Resource;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.shader.FragmentShader;
-import be.yildizgames.module.graphic.shader.VertexShader;
 import be.yildizgames.module.graphic.material.MaterialPass.BlendMode;
 import be.yildizgames.module.graphic.material.MaterialPass.SceneBlend;
 import be.yildizgames.module.graphic.material.MaterialPass.Transparency;
+import be.yildizgames.module.graphic.shader.FragmentShader;
 import be.yildizgames.module.graphic.shader.ShaderConstantType;
 import be.yildizgames.module.graphic.shader.ShaderParamColor;
 import be.yildizgames.module.graphic.shader.ShaderParamFloat;
 import be.yildizgames.module.graphic.shader.ShaderParamFloat2;
 import be.yildizgames.module.graphic.shader.ShaderParamFloat3;
 import be.yildizgames.module.graphic.shader.ShaderParamFloat4;
+import be.yildizgames.module.graphic.shader.VertexShader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +105,7 @@ public abstract class Material extends Resource {
      */
     protected Material(final String name, final List<MaterialTechnique> list) {
         super(name);
+        ImplementationException.throwForNull(list);
         this.techniqueList = list;
         Material.REGISTERER.register(this);
     }
@@ -277,9 +279,7 @@ public abstract class Material extends Resource {
      */
     public final MaterialTechnique getTechnique(final int index) {
         final MaterialTechnique technique = this.techniqueList.get(index);
-        if (technique == null) {
-            throw new IllegalArgumentException("No technique found for this index.");
-        }
+        ImplementationException.throwForNull(technique);
         return technique;
     }
 

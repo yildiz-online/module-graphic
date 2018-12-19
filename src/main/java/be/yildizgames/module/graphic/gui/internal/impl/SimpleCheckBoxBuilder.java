@@ -45,7 +45,7 @@ import java.util.List;
  */
 class SimpleCheckBoxBuilder implements CheckBoxBuilder {
 
-    private final SimpleGuiFactory builder;
+    private final StandardGuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
@@ -57,7 +57,7 @@ class SimpleCheckBoxBuilder implements CheckBoxBuilder {
 
     private final List<CheckBoxAnimation> animations = new ArrayList<>();
 
-    SimpleCheckBoxBuilder(SimpleGuiFactory builder) {
+    SimpleCheckBoxBuilder(StandardGuiFactory builder) {
         super();
         this.builder = builder;
     }

@@ -25,6 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.button;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.material.Material;
@@ -62,24 +63,16 @@ public class ButtonMaterial {
     public final Font inactiveFont;
 
     public ButtonMaterial(final Material material, final Material hlight, final Font font) {
-        super();
-        assert material != null;
-        assert hlight != null;
-        assert font != null;
-        this.material = material;
-        this.highlight = hlight;
-        this.inactive = material;
-        this.font = font;
-        this.inactiveFont = font;
+        this(material, hlight, material, font, font);
     }
 
     public ButtonMaterial(final Material material, final Material hlight, final Material inactive, final Font font, final Font inactiveFont) {
         super();
-        assert material != null;
-        assert hlight != null;
-        assert font != null;
-        assert inactive != null;
-        assert inactiveFont != null;
+        ImplementationException.throwForNull(material);
+        ImplementationException.throwForNull(hlight);
+        ImplementationException.throwForNull(font);
+        ImplementationException.throwForNull(inactive);
+        ImplementationException.throwForNull(inactiveFont);
         this.material = material;
         this.highlight = hlight;
         this.inactive = inactive;
