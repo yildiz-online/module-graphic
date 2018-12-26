@@ -48,9 +48,9 @@ class SimpleProgressBarBuilder implements ProgressBarBuilder {
 
     private final BaseWidgetBuilder baseWidgetBuilder = new BaseWidgetBuilder();
 
-    private final SimpleGuiFactory factory;
+    private final StandardGuiFactory factory;
 
-    SimpleProgressBarBuilder(SimpleGuiFactory factory) {
+    SimpleProgressBarBuilder(StandardGuiFactory factory) {
         this.factory = factory;
     }
 

@@ -41,7 +41,7 @@ import be.yildizgames.module.graphic.material.Material;
  */
 class SimpleInputBoxBuilder implements InputBoxBuilder {
 
-    private final SimpleGuiFactory builder;
+    private final StandardGuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
@@ -51,7 +51,7 @@ class SimpleInputBoxBuilder implements InputBoxBuilder {
 
     private Material cursorMaterial;
 
-    SimpleInputBoxBuilder(SimpleGuiFactory simpleGuiFactory) {
+    SimpleInputBoxBuilder(StandardGuiFactory simpleGuiFactory) {
         this.builder = simpleGuiFactory;
     }
 

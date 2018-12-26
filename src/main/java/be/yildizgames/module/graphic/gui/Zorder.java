@@ -24,8 +24,8 @@
 
 package be.yildizgames.module.graphic.gui;
 
-import be.yildizgames.common.logging.LogFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Simple wrapper class for Z values.
@@ -34,7 +34,7 @@ import org.slf4j.Logger;
  */
 public final class Zorder implements Comparable<Zorder> {
 
-    private static final Logger LOGGER = LogFactory.getInstance().getLogger(Zorder.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Zorder.class);
 
     /**
      * Z order to display GUI elements, nearly the highest value.

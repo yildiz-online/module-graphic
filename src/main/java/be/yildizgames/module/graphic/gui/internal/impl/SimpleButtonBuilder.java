@@ -50,7 +50,7 @@ import java.util.Optional;
  */
 class SimpleButtonBuilder implements ButtonBuilder {
 
-    private final SimpleGuiFactory builder;
+    private final StandardGuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
@@ -80,7 +80,7 @@ class SimpleButtonBuilder implements ButtonBuilder {
 
     private MouseLeftClickListener clickListener;
 
-    SimpleButtonBuilder(final SimpleGuiFactory builder) {
+    SimpleButtonBuilder(final StandardGuiFactory builder) {
         super();
         this.builder = builder;
     }

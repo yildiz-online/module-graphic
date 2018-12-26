@@ -28,9 +28,15 @@ package be.yildizgames.module.graphic;
 import be.yildizgames.module.window.BaseWindowEngine;
 
 /**
+ * Provide the graphic engine implementation.
  * @author Grégory Van den Borre
  */
 public interface GraphicEngineProvider {
 
+    /**
+     * Get the graphic engine implementation.
+     * @param windowEngine Associated window engine.
+     * @return The graphic engine implementation.
+     */
     BaseGraphicEngine getEngine(BaseWindowEngine windowEngine);
 }

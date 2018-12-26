@@ -54,7 +54,7 @@ final class SimpleContainerTest {
      */
     @Test
     void functionalTestGetNextFocusableElement() {
-        SimpleGuiFactory builder = new DummyGuiFactory();
+        StandardGuiFactory builder = new DummyGuiFactory();
         SimpleContainerBuilder cb = new SimpleContainerBuilder(builder);
         SimpleContainer c = (SimpleContainer)cb.withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         // A
@@ -123,7 +123,7 @@ final class SimpleContainerTest {
 
     @Test
     void testGetNextFocusableElement() {
-        SimpleGuiFactory builder = new DummyGuiFactory();
+        StandardGuiFactory builder = new DummyGuiFactory();
         Container c = new SimpleContainerBuilder(builder).withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         assertNull(c.getNextFocusableElement());
         BaseWidget w1 = new WidgetMock("w1", CR, c);
@@ -134,7 +134,7 @@ final class SimpleContainerTest {
 
     @Test
     void testGuiContainer() {
-        SimpleGuiFactory builder = new DummyGuiFactory();
+        StandardGuiFactory builder = new DummyGuiFactory();
         Coordinates cr = new Coordinates(50, 60, 10, 20);
         SimpleContainer c = (SimpleContainer)new SimpleContainerBuilder(builder).withName("test").withCoordinates(cr).build();
         assertEquals("test", c.getName());
@@ -148,7 +148,7 @@ final class SimpleContainerTest {
 
     @Test
     void testContains() {
-        SimpleGuiFactory builder = new DummyGuiFactory();
+        StandardGuiFactory builder = new DummyGuiFactory();
         final int cWidth = 50;
         final int cHeight = 60;
         final int cX = 10;
@@ -183,7 +183,7 @@ final class SimpleContainerTest {
 
     @Test
     void testContainsVirtualHeight() {
-        SimpleGuiFactory builder = new DummyGuiFactory();
+        StandardGuiFactory builder = new DummyGuiFactory();
         SimpleContainer c = (SimpleContainer)new SimpleContainerBuilder(builder).withSize(new Size(50)).build();
         assertTrue(c.contains(MouseMoveMockFactory.get(10, 10)));
         assertFalse(c.contains(MouseMoveMockFactory.get(10, 60)));

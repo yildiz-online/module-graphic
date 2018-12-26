@@ -59,10 +59,8 @@ public final class ShaderParamFloat3 {
      * @param v1 Float value.
      * @param v2 Float value.
      * @param v3 Float value.
-     * @deprecated method will be package private, use ShaderParam factory
      */
-    @Deprecated
-    public ShaderParamFloat3(final String name, final float v1, final float v2, final float v3) {
+    ShaderParamFloat3(final String name, final float v1, final float v2, final float v3) {
         super();
         this.name = name;
         this.value1 = v1;

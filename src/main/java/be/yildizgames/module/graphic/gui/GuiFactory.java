@@ -26,9 +26,7 @@ package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.frame.FrameListener;
-import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonBuilder;
-import be.yildizgames.module.graphic.gui.button.ButtonTemplate;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBoxBuilder;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.container.ContainerBuilder;
@@ -40,7 +38,6 @@ import be.yildizgames.module.graphic.gui.textline.TextLine;
 import be.yildizgames.module.graphic.gui.textline.TextLineBuilder;
 import be.yildizgames.module.graphic.gui.textline.TextLineTemplate;
 import be.yildizgames.module.window.ScreenSize;
-import be.yildizgames.module.window.input.MouseLeftClickListener;
 
 /**
  * @author Grégory Van den Borre
@@ -50,8 +47,6 @@ public interface GuiFactory {
     ContainerBuilder container();
 
     ButtonBuilder button();
-
-    Button button(Container container, ButtonTemplate buttonTemplate, MouseLeftClickListener l);
 
     TextLineBuilder textLine();
 

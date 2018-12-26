@@ -24,19 +24,20 @@
 
 package be.yildizgames.module.graphic.query;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.window.input.MousePosition;
 
 
 /**
- *
+ * Result of a ray trace, retrieve a point intersecting with the ground.
  * @author Grégory Van den Borre
  */
 public interface GroundQuery {
 
     Point3D getPoint(final float x, final float y);
 
-    default Point3D getPoint(MousePosition position) {
+    default Point3D getPoint(final MousePosition position) {
         return getPoint(position.getX(), position.getY());
     }
     

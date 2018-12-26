@@ -25,6 +25,7 @@
 
 package be.yildizgames.module.graphic.billboard;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.color.Color;
 
@@ -64,6 +65,8 @@ public abstract class Billboard {
      * @param newHeight New height.
      */
     public final void setSize(final float newWidth, final float newHeight) {
+        ImplementationException.throwIfZeroOrSmaller(newWidth);
+        ImplementationException.throwIfZeroOrSmaller(newHeight);
         this.width = newWidth;
         this.height = newHeight;
         this.setSizeImpl(newWidth, newHeight);
@@ -82,6 +85,7 @@ public abstract class Billboard {
      * @param newPosition New position.
      */
     public final void setPosition(final Point3D newPosition) {
+        ImplementationException.throwForNull(newPosition);
         this.position = newPosition;
         this.setPositionImpl(newPosition);
     }

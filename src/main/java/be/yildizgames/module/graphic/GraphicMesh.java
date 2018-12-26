@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.graphic.material.Material;
 
 /**
@@ -44,21 +45,17 @@ public class GraphicMesh {
     private final Material material;
 
     /**
-     * Full constructor.
+     * Create a new instance.
      *
-     * @param path     Path and name of the mesh to use(without extension, msh is expected as extension).
+     * @param path     Path and name of the mesh to use.
+     * @param extension Extension to use.
      * @param material Material to use with the mesh.
-     * @deprecated Use mesh instead, this one use hard coded extension
      */
-    @Deprecated
-    public GraphicMesh(final String path, final Material material) {
-        super();
-        this.file = path + ".msh";
-        this.material = material;
-    }
-
     protected GraphicMesh(final String path, String extension, final Material material) {
         super();
+        ImplementationException.throwForNull(path);
+        ImplementationException.throwForNull(extension);
+        ImplementationException.throwForNull(material);
         this.file = path + "." + extension;
         this.material = material;
     }

@@ -43,7 +43,7 @@ import java.util.Optional;
  */
 class SimpleContainerBuilder implements ContainerBuilder {
 
-    private final SimpleGuiFactory builder;
+    private final StandardGuiFactory builder;
 
     private final BaseWidgetBuilder base = new BaseWidgetBuilder();
 
@@ -53,7 +53,7 @@ class SimpleContainerBuilder implements ContainerBuilder {
 
     private final List<ContainerAnimation> animations = new ArrayList<>();
 
-    SimpleContainerBuilder(SimpleGuiFactory builder) {
+    SimpleContainerBuilder(StandardGuiFactory builder) {
         this.builder = builder;
     }
 
