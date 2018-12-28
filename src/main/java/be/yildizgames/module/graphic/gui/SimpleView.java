@@ -40,6 +40,7 @@ public class SimpleView extends View {
      * @param container    Wrapped container.
      * @param z            Z value.
      * @param eventManager Associated event manager.
+     * @param size         Screen size.
      */
     public SimpleView(final Container container, final Zorder z, GuiEventManager eventManager, ScreenSize size) {
         super(container, z, eventManager, size);

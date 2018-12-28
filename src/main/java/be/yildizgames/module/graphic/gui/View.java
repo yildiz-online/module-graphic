@@ -85,6 +85,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      * @param wrappedContainer Wrapped container.
      * @param z                Z order.
      * @param eventManager     Event manager to notify.
+     * @param size             Screen size.
      */
     public View(final Container wrappedContainer, final Zorder z, GuiEventManager eventManager, ScreenSize size) {
         super(wrappedContainer.getName());
