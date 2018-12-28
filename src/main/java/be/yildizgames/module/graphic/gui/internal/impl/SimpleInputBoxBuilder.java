@@ -162,6 +162,7 @@ class SimpleInputBoxBuilder implements InputBoxBuilder {
     public InputBoxBuilder fromTemplate(InputBoxTemplate template) {
         return this.withSize(template.getSize())
                 .withBackground(template.getMaterial())
+                .withBackgroundHighlight(template.getFocus())
                 .withCursor(template.getCursor())
                 .withFont(template.getFont())
                 .withCaptionFont(template.getCaptionFont())
