@@ -24,7 +24,6 @@
 
 package be.yildizgames.module.graphic.query;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.window.input.MousePosition;
