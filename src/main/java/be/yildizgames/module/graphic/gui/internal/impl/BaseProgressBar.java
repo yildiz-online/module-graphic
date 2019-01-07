@@ -67,18 +67,9 @@ abstract class BaseProgressBar extends BaseContainerChild implements ProgressBar
      */
     @Override
     public final void setProgress(final float newProgressValue) {
-        final int maxProgress = 100;
-        //FIXME MEDIUM use common.shared.BoundedValue class instead
-        if (newProgressValue != this.progress) {
-            if (newProgressValue > maxProgress) {
-                // recall method to check again equality between param &
-                // attribute.
-                this.setProgress(maxProgress);
-            } else if (newProgressValue < 0) {
-                this.setProgress(0);
-            } else {
-                this.progress = newProgressValue;
-            }
+        float newProgress = this.checkProgress(newProgressValue);
+        if (newProgress != this.progress) {
+            this.progress = newProgress;
             this.updateView(this.progress);
         }
     }
@@ -112,5 +103,15 @@ abstract class BaseProgressBar extends BaseContainerChild implements ProgressBar
      * @param progress new progress value, in percent.
      */
     protected abstract void updateView(final float progress);
+
+    private float checkProgress(float progress) {
+        if(progress > 100) {
+            return 100.0f;
+        }
+        if (progress < 0) {
+            return 0.0f;
+        }
+        return progress;
+    }
 
 }
