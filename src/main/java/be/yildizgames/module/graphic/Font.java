@@ -179,4 +179,8 @@ public abstract class Font extends Resource {
         }
         return this.size == other.size;
     }
+
+    protected final void unregister() {
+        REGISTERER.remove(this);
+    }
 }

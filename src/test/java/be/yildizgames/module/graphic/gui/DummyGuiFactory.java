@@ -72,7 +72,7 @@ public class DummyGuiFactory extends StandardGuiFactory {
         @Override
         protected MaterialTechnique createTechniqueImpl(int techniqueIndex) {
             // TODO Auto-generated method stub
-            return null;
+            return new MaterialEffect();
         }
 
         @Override
@@ -83,8 +83,12 @@ public class DummyGuiFactory extends StandardGuiFactory {
 
         @Override
         public MaterialEffect addEffect(EffectType type, long time) {
-            // TODO Auto-generated method stub
-            return null;
+            return new MaterialEffect() {
+                @Override
+                protected void executeImpl(Material material) {
+
+                }
+            };
         }
     };
 

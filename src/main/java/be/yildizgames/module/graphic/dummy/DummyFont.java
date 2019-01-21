@@ -48,7 +48,7 @@ public class DummyFont extends Font {
     }
 
     @Override
-    protected void loadImpl() {
+    protected final void loadImpl() {
         float[] c = new float[512];
         Arrays.fill(c, 1);
         this.setCharWidth(c);

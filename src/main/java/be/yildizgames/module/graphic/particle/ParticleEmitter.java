@@ -86,9 +86,16 @@ public abstract class ParticleEmitter {
      */
     protected ParticleEmitter() {
         super();
-        // FIXME the attributes values are not coherent with the implementation
-        // default values(i.e Ogre rate is 10, here it is 0), use a constructor
-        // in child to init values in this class.
+        this.angle = this.getInitialAngle();
+        this.rate = this.getInitialRate();
+        this.duration = this.getInitialDuration();
+        this.lifeTime = this.getInitialLifeTime();
+        this.direction = this.getInitialDirection();
+        this.minSpeed = this.getInitialMinSpeed();
+        this.maxSpeed = this.getInitialMaxSpeed();
+        this.startColor = this.getInitialStartColor();
+        this.endColor = this.getInitialEndColor();
+        this.repeatDelay = this.getInitialRepeatDelay();
     }
 
     /**
@@ -249,45 +256,65 @@ public abstract class ParticleEmitter {
         return this;
     }
 
-    public float getAngle() {
+    public final float getAngle() {
         return angle;
     }
 
-    public float getRate() {
+    protected abstract float getInitialAngle();
+
+    public final float getRate() {
         return rate;
     }
 
-    public float getDuration() {
+    protected abstract float getInitialRate();
+
+    public final float getDuration() {
         return duration;
     }
 
-    public float getLifeTime() {
+    protected abstract float getInitialDuration();
+
+    public final float getLifeTime() {
         return lifeTime;
     }
 
-    public Point3D getDirection() {
+    protected abstract float getInitialLifeTime();
+
+    public final Point3D getDirection() {
         return direction;
     }
 
-    public float getMinSpeed() {
+    protected abstract Point3D getInitialDirection();
+
+    public final float getMinSpeed() {
         return minSpeed;
     }
 
-    public float getMaxSpeed() {
+    protected abstract float getInitialMinSpeed();
+
+    public final float getMaxSpeed() {
         return maxSpeed;
     }
 
-    public Color getStartColor() {
+    protected abstract float getInitialMaxSpeed();
+
+    public final Color getStartColor() {
         return startColor;
     }
 
-    public Color getEndColor() {
+    protected  abstract Color getInitialStartColor();
+
+    public final Color getEndColor() {
         return endColor;
     }
 
-    public float getRepeatDelay() {
+    protected  abstract Color getInitialEndColor();
+
+    public final float getRepeatDelay() {
         return repeatDelay;
     }
+
+    protected  abstract float getInitialRepeatDelay();
 
     /**
      * Set the angle in implementation.
