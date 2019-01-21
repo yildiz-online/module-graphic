@@ -78,13 +78,12 @@ public class DummyGuiFactory extends StandardGuiFactory {
 
         @Override
         protected Material copyImpl(String name) {
-            // TODO Auto-generated method stub
-            return null;
+            return this;
         }
 
         @Override
         public MaterialEffect addEffect(EffectType type, long time) {
-            return new MaterialEffect(null, Duration.ofMillis(time)) {
+            return new MaterialEffect(this, Duration.ofMillis(time)) {
                 @Override
                 protected void executeImpl(Material material) {
 
