@@ -38,6 +38,7 @@ import be.yildizgames.module.graphic.material.MaterialEffect.EffectType;
 import be.yildizgames.module.graphic.material.MaterialTechnique;
 import be.yildizgames.module.window.ScreenSize;
 
+import java.time.Duration;
 import java.util.Arrays;
 
 /**
@@ -72,7 +73,7 @@ public class DummyGuiFactory extends StandardGuiFactory {
         @Override
         protected MaterialTechnique createTechniqueImpl(int techniqueIndex) {
             // TODO Auto-generated method stub
-            return new MaterialEffect();
+            return null;
         }
 
         @Override
@@ -83,7 +84,7 @@ public class DummyGuiFactory extends StandardGuiFactory {
 
         @Override
         public MaterialEffect addEffect(EffectType type, long time) {
-            return new MaterialEffect() {
+            return new MaterialEffect(null, Duration.ofMillis(time)) {
                 @Override
                 protected void executeImpl(Material material) {
 
