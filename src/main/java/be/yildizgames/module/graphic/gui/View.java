@@ -1,9 +1,9 @@
 /*
  * This file is part of the Yildiz-Engine project, licenced under the MIT License  (MIT)
  *
- *  Copyright (c) 2018 Grégory Van den Borre
+ *  Copyright (c) 2019 Grégory Van den Borre
  *
- *  More infos available: https://www.yildiz-games.be
+ *  More infos available: https://engine.yildiz-games.be
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
  *  documentation files (the "Software"), to deal in the Software without restriction, including without
@@ -85,6 +85,7 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
      * @param wrappedContainer Wrapped container.
      * @param z                Z order.
      * @param eventManager     Event manager to notify.
+     * @param size             Screen size.
      */
     public View(final Container wrappedContainer, final Zorder z, GuiEventManager eventManager, ScreenSize size) {
         super(wrappedContainer.getName());

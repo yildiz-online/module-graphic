@@ -1,9 +1,9 @@
 /*
  * This file is part of the Yildiz-Engine project, licenced under the MIT License  (MIT)
  *
- * Copyright (c) 2018 Grégory Van den Borre
+ * Copyright (c) 2019 Grégory Van den Borre
  *
- * More infos available: https://www.yildiz-games.be
+ * More infos available: https://engine.yildiz-games.be
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
  * software and associated documentation files (the "Software"), to deal in the Software
@@ -67,18 +67,9 @@ abstract class BaseProgressBar extends BaseContainerChild implements ProgressBar
      */
     @Override
     public final void setProgress(final float newProgressValue) {
-        final int maxProgress = 100;
-        //FIXME MEDIUM use common.shared.BoundedValue class instead
-        if (newProgressValue != this.progress) {
-            if (newProgressValue > maxProgress) {
-                // recall method to check again equality between param &
-                // attribute.
-                this.setProgress(maxProgress);
-            } else if (newProgressValue < 0) {
-                this.setProgress(0);
-            } else {
-                this.progress = newProgressValue;
-            }
+        float newProgress = this.checkProgress(newProgressValue);
+        if (newProgress != this.progress) {
+            this.progress = newProgress;
             this.updateView(this.progress);
         }
     }
@@ -112,5 +103,15 @@ abstract class BaseProgressBar extends BaseContainerChild implements ProgressBar
      * @param progress new progress value, in percent.
      */
     protected abstract void updateView(final float progress);
+
+    private float checkProgress(float progress) {
+        if(progress > 100) {
+            return 100.0f;
+        }
+        if (progress < 0) {
+            return 0.0f;
+        }
+        return progress;
+    }
 
 }
