@@ -30,6 +30,7 @@ import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.GraphicObjectBuilder;
 import be.yildizgames.module.graphic.query.GroundQuery;
 import be.yildizgames.module.graphic.query.Query;
 import be.yildizgames.module.graphic.light.Light;
@@ -57,7 +58,7 @@ import be.yildizgames.module.graphic.RayProvider;
 /**
  * @author Grégory Van den Borre
  */
-public class DummyClientWorld implements GraphicWorld {
+public class DummyGraphicWorld implements GraphicWorld {
 
     private final GraphicObject dummyObject = new DummyGraphicObject();
 
@@ -152,6 +153,21 @@ public class DummyClientWorld implements GraphicWorld {
     @Override
     public GraphicObject createMovableObject(EntityId id, GraphicMesh shape, Point3D position) {
         return dummyObject;
+    }
+
+    @Override
+    public GraphicObjectBuilder createObject() {
+        return new GraphicObjectBuilder() {
+            @Override
+            public GraphicObject buildMovable() {
+                return new DummyGraphicObject();
+            }
+
+            @Override
+            public GraphicObject buildStatic() {
+                return new DummyGraphicObject();
+            }
+        };
     }
 
     @Override
