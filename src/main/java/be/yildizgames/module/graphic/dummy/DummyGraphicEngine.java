@@ -110,7 +110,7 @@ public final class DummyGraphicEngine extends BaseGraphicEngine {
 
     @Override
     public GraphicWorld createWorld() {
-        return new DummyClientWorld();
+        return new DummyGraphicWorld();
     }
 
     @Override
