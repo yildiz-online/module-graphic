@@ -99,7 +99,7 @@ public class BillboardTest {
         private Point3D p;
 
         @Override
-        public public void setColor(Color color) {
+        public void setColor(Color color) {
             //Empty
         }
 

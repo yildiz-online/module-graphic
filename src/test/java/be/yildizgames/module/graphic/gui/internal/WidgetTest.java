@@ -93,10 +93,10 @@ public class WidgetTest {
         w.addMouseLeftClickListener(new MouseLeftClickListener() {
 
             @Override
-            public public void click() {
+            public void click() {
             }
 
-            public public void clickAt(MousePosition p) {
+            public void clickAt(MousePosition p) {
                 list.add(p);
             }
         });
