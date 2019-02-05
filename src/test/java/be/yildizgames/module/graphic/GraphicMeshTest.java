@@ -33,13 +33,13 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class GraphicMeshTest {
+public class GraphicMeshTest {
 
     @Nested
-    class Constructor {
+    public class Constructor {
         @Disabled
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             GraphicMesh mesh = new GraphicMesh("test", "tst", Material.black());
             Assertions.assertEquals("test.tst", mesh.getFile());
             Assertions.assertEquals(Material.black(), mesh.getMaterial());
@@ -47,18 +47,18 @@ class GraphicMeshTest {
 
         @Disabled
         @Test
-        void nullPath() {
+        public void nullPath() {
             Assertions.assertThrows(ImplementationException.class, () -> new GraphicMesh(null, "tst", Material.black()));
         }
 
         @Disabled
         @Test
-        void nullExtension() {
+        public void nullExtension() {
             Assertions.assertThrows(ImplementationException.class, () -> new GraphicMesh("test", null, Material.black()));
         }
 
         @Test
-        void nullMaterial() {
+        public void nullMaterial() {
             Assertions.assertThrows(ImplementationException.class, () -> new GraphicMesh("test", "tst", null));
         }
     }

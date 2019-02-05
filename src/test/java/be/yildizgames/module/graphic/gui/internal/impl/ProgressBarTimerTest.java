@@ -37,10 +37,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Grégory Van den Borre
  */
-class ProgressBarTimerTest {
+public class ProgressBarTimerTest {
 
     @Test
-    void test() {
+    public void test() {
         BaseProgressBar b = Mockito.mock(BaseProgressBar.class);
         TimeTextLine line = Mockito.mock(TimeTextLine.class);
         new SimpleProgressBarTimer(b, line, Duration.ofSeconds(10));
@@ -49,7 +49,7 @@ class ProgressBarTimerTest {
     }
 
     @Test
-    void testNeverStop() {
+    public void testNeverStop() {
         BaseProgressBar b = Mockito.mock(BaseProgressBar.class);
         TimeTextLine line = Mockito.mock(TimeTextLine.class);
         SimpleProgressBarTimer t = new SimpleProgressBarTimer(b, line, Duration.ofSeconds(0));
@@ -59,7 +59,7 @@ class ProgressBarTimerTest {
     }
 
     @Test
-    void testSetValuesNegative() {
+    public void testSetValuesNegative() {
         BaseProgressBar b = Mockito.mock(BaseProgressBar.class);
         TimeTextLine line = Mockito.mock(TimeTextLine.class);
         SimpleProgressBarTimer t = new SimpleProgressBarTimer(b, line, Duration.ofSeconds(0));

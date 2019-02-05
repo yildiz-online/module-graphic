@@ -40,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Grégory Van den Borre
  */
-class InputBoxTest {
+public class InputBoxTest {
 
     private static StandardGuiFactory builder = new DummyGuiFactory();
 
@@ -50,14 +50,14 @@ class InputBoxTest {
 
 
     @Test
-    void testGetText() {
+    public void testGetText() {
         InputBox box = givenAnInputBox();
         assertEquals("", box.getText());
         builder.delete(box);
     }
 
     @Test
-    void testSetText() {
+    public void testSetText() {
         InputBox box = givenAnInputBox();
         box.setText("abc");
         assertEquals("abc", box.getText());
@@ -65,7 +65,7 @@ class InputBoxTest {
     }
 
     @Test
-    void testRemoveChar() {
+    public void testRemoveChar() {
         InputBox box = givenAnInputBox();
         box.setText("abc");
         box.removeChar();
@@ -74,7 +74,7 @@ class InputBoxTest {
     }
 
     @Test
-    void testRemoveCharNoText() {
+    public void testRemoveCharNoText() {
         InputBox box = givenAnInputBox();
         box.removeChar();
         assertEquals("", box.getText());
@@ -82,7 +82,7 @@ class InputBoxTest {
     }
 
     @Test
-    void testAddChar() {
+    public void testAddChar() {
         SimpleInputBox box = givenAnInputBox();
         box.addChar(65);
         assertEquals("A", box.getText());
@@ -90,7 +90,7 @@ class InputBoxTest {
     }
 
     @Test
-    void testPressKey() {
+    public void testPressKey() {
         SimpleInputBox box = givenAnInputBox();
         box.show();
         box.keyPressed('a');
@@ -99,7 +99,7 @@ class InputBoxTest {
     }
 
     @Test
-    void testPressDeleteKey() {
+    public void testPressDeleteKey() {
         SimpleInputBox box = givenAnInputBox();
         box.show();
         box.keyPressed('b');
@@ -110,7 +110,7 @@ class InputBoxTest {
     }
 
     @Test
-    void testAddCharAboveLimit256() {
+    public void testAddCharAboveLimit256() {
         SimpleInputBox box = givenAnInputBox();
         box.addChar(257);
         assertEquals("", box.getText());

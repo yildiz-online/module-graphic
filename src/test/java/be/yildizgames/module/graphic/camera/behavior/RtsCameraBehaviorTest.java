@@ -34,11 +34,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class RtsCameraBehaviorTest {
+public class RtsCameraBehaviorTest {
 
     @Disabled
     @Test
-    void move() {
+    public void move() {
         Camera camera = new DummyCamera();
         camera.setTargetPosition(10,10,10);
         BehavioredCamera cam = new BehavioredCamera(camera);
@@ -50,7 +50,7 @@ class RtsCameraBehaviorTest {
 
     @Disabled
     @Test
-    void moveWithRelativePosition() {
+    public void moveWithRelativePosition() {
         Camera camera = new DummyCamera();
         camera.setTargetPosition(10,10,10);
         BehavioredCamera cam = new BehavioredCamera(camera);
@@ -63,7 +63,7 @@ class RtsCameraBehaviorTest {
 
     @Disabled
     @Test
-    void rotate() {
+    public void rotate() {
         Camera camera = new DummyCamera();
         camera.setPosition(Point3D.valueOf(5,5,5));
         camera.setTargetPosition(10,10,10);

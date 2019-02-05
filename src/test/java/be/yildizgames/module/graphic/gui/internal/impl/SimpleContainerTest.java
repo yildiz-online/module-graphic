@@ -43,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Grégory Van den Borre
  */
-final class SimpleContainerTest {
+public final class SimpleContainerTest {
 
     private static final Coordinates CR = new Coordinates(new Size(10), BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top);
 
@@ -53,7 +53,7 @@ final class SimpleContainerTest {
      * </li> <li>E: 1 more widget(W6) in the parent container, not focusable, expected: same as D</li>
      */
     @Test
-    void functionalTestGetNextFocusableElement() {
+    public void functionalTestGetNextFocusableElement() {
         StandardGuiFactory builder = new DummyGuiFactory();
         SimpleContainerBuilder cb = new SimpleContainerBuilder(builder);
         SimpleContainer c = (SimpleContainer)cb.withCoordinates(new Coordinates(50, 60, 10, 20)).build();
@@ -122,7 +122,7 @@ final class SimpleContainerTest {
     }
 
     @Test
-    void testGetNextFocusableElement() {
+    public void testGetNextFocusableElement() {
         StandardGuiFactory builder = new DummyGuiFactory();
         Container c = new SimpleContainerBuilder(builder).withCoordinates(new Coordinates(50, 60, 10, 20)).build();
         assertNull(c.getNextFocusableElement());
@@ -133,7 +133,7 @@ final class SimpleContainerTest {
     }
 
     @Test
-    void testGuiContainer() {
+    public void testGuiContainer() {
         StandardGuiFactory builder = new DummyGuiFactory();
         Coordinates cr = new Coordinates(50, 60, 10, 20);
         SimpleContainer c = (SimpleContainer)new SimpleContainerBuilder(builder).withName("test").withCoordinates(cr).build();
@@ -147,7 +147,7 @@ final class SimpleContainerTest {
     }
 
     @Test
-    void testContains() {
+    public void testContains() {
         StandardGuiFactory builder = new DummyGuiFactory();
         final int cWidth = 50;
         final int cHeight = 60;
@@ -182,7 +182,7 @@ final class SimpleContainerTest {
     }
 
     @Test
-    void testContainsVirtualHeight() {
+    public void testContainsVirtualHeight() {
         StandardGuiFactory builder = new DummyGuiFactory();
         SimpleContainer c = (SimpleContainer)new SimpleContainerBuilder(builder).withSize(new Size(50)).build();
         assertTrue(c.contains(MouseMoveMockFactory.get(10, 10)));
