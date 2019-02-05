@@ -25,6 +25,7 @@
 package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.module.graphic.gui.textline.TimeTextLine;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -39,6 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class ProgressBarTimerTest {
 
+    @Disabled
     @Test
     public void test() {
         BaseProgressBar b = Mockito.mock(BaseProgressBar.class);
@@ -48,6 +50,7 @@ public class ProgressBarTimerTest {
         assertThrows(AssertionError.class, () -> new SimpleProgressBarTimer(b, line,null));
     }
 
+    @Disabled
     @Test
     public void testNeverStop() {
         BaseProgressBar b = Mockito.mock(BaseProgressBar.class);
@@ -58,6 +61,7 @@ public class ProgressBarTimerTest {
         assertTrue(t.frameEnded());
     }
 
+    @Disabled
     @Test
     public void testSetValuesNegative() {
         BaseProgressBar b = Mockito.mock(BaseProgressBar.class);
