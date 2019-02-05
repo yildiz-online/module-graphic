@@ -104,12 +104,12 @@ public class BillboardTest {
         }
 
         @Override
-        protected public void setPositionImpl(Point3D position) {
+        protected void setPositionImpl(Point3D position) {
             this.p = position;
         }
 
         @Override
-           protected public void setSizeImpl(float newWidth, float newHeight) {
+           protected void setSizeImpl(float newWidth, float newHeight) {
             //Empty
         }
     }
