@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
@@ -33,6 +34,8 @@ import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.internal.EventBubblingDispatcher;
 import be.yildizgames.module.window.BaseWindowEngine;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ServiceLoader;
 
 /**
@@ -42,7 +45,17 @@ import java.util.ServiceLoader;
  */
 public abstract class BaseGraphicEngine implements GraphicEngine, FpsProvider {
 
+    /**
+     * Flag to check if the graphic engine must render the current frame.
+     */
+    private boolean rendering = true;
+
     private final GuiEventManager eventManager = new EventBubblingDispatcher();
+
+    /**
+     * Renderer to notify when the graphic engine is not active.
+     */
+    private final List<NotRenderingListener> notRenderingListenerList = new ArrayList<>();
 
     public static BaseGraphicEngine getEngine(BaseWindowEngine windowEngine) {
         ServiceLoader<GraphicEngineProvider> provider = ServiceLoader.load(GraphicEngineProvider.class);
@@ -67,7 +80,31 @@ public abstract class BaseGraphicEngine implements GraphicEngine, FpsProvider {
     /**
      * Render one frame.
      */
-    public abstract void update();
+    public final void update() {
+        if (this.rendering) {
+            this.updateImpl();
+        } else {
+            for (int i = 0; i < this.notRenderingListenerList.size(); i++) {
+                if (!this.notRenderingListenerList.get(i).renderingStopped()) {
+                    this.notRenderingListenerList.remove(i);
+                    i--;
+                }
+            }
+        }
+    }
+
+    /**
+     * Add a new NotRenderingListener to be executed when the rendering is
+     * paused.
+     *
+     * @param listener Listener to add.
+     */
+    public final void addNotRenderingListener(final NotRenderingListener listener) {
+        ImplementationException.throwForNull(listener);
+        this.notRenderingListenerList.add(listener);
+    }
+
+    public abstract void updateImpl();
 
     /**
      * Add a folder to use to load resources.
