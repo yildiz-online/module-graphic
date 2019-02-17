@@ -59,7 +59,7 @@ public final class DummyGraphicEngine extends BaseGraphicEngine {
     }
 
     @Override
-    public void update() {
+    public void updateImpl() {
         // does nothing.
     }
 
