@@ -54,8 +54,6 @@ public abstract class AbstractTextElement extends BaseElement {
      */
     private String currentText = "";
 
-    private String croppedText = "";
-
     /**
      * Full constructor.
      *
@@ -129,11 +127,11 @@ public abstract class AbstractTextElement extends BaseElement {
             return false;
         }
         this.currentText = newText;
-        this.croppedText = this.currentText;
+        String croppedText = this.currentText;
         if (this.getTextWidth() < this.getWidth()) {
-            this.croppedText = this.font.crop(this.croppedText, this.getWidth());
+            croppedText = this.font.crop(croppedText, this.getWidth());
         }
-        this.setTextImpl(this.croppedText);
+        this.setTextImpl(croppedText);
         this.setWidth(this.getTextWidth());
         return true;
     }

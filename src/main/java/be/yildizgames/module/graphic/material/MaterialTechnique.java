@@ -159,9 +159,6 @@ public abstract class MaterialTechnique implements Comparable<MaterialTechnique>
         if (this.index != other.index) {
             return false;
         }
-        if (!this.materialPassList.equals(other.materialPassList)) {
-            return false;
-        }
-        return true;
+        return this.materialPassList.equals(other.materialPassList);
     }
 }

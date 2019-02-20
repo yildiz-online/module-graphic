@@ -58,6 +58,7 @@ public abstract class Window extends View {
      * Associated title bar.
      */
     private final TitleBar titleBar;
+
     private final Container container;
 
     /**
@@ -107,7 +108,7 @@ public abstract class Window extends View {
         this.container = container;
         final List<Parameter> paramList = Arrays.asList(params);
         if (!paramList.contains(Parameter.NOT_MOVABLE)) {
-            container.addMouseDragListener(new ContainerElementDragListener(container, new Rectangle(0, 0, builder.getScreenSize().width, builder.getScreenSize().height)));
+            this.container.addMouseDragListener(new ContainerElementDragListener(this.container, new Rectangle(0, 0, builder.getScreenSize().width, builder.getScreenSize().height)));
         }
         this.state = ContainerState.OPEN;
         if (!paramList.contains(Parameter.NO_TITLE_BAR)) {
@@ -115,7 +116,7 @@ public abstract class Window extends View {
         } else {
             this.titleBar = new NoTitleBar();
         }
-        this.initialHeight = container.getHeight();
+        this.initialHeight = this.container.getHeight();
     }
 
     /**
@@ -197,20 +198,19 @@ public abstract class Window extends View {
         public BasicTitleBar(final GuiFactory builder, Font font) {
             super();
             this.height = Window.MINIMIZED_SIZE;
-            final Container container = Window.this.container;
             this.title = builder
                     .textLine()
                     .withName("title_" + Window.this.getName())
                     .withCoordinates(new Coordinates(Window.this.getContainer().getWidth(), 20, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top))
                     .withFont(font)
-                    .build(container);
+                    .build(Window.this.container);
             final Coordinates closeCoordinates = new Coordinates(this.height, this.height, Window.this.getContainer().getWidth() - this.height, 0);
             this.close = builder
                     .button()
                     .withName("close_" + Window.this.getName())
                     .withCoordinates(closeCoordinates)
                     .withButtonMaterial(new ButtonMaterial(Material.empty(), Material.empty(), font))
-                    .build(container);
+                    .build(Window.this.container);
             this.close.addMouseLeftClickListener(Window.this::hide);
         }
 
