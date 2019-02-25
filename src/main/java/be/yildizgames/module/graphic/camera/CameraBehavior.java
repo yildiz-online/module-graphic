@@ -49,7 +49,7 @@ public interface CameraBehavior {
     /**
      * Move the camera to a given destination.
      * @param camera Camera to use.
-     * @param newPosition destination to go to.
+     * @param destination destination to go to.
      */
     void move(Camera camera, Point3D destination);
 
