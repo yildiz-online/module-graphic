@@ -27,17 +27,35 @@ package be.yildizgames.module.graphic.camera;
 
 import be.yildizgames.common.geometry.Point3D;
 
+/**
+ * Define how the camera will behave when receiving position and orientation change request.
+ */
 public interface CameraBehavior {
 
+    /**
+     * The camera will look to a given target.
+     * @param camera Camera to use.
+     * @param target Target to look at.
+     */
     void lookAt(Camera camera, Point3D target);
 
+    /**
+     * Update the camera position.
+     * @param camera Camera to use.
+     * @param newPosition New position to set.
+     */
     void setPosition(Camera camera, Point3D newPosition);
 
+    /**
+     * Move the camera to a given destination.
+     * @param camera Camera to use.
+     * @param newPosition destination to go to.
+     */
     void move(Camera camera, Point3D destination);
 
     /**
      * Rotate on the Y axis (vertical one).
-     * @param camera Camera to rotate.
+     * @param camera Camera to use.
      * @param yaw Angle to rotate on Y axis(vertical), in radians.
      * @param pitch Angle to rotate on X axis (vertical), in radians
      */
@@ -45,5 +63,9 @@ public interface CameraBehavior {
 
     void setRelativePosition(Camera camera, Point3D position);
 
+    /**
+     * Initialize, or reinitialize the camera.
+     * @param camera Camera to use.
+     */
     void initialise(Camera camera);
 }

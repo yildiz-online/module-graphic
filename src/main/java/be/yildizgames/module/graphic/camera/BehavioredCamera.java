@@ -25,6 +25,7 @@
 
 package be.yildizgames.module.graphic.camera;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.graphic.RayProvider;
 
@@ -35,23 +36,36 @@ import be.yildizgames.module.graphic.RayProvider;
  */
 public class BehavioredCamera {
 
+    /**
+     * Camera to apply the behavior to.
+     */
     private final Camera camera;
 
+    /**
+     * Behavior to apply.
+     */
     private CameraBehavior behavior;
 
+    /**
+     * Create a new instance, default behavior is CameraBehaviors.FREEFLY.
+     * @param camera Camera to use.
+     */
     public BehavioredCamera(Camera camera) {
         super();
+        ImplementationException.throwForNull(camera);
         this.camera = camera;
         this.changeBehavior(CameraBehaviors.FREEFLY);
     }
 
     public final void changeBehavior(CameraBehaviors behavior) {
+        ImplementationException.throwForNull(behavior);
         this.changeBehavior(behavior.getBehavior());
     }
 
     public final void changeBehavior(CameraBehavior behavior) {
+        ImplementationException.throwForNull(behavior);
         this.behavior = behavior;
-        this.behavior.initialise(camera);
+        this.behavior.initialise(this.camera);
     }
 
     /**
@@ -70,6 +84,10 @@ public class BehavioredCamera {
         this.behavior.setPosition(this.camera, newPosition);
     }
 
+    /**
+     * Retrieve the camera position.
+     * @return The camera position.
+     */
     public final Point3D getPosition() {
         return this.camera.getPosition();
     }

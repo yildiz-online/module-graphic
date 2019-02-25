@@ -117,12 +117,12 @@ public final class TabContainer extends BaseContainerChild {
 
     @Override
     protected void setSizeImpl(final int newWidth, final int newHeight) {
-        // FIXME implements
+        this.background.setSize(newWidth, newHeight);
     }
 
     @Override
     protected Element setPositionImpl(final int newLeft, final int newTop) {
-        // FIXME implements
+        this.background.setPosition(newLeft, newTop);
         return this;
     }
 

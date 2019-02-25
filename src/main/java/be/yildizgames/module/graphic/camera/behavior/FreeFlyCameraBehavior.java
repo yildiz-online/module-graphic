@@ -33,7 +33,7 @@ public class FreeFlyCameraBehavior implements CameraBehavior {
 
     @Override
     public void lookAt(Camera camera, Point3D target) {
-        //FIXME implement
+        camera.setDirection(target);
     }
 
     @Override
@@ -43,7 +43,9 @@ public class FreeFlyCameraBehavior implements CameraBehavior {
 
     @Override
     public void move(Camera camera, Point3D destination) {
-        //FIXME implement
+        Point3D direction = destination.subtract(camera.getPosition());
+        camera.setDirection(direction);
+        camera.setPosition(destination);
     }
 
     @Override
@@ -53,7 +55,7 @@ public class FreeFlyCameraBehavior implements CameraBehavior {
 
     @Override
     public void setRelativePosition(Camera camera, Point3D position) {
-        //FIXME implement
+        camera.setPosition(position);
     }
 
     @Override

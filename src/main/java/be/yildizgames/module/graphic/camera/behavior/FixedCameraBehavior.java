@@ -31,6 +31,7 @@ import be.yildizgames.module.graphic.camera.CameraBehavior;
 
 /**
  * With this behavior, the camera position and target can only be set once, after that the position is locked.
+ * @author Grégory Van den Borre
  */
 public class FixedCameraBehavior implements CameraBehavior {
 
