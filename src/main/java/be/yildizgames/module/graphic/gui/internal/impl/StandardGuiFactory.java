@@ -34,8 +34,6 @@ import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.GuiFactory;
-import be.yildizgames.module.graphic.gui.SimpleView;
-import be.yildizgames.module.graphic.gui.View;
 import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
@@ -765,10 +763,10 @@ public abstract class StandardGuiFactory implements GuiFactory {
     public final TabContainer buildTabcontainer(final String name, final String[] titles, final BaseCoordinate coordinates, final int tabWidth, final int tabHeight, final Material background,
                                                 final Material tabMaterial, final Material highlight, final Material pushed, final Font font, final SimpleContainer container) {
 
-        View[] children = new View[titles.length];
+        HandledContainer[] children = new HandledContainer[titles.length];
         for (int i = 0; i < children.length; i++) {
-            Container c = this.buildContainerElement("childc" + name + i, coordinates, Material.empty());
-            children[i] = new SimpleView(c, container.getZ().add(10), null);
+            children[i] = this.buildContainerElement("childc" + name + i, coordinates, Material.empty());
+            children[i].setZ(children[i].getZ().add(10));
         }
         Image bg = this.buildImage(name + "bg", new Coordinates(coordinates.width, coordinates.height - tabHeight, coordinates.left, coordinates.top), background, container);
         SimpleButton[] buttons = new SimpleButton[titles.length];

@@ -27,17 +27,19 @@ package be.yildizgames.module.graphic.gui.internal;
 
 import be.yildizgames.common.client.debug.DebugListener;
 import be.yildizgames.module.graphic.gui.GuiEventManager;
-import be.yildizgames.module.graphic.gui.View;
 import be.yildizgames.module.graphic.gui.Widget;
+import be.yildizgames.module.graphic.gui.Zorder;
 import be.yildizgames.module.graphic.gui.container.Container;
+import be.yildizgames.module.graphic.gui.internal.impl.HandledContainer;
 import be.yildizgames.module.window.input.Key;
 import be.yildizgames.module.window.input.MousePosition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * @author Grégory Van den Borre
@@ -46,9 +48,11 @@ public class EventBubblingDispatcher implements GuiEventManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventBubblingDispatcher.class);
 
-    private final Set<View> views = new TreeSet<>();
+    private int containerNumber = 1;
 
-    private BaseWidget currentWidgetFocus = BaseWidget.DUMMY;
+    private final List<HandledContainer> views = new ArrayList<>();
+
+    private BaseWidget currentWidgetActive = BaseWidget.DUMMY;
 
     private BaseWidget widgetUnderMouse = BaseWidget.DUMMY;
 
@@ -62,25 +66,24 @@ public class EventBubblingDispatcher implements GuiEventManager {
 
     @Override
     public void keyboardKeyPressed(final char character) {
-        this.debugListener.displayDebugMessage("Key " + character + " pressed for: " + this.currentWidgetFocus);
-        this.currentWidgetFocus.keyPressed(character);
+        this.debugListener.displayDebugMessage("Key " + character + " pressed for: " + this.currentWidgetActive);
+        this.currentWidgetActive.keyPressed(character);
     }
 
     @Override
     public void specialKeyPressed(Key key) {
-        this.debugListener.displayDebugMessage("Key " + key + " pressed for: " + this.currentWidgetFocus);
-        this.currentWidgetFocus.specialKeyPressed(key);
+        this.debugListener.displayDebugMessage("Key " + key + " pressed for: " + this.currentWidgetActive);
+        this.currentWidgetActive.specialKeyPressed(key);
     }
-
 
     @Override
     public void keyboardKeyReleased(char keyCode) {
-        this.currentWidgetFocus.keyReleased(keyCode);
+        this.currentWidgetActive.keyReleased(keyCode);
     }
 
     @Override
     public void specialKeyReleased(Key key) {
-        this.currentWidgetFocus.specialKeyReleased(key);
+        this.currentWidgetActive.specialKeyReleased(key);
     }
 
     @Override
@@ -96,9 +99,15 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void mouseLeftClick(MousePosition position) {
         this.debugListener.displayDebugMessage("Left click on: " + this.widgetUnderMouse);
-        this.currentWidgetFocus.highlightImpl(false);
-        this.currentWidgetFocus = widgetUnderMouse;
+        this.setFocus(this.widgetUnderMouse);
         this.widgetUnderMouse.mouseLeftClick(position);
+    }
+
+    @Override
+    public void setFocus(Widget widget) {
+        this.currentWidgetActive.highlightImpl(false);
+        this.currentWidgetActive = (BaseWidget) widget;
+        this.currentWidgetActive.highlightImpl(true);
     }
 
     @Override
@@ -130,10 +139,23 @@ public class EventBubblingDispatcher implements GuiEventManager {
 
     @Override
     public void mouseMove(MousePosition position) {
-        for (View v : this.views) {
-            if (v.isVisible() && v.isActive()) {
-                Container viewContainer = v.getContainer();
-                Optional<Widget> foundWidget = viewContainer.getWidgetAt(position);
+        boolean dirty = false;
+        for (HandledContainer v : this.views) {
+            if (v.isVisible() && v.isDirty()) {
+                v.clearDirty();
+                dirty = true;
+            }
+        }
+        if (dirty) {
+            Collections.sort(this.views);
+        }
+        this.recomputeMouseOver(position);
+    }
+
+    private void recomputeMouseOver(MousePosition position) {
+        for (HandledContainer v : this.views) {
+            if (v.isVisible()) {
+                Optional<Widget> foundWidget = v.getWidgetAt(position);
                 if (foundWidget.isPresent() && foundWidget.get() != this.widgetUnderMouse) {
                     this.widgetUnderMouse.highlight(false);
                     this.widgetUnderMouse.setMouseOver(false, position);
@@ -162,32 +184,31 @@ public class EventBubblingDispatcher implements GuiEventManager {
     }
 
     @Override
-    public void addView(View view) {
-        if (!this.views.add(view)) {
-            LOGGER.error("{} was not added successfully.", view);
-            LOGGER.error("Views already registered: {}", views.toArray());
-        }
+    public void addContainer(HandledContainer container) {
+        this.containerNumber++;
+        container.setZ(new Zorder(this.containerNumber));
+        this.views.add(container);
+        Collections.sort(this.views);
     }
 
     @Override
-    public void setDefaultView(View view) {
-        this.defaultWidget = BaseWidget.class.cast(view.getContainer());
+    public void setDefaultContainer(Container container) {
+        this.defaultWidget = BaseWidget.class.cast(container);
     }
 
     @Override
-    public void removeView(View view) {
-        this.views.remove(view);
+    public void removeContainer(HandledContainer container) {
+        this.views.remove(container);
     }
 
     @Override
-    public void setFocus(View view) {
-        this.debugListener.displayDebugMessage("New focus:" + view.getContainer().getName());
-        this.currentWidgetFocus = BaseWidget.class.cast(view.getContainer());
+    public void setFocus(Container container) {
+        this.debugListener.displayDebugMessage("New focus:" + container.getName());
+        this.currentWidgetActive = BaseWidget.class.cast(container);
     }
 
     @Override
     public BaseWidget getWidgetUnderMouse() {
         return this.widgetUnderMouse;
     }
-
 }

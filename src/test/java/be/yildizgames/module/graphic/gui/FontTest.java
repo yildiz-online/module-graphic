@@ -26,6 +26,7 @@ package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.dummy.DummyGuiFactory;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 

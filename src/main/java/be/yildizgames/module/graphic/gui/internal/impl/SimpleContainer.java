@@ -46,7 +46,12 @@ import java.util.stream.Collectors;
  *
  * @author Grégory Van Den Borre
  */
-public abstract class SimpleContainer extends BaseWidget implements Container {
+public abstract class SimpleContainer extends BaseWidget implements HandledContainer {
+
+    private static int currentZ;
+
+    private boolean active = false;
+
     /**
      * List of all Widget contained in this container.
      */
@@ -80,6 +85,8 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      */
     private Zorder z = Zorder.ZERO;
 
+    private boolean dirty = false;
+
     /**
      * Full container.
      *
@@ -110,7 +117,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @param widget             Flag to set this container being considered as container or widget.
      */
     protected SimpleContainer(final String name, final BaseCoordinate coordinates, final Material backgroundMaterial,
-                              final boolean widget) {
+            final boolean widget) {
         super(name, coordinates);
         this.material = backgroundMaterial;
         this.setFocusable(true);
@@ -156,6 +163,23 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
     }
 
     public abstract String getElementName(final int x, final int y);
+
+    @Override
+    public final void setZ(Zorder z) {
+        this.z = z;
+        this.setZImpl(z);
+        this.dirty = true;
+    }
+
+    @Override
+    public final boolean isDirty() {
+        return this.dirty;
+    }
+
+    @Override
+    public final void clearDirty() {
+        this.dirty = false;
+    }
 
     /**
      * Retrieve all child elements contained in a rectangle.
@@ -275,10 +299,12 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
 
     /**
      * Get the next child with focusable status.
+     * @deprecated to be deleted
      *
      * @return The focusable child following the current focused child,
      * <code>null</code> if none found.
      */
+    @Deprecated(since = "3.0.0", forRemoval = true)
     public final Widget getNextFocusableElement() {
         // first iterate from current position to end of list.
         for (int i = this.currentFocusable + 1; i < this.dynamicChildrenList.size(); i++) {
@@ -385,16 +411,6 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
     }
 
     /**
-     * Set the container Z order.
-     *
-     * @param z Z order.
-     */
-    public final void setZ(final Zorder z) {
-        this.z = z;
-        this.setZImpl(z);
-    }
-
-    /**
      * Implementation specific to set the Z order.
      *
      * @param z Z order.
@@ -431,6 +447,9 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
                 return Optional.of(w);
             }
         }
+        if(this.isVisible() && this.contains(x, y) ) {
+            return Optional.of(this);
+        }
         return Optional.empty();
     }
 
@@ -466,5 +485,25 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
                 this.resetFocus();
             }
         }
+    }
+
+    @Override
+    public final boolean isActive() {
+        return active;
+    }
+
+    @Override
+    public final void setActive() {
+        this.active = true;
+    }
+
+    @Override
+    public final void setInactive() {
+        this.active = false;
+    }
+
+    @Override
+    public final int compareTo(Container o) {
+        return this.getZ().compareTo(o.getZ());
     }
 }

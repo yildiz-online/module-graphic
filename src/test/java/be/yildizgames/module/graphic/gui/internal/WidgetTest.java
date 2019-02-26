@@ -27,7 +27,7 @@ package be.yildizgames.module.graphic.gui.internal;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Position;
 import be.yildizgames.module.coordinate.Size;
-import be.yildizgames.module.graphic.gui.DummyGuiFactory;
+import be.yildizgames.module.graphic.dummy.DummyGuiFactory;
 import be.yildizgames.module.graphic.gui.WidgetMock;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.impl.StandardGuiFactory;

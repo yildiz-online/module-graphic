@@ -30,36 +30,21 @@ import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.Zorder;
 import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.window.input.MousePosition;
-
-import java.util.Optional;
 
 /**
  * @author Grégory Van den Borre
  */
-public interface Container extends Widget {
+public interface Container extends Widget, Comparable<Container> {
 
     void addWidget(ContainerChild child);
 
     void remove(ContainerChild child);
 
-    void setZ(Zorder z);
-
-    void setCurrentFocus(Widget focus);
-
-    Widget getNextFocusableElement();
-
     void showContent();
 
     void setMaterial(Material background);
 
-    void disableHighlight();
-
     void hideContent();
-
-    Optional<Widget> getWidgetAt(MousePosition position);
-
-    Optional<Widget> getWidgetAt(int x, int y);
 
     Zorder getZ();
 
@@ -67,10 +52,10 @@ public interface Container extends Widget {
 
     Point2D getAbsolutePosition();
 
-    void keyPressed(char key);
-
     void disableEmptyZone();
 
     void enableEmptyZone();
+
+    void keyPressed(char key);
 
 }

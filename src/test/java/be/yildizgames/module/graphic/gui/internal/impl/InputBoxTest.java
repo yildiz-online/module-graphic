@@ -29,7 +29,7 @@ import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.dummy.DummyFont;
-import be.yildizgames.module.graphic.gui.DummyGuiFactory;
+import be.yildizgames.module.graphic.dummy.DummyGuiFactory;
 import be.yildizgames.module.graphic.gui.inputbox.InputBox;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.window.input.Key;

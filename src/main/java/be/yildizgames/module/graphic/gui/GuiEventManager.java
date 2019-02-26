@@ -25,7 +25,9 @@
 package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.client.debug.DebugListener;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidget;
+import be.yildizgames.module.graphic.gui.internal.impl.HandledContainer;
 import be.yildizgames.module.window.input.WindowInputListener;
 
 /**
@@ -34,25 +36,27 @@ import be.yildizgames.module.window.input.WindowInputListener;
 public interface GuiEventManager extends WindowInputListener {
 
     /**
-     * Add a view to the dispatcher and set all listeners list for that view.
+     * Add a container to the dispatcher and set all listeners list for that view.
      *
-     * @param view View to add.
+     * @param container Container to add.
      */
-    void addView(View view);
+    void addContainer(HandledContainer container);
 
     /**
-     * Remove a View from the event dispatch.
+     * Remove a container from the event dispatch.
      *
-     * @param view View to remove, it will no longer be affected by mouse and keyboard events.
+     * @param container Container to remove, it will no longer be affected by mouse and keyboard events.
      */
-    void removeView(View view);
+    void removeContainer(HandledContainer container);
 
     /**
-     * Set the focus on a particular View.
+     * Set the focus on a particular container.
      *
-     * @param view View to set the focus on.
+     * @param container Container to set the focus on.
      */
-    void setFocus(View view);
+    void setFocus(Container container);
+
+    void setFocus(Widget widget);
 
     /**
      * @return The current widget under the mouse.
@@ -61,6 +65,6 @@ public interface GuiEventManager extends WindowInputListener {
 
     void setDebugListener(DebugListener listener);
 
-    void setDefaultView(View view);
+    void setDefaultContainer(Container container);
 
 }
