@@ -31,25 +31,25 @@ import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.camera.Camera;
-import be.yildizgames.module.graphic.misc.ElectricArc;
-import be.yildizgames.module.graphic.misc.Explosion;
 import be.yildizgames.module.graphic.billboard.BillboardSet;
+import be.yildizgames.module.graphic.camera.Camera;
+import be.yildizgames.module.graphic.light.DirectionalLight;
 import be.yildizgames.module.graphic.light.LensFlare;
 import be.yildizgames.module.graphic.light.LensFlare.LensFlareMaterial;
 import be.yildizgames.module.graphic.light.Light;
-import be.yildizgames.module.graphic.light.DirectionalLight;
 import be.yildizgames.module.graphic.light.PointLight;
 import be.yildizgames.module.graphic.light.SpotLight;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.graphic.misc.ElectricArc;
+import be.yildizgames.module.graphic.misc.Explosion;
 import be.yildizgames.module.graphic.misc.Line;
 import be.yildizgames.module.graphic.misc.MovableText;
 import be.yildizgames.module.graphic.misc.Ocean;
 import be.yildizgames.module.graphic.misc.Sky;
 import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.graphic.particle.ParticleSystem;
-import be.yildizgames.module.graphic.query.Query;
 import be.yildizgames.module.graphic.query.GroundQuery;
+import be.yildizgames.module.graphic.query.Query;
 
 /**
  * A world is a specific part of the game, all entities in a world will never have interactions with entities from other worlds. A world manage the physic properties(gravity, collisions...), a
@@ -62,8 +62,6 @@ public interface GraphicWorld {
     Query createQuery(RayProvider provider);
 
     GroundQuery createGroundQuery(RayProvider provider);
-
-    void createDummyGround();
 
     /**
      * Create a movable graphic box, it has no Id, is not selectable and will not be affected in any way by physics. It is usually used to represent not selectable object like small animals,

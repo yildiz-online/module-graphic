@@ -30,31 +30,30 @@ import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.DummyGround;
-import be.yildizgames.module.graphic.GraphicObjectBuilder;
-import be.yildizgames.module.graphic.query.GroundQuery;
-import be.yildizgames.module.graphic.query.Query;
-import be.yildizgames.module.graphic.light.Light;
-import be.yildizgames.module.graphic.particle.ParticleSystem;
-import be.yildizgames.module.graphic.billboard.BillboardSet;
-import be.yildizgames.module.graphic.camera.Camera;
-import be.yildizgames.module.graphic.light.DirectionalLight;
-import be.yildizgames.module.graphic.misc.ElectricArc;
-import be.yildizgames.module.graphic.misc.Explosion;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicMesh;
 import be.yildizgames.module.graphic.GraphicObject;
+import be.yildizgames.module.graphic.GraphicObjectBuilder;
 import be.yildizgames.module.graphic.GraphicWorld;
+import be.yildizgames.module.graphic.RayProvider;
+import be.yildizgames.module.graphic.billboard.BillboardSet;
+import be.yildizgames.module.graphic.camera.Camera;
+import be.yildizgames.module.graphic.light.DirectionalLight;
 import be.yildizgames.module.graphic.light.LensFlare;
-import be.yildizgames.module.graphic.misc.Line;
+import be.yildizgames.module.graphic.light.Light;
+import be.yildizgames.module.graphic.light.PointLight;
+import be.yildizgames.module.graphic.light.SpotLight;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.graphic.misc.ElectricArc;
+import be.yildizgames.module.graphic.misc.Explosion;
+import be.yildizgames.module.graphic.misc.Line;
 import be.yildizgames.module.graphic.misc.MovableText;
 import be.yildizgames.module.graphic.misc.Ocean;
-import be.yildizgames.module.graphic.light.PointLight;
 import be.yildizgames.module.graphic.misc.Sky;
 import be.yildizgames.module.graphic.misc.Skybox;
-import be.yildizgames.module.graphic.light.SpotLight;
-import be.yildizgames.module.graphic.RayProvider;
+import be.yildizgames.module.graphic.particle.ParticleSystem;
+import be.yildizgames.module.graphic.query.GroundQuery;
+import be.yildizgames.module.graphic.query.Query;
 
 /**
  * @author Grégory Van den Borre
@@ -70,10 +69,6 @@ public class DummyGraphicWorld implements GraphicWorld {
 
     @Override
     public GroundQuery createGroundQuery(RayProvider provider) { return null; }
-
-    @Override
-    public void createDummyGround() {
-    }
 
     @Override
     public GraphicObject createMovableDoodad(Box box, Material material) {
