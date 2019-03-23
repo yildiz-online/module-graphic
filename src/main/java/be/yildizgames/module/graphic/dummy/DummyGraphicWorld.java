@@ -30,6 +30,7 @@ import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.DummyGround;
 import be.yildizgames.module.graphic.GraphicObjectBuilder;
 import be.yildizgames.module.graphic.query.GroundQuery;
 import be.yildizgames.module.graphic.query.Query;
@@ -69,6 +70,11 @@ public class DummyGraphicWorld implements GraphicWorld {
 
     @Override
     public GroundQuery createGroundQuery(RayProvider provider) { return null; }
+
+    @Override
+    public DummyGround createDummyGround() {
+        return null;
+    }
 
     @Override
     public GraphicObject createMovableDoodad(Box box, Material material) {

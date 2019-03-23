@@ -63,7 +63,7 @@ public interface GraphicWorld {
 
     GroundQuery createGroundQuery(RayProvider provider);
 
-    DummyGround createGroundQuery();
+    DummyGround createDummyGround();
 
     /**
      * Create a movable graphic box, it has no Id, is not selectable and will not be affected in any way by physics. It is usually used to represent not selectable object like small animals,
