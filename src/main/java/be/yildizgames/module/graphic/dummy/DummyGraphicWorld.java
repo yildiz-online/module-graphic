@@ -72,8 +72,7 @@ public class DummyGraphicWorld implements GraphicWorld {
     public GroundQuery createGroundQuery(RayProvider provider) { return null; }
 
     @Override
-    public DummyGround createDummyGround() {
-        return null;
+    public void createDummyGround() {
     }
 
     @Override
