@@ -75,5 +75,4 @@ public class FontTest {
             assertThrows(ImplementationException.class, () -> f.crop(null, 3));
         }
     }
-
 }

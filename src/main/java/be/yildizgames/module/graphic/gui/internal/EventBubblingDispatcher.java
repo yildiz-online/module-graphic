@@ -189,5 +189,4 @@ public class EventBubblingDispatcher implements GuiEventManager {
     public BaseWidget getWidgetUnderMouse() {
         return this.widgetUnderMouse;
     }
-
 }

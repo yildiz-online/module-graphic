@@ -71,3 +71,4 @@ public class ProgressBarTimerTest {
         assertThrows(AssertionError.class, () -> t.setValues(5, -10));
     }
 }
+

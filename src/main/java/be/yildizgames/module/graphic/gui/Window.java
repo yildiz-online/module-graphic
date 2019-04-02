@@ -59,6 +59,9 @@ public abstract class Window extends View {
      */
     private final TitleBar titleBar;
 
+    /**
+     * Wrapped container.
+     */
     private final Container container;
 
     /**

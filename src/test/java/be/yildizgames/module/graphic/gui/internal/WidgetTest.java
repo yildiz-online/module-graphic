@@ -57,7 +57,6 @@ public class WidgetTest {
         return new WidgetMock(new Coordinates(new Size(10), new Position(10)), c);
     }
 
-    /***/
     @Test
     public void testWidget() {
         StandardGuiFactory builder = new DummyGuiFactory();
@@ -71,19 +70,6 @@ public class WidgetTest {
         assertEquals(c, w.findParent().get());
     }
 
-    /***/
-    @Test
-    public void testSetLeftWidgetPositionRelative() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testSetLeftWidgetPositionRelativefloat() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
     @Test
     public void testAddMouseClickListener() {
         BaseWidget w = givenAWidget();
@@ -104,7 +90,6 @@ public class WidgetTest {
         assertEquals(MouseMoveMockFactory.get(12, 14), list.get(0));
     }
 
-    /***/
     @Test
     public void testAddKeyboardListener() {
         BaseWidget w = givenAWidget();
@@ -116,7 +101,6 @@ public class WidgetTest {
         assertTrue('e' == list.get(0));
     }
 
-    /***/
     @Test
     public void testAddMouseMoveListener() {
         BaseWidget w = givenAWidget();
@@ -126,12 +110,6 @@ public class WidgetTest {
         w.addMouseMoveListener(list::add);
         w.mouseMove(MouseMoveMockFactory.get(4, 89));
         assertEquals(MouseMoveMockFactory.get(4, 89), list.get(0));
-    }
-
-    /***/
-    @Test
-    public void testAddMouseDragListener() {
-
     }
 
     @Test
@@ -172,205 +150,6 @@ public class WidgetTest {
     }
 
     @Test
-    public void testDelete() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testHighlightImpl() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetSizeImpl() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testShowImpl() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testHideImpl() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetPositionImpl() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testContains() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testUpdateSizeAfterZoom() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testMouseLeftClick() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testMouseDoubleClick() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testMouseRightClic() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testMouseReleased() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testMouseDragLeft() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testMouseDragRight() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testMouseWheel() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testMouseMove() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testKeyPressed() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testSpecialKeyPressed() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testHighlight() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testFocus() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetTop() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetLeftFloat() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetId() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetHeight() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetCoordinates() {
-        // fail("Not yet implemented");
-    }
-
-    /***/
-    @Test
-    public void testSetAlignement() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetUnaffectedByZoom() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testIsAffectedByZoom() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetPosition() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetSize() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetHeight() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetWidth() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetLeft() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetRight() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetTop() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetBottom() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetHighlightable() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
     public void testSetIsFocusable() {
         BaseWidget w = givenAWidget();
         assertFalse(w.isFocusable());
@@ -379,30 +158,4 @@ public class WidgetTest {
         w.setFocusable(false);
         assertFalse(w.isFocusable());
     }
-
-    @Test
-    public void testIsHighlightable() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetMouseOver() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testIsMouseOver() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testToString() {
-        // fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetOpacity() {
-        // fail("Not yet implemented");
-    }
-
 }

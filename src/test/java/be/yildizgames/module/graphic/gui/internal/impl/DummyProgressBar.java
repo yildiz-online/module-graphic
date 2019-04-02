@@ -5,6 +5,9 @@ import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
 
+/**
+ * @author Grégory Van den Borre
+ */
 public class DummyProgressBar extends BaseProgressBar {
 
     protected DummyProgressBar() {

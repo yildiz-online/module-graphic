@@ -62,5 +62,4 @@ public interface GuiEventManager extends WindowInputListener {
     void setDebugListener(DebugListener listener);
 
     void setDefaultView(View view);
-
 }

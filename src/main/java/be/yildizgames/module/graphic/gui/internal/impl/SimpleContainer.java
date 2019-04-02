@@ -318,6 +318,9 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
         this.resetFocus();
     }
 
+    /**
+     * Reset the focus to its initial value(-1)
+     */
     private void resetFocus() {
         for (SimpleContainer c : this.childrenContainerList) {
             c.currentFocusable = -1;

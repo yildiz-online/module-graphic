@@ -80,5 +80,4 @@ public final class DummyTextElement extends AbstractTextElement {
     protected Element setPositionImpl(final int newLeft, final int newTop) {
         return this;
     }
-
 }

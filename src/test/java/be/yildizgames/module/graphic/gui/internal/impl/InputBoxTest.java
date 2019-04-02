@@ -48,7 +48,6 @@ public class InputBoxTest {
 
     private static SimpleContainer parent = builder.buildOverlayContainer("parent", Material.empty(), new Coordinates(100, 10, 0, 0));
 
-
     @Test
     public void testGetText() {
         InputBox box = givenAnInputBox();

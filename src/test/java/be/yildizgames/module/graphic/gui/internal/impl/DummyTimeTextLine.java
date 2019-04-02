@@ -4,6 +4,7 @@ import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.coordinate.Relative;
 import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
@@ -26,6 +27,9 @@ import be.yildizgames.module.window.input.MouseReleaseListener;
 import be.yildizgames.module.window.input.MouseRightClickListener;
 import be.yildizgames.module.window.input.MouseWheelListener;
 
+/**
+ * @author Grégory Van den Borre
+ */
 public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
@@ -35,27 +39,27 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public TextLine setText(String text) {
-        return null;
+        return this;
     }
 
     @Override
     public TextLine setText(TranslationKey key) {
-        return null;
+        return this;
     }
 
     @Override
     public TextLine setText(TranslationKey.MultiKey key) {
-        return null;
+        return this;
     }
 
     @Override
     public TextLine setText(int i) {
-        return null;
+        return this;
     }
 
     @Override
     public TextLine setColor(Color color) {
-        return null;
+        return this;
     }
 
     @Override
@@ -65,12 +69,12 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public TextLine setTextPosition(TextPosition textPosition) {
-        return null;
+        return this;
     }
 
     @Override
     public String getContent() {
-        return null;
+        return "";
     }
 
     @Override
@@ -80,27 +84,27 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public ContainerChild setLeftFromParent(PositionRelativeLeft p) {
-        return null;
+        return this;
     }
 
     @Override
     public ContainerChild setLeftFromParent(PositionRelativeLeft relative, int diff) {
-        return null;
+        return this;
     }
 
     @Override
     public ContainerChild setTopFromParent(PositionRelativeTop relative) {
-        return null;
+        return this;
     }
 
     @Override
     public ContainerChild setTopFromParent(PositionRelativeTop relative, int diff) {
-        return null;
+        return this;
     }
 
     @Override
     public Container getParent() {
-        return null;
+        return new DummyContainer();
     }
 
     @Override
@@ -225,47 +229,47 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public Element hide() {
-        return null;
+        return this;
     }
 
     @Override
     public Element setPosition(Element other) {
-        return null;
+        return this;
     }
 
     @Override
     public Element show() {
-        return null;
+        return this;
     }
 
     @Override
     public Element setTop(Element other, PositionRelativeTop relative, int diff) {
-        return null;
+        return this;
     }
 
     @Override
     public Element setTop(Element other, PositionRelativeTop top, Relative relativeDiff) {
-        return null;
+        return this;
     }
 
     @Override
     public Element setTop(Element other, PositionRelativeTop relative) {
-        return null;
+        return this;
     }
 
     @Override
     public Element setLeft(Element other, PositionRelativeLeft relative) {
-        return null;
+        return this;
     }
 
     @Override
     public Element setLeft(Element other, PositionRelativeLeft relative, int diff) {
-        return null;
+        return this;
     }
 
     @Override
     public Element setLeft(Element other, PositionRelativeLeft left, Relative relativeDiff) {
-        return null;
+        return this;
     }
 
     @Override
@@ -275,7 +279,7 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public Element setLeft(int left) {
-        return null;
+        return this;
     }
 
     @Override
@@ -285,7 +289,7 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public Element setTop(int top) {
-        return null;
+        return this;
     }
 
     @Override
@@ -305,7 +309,7 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public Element setPosition(int left, int top) {
-        return null;
+        return this;
     }
 
     @Override
@@ -340,7 +344,7 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public BaseCoordinate getCoordinates() {
-        return null;
+        return Coordinates.ZERO;
     }
 
     @Override
@@ -355,7 +359,7 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public Element setVisible(boolean visible) {
-        return null;
+        return this;
     }
 
     @Override
@@ -380,6 +384,6 @@ public class DummyTimeTextLine implements TimeTextLine {
 
     @Override
     public String getName() {
-        return null;
+        return "";
     }
 }

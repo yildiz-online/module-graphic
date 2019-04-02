@@ -7,6 +7,9 @@ import be.yildizgames.module.graphic.gui.Zorder;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
 
+/**
+ * @author Grégory Van den Borre
+ */
 public class DummyContainer extends SimpleContainer {
 
 

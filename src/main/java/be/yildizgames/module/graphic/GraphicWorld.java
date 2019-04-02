@@ -59,6 +59,11 @@ import be.yildizgames.module.graphic.query.Query;
  */
 public interface GraphicWorld {
 
+    /**
+     * Create a new query from a provider.
+     * @param provider Query provider.
+     * @return The query.
+     */
     Query createQuery(RayProvider provider);
 
     GroundQuery createGroundQuery(RayProvider provider);

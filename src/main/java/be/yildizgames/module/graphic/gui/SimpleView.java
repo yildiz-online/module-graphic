@@ -59,5 +59,4 @@ public class SimpleView extends View {
     protected final void setActiveImpl(final boolean active) {
         //Does nothing
     }
-
 }

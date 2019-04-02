@@ -366,6 +366,5 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
                         (this.screenSize.height >> 1) - (this.getContainer().getCoordinates().height >> 1));
                 break;
         }
-
     }
 }

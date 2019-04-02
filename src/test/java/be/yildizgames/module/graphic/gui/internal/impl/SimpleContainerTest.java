@@ -191,3 +191,4 @@ public final class SimpleContainerTest {
         assertTrue(c.contains(MouseMoveMockFactory.get(10, 60)));
     }
 }
+
