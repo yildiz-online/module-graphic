@@ -67,12 +67,5 @@ public class FontTest {
             f.load();
             assertEquals("...", f.crop("azerty", 3));
         }
-
-        @Test
-        public void withNullParameter() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertThrows(ImplementationException.class, () -> f.crop(null, 3));
-        }
     }
 }
