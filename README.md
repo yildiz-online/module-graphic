@@ -18,7 +18,7 @@ It requires an implementation module to materialize it.
 
 ## Requirements
 
-To build this module, you will need the latest java JDK, and Maven 3.
+To build this module, you will need the latest Java JDK, and Maven 3.
 
 ## Coding Style and other information
 
