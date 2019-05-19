@@ -181,6 +181,5 @@ public class ExplosionBuilder {
             this.spark.setMaterial(material);
             return this;
         }
-
     }
 }
