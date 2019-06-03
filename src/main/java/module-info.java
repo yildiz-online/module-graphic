@@ -35,7 +35,6 @@ module be.yildizgames.module.graphic {
     requires be.yildizgames.module.window;
     requires be.yildizgames.common.logging;
     requires be.yildizgames.common.exception;
-    requires slf4j.api;
 
     exports be.yildizgames.module.graphic;
     exports be.yildizgames.module.graphic.query;

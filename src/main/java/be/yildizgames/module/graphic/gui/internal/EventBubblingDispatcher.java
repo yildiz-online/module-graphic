@@ -32,8 +32,6 @@ import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.window.input.Key;
 import be.yildizgames.module.window.input.MousePosition;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 import java.util.Set;
@@ -44,7 +42,7 @@ import java.util.TreeSet;
  */
 public class EventBubblingDispatcher implements GuiEventManager {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventBubblingDispatcher.class);
+    private static final System.Logger LOGGER = System.getLogger(EventBubblingDispatcher.class.getName());
 
     private final Set<View> views = new TreeSet<>();
 
@@ -164,8 +162,8 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void addView(View view) {
         if (!this.views.add(view)) {
-            LOGGER.error("{} was not added successfully.", view);
-            LOGGER.error("Views already registered: {}", views.toArray());
+            LOGGER.log(System.Logger.Level.ERROR, "{} was not added successfully.", view);
+            LOGGER.log(System.Logger.Level.ERROR, "Views already registered: {}", views.toArray());
         }
     }
 
