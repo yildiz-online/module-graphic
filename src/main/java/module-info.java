@@ -33,7 +33,6 @@ module be.yildizgames.module.graphic {
     requires be.yildizgames.common.frame;
     requires be.yildizgames.common.time;
     requires be.yildizgames.module.window;
-    requires be.yildizgames.common.logging;
     requires be.yildizgames.common.exception;
 
     exports be.yildizgames.module.graphic;
