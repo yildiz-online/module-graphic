@@ -26,7 +26,6 @@
 
 package be.yildizgames.module.graphic;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.graphic.material.Material;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -48,18 +47,18 @@ public class GraphicMeshTest {
         @Disabled
         @Test
         public void nullPath() {
-            Assertions.assertThrows(ImplementationException.class, () -> new GraphicMesh(null, "tst", Material.black()));
+            Assertions.assertThrows(NullPointerException.class, () -> new GraphicMesh(null, "tst", Material.black()));
         }
 
         @Disabled
         @Test
         public void nullExtension() {
-            Assertions.assertThrows(ImplementationException.class, () -> new GraphicMesh("test", null, Material.black()));
+            Assertions.assertThrows(NullPointerException.class, () -> new GraphicMesh("test", null, Material.black()));
         }
 
         @Test
         public void nullMaterial() {
-            Assertions.assertThrows(ImplementationException.class, () -> new GraphicMesh("test", "tst", null));
+            Assertions.assertThrows(NullPointerException.class, () -> new GraphicMesh("test", "tst", null));
         }
     }
 

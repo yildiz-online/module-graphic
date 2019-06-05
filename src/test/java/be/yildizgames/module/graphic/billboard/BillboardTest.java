@@ -26,7 +26,6 @@
 
 package be.yildizgames.module.graphic.billboard;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.color.Color;
 import org.junit.jupiter.api.Assertions;
@@ -52,26 +51,26 @@ public class BillboardTest {
         @Test
         public void zeroHeight() {
             Billboard b = new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setSize(5, 0));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(5, 0));
         }
 
         @Disabled
         @Test
         public void zeroWidth() {
             Billboard b =new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setSize(0, 6));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(0, 6));
         }
 
         @Test
         public void negativeHeight() {
             Billboard b = new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setSize(5, -1));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(5, -1));
         }
 
         @Test
         public void negativeWidth() {
             Billboard b = new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setSize(-1, 6));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(-1, 6));
         }
     }
 
@@ -89,7 +88,7 @@ public class BillboardTest {
         @Test
         public void nullParam() {
             Billboard b = new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setPosition(null));
+            Assertions.assertThrows(NullPointerException.class, () -> b.setPosition(null));
         }
 
     }

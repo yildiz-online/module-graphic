@@ -24,7 +24,6 @@
 
 package be.yildizgames.module.graphic;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
@@ -36,6 +35,7 @@ import be.yildizgames.module.window.BaseWindowEngine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ServiceLoader;
 
 /**
@@ -100,7 +100,7 @@ public abstract class BaseGraphicEngine implements GraphicEngine, FpsProvider {
      * @param listener Listener to add.
      */
     public final void addNotRenderingListener(final NotRenderingListener listener) {
-        ImplementationException.throwForNull(listener);
+        Objects.requireNonNull(listener);
         this.notRenderingListenerList.add(listener);
     }
 

@@ -25,9 +25,10 @@
 
 package be.yildizgames.module.graphic.camera;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.graphic.RayProvider;
+
+import java.util.Objects;
 
 /**
  * Combine a behavior and a camera, when using this class, the camera will use the provided behavior.
@@ -52,18 +53,18 @@ public class BehavioredCamera {
      */
     public BehavioredCamera(Camera camera) {
         super();
-        ImplementationException.throwForNull(camera);
+        Objects.requireNonNull(camera);
         this.camera = camera;
         this.changeBehavior(CameraBehaviors.FREEFLY);
     }
 
     public final void changeBehavior(CameraBehaviors behavior) {
-        ImplementationException.throwForNull(behavior);
+        Objects.requireNonNull(behavior);
         this.changeBehavior(behavior.getBehavior());
     }
 
     public final void changeBehavior(CameraBehavior behavior) {
-        ImplementationException.throwForNull(behavior);
+        Objects.requireNonNull(behavior);
         this.behavior = behavior;
         this.behavior.initialise(this.camera);
     }

@@ -24,8 +24,9 @@
 
 package be.yildizgames.module.graphic;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.graphic.material.Material;
+
+import java.util.Objects;
 
 /**
  * Contains the data for a graphic mesh file.
@@ -53,9 +54,9 @@ public class GraphicMesh {
      */
     protected GraphicMesh(final String path, String extension, final Material material) {
         super();
-        ImplementationException.throwForNull(path);
-        ImplementationException.throwForNull(extension);
-        ImplementationException.throwForNull(material);
+        Objects.requireNonNull(path);
+        Objects.requireNonNull(extension);
+        Objects.requireNonNull(material);
         this.file = path + "." + extension;
         this.material = material;
     }

@@ -24,7 +24,6 @@
 
 package be.yildizgames.module.graphic;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.common.util.Resource;
 import be.yildizgames.module.color.Color;

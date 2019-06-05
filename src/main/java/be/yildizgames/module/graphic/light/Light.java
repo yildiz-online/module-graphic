@@ -25,13 +25,13 @@
 
 package be.yildizgames.module.graphic.light;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.gameobject.Deletable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.util.BaseRegisterable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Common abstract class for all light types, ensure that only one name is used.
@@ -58,7 +58,7 @@ public abstract class Light extends BaseRegisterable implements Deletable {
      */
     protected Light(final String name, final Point3D lightPosition) {
         super(name);
-        ImplementationException.throwForNull(lightPosition);
+        Objects.requireNonNull(lightPosition);
         this.position = lightPosition;
         this.lensFlarelList = new ArrayList<>();
     }
@@ -78,7 +78,7 @@ public abstract class Light extends BaseRegisterable implements Deletable {
      * @param lens Lens flare to attach to this light.
      */
     public final void attachLensFlare(final LensFlare lens) {
-        ImplementationException.throwForNull(lens);
+        Objects.requireNonNull(lens);
         this.lensFlarelList.add(lens);
     }
 

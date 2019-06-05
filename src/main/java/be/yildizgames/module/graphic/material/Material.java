@@ -25,7 +25,6 @@
 
 package be.yildizgames.module.graphic.material;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.common.util.Resource;
 import be.yildizgames.module.color.Color;
@@ -43,6 +42,7 @@ import be.yildizgames.module.graphic.shader.VertexShader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A Material is an element used to display 2D image on a 2D or 3D object. It has a unique name, and a List of MaterialTechnique.
@@ -105,7 +105,7 @@ public abstract class Material extends Resource {
      */
     protected Material(final String name, final List<MaterialTechnique> list) {
         super(name);
-        ImplementationException.throwForNull(list);
+        Objects.requireNonNull(list);
         this.techniqueList = list;
         Material.REGISTERER.register(this);
     }
@@ -279,7 +279,7 @@ public abstract class Material extends Resource {
      */
     public final MaterialTechnique getTechnique(final int index) {
         final MaterialTechnique technique = this.techniqueList.get(index);
-        ImplementationException.throwForNull(technique);
+        Objects.requireNonNull(technique);
         return technique;
     }
 

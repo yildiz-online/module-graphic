@@ -25,12 +25,13 @@
 
 package be.yildizgames.module.graphic.gui.element;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.internal.BaseElement;
+
+import java.util.Objects;
 
 /**
  * Base element to print text.
@@ -62,7 +63,7 @@ public abstract class AbstractTextElement extends BaseElement {
      */
     protected AbstractTextElement(final BaseCoordinate coordinates, final Font textFont) {
         super("text" + System.nanoTime(), coordinates);
-        ImplementationException.throwForNull(textFont);
+        Objects.requireNonNull(textFont);
         this.font = textFont;
         REGISTERER.register(this);
     }
@@ -122,7 +123,7 @@ public abstract class AbstractTextElement extends BaseElement {
      * @return <code>true</code> if the text was updated.
      */
     public final boolean setText(final String newText) {
-        ImplementationException.throwForNull(newText);
+        Objects.requireNonNull(newText);
         if (this.currentText.equals(newText)) {
             return false;
         }
