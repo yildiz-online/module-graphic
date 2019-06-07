@@ -24,13 +24,11 @@
 
 package be.yildizgames.module.graphic.gui;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.graphic.Font;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Grégory Van den Borre
