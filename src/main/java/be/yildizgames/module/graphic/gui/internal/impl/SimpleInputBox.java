@@ -396,6 +396,11 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
         return this;
     }
 
+    @Override
+    public void select() {
+        this.listener.clickAt(MousePosition.ZERO);
+    }
+
     /**
      * Listener to associate to an input box to update the text displayed when the user is typing.
      *
@@ -445,7 +450,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
 
         @Override
         public void click() {
-            //Nothing to do.
+
         }
 
         @Override
