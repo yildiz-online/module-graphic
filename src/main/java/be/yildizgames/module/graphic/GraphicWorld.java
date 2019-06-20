@@ -46,7 +46,7 @@ import be.yildizgames.module.graphic.misc.Line;
 import be.yildizgames.module.graphic.misc.MovableText;
 import be.yildizgames.module.graphic.misc.Ocean;
 import be.yildizgames.module.graphic.misc.Sky;
-import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.graphic.misc.SkyBox;
 import be.yildizgames.module.graphic.particle.ParticleSystem;
 import be.yildizgames.module.graphic.query.GroundQuery;
 import be.yildizgames.module.graphic.query.Query;
@@ -317,7 +317,7 @@ public interface GraphicWorld {
      *
      * @param sky The material to use.
      */
-    void setSkybox(Skybox sky);
+    void setSkybox(SkyBox sky);
 
     /**
      * Activate the debug mode on this world.

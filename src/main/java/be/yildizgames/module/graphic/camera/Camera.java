@@ -61,11 +61,11 @@ public abstract class Camera extends BaseRegisterable implements Movable, RayPro
         super(name);
     }
 
-    /**
-     * Set the camera relative position, this is used to set given a position as the base.
-     *
-     * @param p Position to set.
-     */
+   // /**
+   //  * Set the camera relative position, this is used to set given a position as the base.
+   //  *
+    // * @param p Position to set.
+   //  */
    // final void setRelativePosition(final Point3D p) {
    //     this.lookAt(p.add(this.offset), p);
    // }

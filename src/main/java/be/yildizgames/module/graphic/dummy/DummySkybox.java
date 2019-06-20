@@ -24,18 +24,18 @@
 
 package be.yildizgames.module.graphic.dummy;
 
-import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.graphic.misc.SkyBox;
 
 /**
  * @author Grégory Van den Borre
  */
-public class DummySkybox extends Skybox {
+public class DummySkybox extends SkyBox {
 
     /**
      * Full constructor.
      *
      * @param name Name associated to the skybox.
-     * @param path Initialize {@link Skybox#path}.
+     * @param path Initialize path.
      */
     protected DummySkybox(String name, String path) {
         super(name, path);

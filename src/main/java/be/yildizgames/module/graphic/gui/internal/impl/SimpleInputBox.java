@@ -125,7 +125,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
      * @param coordinates       Box size and position.
      * @param textElement       Text to print in the box.
      * @param caption           Text to print next the box(usually box description).
-     * @param c
+     * @param c                 Container.
      * @param backgroundElement Box background.
      * @param material          Materials to assign.
      * @param cursor            Cursor image.

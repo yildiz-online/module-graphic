@@ -56,7 +56,7 @@ public class DummyGuiContainer extends SimpleContainer {
 
 
     DummyGuiContainer(String name, BaseCoordinate coordinates, Material background, Container parent, boolean widget) {
-        super(name, coordinates, background, SimpleContainer.class.cast(parent), widget);
+        super(name, coordinates, background, (SimpleContainer) parent, widget);
     }
 
 

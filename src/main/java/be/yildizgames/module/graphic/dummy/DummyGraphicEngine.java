@@ -35,7 +35,7 @@ import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialManager;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
-import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.graphic.misc.SkyBox;
 import be.yildizgames.module.window.BaseWindowEngine;
 import be.yildizgames.module.window.ScreenSize;
 
@@ -84,7 +84,7 @@ public final class DummyGraphicEngine extends BaseGraphicEngine {
     }
 
     @Override
-    public Skybox createSkybox(final String name, final String path) {
+    public SkyBox createSkybox(final String name, final String path) {
         return new DummySkybox(name, path);
     }
 

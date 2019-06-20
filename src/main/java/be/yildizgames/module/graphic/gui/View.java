@@ -359,12 +359,10 @@ public abstract class View extends BaseRegisterable implements Comparable<View>,
     }
 
     protected void setPosition(PositionRelative position) {
-        switch (position) {
-            case CENTER:
-                this.setPosition(
-                        (this.screenSize.width >> 1) - (this.getContainer().getCoordinates().width >> 1),
-                        (this.screenSize.height >> 1) - (this.getContainer().getCoordinates().height >> 1));
-                break;
+        if (position == PositionRelative.CENTER) {
+            this.setPosition(
+                    (this.screenSize.width >> 1) - (this.getContainer().getCoordinates().width >> 1),
+                    (this.screenSize.height >> 1) - (this.getContainer().getCoordinates().height >> 1));
         }
     }
 }

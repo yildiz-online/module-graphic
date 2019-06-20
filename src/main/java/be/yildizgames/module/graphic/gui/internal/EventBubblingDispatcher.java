@@ -136,7 +136,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
                     this.widgetUnderMouse.highlight(false);
                     this.widgetUnderMouse.setMouseOver(false, position);
 
-                    this.widgetUnderMouse = BaseWidget.class.cast(foundWidget.get());
+                    this.widgetUnderMouse = (BaseWidget) foundWidget.get();
                     this.widgetUnderMouse.highlight(true);
                     this.debugListener.displayDebugMessage(this.widgetUnderMouse);
                     this.widgetUnderMouse.mouseMove(position);
@@ -162,14 +162,14 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void addView(View view) {
         if (!this.views.add(view)) {
-            LOGGER.log(System.Logger.Level.ERROR, "{} was not added successfully.", view);
-            LOGGER.log(System.Logger.Level.ERROR, "Views already registered: {}", views.toArray());
+            LOGGER.log(System.Logger.Level.ERROR, "%s was not added successfully.", view);
+            LOGGER.log(System.Logger.Level.ERROR, "Views already registered: %s", views.toArray());
         }
     }
 
     @Override
     public void setDefaultView(View view) {
-        this.defaultWidget = BaseWidget.class.cast(view.getContainer());
+        this.defaultWidget = (BaseWidget) view.getContainer();
     }
 
     @Override
@@ -180,7 +180,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void setFocus(View view) {
         this.debugListener.displayDebugMessage("New focus:" + view.getContainer().getName());
-        this.currentWidgetFocus = BaseWidget.class.cast(view.getContainer());
+        this.currentWidgetFocus = (BaseWidget) view.getContainer();
     }
 
     @Override

@@ -75,8 +75,8 @@ public final class TabContainer extends BaseContainerChild {
             this.elements[i] = new TabElement(i, tabSelectors[i], containers[i]);
             final TabElement element = this.elements[i];
             tabSelectors[i].addMouseLeftClickListener(() -> {
-                for (int j = 0; j < TabContainer.this.elements.length; j++) {
-                    TabContainer.this.elements[j].unPush();
+                for (TabElement tabElement : TabContainer.this.elements) {
+                    tabElement.unPush();
                 }
                 element.push();
                 TabContainer.this.selected = element;

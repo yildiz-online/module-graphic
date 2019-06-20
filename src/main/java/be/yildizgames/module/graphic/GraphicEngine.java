@@ -30,7 +30,7 @@ import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialManager;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
-import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.graphic.misc.SkyBox;
 import be.yildizgames.module.window.ScreenSize;
 
 public interface GraphicEngine {
@@ -70,7 +70,7 @@ public interface GraphicEngine {
      * @param path Path to images to use.
      * @return The created object.
      */
-    Skybox createSkybox(String name, String path);
+    SkyBox createSkybox(String name, String path);
 
     /**
      * Create a new font with a given color and a random name.

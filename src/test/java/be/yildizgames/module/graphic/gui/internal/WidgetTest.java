@@ -98,7 +98,7 @@ public class WidgetTest {
         assertTrue(list.isEmpty());
         w.addKeyboardListener(list::add);
         w.keyPressed('e');
-        assertTrue('e' == list.get(0));
+        assertEquals('e', (char) list.get(0));
     }
 
     @Test

@@ -32,7 +32,7 @@ import be.yildizgames.common.util.Resource;
  *
  * @author Grégory Van Den Borre
  */
-public abstract class Skybox extends Resource {
+public abstract class SkyBox extends Resource {
 
     /**
      * Path to load the skybox data.
@@ -43,15 +43,15 @@ public abstract class Skybox extends Resource {
      * Full constructor.
      *
      * @param name Name associated to the skybox.
-     * @param path Initialize {@link Skybox#path}.
+     * @param path Initialize {@link SkyBox#path}.
      */
-    protected Skybox(final String name, final String path) {
+    protected SkyBox(final String name, final String path) {
         super(name);
         this.path = path;
     }
 
     /**
-     * @return {@link Skybox#path}.
+     * @return {@link SkyBox#path}.
      */
     public final String getPath() {
         return this.path;
