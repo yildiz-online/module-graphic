@@ -62,10 +62,10 @@ public final class Zorder implements Comparable<Zorder> {
     public Zorder(final int z) {
         super();
         if (z < MIN) {
-            LOGGER.log(System.Logger.Level.ERROR, "Z should be between %s and %s value=%s Assigned value min value (%s) instead", MIN, MAX, z, MIN);
+            LOGGER.log(System.Logger.Level.ERROR, "Z should be between {0} and {1} value={2} Assigned value min value ({3}) instead", MIN, MAX, z, MIN);
             this.value = MIN;
         } else if (z > MAX){
-            LOGGER.log(System.Logger.Level.ERROR, "Z should be between %s and %s value=%s Assigned value max value (%s) instead", MIN, MAX, z, MAX);
+            LOGGER.log(System.Logger.Level.ERROR, "Z should be between {0} and {1} value={2} Assigned value max value ({3}) instead", MIN, MAX, z, MAX);
             this.value = MAX;
         } else {
             this.value = z;

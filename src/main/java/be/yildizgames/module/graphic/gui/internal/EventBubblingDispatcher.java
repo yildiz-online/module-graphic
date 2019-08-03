@@ -162,8 +162,8 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void addView(View view) {
         if (!this.views.add(view)) {
-            LOGGER.log(System.Logger.Level.ERROR, "%s was not added successfully.", view);
-            LOGGER.log(System.Logger.Level.ERROR, "Views already registered: %s", views.toArray());
+            LOGGER.log(System.Logger.Level.ERROR, "{0} was not added successfully.", view);
+            LOGGER.log(System.Logger.Level.ERROR, "Views already registered: {0}", views.toArray());
         }
     }
 
