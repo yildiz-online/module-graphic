@@ -146,7 +146,7 @@ public abstract class Font extends Resource {
     }
 
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + this.getName().hashCode();
@@ -155,7 +155,7 @@ public abstract class Font extends Resource {
     }
 
     @Override
-    public final boolean equals(final Object obj) {
+    public boolean equals(final Object obj) {
         if(!super.equals(obj)) {
             return false;
         }
