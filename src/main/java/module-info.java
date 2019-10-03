@@ -59,5 +59,5 @@ module be.yildizgames.module.graphic {
     exports be.yildizgames.module.graphic.gui.textarea;
     exports be.yildizgames.module.graphic.gui.textline;
 
-    exports be.yildizgames.module.graphic.gui.internal.impl;
+    exports be.yildizgames.module.graphic.gui.internal.impl to be.yildizgames.module.graphic.ogre;
 }
