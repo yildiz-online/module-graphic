@@ -86,5 +86,4 @@ public final class DummyIconElement extends AbstractIconElement {
     protected Element setPositionImpl(final int newLeft, final int newTop) {
         return this;
     }
-
 }

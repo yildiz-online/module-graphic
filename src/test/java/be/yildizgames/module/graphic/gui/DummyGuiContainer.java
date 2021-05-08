@@ -36,7 +36,7 @@ import be.yildizgames.module.graphic.material.Material;
  *
  * @author Grégory Van den Borre
  */
-public final class DummyGuiContainer extends SimpleContainer {
+public class DummyGuiContainer extends SimpleContainer {
 
     /**
      * Full constructor.
@@ -56,49 +56,49 @@ public final class DummyGuiContainer extends SimpleContainer {
 
 
     DummyGuiContainer(String name, BaseCoordinate coordinates, Material background, Container parent, boolean widget) {
-        super(name, coordinates, background, SimpleContainer.class.cast(parent), widget);
+        super(name, coordinates, background, (SimpleContainer) parent, widget);
     }
 
 
     @Override
-    public String getElementName(final int x, final int y) {
+    public final String getElementName(final int x, final int y) {
         return this.getName();
     }
 
     @Override
-    protected void addChildrenPositionImpl(final int left, final int top) {
+    protected final void addChildrenPositionImpl(final int left, final int top) {
     }
 
     @Override
-    protected void zoomImpl(final float factor) {
+    protected final void zoomImpl(final float factor) {
     }
 
     @Override
-    protected void setMaterialImpl(final Material newMaterial) {
+    protected final void setMaterialImpl(final Material newMaterial) {
     }
 
     @Override
-    public void delete() {
+    public final void delete() {
     }
 
     @Override
-    protected void showImpl() {
+    protected final void showImpl() {
     }
 
     @Override
-    protected void hideImpl() {
+    protected final void hideImpl() {
     }
 
     @Override
-    protected void setSizeImpl(final int newWidth, final int newHeight) {
+    protected final void setSizeImpl(final int newWidth, final int newHeight) {
     }
 
     @Override
-    protected Element setPositionImpl(final int newLeft, final int newTop) {
+    protected final Element setPositionImpl(final int newLeft, final int newTop) {
         return this;
     }
 
     @Override
-    protected void setZImpl(final Zorder z) {
+    protected final void setZImpl(final Zorder z) {
     }
 }

@@ -125,7 +125,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
      * @param coordinates       Box size and position.
      * @param textElement       Text to print in the box.
      * @param caption           Text to print next the box(usually box description).
-     * @param c
+     * @param c                 Container.
      * @param backgroundElement Box background.
      * @param material          Materials to assign.
      * @param cursor            Cursor image.
@@ -396,6 +396,11 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
         return this;
     }
 
+    @Override
+    public void select() {
+        this.listener.clickAt(MousePosition.ZERO);
+    }
+
     /**
      * Listener to associate to an input box to update the text displayed when the user is typing.
      *
@@ -445,7 +450,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
 
         @Override
         public void click() {
-            //Nothing to do.
+
         }
 
         @Override

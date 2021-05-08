@@ -24,9 +24,6 @@
 
 package be.yildizgames.module.graphic.gui;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Simple wrapper class for Z values.
  *
@@ -34,7 +31,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Zorder implements Comparable<Zorder> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Zorder.class);
+    private static final System.Logger LOGGER = System.getLogger(Zorder.class.getName());
 
     /**
      * Z order to display GUI elements, nearly the highest value.
@@ -65,10 +62,10 @@ public final class Zorder implements Comparable<Zorder> {
     public Zorder(final int z) {
         super();
         if (z < MIN) {
-            LOGGER.error("Z should be between {} and {} value={} Assigned value min value ({}) instead", MIN, MAX, z, MIN);
+            LOGGER.log(System.Logger.Level.ERROR, "Z should be between {0} and {1} value={2} Assigned value min value ({3}) instead", MIN, MAX, z, MIN);
             this.value = MIN;
         } else if (z > MAX){
-            LOGGER.error("Z should be between {} and {} value={} Assigned value max value ({}) instead", MIN, MAX, z, MAX);
+            LOGGER.log(System.Logger.Level.ERROR, "Z should be between {0} and {1} value={2} Assigned value max value ({3}) instead", MIN, MAX, z, MAX);
             this.value = MAX;
         } else {
             this.value = z;

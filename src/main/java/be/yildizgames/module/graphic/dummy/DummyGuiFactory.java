@@ -16,6 +16,9 @@ import be.yildizgames.module.graphic.gui.textline.TextLineBuilder;
 import be.yildizgames.module.graphic.gui.textline.TextLineTemplate;
 import be.yildizgames.module.window.ScreenSize;
 
+/**
+ * @author Grégory Van den Borre
+ */
 public class DummyGuiFactory implements GuiFactory {
 
     @Override

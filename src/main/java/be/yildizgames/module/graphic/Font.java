@@ -24,12 +24,12 @@
 
 package be.yildizgames.module.graphic;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.common.util.Resource;
 import be.yildizgames.module.color.Color;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Object containing data for a font.
@@ -73,8 +73,7 @@ public abstract class Font extends Resource {
      */
     protected Font(final String fontName, final int fontSize, final Color color) {
         super(fontName);
-        ImplementationException.throwForNull(fontName);
-        ImplementationException.throwForNull(color);
+        Objects.requireNonNull(color);
         assert fontSize >= 0 : "fontSize parameter is smaller than 0";
         this.size = fontSize;
         this.color = color;
@@ -100,7 +99,6 @@ public abstract class Font extends Resource {
      * @return originalText if it is smaller than width, a cropped text with "..." if the text cannot fit in the given width, or "" if "..." cannot fit in the given width.
      */
     public final String crop(final String originalText, final int width) {
-        ImplementationException.throwForNull(originalText);
         float computedWidth = 0;
         for (int i = 0; i < originalText.length(); i++) {
             computedWidth += charWidth[originalText.charAt(i)];
@@ -121,7 +119,6 @@ public abstract class Font extends Resource {
      * @return The text width.
      */
     public final int computeTextWidth(final String text) {
-        assert text != null;
         float computedSize = 0;
         for (final char c : text.toCharArray()) {
             computedSize += this.charWidth[c];
@@ -145,12 +142,11 @@ public abstract class Font extends Resource {
      * @param widthArray Array containing the size for every char.
      */
     protected final void setCharWidth(final float[] widthArray) {
-        assert widthArray != null;
         this.charWidth = Arrays.copyOf(widthArray, widthArray.length);
     }
 
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + this.getName().hashCode();
@@ -159,11 +155,8 @@ public abstract class Font extends Resource {
     }
 
     @Override
-    public final boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(final Object obj) {
+        if(!super.equals(obj)) {
             return false;
         }
         if (this.getClass() != obj.getClass()) {

@@ -32,8 +32,6 @@ import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.window.input.Key;
 import be.yildizgames.module.window.input.MousePosition;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 import java.util.Set;
@@ -44,7 +42,7 @@ import java.util.TreeSet;
  */
 public class EventBubblingDispatcher implements GuiEventManager {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventBubblingDispatcher.class);
+    private static final System.Logger LOGGER = System.getLogger(EventBubblingDispatcher.class.getName());
 
     private final Set<View> views = new TreeSet<>();
 
@@ -138,7 +136,7 @@ public class EventBubblingDispatcher implements GuiEventManager {
                     this.widgetUnderMouse.highlight(false);
                     this.widgetUnderMouse.setMouseOver(false, position);
 
-                    this.widgetUnderMouse = BaseWidget.class.cast(foundWidget.get());
+                    this.widgetUnderMouse = (BaseWidget) foundWidget.get();
                     this.widgetUnderMouse.highlight(true);
                     this.debugListener.displayDebugMessage(this.widgetUnderMouse);
                     this.widgetUnderMouse.mouseMove(position);
@@ -164,14 +162,14 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void addView(View view) {
         if (!this.views.add(view)) {
-            LOGGER.error("{} was not added successfully.", view);
-            LOGGER.error("Views already registered: {}", views.toArray());
+            LOGGER.log(System.Logger.Level.ERROR, "{0} was not added successfully.", view);
+            LOGGER.log(System.Logger.Level.ERROR, "Views already registered: {0}", views.toArray());
         }
     }
 
     @Override
     public void setDefaultView(View view) {
-        this.defaultWidget = BaseWidget.class.cast(view.getContainer());
+        this.defaultWidget = (BaseWidget) view.getContainer();
     }
 
     @Override
@@ -182,12 +180,11 @@ public class EventBubblingDispatcher implements GuiEventManager {
     @Override
     public void setFocus(View view) {
         this.debugListener.displayDebugMessage("New focus:" + view.getContainer().getName());
-        this.currentWidgetFocus = BaseWidget.class.cast(view.getContainer());
+        this.currentWidgetFocus = (BaseWidget) view.getContainer();
     }
 
     @Override
     public BaseWidget getWidgetUnderMouse() {
         return this.widgetUnderMouse;
     }
-
 }

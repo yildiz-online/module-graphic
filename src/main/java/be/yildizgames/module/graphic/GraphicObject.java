@@ -24,10 +24,11 @@
 
 package be.yildizgames.module.graphic;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.graphic.material.Material;
+
+import java.util.Objects;
 
 /**
  * Base class for graphic objects.
@@ -94,7 +95,7 @@ public abstract class GraphicObject implements Movable {
     }
 
     public final GraphicObject setMaterial(final Material newMaterial) {
-        ImplementationException.throwForNull(newMaterial);
+        Objects.requireNonNull(newMaterial);
         if (!newMaterial.equals(this.material)) {
             this.material = newMaterial;
             this.setMaterialImpl(newMaterial);

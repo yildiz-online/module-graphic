@@ -837,5 +837,4 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @return The newly built container.
      */
     public abstract SimpleContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, Container parent, boolean widget);
-
 }

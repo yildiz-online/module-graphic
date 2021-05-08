@@ -29,6 +29,10 @@ import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.camera.CameraBehavior;
 
+/**
+ * With this implementation, the camera will behave like in a FPS.
+ * @author Grégory Van den Borre
+ */
 public class FpsCameraBehavior implements CameraBehavior {
 
     @Override

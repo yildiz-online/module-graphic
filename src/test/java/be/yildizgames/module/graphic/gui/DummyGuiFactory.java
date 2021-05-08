@@ -61,13 +61,11 @@ public class DummyGuiFactory extends StandardGuiFactory {
         @Override
         protected void loadImpl() {
             //Empty method.
-
         }
 
         @Override
         protected void receiveShadowImpl(boolean receive) {
             //Empty method.
-
         }
 
         @Override

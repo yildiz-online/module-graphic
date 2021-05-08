@@ -25,9 +25,10 @@
 
 package be.yildizgames.module.graphic.billboard;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.color.Color;
+
+import java.util.Objects;
 
 /**
  * A billboard is a plane always facing the camera.
@@ -65,8 +66,12 @@ public abstract class Billboard {
      * @param newHeight New height.
      */
     public final void setSize(final float newWidth, final float newHeight) {
-        ImplementationException.throwIfZeroOrSmaller(newWidth);
-        ImplementationException.throwIfZeroOrSmaller(newHeight);
+        if(newHeight <= 0) {
+            throw new IllegalArgumentException("Height must be greater than 0.");
+        }
+        if(newWidth <= 0) {
+            throw new IllegalArgumentException("Width must be greater than 0.");
+        }
         this.width = newWidth;
         this.height = newHeight;
         this.setSizeImpl(newWidth, newHeight);
@@ -85,7 +90,7 @@ public abstract class Billboard {
      * @param newPosition New position.
      */
     public final void setPosition(final Point3D newPosition) {
-        ImplementationException.throwForNull(newPosition);
+        Objects.requireNonNull(newPosition);
         this.position = newPosition;
         this.setPositionImpl(newPosition);
     }

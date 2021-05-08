@@ -25,42 +25,35 @@
 package be.yildizgames.module.graphic.dummy;
 
 import be.yildizgames.common.geometry.Point3D;
-import be.yildizgames.common.model.EntityId;
-import be.yildizgames.common.shape.Box;
-import be.yildizgames.common.shape.Plane;
-import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.GraphicObject;
 import be.yildizgames.module.graphic.GraphicObjectBuilder;
-import be.yildizgames.module.graphic.query.GroundQuery;
-import be.yildizgames.module.graphic.query.Query;
-import be.yildizgames.module.graphic.light.Light;
-import be.yildizgames.module.graphic.particle.ParticleSystem;
+import be.yildizgames.module.graphic.GraphicWorld;
+import be.yildizgames.module.graphic.RayProvider;
 import be.yildizgames.module.graphic.billboard.BillboardSet;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.light.DirectionalLight;
+import be.yildizgames.module.graphic.light.LensFlare;
+import be.yildizgames.module.graphic.light.Light;
+import be.yildizgames.module.graphic.light.PointLight;
+import be.yildizgames.module.graphic.light.SpotLight;
+import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.ElectricArc;
 import be.yildizgames.module.graphic.misc.Explosion;
-import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.GraphicMesh;
-import be.yildizgames.module.graphic.GraphicObject;
-import be.yildizgames.module.graphic.GraphicWorld;
-import be.yildizgames.module.graphic.light.LensFlare;
 import be.yildizgames.module.graphic.misc.Line;
-import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.MovableText;
 import be.yildizgames.module.graphic.misc.Ocean;
-import be.yildizgames.module.graphic.light.PointLight;
 import be.yildizgames.module.graphic.misc.Sky;
-import be.yildizgames.module.graphic.misc.Skybox;
-import be.yildizgames.module.graphic.light.SpotLight;
-import be.yildizgames.module.graphic.RayProvider;
+import be.yildizgames.module.graphic.misc.SkyBox;
+import be.yildizgames.module.graphic.particle.ParticleSystem;
+import be.yildizgames.module.graphic.query.GroundQuery;
+import be.yildizgames.module.graphic.query.Query;
 
 /**
  * @author Grégory Van den Borre
  */
 public class DummyGraphicWorld implements GraphicWorld {
-
-    private final GraphicObject dummyObject = new DummyGraphicObject();
 
     private final Camera dummyCamera = new DummyCamera();
 
@@ -69,91 +62,6 @@ public class DummyGraphicWorld implements GraphicWorld {
 
     @Override
     public GroundQuery createGroundQuery(RayProvider provider) { return null; }
-
-    @Override
-    public GraphicObject createMovableDoodad(Box box, Material material) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createMovableDoodad(Sphere sphere, Material material) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createMovableDoodad(Plane plane, Material material) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createMovableDoodad(GraphicMesh mesh) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createStaticDoodad(Box box, Material material, Point3D position, Point3D direction) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createStaticDoodad(Plane plane, Material material, Point3D position, Point3D direction) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createStaticDoodad(Sphere sphere, Material material, Point3D position, Point3D direction) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createStaticDoodad(Sphere sphere, Material material, Point3D position) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createStaticDoodad(GraphicMesh mesh, Point3D position, Point3D direction) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createStaticObject(EntityId id, Box box, Material material, Point3D position, Point3D direction) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createStaticObject(EntityId id, Sphere sphere, Material material, Point3D position, Point3D direction) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createStaticObject(EntityId id, Plane plane, Material material, Point3D position, Point3D direction) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createStaticObject(EntityId id, GraphicMesh shape, Point3D position) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createMovableObject(EntityId id, Box box, Material material, Point3D position) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createMovableObject(EntityId id, Plane plane, Material material, Point3D position) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createMovableObject(EntityId id, Sphere sphere, Material material, Point3D position) {
-        return dummyObject;
-    }
-
-    @Override
-    public GraphicObject createMovableObject(EntityId id, GraphicMesh shape, Point3D position) {
-        return dummyObject;
-    }
 
     @Override
     public GraphicObjectBuilder createObject() {
@@ -176,7 +84,7 @@ public class DummyGraphicWorld implements GraphicWorld {
     }
 
     @Override
-    public void setSkybox(Skybox sky) {
+    public void setSkybox(SkyBox sky) {
         // does nothing.
     }
 
@@ -283,11 +191,6 @@ public class DummyGraphicWorld implements GraphicWorld {
     @Override
     public BillboardSet createBillboardSet(Material material) {
         return null;
-    }
-
-    @Override
-    public GraphicObject createStaticObject(EntityId id, GraphicMesh mesh, Point3D position, Point3D direction) {
-        return this.dummyObject;
     }
 
     @Override

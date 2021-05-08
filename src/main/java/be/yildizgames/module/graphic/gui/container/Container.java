@@ -72,5 +72,4 @@ public interface Container extends Widget {
     void disableEmptyZone();
 
     void enableEmptyZone();
-
 }

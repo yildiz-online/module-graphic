@@ -24,56 +24,46 @@
 
 package be.yildizgames.module.graphic.gui;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.graphic.Font;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Grégory Van den Borre
  */
-class FontTest {
+public class FontTest {
 
     @Nested
-    class Crop {
+    public class Crop {
 
         @Test
-        void nothing() {
+        public void nothing() {
             Font f = DummyGuiFactory.defaultFont;
             f.load();
             assertEquals("azerty", f.crop("azerty", 10));
         }
 
         @Test
-        void tooLong() {
+        public void tooLong() {
             Font f = DummyGuiFactory.defaultFont;
             f.load();
             assertEquals("a...", f.crop("azerty", 4));
         }
 
         @Test
-        void tooShort() {
+        public void tooShort() {
             Font f = DummyGuiFactory.defaultFont;
             f.load();
             assertEquals("", f.crop("azerty", 2));
         }
 
         @Test
-        void tooLong3chars() {
+        public void tooLong3chars() {
             Font f = DummyGuiFactory.defaultFont;
             f.load();
             assertEquals("...", f.crop("azerty", 3));
         }
-
-        @Test
-        void withNullParameter() {
-            Font f = DummyGuiFactory.defaultFont;
-            f.load();
-            assertThrows(ImplementationException.class, () -> f.crop(null, 3));
-        }
     }
-
 }

@@ -138,6 +138,7 @@ public abstract class BaseContainerChild extends BaseWidget implements Container
         return this;
     }
 
+    @Override
     public final boolean isContainer() {
         return false;
     }

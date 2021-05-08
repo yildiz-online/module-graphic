@@ -29,15 +29,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Grégory Van den Borre
  */
-final class ZOrderTest {
+public final class ZOrderTest {
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         assertEquals(new Zorder(12).hashCode(), new Zorder(12).hashCode());
         assertEquals(new Zorder(222).hashCode(), new Zorder(222).hashCode());
         assertEquals(new Zorder(473).hashCode(), new Zorder(473).hashCode());
@@ -46,47 +45,47 @@ final class ZOrderTest {
     }
 
     @Test
-    void testZorderMin() {
+    public void testZorderMin() {
         Zorder z = new Zorder(-1);
         assertEquals(new Zorder(0), z);
     }
 
     @Test
-    void testZorderMax() {
+    public void testZorderMax() {
         Zorder z = new Zorder(651);
         assertEquals(new Zorder(650), z);
     }
 
     @Test
-    void testZorder() {
+    public void testZorder() {
         assertEquals(new Zorder(640), Zorder.GUI);
         assertEquals(new Zorder(0), Zorder.ZERO);
     }
 
     @Test
-    void testAdd() {
+   public void testAdd() {
         assertEquals(new Zorder(10), new Zorder(3).add(7));
     }
 
     @Test
-    void testCompareTo() {
+    public void testCompareTo() {
         assertEquals(1, new Zorder(10).compareTo(new Zorder(11)));
         assertEquals(0, new Zorder(8).compareTo(new Zorder(8)));
         assertEquals(-1, new Zorder(200).compareTo(new Zorder(45)));
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         assertEquals("Z order:12", new Zorder(12).toString());
     }
 
     @Test
-    void testGetValue() {
+    public void testGetValue() {
         assertEquals(17, new Zorder(17).getValue());
     }
 
     @Test
-    void testEqualsObject() {
+    public void testEqualsObject() {
         for (int i = 0; i < 100; i++) {
             int v = Util.getRandom(650);
             assertEquals(new Zorder(v), new Zorder(v));

@@ -75,8 +75,8 @@ public final class TabContainer extends BaseContainerChild {
             this.elements[i] = new TabElement(i, tabSelectors[i], containers[i]);
             final TabElement element = this.elements[i];
             tabSelectors[i].addMouseLeftClickListener(() -> {
-                for (int j = 0; j < TabContainer.this.elements.length; j++) {
-                    TabContainer.this.elements[j].unPush();
+                for (TabElement tabElement : TabContainer.this.elements) {
+                    tabElement.unPush();
                 }
                 element.push();
                 TabContainer.this.selected = element;
@@ -117,12 +117,12 @@ public final class TabContainer extends BaseContainerChild {
 
     @Override
     protected void setSizeImpl(final int newWidth, final int newHeight) {
-        // FIXME implements
+        this.background.setSize(newWidth, newHeight);
     }
 
     @Override
     protected Element setPositionImpl(final int newLeft, final int newTop) {
-        // FIXME implements
+        this.background.setPosition(newLeft, newTop);
         return this;
     }
 
@@ -130,3 +130,4 @@ public final class TabContainer extends BaseContainerChild {
         return this.elements[tab].getContainer();
     }
 }
+

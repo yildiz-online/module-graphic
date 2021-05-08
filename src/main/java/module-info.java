@@ -33,9 +33,6 @@ module be.yildizgames.module.graphic {
     requires be.yildizgames.common.frame;
     requires be.yildizgames.common.time;
     requires be.yildizgames.module.window;
-    requires be.yildizgames.common.logging;
-    requires be.yildizgames.common.exception;
-    requires slf4j.api;
 
     exports be.yildizgames.module.graphic;
     exports be.yildizgames.module.graphic.query;
@@ -61,4 +58,7 @@ module be.yildizgames.module.graphic {
     exports be.yildizgames.module.graphic.gui.table;
     exports be.yildizgames.module.graphic.gui.textarea;
     exports be.yildizgames.module.graphic.gui.textline;
+
+    exports be.yildizgames.module.graphic.gui.internal to be.yildizgames.module.graphic.ogre;
+    exports be.yildizgames.module.graphic.gui.internal.impl to be.yildizgames.module.graphic.ogre;
 }

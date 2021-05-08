@@ -26,7 +26,6 @@
 
 package be.yildizgames.module.graphic.billboard;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.module.color.Color;
 import org.junit.jupiter.api.Assertions;
@@ -34,14 +33,14 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class BillboardTest {
+public class BillboardTest {
 
 
     @Nested
-    class SetSize {
+    public class SetSize {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             Billboard b = new BillboardDummy();
             b.setSize(5,6);
             Assertions.assertEquals(5, b.getWidth());
@@ -50,36 +49,36 @@ class BillboardTest {
 
         @Disabled
         @Test
-        void zeroHeight() {
+        public void zeroHeight() {
             Billboard b = new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setSize(5, 0));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(5, 0));
         }
 
         @Disabled
         @Test
-        void zeroWidth() {
+        public void zeroWidth() {
             Billboard b =new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setSize(0, 6));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(0, 6));
         }
 
         @Test
-        void negativeHeight() {
+        public void negativeHeight() {
             Billboard b = new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setSize(5, -1));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(5, -1));
         }
 
         @Test
-        void negativeWidth() {
+        public void negativeWidth() {
             Billboard b = new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setSize(-1, 6));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(-1, 6));
         }
     }
 
     @Nested
-    class SetPosition {
+    public class SetPosition {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             BillboardDummy b = new BillboardDummy();
             Point3D pos = Point3D.valueOf(4,5,6);
             b.setPosition(pos);
@@ -87,14 +86,14 @@ class BillboardTest {
         }
 
         @Test
-        void nullParam() {
+        public void nullParam() {
             Billboard b = new BillboardDummy();
-            Assertions.assertThrows(ImplementationException.class, () -> b.setPosition(null));
+            Assertions.assertThrows(NullPointerException.class, () -> b.setPosition(null));
         }
 
     }
 
-    class BillboardDummy extends Billboard {
+    public class BillboardDummy extends Billboard {
 
         private Point3D p;
 

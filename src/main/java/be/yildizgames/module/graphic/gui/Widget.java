@@ -157,4 +157,8 @@ public interface Widget extends Element {
     boolean isFocusable();
 
     void highlight(boolean b);
+
+    default void select() {
+
+    }
 }
