@@ -28,8 +28,8 @@ package be.yildizgames.module.graphic.gui.internal;
 import be.yildizgames.common.geometry.Point2D;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.util.Checker;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
 import be.yildizgames.module.graphic.gui.OnMouseOverListener;
 import be.yildizgames.module.graphic.gui.Widget;
 import be.yildizgames.module.graphic.gui.container.Container;
@@ -136,6 +136,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
      * inputs.
      */
     private boolean forceContainsFalse;
+
     private boolean emptyZoneDisabled;
 
     private final Map<String, BaseAnimationGui> animations = new HashMap<>();
@@ -146,7 +147,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
      * @param name        Widget unique name.
      * @param coordinates Widget initial size and position.
      */
-    protected BaseWidget(final String name, final BaseCoordinate coordinates) {
+    protected BaseWidget(final String name, final Coordinates coordinates) {
         this(name, coordinates, null);
     }
 
@@ -157,7 +158,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
      * @param coordinates Widget initial size and position.
      * @param parent      Optional parent container.
      */
-    protected BaseWidget(final String name, final BaseCoordinate coordinates, final Container parent) {
+    protected BaseWidget(final String name, final Coordinates coordinates, final Container parent) {
         super(name, coordinates);
         this.parent = parent;
     }
@@ -638,7 +639,7 @@ public abstract class BaseWidget extends BaseElement implements Widget {
          * Simple constructor.
          */
         public DummyWidget() {
-            super("DUMMY", Coordinates.ZERO);
+            super("DUMMY", FullCoordinates.ZERO);
         }
 
         /**

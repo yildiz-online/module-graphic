@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.checkbox;
 
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.material.Material;
 

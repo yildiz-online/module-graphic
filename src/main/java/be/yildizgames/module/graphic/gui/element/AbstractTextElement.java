@@ -27,7 +27,7 @@ package be.yildizgames.module.graphic.gui.element;
 
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.internal.BaseElement;
 
@@ -61,7 +61,7 @@ public abstract class AbstractTextElement extends BaseElement {
      * @param coordinates Text position and size.
      * @param textFont    Font to use to print the text.
      */
-    protected AbstractTextElement(final BaseCoordinate coordinates, final Font textFont) {
+    protected AbstractTextElement(final Coordinates coordinates, final Font textFont) {
         super("text" + System.nanoTime(), coordinates);
         Objects.requireNonNull(textFont);
         this.font = textFont;

@@ -28,7 +28,7 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 import be.yildizgames.common.client.translation.Translation;
 import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
@@ -86,7 +86,7 @@ final class SimpleCheckBox extends BaseContainerChild implements CheckBox {
      */
     SimpleCheckBox(
             final String name,
-            final BaseCoordinate coordinates,
+            final Coordinates coordinates,
             final AbstractIconElement backgroundImage,
             final Material hoverMaterial,
             final AbstractIconElement checkedImage,

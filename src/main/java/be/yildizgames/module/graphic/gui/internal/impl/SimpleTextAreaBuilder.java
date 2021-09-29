@@ -24,10 +24,10 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.Position;
+import be.yildizgames.module.coordinates.Relative;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
@@ -101,30 +101,30 @@ class SimpleTextAreaBuilder implements TextAreaBuilder {
 
     @Override
     public SimpleTextAreaBuilder withRelativeWidth(Relative r) {
-        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().getHeight());
         return this;
     }
 
     @Override
     public SimpleTextAreaBuilder withRelativeHeight(Relative r) {
-        this.base.withSize(this.base.getCoordinates().width, (int) (this.builder.getScreenSize().height * r.value));
+        this.base.withSize(this.base.getCoordinates().getWidth(), (int) (this.builder.getScreenSize().height * r.value));
         return this;
     }
 
     @Override
     public SimpleTextAreaBuilder atRelativeLeft(Relative r) {
-        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
+        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().getTop());
         return this;
     }
 
     @Override
     public SimpleTextAreaBuilder atRelativeTop(Relative r) {
-        this.base.atPosition(this.base.getCoordinates().left, (int) (this.builder.getScreenSize().height * r.value));
+        this.base.atPosition(this.base.getCoordinates().getLeft(), (int) (this.builder.getScreenSize().height * r.value));
         return this;
     }
 
     @Override
-    public SimpleTextAreaBuilder withCoordinates(BaseCoordinate coordinates) {
+    public SimpleTextAreaBuilder withCoordinates(Coordinates coordinates) {
         this.base.withCoordinates(coordinates);
         return this;
     }

@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.progressbar.ProgressBar;
 
@@ -48,7 +48,7 @@ abstract class BaseProgressBar extends BaseContainerChild implements ProgressBar
      * @param coordinates Widget coordinates, width value is used for a 100% completed progress bar.
      * @param parent      Container holding this widget.
      */
-    protected BaseProgressBar(final String name, final BaseCoordinate coordinates, final SimpleContainer parent) {
+    protected BaseProgressBar(final String name, final Coordinates coordinates, final SimpleContainer parent) {
         super(name, coordinates, parent);
     }
 

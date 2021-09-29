@@ -26,7 +26,7 @@
 package be.yildizgames.module.graphic.gui.element;
 
 import be.yildizgames.common.util.Registerer;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.internal.BaseElement;
 import be.yildizgames.module.graphic.material.Material;
 
@@ -58,7 +58,7 @@ public abstract class AbstractIconElement extends BaseElement {
      * @param coordinates  Element position and size.
      * @param iconMaterial Material to use on this icon.
      */
-    protected AbstractIconElement(final String name, final BaseCoordinate coordinates, final Material iconMaterial) {
+    protected AbstractIconElement(final String name, final Coordinates coordinates, final Material iconMaterial) {
         super(name, coordinates);
         Objects.requireNonNull(iconMaterial);
         this.material = iconMaterial;

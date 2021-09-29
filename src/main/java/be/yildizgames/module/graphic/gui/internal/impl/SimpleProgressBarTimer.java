@@ -28,9 +28,9 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 import be.yildizgames.common.frame.EndFrameListener;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.util.Checker;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.Relative;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.OnMouseOverListener;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
@@ -276,12 +276,12 @@ final class SimpleProgressBarTimer extends EndFrameListener implements ProgressB
     }
 
     @Override
-    public BaseCoordinate getCoordinates() {
+    public Coordinates getCoordinates() {
         return this.bar.getCoordinates();
     }
 
     @Override
-    public void setCoordinates(BaseCoordinate coordinates) {
+    public void setCoordinates(Coordinates coordinates) {
         this.text.setCoordinates(coordinates);
         this.bar.setCoordinates(coordinates);
     }

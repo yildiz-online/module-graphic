@@ -24,10 +24,10 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.Position;
+import be.yildizgames.module.coordinates.Relative;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBox;
 import be.yildizgames.module.graphic.gui.checkbox.CheckBoxAnimation;
@@ -99,25 +99,25 @@ class SimpleCheckBoxBuilder implements CheckBoxBuilder {
 
     @Override
     public SimpleCheckBoxBuilder withRelativeWidth(Relative r) {
-        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().getHeight());
         return this;
     }
 
     @Override
     public SimpleCheckBoxBuilder withRelativeHeight(Relative r) {
-        this.base.withSize(this.base.getCoordinates().width, (int) (this.builder.getScreenSize().height * r.value));
+        this.base.withSize(this.base.getCoordinates().getWidth(), (int) (this.builder.getScreenSize().height * r.value));
         return this;
     }
 
     @Override
     public SimpleCheckBoxBuilder atRelativeLeft(Relative r) {
-        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
+        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().getTop());
         return this;
     }
 
     @Override
     public SimpleCheckBoxBuilder atRelativeTop(Relative r) {
-        this.base.atPosition(this.base.getCoordinates().left, (int) (this.builder.getScreenSize().height * r.value));
+        this.base.atPosition(this.base.getCoordinates().getLeft(), (int) (this.builder.getScreenSize().height * r.value));
         return this;
     }
 
@@ -158,7 +158,7 @@ class SimpleCheckBoxBuilder implements CheckBoxBuilder {
     }
 
     @Override
-    public SimpleCheckBoxBuilder withCoordinates(final BaseCoordinate coordinates) {
+    public SimpleCheckBoxBuilder withCoordinates(final Coordinates coordinates) {
         this.base.withCoordinates(coordinates);
         return this;
     }

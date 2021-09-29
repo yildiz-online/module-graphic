@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
@@ -53,7 +53,7 @@ final class SimpleImage extends BaseContainerChild implements Image {
      * @param icon        Icon element to use for the image.
      * @param container   Container holding the image.
      */
-    SimpleImage(final String name, final BaseCoordinate coordinates, final AbstractIconElement icon, final Container container) {
+    SimpleImage(final String name, final Coordinates coordinates, final AbstractIconElement icon, final Container container) {
         super(name, coordinates, container);
         this.image = icon;
     }

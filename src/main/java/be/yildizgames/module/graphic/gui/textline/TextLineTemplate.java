@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.textline;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.TemplateType;
 
@@ -38,5 +38,5 @@ public interface TextLineTemplate {
 
     TemplateType getType();
 
-    BaseCoordinate getCoordinates();
+    Coordinates getCoordinates();
 }

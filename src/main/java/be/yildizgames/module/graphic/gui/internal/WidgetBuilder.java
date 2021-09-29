@@ -25,10 +25,10 @@
 
 package be.yildizgames.module.graphic.gui.internal;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.Position;
+import be.yildizgames.module.coordinates.Relative;
+import be.yildizgames.module.coordinates.Size;
 
 /**
  * @author Grégory Van den Borre
@@ -37,7 +37,7 @@ public interface WidgetBuilder<T> {
 
     T withName(String name);
 
-    T withCoordinates(BaseCoordinate coordinates);
+    T withCoordinates(Coordinates coordinates);
 
     T atPosition(Position position);
 

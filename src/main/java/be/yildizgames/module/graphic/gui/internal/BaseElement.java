@@ -26,10 +26,10 @@
 package be.yildizgames.module.graphic.gui.internal;
 
 import be.yildizgames.common.util.BaseRegisterable;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Coordinates;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
+import be.yildizgames.module.coordinates.Relative;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 
@@ -101,13 +101,13 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
      * @param name        Element name, must be unique.
      * @param coordinates Element size and position.
      */
-    protected BaseElement(final String name, final BaseCoordinate coordinates) {
+    protected BaseElement(final String name, final Coordinates coordinates) {
         super(name);
         assert coordinates != null : "coordinates parameter is null.";
-        this.left = coordinates.left;
-        this.top = coordinates.top;
-        this.width = coordinates.width;
-        this.height = coordinates.height;
+        this.left = coordinates.getLeft();
+        this.top = coordinates.getTop();
+        this.width = coordinates.getWidth();
+        this.height = coordinates.getHeight();
         this.virtualHeight = this.height;
         this.otherRelative = this;
     }
@@ -385,7 +385,7 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
      */
     @Override
     public final void setSize(final Size size) {
-        this.setSize(size.width, size.height);
+        this.setSize(size.getWidth(), size.getHeight());
         this.virtualHeight = this.getHeight();
     }
 
@@ -413,8 +413,8 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
      * @return An object containing this widget coordinates.
      */
     @Override
-    public final BaseCoordinate getCoordinates() {
-        return new Coordinates(this.width, this.height, this.left, this.top);
+    public final Coordinates getCoordinates() {
+        return FullCoordinates.full(this.width, this.height, this.left, this.top);
     }
 
     /**
@@ -423,9 +423,9 @@ public abstract class BaseElement extends BaseRegisterable implements Element {
      * @param coordinates Coordinates to set.
      */
     @Override
-    public final void setCoordinates(final BaseCoordinate coordinates) {
-        this.setSize(coordinates.width, coordinates.height);
-        this.setPosition(coordinates.left, coordinates.top);
+    public final void setCoordinates(final Coordinates coordinates) {
+        this.setSize(coordinates.getWidth(), coordinates.getHeight());
+        this.setPosition(coordinates.getLeft(), coordinates.getTop());
     }
 
     /**

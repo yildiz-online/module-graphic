@@ -23,12 +23,12 @@
  */
 package be.yildizgames.module.graphic.gui.image;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.material.Material;
 
 public interface ImageTemplate {
 
     Material betBackground();
 
-    BaseCoordinate getCoordinates();
+    Coordinates getCoordinates();
 }

@@ -1,7 +1,7 @@
 package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.common.util.StringUtil;
-import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
 
@@ -11,7 +11,7 @@ import be.yildizgames.module.graphic.material.Material;
 public class DummyProgressBar extends BaseProgressBar {
 
     protected DummyProgressBar() {
-        super(StringUtil.buildRandomString("pb"), Coordinates.ZERO, new DummyContainer());
+        super(StringUtil.buildRandomString("pb"), FullCoordinates.ZERO, new DummyContainer());
     }
 
     @Override

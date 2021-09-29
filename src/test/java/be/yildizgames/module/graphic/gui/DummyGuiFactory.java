@@ -25,7 +25,7 @@
 package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
@@ -96,23 +96,23 @@ public class DummyGuiFactory extends StandardGuiFactory {
     }
 
     @Override
-    protected AbstractIconElement buildIconElement(String name, BaseCoordinate coordinates, Material material, Container container) {
+    protected AbstractIconElement buildIconElement(String name, Coordinates coordinates, Material material, Container container) {
         return new DummyIconElement(name, coordinates, material);
     }
 
     @Override
-    protected AbstractTextElement buildTextElement(BaseCoordinate coordinates, Font font, Container container) {
+    protected AbstractTextElement buildTextElement(Coordinates coordinates, Font font, Container container) {
         return new DummyTextElement(coordinates, font);
     }
 
     @Override
-    public SimpleContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background) {
+    public SimpleContainer buildContainerElement(String name, Coordinates coordinates, Material background) {
         return new DummyGuiContainer(name, coordinates, background);
     }
 
 
     @Override
-    public SimpleContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, Container parent, boolean widget) {
+    public SimpleContainer buildContainerElement(String name, Coordinates coordinates, Material background, Container parent, boolean widget) {
         return new DummyGuiContainer(name, coordinates, background, parent, widget);
     }
 }

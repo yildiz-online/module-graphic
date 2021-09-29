@@ -24,9 +24,7 @@
 
 package be.yildizgames.module.graphic.gui.internal;
 
-import be.yildizgames.module.coordinate.Coordinates;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.FullCoordinates;
 import be.yildizgames.module.graphic.gui.DummyGuiFactory;
 import be.yildizgames.module.graphic.gui.WidgetMock;
 import be.yildizgames.module.graphic.gui.container.Container;
@@ -51,10 +49,10 @@ public class WidgetTest {
         StandardGuiFactory builder = new DummyGuiFactory();
         Container c = builder
                 .container()
-                .withSize(new Size(50))
-                .atPosition(new Position(30))
+                .withSize(FullCoordinates.size(50))
+                .atPosition(FullCoordinates.position(30))
                 .build();
-        return new WidgetMock(new Coordinates(new Size(10), new Position(10)), c);
+        return new WidgetMock(FullCoordinates.full(10,10,10,10), c);
     }
 
     @Test
@@ -66,7 +64,7 @@ public class WidgetTest {
                 .atPosition(10,10)
                 .build();
 
-        BaseWidget w = new WidgetMock(new Coordinates(new Size(10), new Position(10)), c);
+        BaseWidget w = new WidgetMock(FullCoordinates.full(10,10,10,10), c);
         assertEquals(c, w.findParent().get());
     }
 

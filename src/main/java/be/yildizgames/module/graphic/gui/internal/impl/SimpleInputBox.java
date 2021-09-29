@@ -29,7 +29,7 @@ import be.yildizgames.common.client.translation.Translation;
 import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
@@ -133,7 +133,7 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
      */
     SimpleInputBox(
             final String name,
-            final BaseCoordinate coordinates,
+            final Coordinates coordinates,
             final AbstractTextElement textElement,
             final AbstractTextElement caption,
             final SimpleContainer c,
@@ -147,11 +147,11 @@ final class SimpleInputBox extends BaseContainerChild implements InputBox {
         this.captionText = caption;
         this.defaultMessage = defaultMessage;
         this.defaultMessage.setColor(Color.GRAY);
-        this.maxLineSize = coordinates.width - 40;
+        this.maxLineSize = coordinates.getWidth() - 40;
         this.background = backgroundElement;
         this.innerContainer = c;
         this.materials = material;
-        this.setPosition(coordinates.left, coordinates.top);
+        this.setPosition(coordinates.getLeft(), coordinates.getTop());
         this.cursor = cursor;
         this.showImpl();
         this.listener = new InputBoxListener();

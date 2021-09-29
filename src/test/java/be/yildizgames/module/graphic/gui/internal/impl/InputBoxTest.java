@@ -26,7 +26,7 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.common.util.StringUtil;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.dummy.DummyFont;
 import be.yildizgames.module.graphic.gui.DummyGuiFactory;
@@ -46,7 +46,7 @@ public class InputBoxTest {
 
     private static Font f = new DummyFont("f", 5, Color.BLACK);
 
-    private static SimpleContainer parent = builder.buildOverlayContainer("parent", Material.empty(), new Coordinates(100, 10, 0, 0));
+    private static SimpleContainer parent = builder.buildOverlayContainer("parent", Material.empty(), FullCoordinates.full(100, 10, 0, 0));
 
     @Test
     public void testGetText() {
@@ -120,6 +120,6 @@ public class InputBoxTest {
         Material m = Material.empty();
         return builder
                 .buildInputBox(StringUtil.buildRandomString("ib"),
-                        Coordinates.ZERO, f, m, m, m, parent);
+                        FullCoordinates.ZERO, f, m, m, m, parent);
     }
 }

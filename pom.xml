@@ -40,7 +40,7 @@
   <parent>
     <groupId>be.yildiz-games</groupId>
     <artifactId>parent</artifactId>
-    <version>4.0.2</version>
+    <version>5.0.1</version>
   </parent>
 
   <packaging>jar</packaging>
@@ -60,7 +60,7 @@
     <dependency>
       <groupId>be.yildiz-games</groupId>
       <artifactId>module-window</artifactId>
-      <version>5.1.0</version>
+      <version>5.2.0</version>
     </dependency>
     <dependency>
       <groupId>be.yildiz-games</groupId>

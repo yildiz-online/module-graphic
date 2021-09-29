@@ -26,10 +26,10 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.common.time.TimeFormatter;
 import be.yildizgames.common.util.StringUtil;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.Position;
+import be.yildizgames.module.coordinates.Relative;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.image.Image;
@@ -67,7 +67,7 @@ class SimpleProgressBarBuilder implements ProgressBarBuilder {
     }
 
     @Override
-    public ProgressBarBuilder withCoordinates(BaseCoordinate coordinates) {
+    public ProgressBarBuilder withCoordinates(Coordinates coordinates) {
         this.baseWidgetBuilder.withCoordinates(coordinates);
         return this;
     }
@@ -86,25 +86,25 @@ class SimpleProgressBarBuilder implements ProgressBarBuilder {
 
     @Override
     public ProgressBarBuilder withRelativeWidth(Relative r) {
-        this.baseWidgetBuilder.withSize((int) (this.factory.getScreenSize().width * r.value), this.baseWidgetBuilder.getCoordinates().height);
+        this.baseWidgetBuilder.withSize((int) (this.factory.getScreenSize().width * r.value), this.baseWidgetBuilder.getCoordinates().getHeight());
         return null;
     }
 
     @Override
     public ProgressBarBuilder withRelativeHeight(Relative r) {
-        this.baseWidgetBuilder.withSize(this.baseWidgetBuilder.getCoordinates().width, (int) (this.factory.getScreenSize().height * r.value));
+        this.baseWidgetBuilder.withSize(this.baseWidgetBuilder.getCoordinates().getWidth(), (int) (this.factory.getScreenSize().height * r.value));
         return this;
     }
 
     @Override
     public ProgressBarBuilder atRelativeLeft(Relative r) {
-        this.baseWidgetBuilder.atPosition((int) (this.factory.getScreenSize().width * r.value), this.baseWidgetBuilder.getCoordinates().top);
+        this.baseWidgetBuilder.atPosition((int) (this.factory.getScreenSize().width * r.value), this.baseWidgetBuilder.getCoordinates().getTop());
         return this;
     }
 
     @Override
     public ProgressBarBuilder atRelativeTop(Relative r) {
-        this.baseWidgetBuilder.atPosition(this.baseWidgetBuilder.getCoordinates().left, (int) (this.factory.getScreenSize().height * r.value));
+        this.baseWidgetBuilder.atPosition(this.baseWidgetBuilder.getCoordinates().getLeft(), (int) (this.factory.getScreenSize().height * r.value));
         return this;
     }
 

@@ -24,7 +24,7 @@
 package be.yildizgames.module.graphic;
 
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.Relative;
+import be.yildizgames.module.coordinates.Relative;
 import be.yildizgames.module.graphic.gui.GuiEventManager;
 import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;

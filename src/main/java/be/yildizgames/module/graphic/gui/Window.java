@@ -25,8 +25,8 @@
 package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.common.geometry.Rectangle;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.button.Button;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
@@ -204,10 +204,10 @@ public abstract class Window extends View {
             this.title = builder
                     .textLine()
                     .withName("title_" + Window.this.getName())
-                    .withCoordinates(new Coordinates(Window.this.getContainer().getWidth(), 20, BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top))
+                    .withCoordinates(FullCoordinates.full(Window.this.getContainer().getWidth(), 20, FullCoordinates.ZERO.getLeft(), FullCoordinates.ZERO.getTop()))
                     .withFont(font)
                     .build(Window.this.container);
-            final Coordinates closeCoordinates = new Coordinates(this.height, this.height, Window.this.getContainer().getWidth() - this.height, 0);
+            final Coordinates closeCoordinates = FullCoordinates.full(this.height, this.height, Window.this.getContainer().getWidth() - this.height, 0);
             this.close = builder
                     .button()
                     .withName("close_" + Window.this.getName())

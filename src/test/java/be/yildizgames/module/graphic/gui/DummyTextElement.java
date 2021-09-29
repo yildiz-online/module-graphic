@@ -25,7 +25,7 @@
 package be.yildizgames.module.graphic.gui;
 
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.internal.Element;
@@ -43,7 +43,7 @@ public final class DummyTextElement extends AbstractTextElement {
      * @param coordinates Object coordinates.
      * @param textFont    Font to use.
      */
-    public DummyTextElement(final BaseCoordinate coordinates, final Font textFont) {
+    public DummyTextElement(final Coordinates coordinates, final Font textFont) {
         super(coordinates, textFont);
     }
 

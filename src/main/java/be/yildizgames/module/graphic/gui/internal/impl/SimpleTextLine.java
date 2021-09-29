@@ -28,7 +28,7 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 import be.yildizgames.common.client.translation.Translation;
 import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
@@ -63,7 +63,7 @@ class SimpleTextLine extends BaseContainerChild implements TextLine {
      * @param container   Container holding the text line.
      */
     SimpleTextLine(final String name, final AbstractTextElement textElement, final SimpleContainer container) {
-        super(name, new Coordinates(textElement.getTextWidth(), textElement.getTextHeight(), textElement.getLeft(), textElement.getTop()), container);
+        super(name, FullCoordinates.full(textElement.getTextWidth(), textElement.getTextHeight(), textElement.getLeft(), textElement.getTop()), container);
         this.text = textElement;
         this.textPosition = TextPosition.LEFT;
         this.showImpl();

@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.image.Image;
@@ -57,7 +57,7 @@ final class EmptyRectangleImage extends BaseContainerChild implements Image {
      */
     private final AbstractIconElement bottom;
 
-    EmptyRectangleImage(String name, BaseCoordinate coordinates, AbstractIconElement left, AbstractIconElement top, AbstractIconElement right, AbstractIconElement bottom, SimpleContainer container) {
+    EmptyRectangleImage(String name, Coordinates coordinates, AbstractIconElement left, AbstractIconElement top, AbstractIconElement right, AbstractIconElement bottom, SimpleContainer container) {
         super(name, coordinates, container);
         this.left = left;
         this.top = top;

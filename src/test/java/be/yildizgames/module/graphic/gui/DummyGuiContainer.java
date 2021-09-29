@@ -24,8 +24,7 @@
 
 package be.yildizgames.module.graphic.gui;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
@@ -50,12 +49,12 @@ public class DummyGuiContainer extends SimpleContainer {
     }
 
 
-    DummyGuiContainer(String name, BaseCoordinate coordinates, Material background) {
+    DummyGuiContainer(String name, Coordinates coordinates, Material background) {
         super(name, coordinates, background, false);
     }
 
 
-    DummyGuiContainer(String name, BaseCoordinate coordinates, Material background, Container parent, boolean widget) {
+    DummyGuiContainer(String name, Coordinates coordinates, Material background, Container parent, boolean widget) {
         super(name, coordinates, background, (SimpleContainer) parent, widget);
     }
 

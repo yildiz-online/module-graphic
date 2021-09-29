@@ -26,9 +26,9 @@
 package be.yildizgames.module.graphic.gui.internal;
 
 import be.yildizgames.common.util.Registerable;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.Relative;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.gui.PositionRelativeLeft;
 import be.yildizgames.module.graphic.gui.PositionRelativeTop;
 
@@ -139,9 +139,9 @@ public interface Element extends Registerable {
 
     void setSize(Size size);
 
-    BaseCoordinate getCoordinates();
+    Coordinates getCoordinates();
 
-    void setCoordinates(BaseCoordinate coordinates);
+    void setCoordinates(Coordinates coordinates);
 
     boolean isVisible();
 

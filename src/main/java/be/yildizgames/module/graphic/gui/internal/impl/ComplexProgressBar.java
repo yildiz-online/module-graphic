@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
@@ -80,16 +80,16 @@ final class ComplexProgressBar extends BaseProgressBar {
      * @param rightEmpty  Icon element for the progress bar right part when empty.
      * @param parent      Container holding this widget.
      */
-    public ComplexProgressBar(final String name, final BaseCoordinate coordinates, final AbstractIconElement left,
-                       final AbstractIconElement middle, final AbstractIconElement right, final AbstractIconElement middleEmpty,
-                       final AbstractIconElement rightEmpty, final SimpleContainer parent) {
+    public ComplexProgressBar(final String name, final Coordinates coordinates, final AbstractIconElement left,
+                              final AbstractIconElement middle, final AbstractIconElement right, final AbstractIconElement middleEmpty,
+                              final AbstractIconElement rightEmpty, final SimpleContainer parent) {
         super(name, coordinates, parent);
         this.leftIcon = left;
         this.middleIcon = middle;
         this.rightIcon = right;
         this.middleEmptyIcon = middleEmpty;
         this.rightEmptyIcon = rightEmpty;
-        this.computedMibbleBarSize = (coordinates.width - left.getWidth() * 2) * 0.01f;
+        this.computedMibbleBarSize = (coordinates.getWidth() - left.getWidth() * 2) * 0.01f;
     }
 
     @Override

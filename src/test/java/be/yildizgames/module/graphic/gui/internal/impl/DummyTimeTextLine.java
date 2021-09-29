@@ -3,10 +3,10 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Coordinates;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
+import be.yildizgames.module.coordinates.Relative;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.OnMouseOverListener;
@@ -343,12 +343,12 @@ public class DummyTimeTextLine implements TimeTextLine {
     }
 
     @Override
-    public BaseCoordinate getCoordinates() {
-        return Coordinates.ZERO;
+    public Coordinates getCoordinates() {
+        return FullCoordinates.ZERO;
     }
 
     @Override
-    public void setCoordinates(BaseCoordinate coordinates) {
+    public void setCoordinates(Coordinates coordinates) {
 
     }
 

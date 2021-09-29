@@ -28,10 +28,9 @@ import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.common.time.TimeFormatter;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.common.util.StringUtil;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Coordinates;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
+import be.yildizgames.module.coordinates.Position;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.gui.SimpleView;
@@ -183,7 +182,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the button.
      * @return The build button.
      */
-    public final SimpleButton buildButton(final String name, final BaseCoordinate coordinates, final ButtonMaterial material, final SimpleContainer container) {
+    public final SimpleButton buildButton(final String name, final Coordinates coordinates, final ButtonMaterial material, final SimpleContainer container) {
         final SimpleContainer c = this.buildOverlayContainer(name, Material.empty(), coordinates, container, true);
         final AbstractTextElement text = this.buildTextElement(coordinates, material.font, c);
 
@@ -232,7 +231,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the image.
      * @return The new image widget.
      */
-    public final Image buildImage(final String name, final BaseCoordinate coordinates, final Material background, final Container container) {
+    public final Image buildImage(final String name, final Coordinates coordinates, final Material background, final Container container) {
         final AbstractIconElement icon = this.buildIconElement(name, coordinates, background, container);
         final SimpleImage image = new SimpleImage(name, coordinates, icon, container);
         image.setStatic();
@@ -250,12 +249,12 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the image.
      * @return The new image widget.
      */
-    public final EmptyRectangleImage buildEmptyRectangleImage(final String name, final BaseCoordinate coordinates, final Material background, final int border, final SimpleContainer container) {
-        final AbstractIconElement left = this.buildIconElement(name + "_left", new Coordinates(border, coordinates.height, coordinates.left, coordinates.top), background, container);
-        final AbstractIconElement top = this.buildIconElement(name + "_top", new Coordinates(coordinates.width, border, coordinates.left, coordinates.top), background, container);
-        final AbstractIconElement right = this.buildIconElement(name + "_right", new Coordinates(border, coordinates.height, coordinates.left + coordinates.width, coordinates.top), background,
+    public final EmptyRectangleImage buildEmptyRectangleImage(final String name, final Coordinates coordinates, final Material background, final int border, final SimpleContainer container) {
+        final AbstractIconElement left = this.buildIconElement(name + "_left", FullCoordinates.full(border, coordinates.getHeight(), coordinates.getLeft(), coordinates.getTop()), background, container);
+        final AbstractIconElement top = this.buildIconElement(name + "_top", FullCoordinates.full(coordinates.getWidth(), border, coordinates.getLeft(), coordinates.getTop()), background, container);
+        final AbstractIconElement right = this.buildIconElement(name + "_right", FullCoordinates.full(border, coordinates.getHeight(), coordinates.getLeft() + coordinates.getWidth(), coordinates.getTop()), background,
                 container);
-        final AbstractIconElement bottom = this.buildIconElement(name + "_bottom", new Coordinates(coordinates.width, border, coordinates.left, coordinates.top + coordinates.height), background,
+        final AbstractIconElement bottom = this.buildIconElement(name + "_bottom", FullCoordinates.full(coordinates.getWidth(), border, coordinates.getLeft(), coordinates.getTop() + coordinates.getHeight()), background,
                 container);
         final EmptyRectangleImage image = new EmptyRectangleImage(name, coordinates, left, top, right, bottom, container);
         this.imageList.register(image);
@@ -263,12 +262,12 @@ public abstract class StandardGuiFactory implements GuiFactory {
         return image;
     }
 
-    public final EmptyRectangleImage buildEmptyUnderlineImage(final String name, final BaseCoordinate coordinates, final Material background, final int border, final SimpleContainer container) {
-        final AbstractIconElement left = this.buildIconElement(name + "_left", new Coordinates(border, coordinates.height, coordinates.left, coordinates.top), Material.empty(), container);
-        final AbstractIconElement top = this.buildIconElement(name + "_top", new Coordinates(coordinates.width, border, coordinates.left, coordinates.top), Material.empty(), container);
-        final AbstractIconElement right = this.buildIconElement(name + "_right", new Coordinates(border, coordinates.height, coordinates.left + coordinates.width, coordinates.top), Material.empty(),
+    public final EmptyRectangleImage buildEmptyUnderlineImage(final String name, final Coordinates coordinates, final Material background, final int border, final SimpleContainer container) {
+        final AbstractIconElement left = this.buildIconElement(name + "_left", FullCoordinates.full(border, coordinates.getHeight(), coordinates.getLeft(), coordinates.getTop()), Material.empty(), container);
+        final AbstractIconElement top = this.buildIconElement(name + "_top", FullCoordinates.full(coordinates.getWidth(), border, coordinates.getLeft(), coordinates.getTop()), Material.empty(), container);
+        final AbstractIconElement right = this.buildIconElement(name + "_right", FullCoordinates.full(border, coordinates.getHeight(), coordinates.getLeft() + coordinates.getWidth(), coordinates.getTop()), Material.empty(),
                 container);
-        final AbstractIconElement bottom = this.buildIconElement(name + "_bottom", new Coordinates(coordinates.width, border, coordinates.left, coordinates.top + coordinates.height), background,
+        final AbstractIconElement bottom = this.buildIconElement(name + "_bottom", FullCoordinates.full(coordinates.getWidth(), border, coordinates.getLeft(), coordinates.getTop() + coordinates.getHeight()), background,
                 container);
         final EmptyRectangleImage image = new EmptyRectangleImage(name, coordinates, left, top, right, bottom, container);
         this.imageList.register(image);
@@ -315,7 +314,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the text line.
      * @return The new text line.
      */
-    public final SimpleTextLine buildTextLine(final String name, final BaseCoordinate coordinates, final Font font, final SimpleContainer container) {
+    public final SimpleTextLine buildTextLine(final String name, final Coordinates coordinates, final Font font, final SimpleContainer container) {
         final AbstractTextElement text = this.buildTextElement(coordinates, font, container);
         final SimpleTextLine textLine = new SimpleTextLine(name, text, container);
         textLine.setStatic();
@@ -354,7 +353,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the text area.
      * @return The new text area widget.
      */
-    public final TextArea buildTextArea(final String name, final BaseCoordinate coordinates, final Font font, final Material background, final int textPadding, final SimpleContainer container) {
+    public final TextArea buildTextArea(final String name, final Coordinates coordinates, final Font font, final Material background, final int textPadding, final SimpleContainer container) {
         final AbstractIconElement image = this.buildIconElement(name, coordinates, background, container);
         final AbstractTextElement text = this.buildTextElement(coordinates, font, container);
         final SimpleTextArea textArea = new SimpleTextArea(name, coordinates, image, text, textPadding, container);
@@ -387,16 +386,16 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container      Container holding the progress bar.
      * @return The new progress bar widget.
      */
-    public final ProgressBar buildProgressBar(final String name, final BaseCoordinate coordinates, final Material leftMat, final Material middleMat, final Material rightMat,
+    public final ProgressBar buildProgressBar(final String name, final Coordinates coordinates, final Material leftMat, final Material middleMat, final Material rightMat,
                                                   final Material emptyMiddleMat, final Material emptyRightMat, final int borderWidth, final SimpleContainer container) {
-        final Coordinates border = new Coordinates(borderWidth, coordinates.height, coordinates.left, coordinates.top);
-        final Coordinates middleC = new Coordinates(0, coordinates.height, coordinates.left + border.width, coordinates.top);
+        final Coordinates border = FullCoordinates.full(borderWidth, coordinates.getHeight(), coordinates.getLeft(), coordinates.getTop());
+        final Coordinates middleC = FullCoordinates.full(0, coordinates.getHeight(), coordinates.getLeft() + border.getWidth(), coordinates.getTop());
         final AbstractIconElement left = this.buildIconElement(name + "lf", border, leftMat, container);
         // build empty first to be under color version
-        final AbstractIconElement middleEmpty = this.buildIconElement(name + "mdempty", new Coordinates(coordinates.width - 2 * borderWidth, coordinates.height, middleC.left, coordinates.top),
+        final AbstractIconElement middleEmpty = this.buildIconElement(name + "mdempty", FullCoordinates.full(coordinates.getWidth() - 2 * borderWidth, coordinates.getHeight(), middleC.getLeft(), coordinates.getTop()),
                 emptyMiddleMat, container);
         final AbstractIconElement rightEmpty = this.buildIconElement(name + "rtempty",
-                new Coordinates(borderWidth, coordinates.height, coordinates.left + coordinates.width - borderWidth, coordinates.top), emptyRightMat, container);
+                FullCoordinates.full(borderWidth, coordinates.getHeight(), coordinates.getLeft() + coordinates.getWidth() - borderWidth, coordinates.getTop()), emptyRightMat, container);
 
         final Container child = this.buildContainerElement(container.getName() + name + "_child", container.getCoordinates(), Material.empty(), container, false);
         final AbstractIconElement middle = this.buildIconElement(name + "mdfilled", middleC, middleMat, child);
@@ -430,7 +429,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @return The new progress bar widget.
      */
     public final ProgressBar buildProgressBar(final String name, final SimpleContainer container) {
-        return this.buildProgressBar(name, Coordinates.ZERO, Material.empty(), Material.empty(), Material.empty(), Material.empty(), Material.empty(), 0, container);
+        return this.buildProgressBar(name, FullCoordinates.ZERO, Material.empty(), Material.empty(), Material.empty(), Material.empty(), Material.empty(), 0, container);
     }
 
     /**
@@ -443,7 +442,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the progress bar.
      * @return The new progress bar widget.
      */
-    public final ProgressBar buildProgressBar(final String name, final BaseCoordinate coordinates, final Material empty, final Material filled, final SimpleContainer container) {
+    public final ProgressBar buildProgressBar(final String name, final Coordinates coordinates, final Material empty, final Material filled, final SimpleContainer container) {
         final AbstractIconElement emptyIcon = this.buildIconElement(name + "empty", coordinates, empty, container);
         final AbstractIconElement filledIcon = this.buildIconElement(name + "filled", coordinates, filled, container);
         final ProgressBar progressBar = new SimpleProgressBar(name, coordinates, emptyIcon, filledIcon, container);
@@ -460,7 +459,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the progress bar.
      * @return The new progress bar widget.
      */
-    public final ProgressBar buildProgressBar(final BaseCoordinate coordinates, final Material empty, final Material filled, final SimpleContainer container) {
+    public final ProgressBar buildProgressBar(final Coordinates coordinates, final Material empty, final Material filled, final SimpleContainer container) {
         final String name = StringUtil.buildRandomString("progressbar");
         final AbstractIconElement emptyIcon = this.buildIconElement(name + "empty", coordinates, empty, container);
         final AbstractIconElement filledIcon = this.buildIconElement(name + "filled", coordinates, filled, container);
@@ -469,7 +468,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
         return progressBar;
     }
 
-    public final ProgressBarTimer buildProgressBar(final BaseCoordinate coordinates, final Material empty, final Material filled, Font font, Duration duration, TimeFormatter formatter, final SimpleContainer container) {
+    public final ProgressBarTimer buildProgressBar(final Coordinates coordinates, final Material empty, final Material filled, Font font, Duration duration, TimeFormatter formatter, final SimpleContainer container) {
         final String name = StringUtil.buildRandomString("progressbar");
         final AbstractIconElement emptyIcon = this.buildIconElement(name + "empty", coordinates, empty, container);
         final AbstractIconElement filledIcon = this.buildIconElement(name + "filled", coordinates, filled, container);
@@ -513,7 +512,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container        Container holding the input box.
      * @return The new input box widget.
      */
-    public final SimpleInputBox buildInputBox(final String name, final BaseCoordinate coordinates, final Font font, final Material background, final Material backgroundHlight, final Material cursorMaterial,
+    public final SimpleInputBox buildInputBox(final String name, final Coordinates coordinates, final Font font, final Material background, final Material backgroundHlight, final Material cursorMaterial,
                                               final Container container) {
         return this.buildInputBox(name, coordinates, font, font, background, backgroundHlight, cursorMaterial, container);
     }
@@ -533,7 +532,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      */
     public final SimpleInputBox buildInputBox(
             final String name,
-            final BaseCoordinate coordinates,
+            final Coordinates coordinates,
             final Font defaultFont,
             final Font captionFont,
             final Material background,
@@ -551,11 +550,11 @@ public abstract class StandardGuiFactory implements GuiFactory {
         //Use an image to create complex background.
         Image i = this.buildEmptyUnderlineImage(
                 name + "_bi",
-                new Coordinates(coordinates.width, coordinates.height, 0, 0),
+                FullCoordinates.full(coordinates.getWidth(), coordinates.getHeight(), 0, 0),
                 background, 1, c);
         final AbstractTextElement text = this.buildTextElement(coordinates, captionFont, c);
         final AbstractTextElement caption = this.buildTextElement(coordinates, captionFont, c);
-        final AbstractIconElement cursor = this.buildIconElement(name + "_cursor", new Size(3, 20), cursorMaterial, c);
+        final AbstractIconElement cursor = this.buildIconElement(name + "_cursor", FullCoordinates.full(3, 20, 0, 0), cursorMaterial, c);
         final AbstractTextElement defaultMessage = this.buildTextElement(coordinates, captionFont, c);
         ButtonMaterial materials = new ButtonMaterial(background, backgroundHlight, captionFont);
         final SimpleInputBox inputBox = new SimpleInputBox(name, coordinates, text, caption, c, i, materials, cursor, defaultMessage, parent);
@@ -574,7 +573,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container      Container holding the input box.
      * @return The new input box widget.
      */
-    public final InputBox buildInputBox(final String name, final BaseCoordinate coordinates, final ButtonMaterial material, final Material cursorMaterial, final SimpleContainer container) {
+    public final InputBox buildInputBox(final String name, final Coordinates coordinates, final ButtonMaterial material, final Material cursorMaterial, final SimpleContainer container) {
         return this.buildInputBox(name, coordinates, material.font, material.material, material.highlight, cursorMaterial, container);
     }
 
@@ -587,11 +586,11 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @return The new input box widget.
      */
     public final InputBox buildInputBox(final Position position, final InputBoxTemplate def, final SimpleContainer container) {
-        return this.buildInputBox(StringUtil.buildRandomString("inputbox"), new Coordinates(def.getSize(), position), def.getFont(), def.getCaptionFont(), def.getMaterial(), def.getFocus(), def.getCursor(), container);
+        return this.buildInputBox(StringUtil.buildRandomString("inputbox"), FullCoordinates.full(def.getSize(), position), def.getFont(), def.getCaptionFont(), def.getMaterial(), def.getFocus(), def.getCursor(), container);
     }
 
     public final InputBox buildInputBox(String name, final Position position, final InputBoxTemplate def, final SimpleContainer container) {
-        return this.buildInputBox(name, new Coordinates(def.getSize(), position), def.getFont(), def.getMaterial(), def.getFocus(), def.getCursor(), container);
+        return this.buildInputBox(name, FullCoordinates.full(def.getSize(), position), def.getFont(), def.getMaterial(), def.getFocus(), def.getCursor(), container);
     }
 
     /**
@@ -628,7 +627,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @return The new check box widget.
      */
     public final SimpleCheckBox buildCheckBox(final String name,
-                                              final BaseCoordinate coordinates,
+                                              final Coordinates coordinates,
                                               final Material background,
                                               final Material hover,
                                               final Material check,
@@ -647,9 +646,9 @@ public abstract class StandardGuiFactory implements GuiFactory {
         //FIXME LOW hardcoded
         final int textHeight = 50;
         final int textWidth = 250;
-        final int textXPosition = coordinates.left + coordinates.width + 10;
-        final int textYPosition = coordinates.top + coordinates.height >> 1 - (font.size >> 1);
-        final Coordinates textCoord = new Coordinates(textWidth, textHeight, textXPosition, textYPosition);
+        final int textXPosition = coordinates.getLeft() + coordinates.getWidth() + 10;
+        final int textYPosition = coordinates.getTop() + coordinates.getHeight() >> 1 - (font.size >> 1);
+        final Coordinates textCoord = FullCoordinates.full(textWidth, textHeight, textXPosition, textYPosition);
         final AbstractTextElement text = this.buildTextElement(textCoord, font, container);
 
         final SimpleCheckBox checkbox = new SimpleCheckBox(name, coordinates, icon, hover, checkIcon, checkHover, text, container);
@@ -686,7 +685,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param coordinates Container size and position.
      * @return The newly built container.
      */
-    public final SimpleContainer buildOverlayContainer(final String name, final Material background, final BaseCoordinate coordinates) {
+    public final SimpleContainer buildOverlayContainer(final String name, final Material background, final Coordinates coordinates) {
         final SimpleContainer container = this.buildContainerElement(name, coordinates, background);
         this.containerList.register(container);
         return container;
@@ -702,13 +701,13 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param widget      <code>true</code> if this container is meant to be used as part of a widget instead of container.
      * @return The newly built container.
      */
-    private SimpleContainer buildOverlayContainer(final String name, final Material background, final BaseCoordinate coordinates, final SimpleContainer parent, final boolean widget) {
+    private SimpleContainer buildOverlayContainer(final String name, final Material background, final Coordinates coordinates, final SimpleContainer parent, final boolean widget) {
         SimpleContainer c = this.buildContainerElement(name, coordinates, background, parent, widget);
         this.containerList.register(c);
         return c;
     }
 
-    public SimpleContainer buildOverlayContainer(String name, Material background, BaseCoordinate coordinates, SimpleContainer container) {
+    public SimpleContainer buildOverlayContainer(String name, Material background, Coordinates coordinates, SimpleContainer container) {
         return this.buildOverlayContainer(name, background, coordinates, container, false);
     }
 
@@ -720,7 +719,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @return The newly built container.
      */
     public final SimpleContainer buildFullScreenOverlayContainer(final String name, final Material background) {
-        SimpleContainer c = this.buildContainerElement(name, new Coordinates(this.screenSize.width, this.screenSize.height, 0, 0), background);
+        SimpleContainer c = this.buildContainerElement(name, FullCoordinates.full(this.screenSize.width, this.screenSize.height,0,0), background);
         this.containerList.register(c);
         return c;
     }
@@ -762,7 +761,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the element.
      * @return The newly created tab container.
      */
-    public final TabContainer buildTabcontainer(final String name, final String[] titles, final BaseCoordinate coordinates, final int tabWidth, final int tabHeight, final Material background,
+    public final TabContainer buildTabcontainer(final String name, final String[] titles, final Coordinates coordinates, final int tabWidth, final int tabHeight, final Material background,
                                                 final Material tabMaterial, final Material highlight, final Material pushed, final Font font, final SimpleContainer container) {
 
         View[] children = new View[titles.length];
@@ -770,10 +769,10 @@ public abstract class StandardGuiFactory implements GuiFactory {
             Container c = this.buildContainerElement("childc" + name + i, coordinates, Material.empty());
             children[i] = new SimpleView(c, container.getZ().add(10), null);
         }
-        Image bg = this.buildImage(name + "bg", new Coordinates(coordinates.width, coordinates.height - tabHeight, coordinates.left, coordinates.top), background, container);
+        Image bg = this.buildImage(name + "bg", FullCoordinates.full(coordinates.getWidth(), coordinates.getHeight() - tabHeight, coordinates.getLeft(), coordinates.getTop()), background, container);
         SimpleButton[] buttons = new SimpleButton[titles.length];
         for (int i = 0; i < titles.length; i++) {
-            buttons[i] = this.buildButton(titles[i], new Coordinates(tabWidth, tabHeight, 30 + coordinates.left + i * tabWidth + 5, coordinates.top - tabHeight + 10), new ButtonMaterial(tabMaterial, highlight, font),
+            buttons[i] = this.buildButton(titles[i], FullCoordinates.full(tabWidth, tabHeight, 30 + coordinates.getLeft() + i * tabWidth + 5, coordinates.getTop() - tabHeight + 10), new ButtonMaterial(tabMaterial, highlight, font),
                     container);
             buttons[i].setPushedMaterial(pushed);
             buttons[i].setCaptionFont(font);
@@ -804,7 +803,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the image.
      * @return The newly built image.
      */
-    protected abstract AbstractIconElement buildIconElement(String name, BaseCoordinate coordinates, Material material, Container container);
+    protected abstract AbstractIconElement buildIconElement(String name, Coordinates coordinates, Material material, Container container);
 
     /**
      * Build an text base element in implementation.
@@ -814,7 +813,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param container   Container holding the text.
      * @return The newly built text.
      */
-    protected abstract AbstractTextElement buildTextElement(BaseCoordinate coordinates, Font font, Container container);
+    protected abstract AbstractTextElement buildTextElement(Coordinates coordinates, Font font, Container container);
 
     /**
      * Build a container base element in implementation.
@@ -824,7 +823,7 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param background  Container background material.
      * @return The newly built container.
      */
-    public abstract SimpleContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background);
+    public abstract SimpleContainer buildContainerElement(String name, Coordinates coordinates, Material background);
 
     /**
      * Build a container base element with a container parent in implementation.
@@ -836,5 +835,5 @@ public abstract class StandardGuiFactory implements GuiFactory {
      * @param widget      <code>true</code> to use this container as part of a widget instead of widget container.
      * @return The newly built container.
      */
-    public abstract SimpleContainer buildContainerElement(String name, BaseCoordinate coordinates, Material background, Container parent, boolean widget);
+    public abstract SimpleContainer buildContainerElement(String name, Coordinates coordinates, Material background, Container parent, boolean widget);
 }

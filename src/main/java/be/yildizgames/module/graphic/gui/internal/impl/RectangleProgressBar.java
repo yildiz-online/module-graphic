@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.image.Image;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
@@ -43,8 +43,8 @@ final class RectangleProgressBar extends BaseProgressBar {
 
     private final int borderSize;
 
-    RectangleProgressBar(final String name, final BaseCoordinate coordinates, final Image border, final Image content, final int borderSize,
-                                   final SimpleContainer parent) {
+    RectangleProgressBar(final String name, final Coordinates coordinates, final Image border, final Image content, final int borderSize,
+                         final SimpleContainer parent) {
         super(name, coordinates, parent);
         this.border = border;
         this.content = content;

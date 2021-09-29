@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.internal.impl;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
@@ -58,8 +58,8 @@ final class SimpleProgressBar extends BaseProgressBar {
      * @param filled      Icon element for the progress bar filled part.
      * @param container   Container holding this widget.
      */
-    SimpleProgressBar(final String name, final BaseCoordinate coordinates, final AbstractIconElement empty,
-                                final AbstractIconElement filled, final SimpleContainer container) {
+    SimpleProgressBar(final String name, final Coordinates coordinates, final AbstractIconElement empty,
+                      final AbstractIconElement filled, final SimpleContainer container) {
         super(name, coordinates, container);
         this.emptyIcon = empty;
         this.filledIcon = filled;

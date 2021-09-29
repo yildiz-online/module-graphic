@@ -24,10 +24,10 @@
 
 package be.yildizgames.module.graphic.gui.image;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Relative;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.Position;
+import be.yildizgames.module.coordinates.Relative;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.BaseWidgetBuilder;
 import be.yildizgames.module.graphic.gui.internal.WidgetBuilder;
@@ -61,7 +61,7 @@ public class ImageBuilder implements WidgetBuilder<ImageBuilder> {
     }
 
     @Override
-    public ImageBuilder withCoordinates(BaseCoordinate coordinates) {
+    public ImageBuilder withCoordinates(Coordinates coordinates) {
         this.base.withCoordinates(coordinates);
         return this;
     }
@@ -92,25 +92,25 @@ public class ImageBuilder implements WidgetBuilder<ImageBuilder> {
 
     @Override
     public ImageBuilder withRelativeWidth(Relative r) {
-        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().height);
+        this.base.withSize((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().getHeight());
         return this;
     }
 
     @Override
     public ImageBuilder withRelativeHeight(Relative r) {
-        this.base.withSize(this.base.getCoordinates().width, (int) (this.builder.getScreenSize().height * r.value));
+        this.base.withSize(this.base.getCoordinates().getWidth(), (int) (this.builder.getScreenSize().height * r.value));
         return this;
     }
 
     @Override
     public ImageBuilder atRelativeLeft(Relative r) {
-        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().top);
+        this.base.atPosition((int) (this.builder.getScreenSize().width * r.value), this.base.getCoordinates().getTop());
         return this;
     }
 
     @Override
     public ImageBuilder atRelativeTop(Relative r) {
-        this.base.atPosition(this.base.getCoordinates().left, (int) (this.builder.getScreenSize().height * r.value));
+        this.base.atPosition(this.base.getCoordinates().getLeft(), (int) (this.builder.getScreenSize().height * r.value));
         return this;
     }
 

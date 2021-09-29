@@ -25,7 +25,7 @@
 
 package be.yildizgames.module.graphic.gui.table;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.View;
 import be.yildizgames.module.graphic.gui.button.Button;
@@ -65,7 +65,7 @@ public final class TabContainer extends BaseContainerChild {
      * @param background   Background image.
      * @param container    Container holding this tab container.
      */
-    public TabContainer(final String name, final BaseCoordinate coordinates, final View[] containers, final Button[] tabSelectors, final Image background, final Container container) {
+    public TabContainer(final String name, final Coordinates coordinates, final View[] containers, final Button[] tabSelectors, final Image background, final Container container) {
         super(name, coordinates, container);
         this.elements = new TabElement[tabSelectors.length];
         this.background = background;

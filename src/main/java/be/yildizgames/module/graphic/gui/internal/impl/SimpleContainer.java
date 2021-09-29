@@ -26,7 +26,8 @@
 package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.common.geometry.Rectangle;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.ContainerChild;
 import be.yildizgames.module.graphic.gui.Widget;
@@ -89,7 +90,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @param parent             Parent container.
      * @param widget             Flag to set this container being considered as container or widget.
      */
-    protected SimpleContainer(final String name, final BaseCoordinate coordinates, final Material backgroundMaterial,
+    protected SimpleContainer(final String name, final Coordinates coordinates, final Material backgroundMaterial,
                               final SimpleContainer parent, final boolean widget) {
         super(name, coordinates, parent);
         this.material = backgroundMaterial;
@@ -109,7 +110,7 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      * @param backgroundMaterial The Material to use for background.
      * @param widget             Flag to set this container being considered as container or widget.
      */
-    protected SimpleContainer(final String name, final BaseCoordinate coordinates, final Material backgroundMaterial,
+    protected SimpleContainer(final String name, final Coordinates coordinates, final Material backgroundMaterial,
                               final boolean widget) {
         super(name, coordinates);
         this.material = backgroundMaterial;
@@ -195,10 +196,11 @@ public abstract class SimpleContainer extends BaseWidget implements Container {
      */
     public final void addChildrenPosition(final int left, final int top) {
         this.addChildrenPositionImpl(left, top);
-        BaseCoordinate c = this.getCoordinates();
+        Coordinates c = this.getCoordinates();
         for (final ContainerChild w : this.childrenList) {
             w.updateAddPositionValue(left, top);
-            w.setVisible(c.contains(w.getCoordinates()));
+            //FIXME expose contains to remove cast
+            w.setVisible(((FullCoordinates)c).contains((FullCoordinates)w.getCoordinates()));
         }
     }
 

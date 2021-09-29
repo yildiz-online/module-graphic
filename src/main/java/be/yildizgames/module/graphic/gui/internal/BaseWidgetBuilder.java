@@ -26,10 +26,10 @@
 package be.yildizgames.module.graphic.gui.internal;
 
 import be.yildizgames.common.util.StringUtil;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Coordinates;
-import be.yildizgames.module.coordinate.Position;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
+import be.yildizgames.module.coordinates.Position;
+import be.yildizgames.module.coordinates.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.material.Material;
 
@@ -40,8 +40,8 @@ public class BaseWidgetBuilder {
 
     private String name = StringUtil.buildRandomString("widget");
 
-    private BaseCoordinate coordinates = new Coordinates(BaseCoordinate.ZERO.width, BaseCoordinate.ZERO.height,
-            BaseCoordinate.ZERO.left, BaseCoordinate.ZERO.top);
+    private Coordinates coordinates = FullCoordinates.full(FullCoordinates.ZERO.getWidth(), FullCoordinates.ZERO.getHeight(),
+            FullCoordinates.ZERO.getLeft(), FullCoordinates.ZERO.getTop());
 
     private Font font;
 
@@ -59,19 +59,19 @@ public class BaseWidgetBuilder {
 
     public final void atPosition(final Position position) {
         assert position != null;
-        this.coordinates = new Coordinates(this.coordinates.width, this.coordinates.height, position);
+        this.coordinates = FullCoordinates.full(this.coordinates.getWidth(), this.coordinates.getHeight(), position);
     }
 
     public final void atPosition(final int x, final int y) {
-        this.atPosition(new Position(x, y));
+        this.atPosition(FullCoordinates.position(x, y));
     }
 
     public final void withSize(Size size) {
         assert size != null;
-        this.coordinates = new Coordinates(size, this.coordinates.left, this.coordinates.top);
+        this.coordinates = FullCoordinates.full(size, this.coordinates.getLeft(), this.coordinates.getTop());
     }
 
-    public final void withCoordinates(BaseCoordinate coordinates) {
+    public final void withCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
 
@@ -84,14 +84,14 @@ public class BaseWidgetBuilder {
     }
 
     public void withSize(int width, int length) {
-        this.withSize(new Size(width, length));
+        this.withSize(FullCoordinates.size(width, length));
     }
 
     public String getName() {
         return name;
     }
 
-    public BaseCoordinate getCoordinates() {
+    public final Coordinates getCoordinates() {
         return coordinates;
     }
 

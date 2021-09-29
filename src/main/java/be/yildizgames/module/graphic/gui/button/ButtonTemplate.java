@@ -23,11 +23,11 @@
  */
 package be.yildizgames.module.graphic.gui.button;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 
 public interface ButtonTemplate {
 
     ButtonMaterial getButtonMaterial();
 
-    BaseCoordinate getCoordinates();
+    Coordinates getCoordinates();
 }

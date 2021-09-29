@@ -23,6 +23,7 @@
  */
 
 module be.yildizgames.module.graphic {
+    uses be.yildizgames.module.graphic.GraphicEngineProvider;
     requires be.yildizgames.common.geometry;
     requires be.yildizgames.common.gameobject;
     requires be.yildizgames.common.util;

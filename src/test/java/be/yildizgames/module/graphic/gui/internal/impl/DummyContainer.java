@@ -1,8 +1,8 @@
 package be.yildizgames.module.graphic.gui.internal.impl;
 
 import be.yildizgames.common.util.StringUtil;
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Coordinates;
+import be.yildizgames.module.coordinates.Coordinates;
+import be.yildizgames.module.coordinates.FullCoordinates;
 import be.yildizgames.module.graphic.gui.Zorder;
 import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.material.Material;
@@ -13,12 +13,12 @@ import be.yildizgames.module.graphic.material.Material;
 public class DummyContainer extends SimpleContainer {
 
 
-    protected DummyContainer(String name, BaseCoordinate coordinates, Material backgroundMaterial, SimpleContainer parent, boolean widget) {
+    protected DummyContainer(String name, Coordinates coordinates, Material backgroundMaterial, SimpleContainer parent, boolean widget) {
         super(name, coordinates, backgroundMaterial, parent, widget);
     }
 
     protected DummyContainer() {
-        super(StringUtil.buildRandomString("ct"), Coordinates.ZERO, Material.empty(), false);
+        super(StringUtil.buildRandomString("ct"), FullCoordinates.ZERO, Material.empty(), false);
     }
 
     @Override

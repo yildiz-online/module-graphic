@@ -28,7 +28,7 @@ package be.yildizgames.module.graphic.gui.internal.impl;
 import be.yildizgames.common.client.translation.Translation;
 import be.yildizgames.common.client.translation.TranslationKey;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.BaseContainerChild;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
@@ -82,7 +82,7 @@ final class SimpleTextArea extends BaseContainerChild implements TextArea {
      * @param padding         Text padding.
      * @param container       Container holding the TextAreaGui widget.
      */
-    SimpleTextArea(final String name, final BaseCoordinate coordinates, final AbstractIconElement backgroundImage, final AbstractTextElement textElement, final int padding, final SimpleContainer container) {
+    SimpleTextArea(final String name, final Coordinates coordinates, final AbstractIconElement backgroundImage, final AbstractTextElement textElement, final int padding, final SimpleContainer container) {
         super(name, coordinates, container);
         assert backgroundImage != null : "i parameter is null.";
         assert textElement != null : "t parameter is null.";
@@ -127,16 +127,13 @@ final class SimpleTextArea extends BaseContainerChild implements TextArea {
                     for (final String word : words) {
                         if (!word.isEmpty()) {
                             final float wordWidth = this.text.getFont().computeTextWidth(word);
-                            if (currentLineSize + wordWidth < lineMaxSize + space) {
-                                formattedLine.append(word);
-                                formattedLine.append(' ');
-                            } else {
+                            if (!(currentLineSize + wordWidth < lineMaxSize + space)) {
                                 currentLineSize = this.padding * 2;
                                 this.lines.add(formattedLine.toString());
                                 formattedLine.setLength(0);
-                                formattedLine.append(word);
-                                formattedLine.append(' ');
                             }
+                            formattedLine.append(word);
+                            formattedLine.append(' ');
                             currentLineSize += wordWidth + space;
                         }
                     }
