@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Grégory Van den Borre
  */
-public class ShadowTypeTest {
+class ShadowTypeTest {
 
     /**
      * Those values have to keep constant to be coherent with expected value in
@@ -40,7 +40,7 @@ public class ShadowTypeTest {
      * passed in JNI code(yz::Root::createSceneManager).
      */
     @Test
-    public void test() {
+    void test() {
         assertEquals(0, ShadowType.NONE.ordinal());
         assertEquals(1, ShadowType.TEXTURE_ADDITIVE.ordinal());
         assertEquals(2, ShadowType.TEXTURE_MODULATIVE.ordinal());

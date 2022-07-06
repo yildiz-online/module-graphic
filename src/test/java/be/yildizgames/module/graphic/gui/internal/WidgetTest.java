@@ -43,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Grégory Van den Borre
  */
-public class WidgetTest {
+class WidgetTest {
 
     private BaseWidget givenAWidget() {
         StandardGuiFactory builder = new DummyGuiFactory();
@@ -52,24 +52,24 @@ public class WidgetTest {
                 .withSize(FullCoordinates.size(50))
                 .atPosition(FullCoordinates.position(30))
                 .build();
-        return new WidgetMock(FullCoordinates.full(10,10,10,10), c);
+        return new WidgetMock(FullCoordinates.full(10, 10, 10, 10), c);
     }
 
     @Test
-    public void testWidget() {
+    void testWidget() {
         StandardGuiFactory builder = new DummyGuiFactory();
         Container c = builder
                 .container()
-                .withSize(10,10)
-                .atPosition(10,10)
+                .withSize(10, 10)
+                .atPosition(10, 10)
                 .build();
 
-        BaseWidget w = new WidgetMock(FullCoordinates.full(10,10,10,10), c);
+        BaseWidget w = new WidgetMock(FullCoordinates.full(10, 10, 10, 10), c);
         assertEquals(c, w.findParent().get());
     }
 
     @Test
-    public void testAddMouseClickListener() {
+    void testAddMouseClickListener() {
         BaseWidget w = givenAWidget();
         List<MousePosition> list = new ArrayList<>();
         w.mouseLeftClick(MouseMoveMockFactory.get(12, 14));
@@ -89,7 +89,7 @@ public class WidgetTest {
     }
 
     @Test
-    public void testAddKeyboardListener() {
+    void testAddKeyboardListener() {
         BaseWidget w = givenAWidget();
         List<Character> list = new ArrayList<>();
         w.keyPressed('e');
@@ -100,7 +100,7 @@ public class WidgetTest {
     }
 
     @Test
-    public void testAddMouseMoveListener() {
+    void testAddMouseMoveListener() {
         BaseWidget w = givenAWidget();
         List<MousePosition> list = new ArrayList<>();
         w.mouseMove(MouseMoveMockFactory.get(4, 89));
@@ -111,7 +111,7 @@ public class WidgetTest {
     }
 
     @Test
-    public void testShowHide() {
+    void testShowHide() {
         BaseWidget w = givenAWidget();
         w.show();
         assertTrue(w.isVisible());
@@ -122,7 +122,7 @@ public class WidgetTest {
     }
 
     @Test
-    public void testAddToLeft() {
+    void testAddToLeft() {
         BaseWidget w = givenAWidget();
         assertEquals(10, w.getLeft());
         w.addToLeft(12);
@@ -130,7 +130,7 @@ public class WidgetTest {
     }
 
     @Test
-    public void testAddToTop() {
+    void testAddToTop() {
         BaseWidget w = givenAWidget();
         assertEquals(10, w.getTop());
         w.addToTop(2);
@@ -138,7 +138,7 @@ public class WidgetTest {
     }
 
     @Test
-    public void testAddToPosition() {
+    void testAddToPosition() {
         BaseWidget w = givenAWidget();
         assertEquals(10, w.getTop());
         assertEquals(10, w.getLeft());
@@ -148,7 +148,7 @@ public class WidgetTest {
     }
 
     @Test
-    public void testSetIsFocusable() {
+    void testSetIsFocusable() {
         BaseWidget w = givenAWidget();
         assertFalse(w.isFocusable());
         w.setFocusable(true);

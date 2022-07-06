@@ -33,34 +33,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Grégory Van den Borre
  */
-public class FontTest {
+class FontTest {
 
     @Nested
-    public class Crop {
+    class Crop {
 
         @Test
-        public void nothing() {
+        void nothing() {
             Font f = DummyGuiFactory.defaultFont;
             f.load();
             assertEquals("azerty", f.crop("azerty", 10));
         }
 
         @Test
-        public void tooLong() {
+        void tooLong() {
             Font f = DummyGuiFactory.defaultFont;
             f.load();
             assertEquals("a...", f.crop("azerty", 4));
         }
 
         @Test
-        public void tooShort() {
+        void tooShort() {
             Font f = DummyGuiFactory.defaultFont;
             f.load();
             assertEquals("", f.crop("azerty", 2));
         }
 
         @Test
-        public void tooLong3chars() {
+        void tooLong3chars() {
             Font f = DummyGuiFactory.defaultFont;
             f.load();
             assertEquals("...", f.crop("azerty", 3));

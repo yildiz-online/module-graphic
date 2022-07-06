@@ -37,21 +37,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Grégory Van den Borre
  */
-public class ProgressBarTimerTest {
+class ProgressBarTimerTest {
 
     @Disabled
     @Test
-    public void test() {
+    void test() {
         BaseProgressBar b = new DummyProgressBar();
         TimeTextLine line = new DummyTimeTextLine();
         new SimpleProgressBarTimer(b, line, Duration.ofSeconds(10));
         assertThrows(AssertionError.class, () -> new SimpleProgressBarTimer(null, line, Duration.ofSeconds(10)));
-        assertThrows(AssertionError.class, () -> new SimpleProgressBarTimer(b, line,null));
+        assertThrows(AssertionError.class, () -> new SimpleProgressBarTimer(b, line, null));
     }
 
     @Disabled
     @Test
-    public void testNeverStop() {
+    void testNeverStop() {
         BaseProgressBar b = new DummyProgressBar();
         TimeTextLine line = new DummyTimeTextLine();
         SimpleProgressBarTimer t = new SimpleProgressBarTimer(b, line, Duration.ofSeconds(0));
@@ -62,7 +62,7 @@ public class ProgressBarTimerTest {
 
     @Disabled
     @Test
-    public void testSetValuesNegative() {
+    void testSetValuesNegative() {
         BaseProgressBar b = new DummyProgressBar();
         TimeTextLine line = new DummyTimeTextLine();
         SimpleProgressBarTimer t = new SimpleProgressBarTimer(b, line, Duration.ofSeconds(0));

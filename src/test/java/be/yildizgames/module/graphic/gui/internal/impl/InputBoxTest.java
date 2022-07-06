@@ -40,23 +40,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Grégory Van den Borre
  */
-public class InputBoxTest {
+class InputBoxTest {
 
-    private static StandardGuiFactory builder = new DummyGuiFactory();
+    private static final StandardGuiFactory builder = new DummyGuiFactory();
 
     private static Font f = new DummyFont("f", 5, Color.BLACK);
 
-    private static SimpleContainer parent = builder.buildOverlayContainer("parent", Material.empty(), FullCoordinates.full(100, 10, 0, 0));
+    private static final SimpleContainer parent = builder.buildOverlayContainer("parent", Material.empty(), FullCoordinates.full(100, 10, 0, 0));
 
     @Test
-    public void testGetText() {
+    void testGetText() {
         InputBox box = givenAnInputBox();
         assertEquals("", box.getText());
         builder.delete(box);
     }
 
     @Test
-    public void testSetText() {
+    void testSetText() {
         InputBox box = givenAnInputBox();
         box.setText("abc");
         assertEquals("abc", box.getText());
@@ -64,7 +64,7 @@ public class InputBoxTest {
     }
 
     @Test
-    public void testRemoveChar() {
+    void testRemoveChar() {
         InputBox box = givenAnInputBox();
         box.setText("abc");
         box.removeChar();
@@ -73,7 +73,7 @@ public class InputBoxTest {
     }
 
     @Test
-    public void testRemoveCharNoText() {
+    void testRemoveCharNoText() {
         InputBox box = givenAnInputBox();
         box.removeChar();
         assertEquals("", box.getText());
@@ -81,7 +81,7 @@ public class InputBoxTest {
     }
 
     @Test
-    public void testAddChar() {
+    void testAddChar() {
         SimpleInputBox box = givenAnInputBox();
         box.addChar(65);
         assertEquals("A", box.getText());
@@ -89,7 +89,7 @@ public class InputBoxTest {
     }
 
     @Test
-    public void testPressKey() {
+    void testPressKey() {
         SimpleInputBox box = givenAnInputBox();
         box.show();
         box.keyPressed('a');
@@ -98,7 +98,7 @@ public class InputBoxTest {
     }
 
     @Test
-    public void testPressDeleteKey() {
+    void testPressDeleteKey() {
         SimpleInputBox box = givenAnInputBox();
         box.show();
         box.keyPressed('b');
@@ -109,7 +109,7 @@ public class InputBoxTest {
     }
 
     @Test
-    public void testAddCharAboveLimit256() {
+    void testAddCharAboveLimit256() {
         SimpleInputBox box = givenAnInputBox();
         box.addChar(257);
         assertEquals("", box.getText());

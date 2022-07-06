@@ -33,10 +33,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 /**
  * @author Grégory Van den Borre
  */
-public final class ZOrderTest {
+final class ZOrderTest {
 
     @Test
-    public void testHashCode() {
+    void testHashCode() {
         assertEquals(new Zorder(12).hashCode(), new Zorder(12).hashCode());
         assertEquals(new Zorder(222).hashCode(), new Zorder(222).hashCode());
         assertEquals(new Zorder(473).hashCode(), new Zorder(473).hashCode());
@@ -45,47 +45,47 @@ public final class ZOrderTest {
     }
 
     @Test
-    public void testZorderMin() {
+    void testZorderMin() {
         Zorder z = new Zorder(-1);
         assertEquals(new Zorder(0), z);
     }
 
     @Test
-    public void testZorderMax() {
+    void testZorderMax() {
         Zorder z = new Zorder(651);
         assertEquals(new Zorder(650), z);
     }
 
     @Test
-    public void testZorder() {
+    void testZorder() {
         assertEquals(new Zorder(640), Zorder.GUI);
         assertEquals(new Zorder(0), Zorder.ZERO);
     }
 
     @Test
-   public void testAdd() {
+    void testAdd() {
         assertEquals(new Zorder(10), new Zorder(3).add(7));
     }
 
     @Test
-    public void testCompareTo() {
+    void testCompareTo() {
         assertEquals(1, new Zorder(10).compareTo(new Zorder(11)));
         assertEquals(0, new Zorder(8).compareTo(new Zorder(8)));
         assertEquals(-1, new Zorder(200).compareTo(new Zorder(45)));
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         assertEquals("Z order:12", new Zorder(12).toString());
     }
 
     @Test
-    public void testGetValue() {
+    void testGetValue() {
         assertEquals(17, new Zorder(17).getValue());
     }
 
     @Test
-    public void testEqualsObject() {
+    void testEqualsObject() {
         for (int i = 0; i < 100; i++) {
             int v = Util.getRandom(650);
             assertEquals(new Zorder(v), new Zorder(v));

@@ -33,67 +33,67 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class BillboardTest {
+class BillboardTest {
 
 
     @Nested
-    public class SetSize {
+    class SetSize {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             Billboard b = new BillboardDummy();
-            b.setSize(5,6);
+            b.setSize(5, 6);
             Assertions.assertEquals(5, b.getWidth());
             Assertions.assertEquals(6, b.getHeight());
         }
 
         @Disabled
         @Test
-        public void zeroHeight() {
+        void zeroHeight() {
             Billboard b = new BillboardDummy();
             Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(5, 0));
         }
 
         @Disabled
         @Test
-        public void zeroWidth() {
-            Billboard b =new BillboardDummy();
+        void zeroWidth() {
+            Billboard b = new BillboardDummy();
             Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(0, 6));
         }
 
         @Test
-        public void negativeHeight() {
+        void negativeHeight() {
             Billboard b = new BillboardDummy();
             Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(5, -1));
         }
 
         @Test
-        public void negativeWidth() {
+        void negativeWidth() {
             Billboard b = new BillboardDummy();
             Assertions.assertThrows(IllegalArgumentException.class, () -> b.setSize(-1, 6));
         }
     }
 
     @Nested
-    public class SetPosition {
+    class SetPosition {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             BillboardDummy b = new BillboardDummy();
-            Point3D pos = Point3D.valueOf(4,5,6);
+            Point3D pos = Point3D.valueOf(4, 5, 6);
             b.setPosition(pos);
             Assertions.assertEquals(pos, b.p);
         }
 
         @Test
-        public void nullParam() {
+        void nullParam() {
             Billboard b = new BillboardDummy();
             Assertions.assertThrows(NullPointerException.class, () -> b.setPosition(null));
         }
 
     }
 
-    public class BillboardDummy extends Billboard {
+    class BillboardDummy extends Billboard {
 
         private Point3D p;
 
@@ -108,7 +108,7 @@ public class BillboardTest {
         }
 
         @Override
-           protected void setSizeImpl(float newWidth, float newHeight) {
+        protected void setSizeImpl(float newWidth, float newHeight) {
             //Empty
         }
     }

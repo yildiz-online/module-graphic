@@ -30,13 +30,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class GraphicObjectTest {
+class GraphicObjectTest {
 
     @Nested
-    public class Constructor {
+    class Constructor {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             GraphicObject object = new GraphicObjectDummy();
             Assertions.assertTrue(object.isVisible());
         }

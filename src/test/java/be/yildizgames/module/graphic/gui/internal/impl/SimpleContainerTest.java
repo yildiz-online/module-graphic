@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Grégory Van den Borre
  */
-public final class SimpleContainerTest {
+final class SimpleContainerTest {
 
     private static final Coordinates CR = FullCoordinates.full(FullCoordinates.size(10), FullCoordinates.ZERO.getLeft(), FullCoordinates.ZERO.getTop());
 
@@ -52,10 +52,10 @@ public final class SimpleContainerTest {
      * </li> <li>E: 1 more widget(W6) in the parent container, not focusable, expected: same as D</li>
      */
     @Test
-    public void functionalTestGetNextFocusableElement() {
+    void functionalTestGetNextFocusableElement() {
         StandardGuiFactory builder = new DummyGuiFactory();
         SimpleContainerBuilder cb = new SimpleContainerBuilder(builder);
-        SimpleContainer c = (SimpleContainer)cb.withCoordinates(FullCoordinates.full(50, 60, 10, 20)).build();
+        SimpleContainer c = (SimpleContainer) cb.withCoordinates(FullCoordinates.full(50, 60, 10, 20)).build();
         // A
         BaseWidget w1 = new WidgetMock("w1", CR, c);
         w1.setFocusable(true);
@@ -121,7 +121,7 @@ public final class SimpleContainerTest {
     }
 
     @Test
-    public void testGetNextFocusableElement() {
+    void testGetNextFocusableElement() {
         StandardGuiFactory builder = new DummyGuiFactory();
         Container c = new SimpleContainerBuilder(builder).withCoordinates(FullCoordinates.full(50, 60, 10, 20)).build();
         assertNull(c.getNextFocusableElement());
@@ -132,10 +132,10 @@ public final class SimpleContainerTest {
     }
 
     @Test
-    public void testGuiContainer() {
+    void testGuiContainer() {
         StandardGuiFactory builder = new DummyGuiFactory();
         Coordinates cr = FullCoordinates.full(50, 60, 10, 20);
-        SimpleContainer c = (SimpleContainer)new SimpleContainerBuilder(builder).withName("test").withCoordinates(cr).build();
+        SimpleContainer c = (SimpleContainer) new SimpleContainerBuilder(builder).withName("test").withCoordinates(cr).build();
         assertEquals("test", c.getName());
         assertEquals(cr.getLeft(), c.getLeft());
         assertEquals(cr.getTop(), c.getTop());
@@ -146,7 +146,7 @@ public final class SimpleContainerTest {
     }
 
     @Test
-    public void testContains() {
+    void testContains() {
         StandardGuiFactory builder = new DummyGuiFactory();
         final int cWidth = 50;
         final int cHeight = 60;
@@ -181,9 +181,9 @@ public final class SimpleContainerTest {
     }
 
     @Test
-    public void testContainsVirtualHeight() {
+    void testContainsVirtualHeight() {
         StandardGuiFactory builder = new DummyGuiFactory();
-        SimpleContainer c = (SimpleContainer)new SimpleContainerBuilder(builder).withSize(FullCoordinates.size(50)).build();
+        SimpleContainer c = (SimpleContainer) new SimpleContainerBuilder(builder).withSize(FullCoordinates.size(50)).build();
         assertTrue(c.contains(MouseMoveMockFactory.get(10, 10)));
         assertFalse(c.contains(MouseMoveMockFactory.get(10, 60)));
         c.setVirtualHeight(80);
